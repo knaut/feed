@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+
+// STYLES
+import styles from './styles';
 
 class App extends Component {
   render() {
+    console.log(styles)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container
+        }}
+      >
+        <header>
+          <h1
+            style={{
+              color: styles.colors.pastels.purple
+            }}
           >
-            Learn React
-          </a>
+            welcome to <strong style={{
+              color: styles.colors.primaries.purple
+            }}>feed</strong>.
+          </h1>
         </header>
       </div>
     );
