@@ -8,26 +8,14 @@ import { Login } from "grommet-icons";
 // STYLES
 import styles from '../styles';
 
-// window.blockstack = blockstack;
-
 class SignIn extends Component {
-  componentDidMount() {
-    if (blockstack.isUserSignedIn()) {
-      
-      var profile = blockstack.loadUserData().profile;
-
-      console.log(profile);
-      
-    } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn().then(function(userData) {
-        window.location = window.location.origin
-      })
-    }
-
-  }
-
   onClick = () => {
-    blockstack.redirectToSignIn();
+    const origin = window.location.origin;
+    blockstack.redirectToSignIn(
+      origin,
+      origin + '/manifest.json',
+      ['store_write', 'publish_data']
+    );
   }
 
   render() {

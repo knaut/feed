@@ -1,30 +1,68 @@
 // IMPORTS
-import React, { Component } from 'react';
-import { Grommet, Box, Button } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import { Login } from "grommet-icons";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import * as blockstack from 'blockstack';
 
-// STYLES
-import styles from './styles';
+// REDUX
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
 
-// COMPONENTS
-import SignIn from './components/SignIn.jsx';
+// ROUTER
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 
-class App extends Component {
-  render() {
-    return (
-      <Grommet theme={grommet}>
-        <div 
-          style={{
-            background: styles.colors.darks.purple,
-            ...styles.app.container
-          }}
-        >
-          <SignIn />
-        </div>
-      </Grommet>
-    );
+// REDUCERS
+import rootReducer from './reducers/root';
+
+// SCREENS
+import Index from './screens/Index.jsx';
+import Feed from './screens/Feed.jsx';
+
+// UTILS
+import isSignedIn from './utils/isSignedIn';
+
+const state = {};
+const history = createHistory();
+const store = createStore(
+  rootReducer,
+  state,
+  applyMiddleware(
+    promise(),
+    thunk,
+    createLogger()
+  )
+);
+
+const loginToBlockstack = () => {
+  if (blockstack.isUserSignedIn()) {      
+    const profile = blockstack.loadUserData().profile;
+    const person = new blockstack.Person(profile);
+    console.log(person, person.toJSON() );      
+
+  } else if (blockstack.isSignInPending()) {
+    blockstack.handlePendingSignIn().then(function(userData) {
+      window.location = window.location.origin
+    });
   }
 }
 
-export default App;
+loginToBlockstack();
+
+const App = () => {
+  return (
+    <Provider store={ store }>
+      <ConnectedRouter history={ history }>
+        <Switch>
+          <Route path="/" exact component={ Index } />
+          <Route path="/feed" exact component={ isSignedIn( Feed ) } />
+        </Switch>
+      </ConnectedRouter>
+    </Provider>
+  );
+};
+
+ReactDOM.render(<App/>, document.getElementById('root'));

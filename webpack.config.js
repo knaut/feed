@@ -13,11 +13,12 @@ module.exports = {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*',
-    }
+    },
+    historyApiFallback: true
   },
   mode: 'development',
   entry: {
-    app: './src/index.jsx'
+    app: './src/App.jsx'
   },
   output: {
     path: path.resolve( __dirname, 'build' ),

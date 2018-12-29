@@ -1,6 +1,9 @@
 // MAIN REDUCER
 export default function user(
-  state = [],
+  state = {
+    id: null,
+    isAuthenticated: false
+  },
   action
 ) {
   let newState = {
