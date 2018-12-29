@@ -8,7 +8,7 @@ import { Login } from "grommet-icons";
 // STYLES
 import styles from '../styles';
 
-window.blockstack = blockstack;
+// window.blockstack = blockstack;
 
 class SignIn extends Component {
   componentDidMount() {
