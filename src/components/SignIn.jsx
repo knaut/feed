@@ -10,11 +10,7 @@ import styles from '../styles';
 
 class SignIn extends Component {
   onClick = () => {
-    blockstack.redirectToSignIn(
-      `${window.location.origin}`,
-      `${window.location.origin}/manifest.json`,
-      ['DEFAULT_SCOPE']
-    );
+    blockstack.redirectToSignIn();
   }
 
   render() {
@@ -29,7 +25,7 @@ class SignIn extends Component {
             >
               welcome to <strong style={{
                 color: styles.colors.primaries.purple
-              }}>feed</strong>.
+              }}>feed</strong> 🌱.
             </h1>
             <p style={{color: styles.colors.pastels.purple}}>feed is a decentralized social network powered by blockchain technology.</p>
             <Box align="center" pad="large" gap="small">

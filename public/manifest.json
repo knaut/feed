@@ -1,7 +1,7 @@
 {
-  "name": "Hello, Blockstack",
+  "name": "Feed",
   "start_url": "localhost:3000",
-  "description": "A simple demo of Blockstack Auth",
+  "description": "Feed, a decentralized social networking web app",
   "icons": [{
     "src": "https://helloblockstack.com/icon-192x192.png",
     "sizes": "192x192",

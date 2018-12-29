@@ -9,7 +9,11 @@ module.exports = {
     contentBase: path.join(__dirname, 'build'),
     compress: true,
     port: 3000,
-    hot: true
+    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+    }
   },
   mode: 'development',
   entry: {
