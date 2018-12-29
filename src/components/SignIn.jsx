@@ -10,7 +10,11 @@ import styles from '../styles';
 
 class SignIn extends Component {
   onClick = () => {
-    blockstack.redirectToSignIn();
+    blockstack.redirectToSignIn(
+      `${window.location.origin}`,
+      `${window.location.origin}/manifest.json`,
+      ['DEFAULT_SCOPE']
+    );
   }
 
   render() {

@@ -11,8 +11,7 @@ import promise from 'redux-promise-middleware';
 // REDUCERS
 import rootReducer from './reducers/root';
 // COMPONENTS
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import App from './App.jsx';
 // MISC STYLES
 import './index.css';
 
@@ -41,8 +40,3 @@ const Client = () => {
 }
 
 ReactDOM.render(<Client/>, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
