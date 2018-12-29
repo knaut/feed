@@ -1,6 +1,7 @@
 // IMPORTS
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as blockstack from 'blockstack';
 // REDUX
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
@@ -26,6 +27,10 @@ const store = createStore(
     createLogger()
   )
 );
+
+const userSignedIn = blockstack.isUserSignedIn();
+
+console.log({ blockstack, userSignedIn });
 
 const Client = () => {
   return (
