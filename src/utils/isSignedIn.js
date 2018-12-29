@@ -8,7 +8,7 @@ export default connectedRouterRedirect({
   // path we want to redirect to
   redirectPath: '/',
   // determines whether the user is signed into blockstack
-  authenticatedSelector: state => state.user.isAuthenticated === false,
+  authenticatedSelector: state => state.user.isAuthenticated === true,
   wrapperDisplayName: 'IsSignedIn',
   redirectAction: routerActions.replace
 });

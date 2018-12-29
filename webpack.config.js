@@ -24,9 +24,9 @@ module.exports = {
     path: path.resolve( __dirname, 'build' ),
     filename: '[name].bundle.js',
   },
-  performance: {
-    hints: 'warning'
-  },
+  // performance: {
+  //   hints: 'warning'
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Feed 🌱 your decentralized social networking tool',

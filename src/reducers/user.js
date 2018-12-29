@@ -1,7 +1,7 @@
 // MAIN REDUCER
 export default function user(
   state = {
-    id: null,
+    username: null,
     isAuthenticated: false
   },
   action
@@ -11,7 +11,15 @@ export default function user(
   };
 
   switch (action.type) {
-    default:
+    default: {
       return newState;
+    }
+    case 'IS_SIGNED_IN': {
+      newState.username = action.payload.username;
+      newState.isAuthenticated = true;
+
+      return newState;
+    }
+
   }
 }

@@ -1,5 +1,6 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Grommet, Box, Button } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Login } from "grommet-icons";

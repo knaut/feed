@@ -1,12 +1,20 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as blockstack from 'blockstack';
-import { Grommet, Box, Button } from 'grommet';
+import { Grommet, Box, Button, Paragraph, Anchor, Text } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Login } from "grommet-icons";
+import { Login, LinkNext } from "grommet-icons";
+import { Link } from 'react-router-dom';
 
 // STYLES
 import styles from '../styles';
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
 
 class SignIn extends Component {
   onClick = () => {
@@ -16,6 +24,30 @@ class SignIn extends Component {
       origin + '/manifest.json',
       ['store_write', 'publish_data']
     );
+  }
+
+  renderEntry = () => {
+    if (this.props.user.isAuthenticated) {
+      return (
+        <Box align="center" pad="small" gap="small">
+          <Paragraph style={{
+            color: styles.colors.pastels.cyan
+          }}>Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
+          </Paragraph>
+          <Link to="/feed">
+            <Button icon={<LinkNext />} label="go to your feed" primary style={{
+              background: 'transparent'
+            }}/>
+          </Link>
+        </Box>
+      )
+    } else {
+      return (
+        <Box align="center" pad="large" gap="small">
+          <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
+        </Box>
+      )
+    }
   }
 
   render() {
@@ -33,9 +65,7 @@ class SignIn extends Component {
               }}>feed</strong> 🌱.
             </h1>
             <p style={{color: styles.colors.pastels.purple}}>feed is a decentralized social network powered by blockchain technology.</p>
-            <Box align="center" pad="large" gap="small">
-              <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
-            </Box>
+            {this.renderEntry()}
           </header>
         </Box>
       </Box>
@@ -43,4 +73,4 @@ class SignIn extends Component {
   }
 };
 
-export default SignIn;
+export default connect(mapStateToProps)(SignIn);

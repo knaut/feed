@@ -38,10 +38,9 @@ const store = createStore(
 );
 
 const loginToBlockstack = () => {
-  if (blockstack.isUserSignedIn()) {      
+  if (blockstack.isUserSignedIn()) {
     const profile = blockstack.loadUserData().profile;
     const person = new blockstack.Person(profile);
-    console.log(person, person.toJSON() );      
 
   } else if (blockstack.isSignInPending()) {
     blockstack.handlePendingSignIn().then(function(userData) {
@@ -53,6 +52,20 @@ const loginToBlockstack = () => {
 loginToBlockstack();
 
 const App = () => {
+
+  if (blockstack.isUserSignedIn()) {
+    const { username } = blockstack.loadUserData();
+
+    store.dispatch({
+      type: 'IS_SIGNED_IN',
+      payload: {
+        username
+      }
+    });
+  } else {
+    console.log('You are not signed in to Blockstack.');
+  }
+
   return (
     <Provider store={ store }>
       <ConnectedRouter history={ history }>
