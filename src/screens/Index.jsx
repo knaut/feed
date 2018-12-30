@@ -17,7 +17,9 @@ class App extends Component {
         <div 
           style={{
             background: styles.colors.darks.purple,
-            ...styles.app.container
+            ...styles.app.container,
+            alignItems: 'center',
+            textAlign:'center'
           }}
         >
           <SignIn />

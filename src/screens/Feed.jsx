@@ -10,6 +10,7 @@ import styles from '../styles';
 
 // COMPONENTS
 import AddPostButton from '../components/AddPostButton.jsx';
+import MyProfileButton from '../components/MyProfileButton.jsx';
 
 class Feed extends Component {
   render() {
@@ -18,15 +19,18 @@ class Feed extends Component {
         <div 
           style={{
             background: styles.colors.darks.purple,
-            ...styles.app.container
+            ...styles.app.container,
+            justifyContent: 'start'
           }}
         >
-          <Box pad={{ horizontal: 'xlarge', vertical: 'large' }}>
-            <Box>
-              <h1 style={{
-                color: styles.colors.pastels.purple
-              }}>This is the feed page.</h1>
-            </Box>
+          <Box
+            tag='header'
+            justify='between'
+            align='start'
+            direction='row'
+          >
+            <AddPostButton/>
+            <MyProfileButton/>
           </Box>
         </div>
       </Grommet>
