@@ -1,7 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grommet, Box, Button, Grid } from 'grommet';
+import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Login } from "grommet-icons";
 
@@ -9,6 +9,7 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
+import AddPost from '../components/AddPost.jsx';
 import AddPostButton from '../components/AddPostButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';
 
@@ -38,22 +39,7 @@ class Feed extends Component {
               <AddPostButton/>
             </Box>
             <Box gridArea='main'>
-
-              <Box align="center" pad="medium">
-                <Box
-                  pad='medium'
-                  gap='small'
-                  round
-                  style={{
-                    background: 'white',
-                    width: '100%',
-                    maxWidth: '800px'
-                  }}
-                >
-                  This is add post
-                </Box>
-              </Box>
-
+              <AddPost />
             </Box>
             <Box gridArea='right'>
               <MyProfileButton/>
@@ -63,38 +49,6 @@ class Feed extends Component {
       </Grommet>
     );
   }
-}
-
-/*
-<div 
-          style={{
-            background: styles.colors.darks.purple,
-            ...styles.app.container,
-            justifyContent: 'start'
-          }}
-        >
-          <Box
-            tag='header'
-            justify='between'
-            align='start'
-            direction='row'
-          >
-            <AddPostButton/>
-            <Box align="center" pad="medium">
-              <Box
-                pad='large'
-                gap='small'
-                round
-                style={{
-                  background: 'white'
-                }}
-              >
-                This is add post
-              </Box>
-            </Box>
-            <MyProfileButton/>
-          </Box>
-        </div>
-*/
+};
 
 export default Feed;

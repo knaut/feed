@@ -1,0 +1,79 @@
+// IMPORTS
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
+import { grommet, dark } from 'grommet/themes';
+import { Editor, EditorState } from 'draft-js';
+
+class TextEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {editorState: EditorState.createEmpty()};
+    this.onChange = (editorState) => this.setState({editorState});
+    this.setEditor = (editor) => {
+      this.editor = editor;
+    };
+    this.focusEditor = () => {
+      if (this.editor) {
+        this.editor.focus();
+      }
+    };
+  }
+
+  componentDidMount() {
+    this.focusEditor();
+  }
+
+  render() {
+    return (
+      <div 
+        onClick={this.focusEditor}
+        style={{
+          border: 0,
+          minHeight: '6em'
+        }}
+      >
+        <Editor
+          ref={this.setEditor}
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+        />
+      </div>
+    );
+  }
+}
+
+class AddPost extends Component {
+  state = {
+    value: ''
+  }
+
+  onChange = (e) => {
+    this.setState({
+      value: e.target.value
+    });
+  }
+
+  render() {
+    const { value } = this.state;
+
+    return (
+      <Box align="center" pad="medium">
+        <Box
+          pad='medium'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            maxWidth: '800px'
+          }}
+        >
+         <TextEditor /> 
+        </Box>
+      </Box>
+    );
+  }
+};
+
+export default AddPost;
