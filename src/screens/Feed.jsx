@@ -9,7 +9,7 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import SignIn from '../components/SignIn.jsx';
+import AddPostButton from '../components/AddPostButton.jsx';
 
 class Feed extends Component {
   render() {
