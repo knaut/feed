@@ -1,9 +1,12 @@
 // IMPORTS
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+// COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Editor, EditorState } from 'draft-js';
+import { Add } from 'grommet-icons';
 
 class TextEditor extends React.Component {
   constructor(props) {
@@ -29,8 +32,7 @@ class TextEditor extends React.Component {
       <div 
         onClick={this.focusEditor}
         style={{
-          border: 0,
-          minHeight: '6em'
+          border: 0
         }}
       >
         <Editor
@@ -69,7 +71,12 @@ class AddPost extends Component {
             maxWidth: '800px'
           }}
         >
-         <TextEditor /> 
+          <TextEditor />
+          <Box align='end'>
+            <Button>
+              <Add/>
+            </Button>
+          </Box>
         </Box>
       </Box>
     );
