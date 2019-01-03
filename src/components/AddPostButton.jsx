@@ -1,5 +1,6 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
@@ -8,6 +9,14 @@ import { Add } from 'grommet-icons';
 
 // STYLES
 import styles from '../styles';
+
+function mapDispatchToProps(dispatch) {
+  return {
+    // actions: bindActionCreators({
+    //   onEditorInputChange: 
+    // }, dispatch)
+  }
+}
 
 class AddPostButton extends Component {
   render() {
@@ -22,4 +31,4 @@ class AddPostButton extends Component {
   }
 };
 
-export default AddPostButton;
+export default connect(mapDispatchToProps)(AddPostButton);

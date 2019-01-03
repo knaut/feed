@@ -1,5 +1,5 @@
 // ACTION TYPES
-import * as UserActionTypes from '../actions/types/user';
+import * as UserActions from '../actions/user';
 
 // MAIN REDUCER
 export default function user(
@@ -17,7 +17,7 @@ export default function user(
     default: {
       return newState;
     }
-    case UserActionTypes.IS_SIGNED_IN: {
+    case UserActions.IS_SIGNED_IN: {
       newState.username = action.payload.username;
       newState.isAuthenticated = true;
 

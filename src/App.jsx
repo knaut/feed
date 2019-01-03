@@ -1,5 +1,6 @@
+
 // IMPORTS
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as blockstack from 'blockstack';
 
@@ -15,6 +16,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
+// ROUTER AUTH
+import isSignedIn from './authentication/isSignedIn';
+
 // REDUCERS
 import rootReducer from './reducers/root';
 
@@ -22,8 +26,8 @@ import rootReducer from './reducers/root';
 import Index from './screens/Index.jsx';
 import Feed from './screens/Feed.jsx';
 
-// UTILS
-import isSignedIn from './utils/isSignedIn';
+// THUNKS
+import * as UserThunks from './thunks/user';
 
 const state = {};
 const history = createHistory();
@@ -36,6 +40,28 @@ const store = createStore(
     createLogger()
   )
 );
+
+/*
+
+class App extends Component {
+  componentDidMount() {
+    UserThunks.loginToBlockstack();
+  }
+
+  render() {
+    return (
+      <Provider store={ store }>
+        <ConnectedRouter history={ history }>
+          <Switch>
+            <Route path="/" exact component={ Index } />
+            <Route path="/feed" exact component={ isSignedIn( Feed ) } />
+          </Switch>
+        </ConnectedRouter>
+      </Provider>
+    );
+  }
+}
+*/
 
 const loginToBlockstack = () => {
   if (blockstack.isUserSignedIn()) {
