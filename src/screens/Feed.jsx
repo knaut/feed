@@ -9,7 +9,7 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import AddPost from '../components/AddPost.jsx';
+import Editor from '../components/Editor.jsx';
 import AddPostButton from '../components/AddPostButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';
 
@@ -39,7 +39,7 @@ class Feed extends Component {
               <AddPostButton/>
             </Box>
             <Box gridArea='main'>
-              <AddPost />
+              <Editor />
             </Box>
             <Box gridArea='right'>
               <MyProfileButton/>
