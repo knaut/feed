@@ -1,6 +1,12 @@
 // ACTION TYPES
 import * as EditorActions from '../actions/editor';
 
+// THUNKS
+import * as StatusThunks from '../thunks/status';
+
+// POST TYPES
+const STATUS = 'STATUS';
+
 // MAIN REDUCER
 export default function editor(
   /*
@@ -21,6 +27,11 @@ export default function editor(
 
   switch(action.type) {
     default: {
+      return newState;
+    }
+    case EditorActions.EDITOR_SUBMIT: {
+      newState.input = action.payload.text;
+      newState.type = STATUS;
       return newState;
     }
   }

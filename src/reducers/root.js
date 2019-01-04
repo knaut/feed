@@ -6,11 +6,13 @@ import { combineReducers } from 'redux';
 // import pages from './pages.js';
 // import themes from './themes.js';
 import user from './user.js';
+import editor from './editor.js';
 
 // import all other reducers here
 // the root reducer will be fed to any generated store
 const rootReducer = combineReducers({
-  user
+  user,
+  editor
 });
 
 export default rootReducer;

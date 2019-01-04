@@ -9,13 +9,13 @@ import { grommet, dark } from 'grommet/themes';
 import { Editor, EditorState } from 'draft-js';
 import { Add } from 'grommet-icons';
 
-// ACTIONS
-import * as EditorActions from '../actions/editor';
+// THUNKS
+import * as StatusThunks from '../thunks/status';
 
 function mapDispatchToProps(dispatch) {
   return { 
     actions: bindActionCreators({
-      submit: EditorActions.submit
+      submit: StatusThunks.postStatus
     }, dispatch) 
   };
 }
@@ -48,7 +48,6 @@ class PostEditor extends Component {
   }
 
   onPostSubmit = () => {
-    console.log(this)
     const text = this.state.editorState.getCurrentContent().getPlainText();
     this.props.actions.submit({
       text

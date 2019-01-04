@@ -1,6 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // COMPONENTS
 import { Grommet, Box, Button } from 'grommet';
