@@ -33,7 +33,7 @@ class FeedList extends Component {
 
   render() {
     return (
-      <Box align="center" style={{ width: '100%' }}>
+      <Box align="center" style={{ width: '100%' }} pad='medium'>
         {
           this.props.feed.posts.length > 0 ?
             // post card component
