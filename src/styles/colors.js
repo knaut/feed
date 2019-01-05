@@ -23,10 +23,19 @@ const darks = {
   cyan: '#242F3B'
 };
 
+const neutrals = {
+  light: '#ECEFFF',
+  gray1: '#98A1AD',
+  gray2: '#636870',
+  gray3: '#393E47',
+  dark: '#16181D'
+}
+
 const colors = {
   primaries,
   pastels,
-  darks
+  darks,
+  neutrals
 };
 
 export default colors;

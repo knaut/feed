@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Moment from 'moment';
 
 // STYLES
 import styles from '../styles';
@@ -25,6 +26,12 @@ class PostCard extends Component {
             maxWidth: '800px'
           }}
         >
+          <Box style={{ textAlign: 'right' }}>
+            <span style={{
+              ...styles.typography.card_date,
+              color: styles.colors.neutrals.gray2
+            }}>{ Moment(this.props.post.timestamp).format('llll') }</span>
+          </Box>
           <div>{this.props.post.text}</div>
         </Box>
       </Box>
