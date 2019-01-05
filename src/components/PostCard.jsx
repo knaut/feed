@@ -10,7 +10,7 @@ import styles from '../styles';
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Add } from 'grommet-icons';
+import { Add, Star, Note } from 'grommet-icons';
 
 class PostCard extends Component {
   render() {
@@ -33,6 +33,16 @@ class PostCard extends Component {
             }}>{ Moment(this.props.post.timestamp).format('llll') }</span>
           </Box>
           <div>{this.props.post.text}</div>
+        </Box>
+        <Box align='start' direction='row' style={{
+          width: '100%'
+        }}>
+          <Box pad='medium'>
+            <Star size='medium' color={styles.colors.primaries.orange} />
+          </Box>
+          <Box pad='medium'>
+            <Note size='medium' color={styles.colors.neutrals.gray2} />
+          </Box>
         </Box>
       </Box>
     );
