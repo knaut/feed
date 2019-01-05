@@ -15,7 +15,7 @@ import { Add, Star, Note } from 'grommet-icons';
 class PostCard extends Component {
   render() {
     return (
-      <Box align="center" pad="medium" style={{ width: '100%' }}>
+      <Box align="center" margin={{top: 'medium', bottom: 'small'}} style={{ width: '100%', maxWidth: '800px' }} animation={['fadeIn']}>
         <Box
           pad='medium'
           gap='small'
@@ -23,7 +23,7 @@ class PostCard extends Component {
           style={{
             background: 'white',
             width: '100%',
-            maxWidth: '800px'
+            
           }}
         >
           <Box style={{ textAlign: 'right' }}>
@@ -41,7 +41,7 @@ class PostCard extends Component {
             <Star size='medium' color={styles.colors.primaries.orange} />
           </Box>
           <Box pad='medium'>
-            <Note size='medium' color={styles.colors.neutrals.gray2} />
+            <Note size='medium' color={styles.colors.neutrals.light} />
           </Box>
         </Box>
       </Box>
