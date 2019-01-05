@@ -27,7 +27,6 @@ import Index from './screens/Index.jsx';
 import Feed from './screens/Feed.jsx';
 
 // THUNKS
-import * as UserThunks from './thunks/user';
 
 const state = {};
 const history = createHistory();
@@ -40,28 +39,6 @@ const store = createStore(
     createLogger()
   )
 );
-
-/*
-
-class App extends Component {
-  componentDidMount() {
-    UserThunks.loginToBlockstack();
-  }
-
-  render() {
-    return (
-      <Provider store={ store }>
-        <ConnectedRouter history={ history }>
-          <Switch>
-            <Route path="/" exact component={ Index } />
-            <Route path="/feed" exact component={ isSignedIn( Feed ) } />
-          </Switch>
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
-}
-*/
 
 const loginToBlockstack = () => {
   if (blockstack.isUserSignedIn()) {
@@ -78,7 +55,6 @@ const loginToBlockstack = () => {
 loginToBlockstack();
 
 const App = () => {
-
   if (blockstack.isUserSignedIn()) {
     const { username } = blockstack.loadUserData();
 

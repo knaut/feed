@@ -1,3 +1,5 @@
+import Moment from 'moment';
+
 // UTILS
 import generateId from '../utils/generateId';
 import toType from '../utils/toType';
@@ -7,46 +9,43 @@ class Status {
     a status is a textual post limited to 500 characters.
   */
 
-  constructor(input) {
+  constructor(text) {
     const id = generateId();
     const textLimit = 500;
     
-    // our text is our input. isValid is our determination whether it's "really" a status.
-    let text = null;
+    // isValid is our determination whether it's "really" a status.
     let isValid = null;
+    let timestamp = null;
 
-    const inputType = toType(input);
+    const textType = toType(text);
 
-    if (inputType !== 'string') {
-      console.error(`Status constructor was given input text that wasn't a string.`, input);
+    if (textType !== 'string') {
+      console.error(`Status constructor was given text that wasn't a string.`, text);
       isValid = false;
-      
-      this.id = id;
-      this.text = text;
-      this.isValid = isValid;
       
     } else {
 
-      if (input.length > textLimit) {
-        console.error(`Status constructor was given input text that was too long.`);
+      if (text.length > textLimit) {
+        console.error(`Status constructor was given text that was too long.`);
         isValid = false;
-        text = input;
-        
-        this.id = id;
-        this.text = text;
-        this.isValid = isValid;
+
+      } else if (text.length === 0) {
+        console.error(`Status constructor was given text blank.`);
+        isValid = false;
         
       } else {
         console.log(`Constructed valid Status.`);
         isValid = true;
-        text = input;
+        timestamp = Moment().toISOString();
 
-        this.id = id;
-        this.text = text;
-        this.isValid = isValid;
       }
 
     }
+    
+    this.id = id;
+    this.text = text;
+    this.isValid = isValid;
+    this.timestamp = timestamp;
   }
 
   save() {
@@ -56,8 +55,11 @@ class Status {
     */
     if (this.isValid === true) {
       console.log('Simulating model save on Gaia.', this);
+
+      return this;
+      
     } else {
-      console.error('Could not save Status to Gaia; model is invalid.', this);
+      throw ('Could not save Status to Gaia; model is invalid.', this);
     }
   }
 }

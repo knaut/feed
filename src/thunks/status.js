@@ -1,5 +1,8 @@
 import Status from '../models/Status';
 
+// ACTIONS
+import * as EditorActions from '../actions/editor';
+
 export function postStatus(payload) {
   return function(dispatch) {
     /*
@@ -8,7 +11,21 @@ export function postStatus(payload) {
       if not, we should dispatch an action to inform our components.
     */
     const status = new Status(payload.text);
-    status.save();
+
+    try {
+      status.save();
+      
+      dispatch(
+        EditorActions.submitSuccess(status)
+      );
+
+    } catch (error) {
+      console.log(error);
+
+      dispatch(
+        EditorActions.submitFail(status)
+      );
+    }
 
   }
 }
