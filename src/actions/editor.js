@@ -1,11 +1,11 @@
 
-export const EDITOR_SUBMIT = 'EDITOR_SUBMIT';
+export const EDITOR_CHANGE = 'EDITOR_CHANGE';
 export const EDITOR_SUBMIT_FAIL = 'EDITOR_SUBMIT_FAIL';
 export const EDITOR_SUBMIT_SUCCESS = 'EDITOR_SUBMIT_SUCCESS';
 
-export function submit(payload) {
+export function change(payload) {
   return {
-    type: EDITOR_SUBMIT,
+    type: EDITOR_CHANGE,
     payload
   }
 }

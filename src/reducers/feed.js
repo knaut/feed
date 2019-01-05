@@ -17,7 +17,7 @@ export default function feed(
     }
     case EditorActions.EDITOR_SUBMIT_SUCCESS: {
       // add this post to the top of our feed
-      newState.splice( 0, 0, action.payload.post );
+      newState.posts.splice( 0, 0, action.payload );
       return newState;
     }
   }

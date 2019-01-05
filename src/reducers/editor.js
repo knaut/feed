@@ -14,8 +14,8 @@ export default function editor(
     as such, it will have to handle many kinds of content and edge cases.
   */
   state = {
-    // input is our general catch-all input
-    input: null,
+    // input represents whether our editor has user-generated content
+    input: false,
     // type is the type of input: status, note, photo, video, etc...
     type: null
   },
@@ -29,9 +29,17 @@ export default function editor(
     default: {
       return newState;
     }
-    case EditorActions.EDITOR_SUBMIT: {
-      newState.input = action.payload.text;
+    case EditorActions.EDITOR_CHANGE: {
+      newState.input = true;
       newState.type = STATUS;
+      return newState;
+    }
+    case EditorActions.EDITOR_SUBMIT_SUCCESS: {
+      /*
+        we clear our editor's contents
+      */
+      newState.input = false;
+      newState.type = null;
       return newState;
     }
   }

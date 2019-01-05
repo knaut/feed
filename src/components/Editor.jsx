@@ -6,22 +6,31 @@ import { connect } from 'react-redux';
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, ContentState } from 'draft-js';
 import { Add } from 'grommet-icons';
+
+// ACTIONS
+import * as EditorActions from '../actions/editor';
 
 // THUNKS
 import * as StatusThunks from '../thunks/status';
 
+function mapStateToProps(state) {
+  return state;
+}
+
 function mapDispatchToProps(dispatch) {
   return { 
     actions: bindActionCreators({
-      submit: StatusThunks.postStatus
+      submit: StatusThunks.postStatus,
+      change: EditorActions.change
     }, dispatch) 
   };
 }
 
 class PostEditor extends Component {
   state = {
+    input: false,
     editorState: EditorState.createEmpty()
   }
 
@@ -51,6 +60,15 @@ class PostEditor extends Component {
     const text = this.state.editorState.getCurrentContent().getPlainText();
     this.props.actions.submit({
       text
+    }, () => {
+      
+      console.log('on post submit, clear editor', this)
+      const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
+      this.setState({
+        editorState
+      });
+      console.log(editorState)
+
     });
   }
 
@@ -92,4 +110,4 @@ class PostEditor extends Component {
   }
 };
 
-export default connect(() => new Object(), mapDispatchToProps)(PostEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);
