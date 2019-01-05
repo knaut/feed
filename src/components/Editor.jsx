@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
+import { Editor, EditorState, ContentState } from 'draft-js';
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Editor, EditorState, ContentState } from 'draft-js';
 import { Add } from 'grommet-icons';
 
 // ACTIONS
@@ -61,14 +61,14 @@ class PostEditor extends Component {
     this.props.actions.submit({
       text
     }, () => {
-      
+      /*
       console.log('on post submit, clear editor', this)
       const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
       this.setState({
         editorState
       });
       console.log(editorState)
-
+      */
     });
   }
 

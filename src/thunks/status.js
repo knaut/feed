@@ -19,7 +19,7 @@ export function postStatus(payload, aftereffect) {
         EditorActions.submitSuccess(status)
       );
 
-      aftereffect();
+      // aftereffect();
 
     } catch (error) {
       console.error(error);
