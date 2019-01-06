@@ -10,9 +10,62 @@ import styles from '../styles';
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, Subtract } from 'grommet-icons';
+import { Add, Star, Note, SubtractCircle } from 'grommet-icons';
 
 class PostCard extends Component {
+  state = {
+    onHover: false,
+    starHover: false,
+    noteHover: false,
+    minusHover: false
+  }
+
+  onEnter = () => {
+    this.setState({ onHover: true });
+  }
+
+  onLeave = () => {
+    this.setState({ onHover: false });
+  }
+
+  onMinusEnter = () => {
+    this.setState({
+      onHover: true,
+      minusHover: true
+    });
+  }
+
+  onMinusLeave = () => {
+    this.setState({
+      onHover: false,
+      minusHover: false
+    });
+  }
+
+  onNoteEnter = () => {
+    this.setState({
+      noteHover: true
+    });
+  }
+
+  onNoteLeave = () => {
+    this.setState({
+      noteHover: false
+    });
+  }
+
+  onStarEnter = () => {
+    this.setState({
+      starHover: true
+    });
+  }
+
+  onStarLeave = () => {
+    this.setState({
+      starHover: false
+    });
+  }
+
   render() {
     return (
       <Box align="center" margin={{top: 'medium', bottom: 'small'}} style={{ width: '100%', maxWidth: '800px' }} animation={['fadeIn']}>
@@ -23,8 +76,11 @@ class PostCard extends Component {
           style={{
             background: 'white',
             width: '100%',
-            
+            cursor: 'pointer',
+            zIndex: 1
           }}
+          onMouseEnter={this.onEnter}
+          onMouseLeave={this.onLeave}
         >
           <Box style={{ textAlign: 'right' }}>
             <span style={{
@@ -34,19 +90,56 @@ class PostCard extends Component {
           </Box>
           <div>{this.props.post.text}</div>
         </Box>
-        <Box align='start' direction='row' style={{
-          width: '100%'
-        }}>
-          <Box pad='medium'>
-            <Star size='medium' color={styles.colors.neutrals.gray2} />
+        <Grid
+          fill
+          areas={[
+            { name: 'left', start: [0, 0], end: [0, 0] },
+            { name: 'main', start: [1, 0], end: [1, 0] },
+            { name: 'right', start: [2, 0], end: [2, 0] }
+          ]}
+          columns={['xsmall', 'flex', 'xsmall']}
+          rows={['flex']}
+          gap='small'
+        >
+          <Box gridArea='left' pad='medium'
+            animation={this.state.starHover === true ? 'pulse' : {}}
+            onMouseEnter={this.onStarEnter}
+            onMouseLeave={this.onStarLeave}
+            style={{cursor: 'pointer'}}
+          >
+            <Star size='medium' 
+              color={this.state.starHover === true ? styles.colors.primaries.orange : styles.colors.neutrals.gray2} 
+              style={{ transition: '0.2s all ease-in-out' }}
+            />
           </Box>
-          <Box pad='medium'>
-            <Note size='medium' color={styles.colors.neutrals.gray2} />
+          <Box gridArea='main' pad='medium'
+            onMouseEnter={this.onNoteEnter}
+            onMouseLeave={this.onNoteLeave}
+            style={{cursor: 'pointer'}}
+          >
+            <Note size='medium' color={styles.colors.neutrals.gray2} 
+              color={this.state.noteHover === true ? styles.colors.primaries.cyan : styles.colors.neutrals.gray2} 
+              style={{
+                transition: '0.2s all ease-in-out'
+              }}
+            />
           </Box>
-          <Box align='end' pad='medium'>
-            <Subtract size='medium' color={styles.colors.neutrals.gray2} />
+          <Box gridArea='right' align='end' pad='medium'
+            onMouseEnter={this.onMinusEnter}
+            onMouseLeave={this.onMinusLeave}
+            style={{cursor: 'pointer'}}
+          >
+            <SubtractCircle
+              size='medium' 
+              color={this.state.minusHover ? styles.colors.primaries.red : styles.colors.neutrals.gray2}
+              style={{
+                position: 'relative',
+                top: this.state.onHover === true ? 0 : '-50px',
+                transition: '0.2s all ease-in-out'
+              }}
+            />
           </Box>
-        </Box>
+        </Grid>
       </Box>
     );
   }
