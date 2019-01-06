@@ -46,12 +46,8 @@ export default function feed(
       
       const delId = newState.ids.indexOf( action.payload.id );
       delete newState.posts[ action.payload.id ];
-
       newState.ids.splice(delId, 1);
-      
-      console.log('blerg', delId)
       return newState;
-
     }
   }
 }
