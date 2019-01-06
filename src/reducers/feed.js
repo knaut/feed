@@ -43,7 +43,15 @@ export default function feed(
       return newState;
     }
     case PostActions.POST_DELETE_SUCCESS: {
-      delete newState.posts[id];
+      
+      const delId = newState.ids.indexOf( action.payload.id );
+      delete newState.posts[ action.payload.id ];
+
+      newState.ids.splice(delId, 1);
+      
+      console.log('blerg', delId)
+      return newState;
+
     }
   }
 }
