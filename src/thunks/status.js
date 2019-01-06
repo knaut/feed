@@ -3,7 +3,7 @@ import Status from '../models/Status';
 // ACTIONS
 import * as EditorActions from '../actions/editor';
 
-export function postStatus(payload, aftereffect) {
+export function postStatus(payload) {
   return function(dispatch) {
     /*
       thunks are the connecting api tissue in our serverless app.
@@ -18,8 +18,6 @@ export function postStatus(payload, aftereffect) {
       dispatch(
         EditorActions.submitSuccess(status)
       );
-
-      // aftereffect();
 
     } catch (error) {
       console.error(error);

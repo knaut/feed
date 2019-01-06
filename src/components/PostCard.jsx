@@ -12,6 +12,17 @@ import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle } from 'grommet-icons';
 
+// THUNKS
+import * as PostThunks from '../thunks/post';
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      delete: PostThunks.deletePost
+    }, dispatch)
+  }
+}
+
 class PostCard extends Component {
   state = {
     onHover: false,
@@ -66,6 +77,13 @@ class PostCard extends Component {
     });
   }
 
+  onDelete = () => {
+    const id = this.props.post.id;
+    this.props.actions.delete({
+      id
+    });
+  }
+
   render() {
     return (
       <Box align="center" margin={{top: 'medium', bottom: 'small'}} style={{ width: '100%', maxWidth: '800px' }} animation={['fadeIn']}>
@@ -105,28 +123,27 @@ class PostCard extends Component {
             animation={this.state.starHover === true ? 'pulse' : {}}
             onMouseEnter={this.onStarEnter}
             onMouseLeave={this.onStarLeave}
-            style={{cursor: 'pointer'}}
+            style={{cursor: 'pointer', display: 'none'}}
           >
             <Star size='medium' 
               color={this.state.starHover === true ? styles.colors.primaries.orange : styles.colors.neutrals.gray2} 
-              style={{ transition: '0.2s all ease-in-out' }}
+              style={{ transition: 'all 0.2s ease-in-out' }}
             />
           </Box>
           <Box gridArea='main' pad='medium'
             onMouseEnter={this.onNoteEnter}
             onMouseLeave={this.onNoteLeave}
-            style={{cursor: 'pointer'}}
+            style={{cursor: 'pointer', display: 'none'}}
           >
             <Note size='medium' color={styles.colors.neutrals.gray2} 
               color={this.state.noteHover === true ? styles.colors.primaries.cyan : styles.colors.neutrals.gray2} 
-              style={{
-                transition: '0.2s all ease-in-out'
-              }}
+              style={{ transition: 'all 0.2s ease-in-out' }}
             />
           </Box>
           <Box gridArea='right' align='end' pad='medium'
             onMouseEnter={this.onMinusEnter}
             onMouseLeave={this.onMinusLeave}
+            onClick={this.onDelete}
             style={{cursor: 'pointer'}}
           >
             <SubtractCircle
@@ -135,7 +152,7 @@ class PostCard extends Component {
               style={{
                 position: 'relative',
                 top: this.state.onHover === true ? 0 : '-50px',
-                transition: '0.2s all ease-in-out'
+                transition: 'all 0.2s ease-in-out'
               }}
             />
           </Box>
@@ -145,4 +162,4 @@ class PostCard extends Component {
   }
 };
 
-export default PostCard;
+export default connect(() => new Object(), mapDispatchToProps)(PostCard);
