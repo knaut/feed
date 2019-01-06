@@ -123,7 +123,7 @@ class PostCard extends Component {
             animation={this.state.starHover === true ? 'pulse' : {}}
             onMouseEnter={this.onStarEnter}
             onMouseLeave={this.onStarLeave}
-            style={{cursor: 'pointer', display: 'none'}}
+            style={{cursor: 'pointer'}}
           >
             <Star size='medium' 
               color={this.state.starHover === true ? styles.colors.primaries.orange : styles.colors.neutrals.gray2} 
@@ -133,7 +133,7 @@ class PostCard extends Component {
           <Box gridArea='main' pad='medium'
             onMouseEnter={this.onNoteEnter}
             onMouseLeave={this.onNoteLeave}
-            style={{cursor: 'pointer', display: 'none'}}
+            style={{cursor: 'pointer'}}
           >
             <Note size='medium' color={styles.colors.neutrals.gray2} 
               color={this.state.noteHover === true ? styles.colors.primaries.cyan : styles.colors.neutrals.gray2} 

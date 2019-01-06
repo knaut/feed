@@ -20,11 +20,11 @@ function mapStateToProps(state) {
 class FeedList extends Component {
   renderCards(posts) {
     const cards = [];
-    for (let i = 0; posts.length > i; ++i) {
+    for (let id in posts) {
       cards.push(
         <PostCard 
-          post={ posts[i] }
-          key={ i }
+          post={ posts[id] }
+          key={ id }
         />
       );
     }
@@ -35,7 +35,7 @@ class FeedList extends Component {
     return (
       <Box align="center" style={{ width: '100%' }} pad='medium'>
         {
-          this.props.feed.posts.length > 0 ?
+          Object.keys(this.props.feed.posts).length > 0 ?
             // post card component
             (
               this.renderCards(this.props.feed.posts)

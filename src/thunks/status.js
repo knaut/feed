@@ -10,7 +10,7 @@ export function postStatus(payload) {
       if our post is successful, the thunk should modify our files on gaia.
       if not, we should dispatch an action to inform our components.
     */
-    const status = new Status(payload.text);
+    const status = new Status(payload);
 
     try {
       status.save();

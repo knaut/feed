@@ -1,15 +1,28 @@
 // ACTION TYPES
 import * as EditorActions from '../actions/editor';
+import * as PostActions from '../actions/post';
 
 // for dev
 import Status from '../models/Status';
 
+  const test = new Status({ text: 'Adipisicing in in ex tempor veniam est proident laboris magna nulla deserunt sit non nostrud pariatur dolor pariatur cillum.' });
+
 export default function feed(
   state = {
-    posts: [ 
-      new Status('Est ad ex nostrud aute do magna sunt elit commodo occaecat veniam dolor magna nostrud ullamco quis nostrud in do nulla proident in voluptate ea magna qui.'),
-      new Status('Minim incididunt duis mollit in tempor voluptate duis esse in laborum velit do dolor eu cupidatat nulla sed exercitation laborum magna quis ad.')
-    ]
+    /*
+      our feed state is a list of posts arranged by ids. e.g.:
+      {
+        <id>: {
+          ...<model props>
+        },
+        ids: [
+          // array of ids used for easy referencing
+        ]
+      }
+    */
+    posts: {
+      [test.id]: test
+    }
   },
   action
 ) {
@@ -25,6 +38,9 @@ export default function feed(
       // add this post to the top of our feed
       newState.posts.splice( 0, 0, action.payload );
       return newState;
+    }
+    case PostActions.POST_DELETE_SUCCESS: {
+      delete newState.posts[id];      
     }
   }
 }
