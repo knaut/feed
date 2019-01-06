@@ -22,7 +22,8 @@ export default function feed(
     */
     posts: {
       [test.id]: test
-    }
+    },
+    ids: [ test.id ]
   },
   action
 ) {
@@ -36,11 +37,13 @@ export default function feed(
     }
     case EditorActions.EDITOR_SUBMIT_SUCCESS: {
       // add this post to the top of our feed
-      newState.posts.splice( 0, 0, action.payload );
+      newState.posts[ action.payload.id ] = action.payload;
+      newState.ids.splice(0, 0, action.payload.id)
+
       return newState;
     }
     case PostActions.POST_DELETE_SUCCESS: {
-      delete newState.posts[id];      
+      delete newState.posts[id];
     }
   }
 }

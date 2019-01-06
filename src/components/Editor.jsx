@@ -60,15 +60,6 @@ class PostEditor extends Component {
     const text = this.state.editorState.getCurrentContent().getPlainText();
     this.props.actions.submit({
       text
-    }, () => {
-      /*
-      console.log('on post submit, clear editor', this)
-      const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
-      this.setState({
-        editorState
-      });
-      console.log(editorState)
-      */
     });
   }
 

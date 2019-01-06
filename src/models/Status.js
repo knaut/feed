@@ -80,6 +80,7 @@ class Status {
       our save method handles "putting" our model on gaia storage.
       it also runs any validations before saving in case the model is invalid.
     */
+    const { id } = this;
     if (this.isValid === true) {
       console.log('Simulating model save on Gaia.', id);
 

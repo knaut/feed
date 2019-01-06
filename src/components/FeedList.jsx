@@ -18,13 +18,14 @@ function mapStateToProps(state) {
 }
 
 class FeedList extends Component {
-  renderCards(posts) {
+  renderCards = () => {
+    const { posts, ids } = this.props.feed;
     const cards = [];
-    for (let id in posts) {
+    for (let i = 0; ids.length > i; ++i) {
       cards.push(
         <PostCard 
-          post={ posts[id] }
-          key={ id }
+          post={ posts[ ids[i] ] }
+          key={ ids[i] }
         />
       );
     }
@@ -38,7 +39,7 @@ class FeedList extends Component {
           Object.keys(this.props.feed.posts).length > 0 ?
             // post card component
             (
-              this.renderCards(this.props.feed.posts)
+              this.renderCards()
             )
           :
             (
