@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import * as blockstack from 'blockstack';
 
 // UTILS
 import generateId from '../utils/generateId';
@@ -75,7 +76,7 @@ class Status {
     return this;
   }
 
-  save() {
+  async save() {
     /*
       our save method handles "putting" our model on gaia storage.
       it also runs any validations before saving in case the model is invalid.
@@ -84,8 +85,28 @@ class Status {
     if (this.isValid === true) {
       console.log('Simulating model save on Gaia.', id);
 
-      this.isSaved = true;
-      return this;
+      try {
+
+        this.isSaved = true;
+        const json = JSON.stringify(this);
+        const options = { encrypt: false };
+        
+        const res = await blockstack.putFile(
+          `posts/${id}.json`,
+          json,
+          options
+        );
+
+        console.log('Gaia responded:', res);
+
+        return this;
+
+      } catch (error) {
+        this.isSaved = false;
+        console.error(error, this);
+        return this;
+      }
+      
       
     } else {
       throw ('Could not save Status to Gaia; model is invalid.', id);
