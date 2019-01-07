@@ -62,8 +62,28 @@ async function listFiles() {
     console.log(file);
     return file;
   });
-  console.log(files);
-  return files;
+}
+
+function getCache() {
+  return new Promise((resolve, reject) => {
+    blockstack.getFile(
+      `cache.json`,
+      { decrypt: false }
+    ).then((content) => {
+      console.log({ content });
+      resolve(content);
+    })
+  })
+};
+
+async function loadCache(callback) {
+  try {
+    const string = await getCache();
+    const json = JSON.parse(json);
+    callback(json);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 const App = () => {
@@ -77,7 +97,15 @@ const App = () => {
       }
     });
 
-    listFiles();
+    // get our cache, then inform our store
+    blockstack.getFile("cache.json", { decrypt: false }).then((file) => {
+      console.log(file);
+
+      store.dispatch({
+        type: 'GET_CACHE_SUCCESS',
+        payload: JSON.parse(file)
+      });
+    });
 
   } else {
     console.log('You are not signed in to Blockstack.');

@@ -72,11 +72,19 @@ class Status {
         `cache.json`,
         { decrypt: false }
       ).then((content) => {
-        console.log('getCache', content);
         resolve(content);
-
       })
     })
+  }
+
+  getProps() {
+    return {
+      id: this.id,
+      text: this.text,
+      isValid: this.isValid,
+      isSaved: this.isSaved,
+      timestamp: this.timestamp
+    }
   }
 
   async load() {
@@ -107,47 +115,31 @@ class Status {
     if (this.isValid === true) {
       console.log('Simulating model save on Gaia.', id);
 
-      const cache = this.getCache().then((content) => {
-        console.log(content);
-        return content;
-      });
-
-      console.log(cache);
-
       try {
 
-        
-        // console.log(cache);
-
-        // create one-time cache
-        /*
         const cache = {
           posts: {},
           ids: []
         };
 
-        const json = JSON.stringify(cache);
-        const options = { encrypt: false };
-
-        const res = await blockstack.putFile(
-          'cache.json', 
-          JSON.stringify(cache), 
-          options
-        );
-
-        //
+        // const string = await this.getCache();
+        // const cache = JSON.parse(string);
+        console.log(cache);
         this.isSaved = true;
-        const json = JSON.stringify(this);
+
         const options = { encrypt: false };
-        
+        const model = this.getProps();
+
+        cache.posts[ model.id ] = model;
+        cache.ids.splice(0, 0, model.id);
+
         const res = await blockstack.putFile(
-          `posts/${id}.json`,
-          json,
+          `cache.json`,
+          JSON.stringify(cache),
           options
         );
-        */
 
-        // console.log('Gaia responded:', res);
+        console.log('Gaia responded:', res);
 
         return this;
 
