@@ -10,6 +10,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "babel-polyfill": "^6.26.0",
     "blockstack": "^18.0.4",
     "bootstrap": "^4.2.1",
     "draft-js": "^0.10.5",

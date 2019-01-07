@@ -1,5 +1,6 @@
 
 // IMPORTS
+import 'babel-polyfill';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as blockstack from 'blockstack';
@@ -54,6 +55,17 @@ const loginToBlockstack = () => {
 
 loginToBlockstack();
 
+async function listFiles() {
+  console.log('Listing files on Gaia…');
+
+  const files = await blockstack.listFiles( function(file) {
+    console.log(file);
+    return file;
+  });
+  console.log(files);
+  return files;
+}
+
 const App = () => {
   if (blockstack.isUserSignedIn()) {
     const { username } = blockstack.loadUserData();
@@ -64,6 +76,9 @@ const App = () => {
         username
       }
     });
+
+    listFiles();
+
   } else {
     console.log('You are not signed in to Blockstack.');
   }
