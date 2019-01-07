@@ -66,14 +66,36 @@ class Status {
     
   }
 
-  load() {
+  getCache() {
+    return new Promise((resolve, reject) => {
+      blockstack.getFile(
+        `cache.json`,
+        { decrypt: false }
+      ).then((content) => {
+        console.log('getCache', content);
+        resolve(content);
+
+      })
+    })
+  }
+
+  async load() {
     /*
       our load method handles getting and parsing our file
       holding our model data on gaia storage.
     */
-    const { id } = this;
-    console.log('Simulating model load on Gaia.', id);
-    return this;
+    try {
+      const cache = await this.getCache();
+      console.log(cache);
+      const { id } = this;
+      console.log('Simulating model load on Gaia.', id);
+
+      return this;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+
   }
 
   async save() {
@@ -85,8 +107,35 @@ class Status {
     if (this.isValid === true) {
       console.log('Simulating model save on Gaia.', id);
 
+      const cache = this.getCache().then((content) => {
+        console.log(content);
+        return content;
+      });
+
+      console.log(cache);
+
       try {
 
+        
+        // console.log(cache);
+
+        // create one-time cache
+        /*
+        const cache = {
+          posts: {},
+          ids: []
+        };
+
+        const json = JSON.stringify(cache);
+        const options = { encrypt: false };
+
+        const res = await blockstack.putFile(
+          'cache.json', 
+          JSON.stringify(cache), 
+          options
+        );
+
+        //
         this.isSaved = true;
         const json = JSON.stringify(this);
         const options = { encrypt: false };
@@ -96,8 +145,9 @@ class Status {
           json,
           options
         );
+        */
 
-        console.log('Gaia responded:', res);
+        // console.log('Gaia responded:', res);
 
         return this;
 
