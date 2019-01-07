@@ -117,14 +117,9 @@ class Status {
 
       try {
 
-        const cache = {
-          posts: {},
-          ids: []
-        };
-
-        // const string = await this.getCache();
-        // const cache = JSON.parse(string);
-        console.log(cache);
+        const string = await this.getCache();
+        const cache = JSON.parse(string);
+        
         this.isSaved = true;
 
         const options = { encrypt: false };
@@ -133,9 +128,11 @@ class Status {
         cache.posts[ model.id ] = model;
         cache.ids.splice(0, 0, model.id);
 
+        const json = JSON.stringify(cache);
+
         const res = await blockstack.putFile(
           `cache.json`,
-          JSON.stringify(cache),
+          json,
           options
         );
 

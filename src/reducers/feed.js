@@ -20,10 +20,8 @@ export default function feed(
         ]
       }
     */
-    posts: {
-      [test.id]: test
-    },
-    ids: [ test.id ]
+    posts: {},
+    ids: []
   },
   action
 ) {
@@ -48,6 +46,12 @@ export default function feed(
       delete newState.posts[ action.payload.id ];
       newState.ids.splice(delId, 1);
       return newState;
+    }
+    case 'GET_CACHE_SUCCESS': {
+      return {
+        posts: action.payload.posts,
+        ids: action.payload.ids,
+      }
     }
   }
 }
