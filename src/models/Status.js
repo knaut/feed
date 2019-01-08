@@ -113,7 +113,7 @@ class Status {
     */
     const { id } = this;
     if (this.isValid === true) {
-      console.log('Simulating model save on Gaia.', id);
+      console.log('Saving model to Gaia.', id);
 
       try {
 
@@ -152,13 +152,19 @@ class Status {
     }
   }
 
-  delete() {
+  async delete() {
     /*
       delete parses our file on gaia storage, then removes this model
     */
-    const { id } = this;
-    console.log('Simulating model delete on Gaia.', id);
-    return this;
+    /*const { id } = this;
+    // console.log('Simulating model delete on Gaia.', id);
+    try {
+      const string = await this.getCache();
+      const cache = JSON.parse(string);
+
+
+    }
+    return this;*/
   }
 }
 
