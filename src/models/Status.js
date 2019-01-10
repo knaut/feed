@@ -156,15 +156,38 @@ class Status {
     /*
       delete parses our file on gaia storage, then removes this model
     */
-    /*const { id } = this;
-    // console.log('Simulating model delete on Gaia.', id);
+    const { id } = this;
+    console.log('Deleting model on Gaia.', id);
+    
     try {
       const string = await this.getCache();
       const cache = JSON.parse(string);
+      const options = { encrypt: false };
 
+      // console.log('delete', cache, id);
 
+      delete cache.posts[id];
+
+      cache.ids.splice(
+        cache.ids.indexOf(id),
+        1
+      );
+
+      const json = JSON.stringify(cache);
+
+      const res = await blockstack.putFile(
+        `cache.json`,
+        json,
+        options
+      );
+      console.log('Gaia responded:', res);
+      return this;
+
+    } catch (error) {
+      console.error(error, this);
+      return this;
     }
-    return this;*/
+
   }
 }
 

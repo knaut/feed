@@ -99,7 +99,7 @@ const App = () => {
 
     // get our cache, then inform our store
     blockstack.getFile("cache.json", { decrypt: false }).then((file) => {
-      console.log(file);
+      // console.log(file);
 
       store.dispatch({
         type: 'GET_CACHE_SUCCESS',
