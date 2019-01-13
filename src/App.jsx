@@ -87,14 +87,22 @@ async function loadCache(callback) {
 }
 
 const App = () => {
+  window.blockstack = blockstack;
+
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();
     const { username } = user;
 
+    const person = new blockstack.Person(user.profile);
+    // console.log({user, person})
+    const avatarUrl = person.avatarUrl();
+    // console.log({avatarUrl})
+
     store.dispatch({
       type: 'IS_SIGNED_IN',
       payload: {
-        username
+        username,
+        avatarUrl
       }
     });
 

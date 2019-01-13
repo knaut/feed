@@ -1,9 +1,13 @@
 import Moment from 'moment';
 import * as blockstack from 'blockstack';
 
+import Model from './model';
+
 // UTILS
 import generateId from '../utils/generateId';
 import toType from '../utils/toType';
+
+console.log(new Model());
 
 class Status {
   /*
@@ -11,7 +15,7 @@ class Status {
   */
 
   constructor(props) {
-    console.log(process.env.STORAGE)
+    
 
     if (props.id && toType(props.id) === 'string') {
       // we were handed an id; expect to load this model
