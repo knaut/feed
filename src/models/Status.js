@@ -7,34 +7,19 @@ import Model from './model';
 import generateId from '../utils/generateId';
 import toType from '../utils/toType';
 
-console.log(new Model());
-
-class Status {
+class Status extends Model {
   /*
     a status is a textual post limited to 500 characters.
   */
-
   constructor(props) {
-    
+    super();
 
-    if (props.id && toType(props.id) === 'string') {
-      // we were handed an id; expect to load this model
-      this.id = props.id;
+    // isValid is our determination whether it's "really" a status.
+    let isValid = null;
 
-      // all our other properties are unset until we load
-      this.isValid = null;
-      this.isSaved = null;
-      this.timestamp = null;
-
-    } else if (props.text) {
-      // we were handed no id, but text content; expect to save this new instance
-      const id = generateId();
-      const textLimit = 500;
+    if (props.text) {
       const { text } = props;
-      
-      // isValid is our determination whether it's "really" a status.
-      let isValid = null;
-      let isSaved = false;
+      const textLimit = 500;
       let timestamp = null;
 
       const textType = toType(text);
@@ -56,56 +41,24 @@ class Status {
         } else {
           console.log(`Constructed valid Status.`);
           isValid = true;
-          timestamp = Moment().toISOString();
 
         }
 
       }
+
+      timestamp = Moment().toISOString();
       
-      this.id = id;
-      this.text = text;
+      this.props = {
+        text: props.text,
+        timestamp,
+
+        Profile: props.Profile
+      };
+
       this.isValid = isValid;
-      this.timestamp = timestamp;
-    }
-    
-  }
 
-  getCache() {
-    return new Promise((resolve, reject) => {
-      blockstack.getFile(
-        `cache.json`,
-        { decrypt: false }
-      ).then((content) => {
-        resolve(content);
-      })
-    })
-  }
-
-  getProps() {
-    return {
-      id: this.id,
-      text: this.text,
-      isValid: this.isValid,
-      isSaved: this.isSaved,
-      timestamp: this.timestamp
-    }
-  }
-
-  async load() {
-    /*
-      our load method handles getting and parsing our file
-      holding our model data on gaia storage.
-    */
-    try {
-      const cache = await this.getCache();
-      console.log(cache);
-      const { id } = this;
-      console.log('Simulating model load on Gaia.', id);
-
-      return this;
-    } catch (error) {
-      console.error(error);
-      return false;
+    } else {
+      console.error(`Status constructor expected object with key "text", was given:`, props);
     }
 
   }
