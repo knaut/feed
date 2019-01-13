@@ -5,13 +5,13 @@ import * as blockstack from 'blockstack';
 import generateId from '../utils/generateId';
 import toType from '../utils/toType';
 
-
 class Status {
   /*
     a status is a textual post limited to 500 characters.
   */
 
   constructor(props) {
+    console.log(process.env.STORAGE)
 
     if (props.id && toType(props.id) === 'string') {
       // we were handed an id; expect to load this model

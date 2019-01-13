@@ -13,6 +13,8 @@
     "babel-polyfill": "^6.26.0",
     "blockstack": "^18.0.4",
     "bootstrap": "^4.2.1",
+    "dotenv": "^6.2.0",
+    "dotenv-webpack": "^1.6.0",
     "draft-js": "^0.10.5",
     "grommet": "^2.2.1",
     "grommet-icons": "^4.1.0",
