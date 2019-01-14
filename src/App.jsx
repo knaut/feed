@@ -27,6 +27,9 @@ import rootReducer from './reducers/root';
 import Index from './screens/Index.jsx';
 import Feed from './screens/Feed.jsx';
 
+// COMPONENTS
+import ProfileCard from './components/ProfileCard.jsx';
+
 // MODELS
 import Profile from './models/Profile';
 
@@ -56,37 +59,6 @@ const loginToBlockstack = () => {
 
 loginToBlockstack();
 
-async function listFiles() {
-  console.log('Listing files on Gaia…');
-
-  const files = await blockstack.listFiles( function(file) {
-    console.log(file);
-    return file;
-  });
-}
-
-function getCache() {
-  return new Promise((resolve, reject) => {
-    blockstack.getFile(
-      `cache.json`,
-      { decrypt: false }
-    ).then((content) => {
-      console.log({ content });
-      resolve(content);
-    })
-  })
-};
-
-async function loadCache(callback) {
-  try {
-    const string = await getCache();
-    const json = JSON.parse(json);
-    callback(json);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 const App = () => {
 
   if (blockstack.isUserSignedIn()) {
@@ -109,27 +81,18 @@ const App = () => {
         type: 'GET_CACHE_SUCCESS',
         payload: file
       });
-    })
-
-    // get our cache, then inform our store
-    // blockstack.getFile("cache.json", { decrypt: false }).then((file) => {
-    //   // console.log(file);
-
-    //   store.dispatch({
-    //     type: 'GET_CACHE_SUCCESS',
-    //     payload: JSON.parse(file)
-    //   });
-    // });
-
-    // Model.getAll().then(file => {
-    //   console.log({file})
-    // });
-
-
+    }).catch(error => {
+      store.dispatch({
+        type: 'GET_CACHE_ERROR',
+        payload: error
+      });
+    });
 
   } else {
     console.log('You are not signed in to Blockstack.');
   }
+
+          
 
   return (
     <Provider store={ store }>
@@ -137,6 +100,12 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={ Index } />
           <Route path="/feed" exact component={ isSignedIn( Feed ) } />
+          <Route path="/:username?" 
+            exact
+            render={
+              routeProps => <ProfileCard {...routeProps} />
+            }
+          />
         </Switch>
       </ConnectedRouter>
     </Provider>
