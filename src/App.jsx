@@ -27,7 +27,8 @@ import rootReducer from './reducers/root';
 import Index from './screens/Index.jsx';
 import Feed from './screens/Feed.jsx';
 
-// THUNKS
+// MODELS
+import Profile from './models/Profile';
 
 const state = {};
 const history = createHistory();
@@ -87,34 +88,44 @@ async function loadCache(callback) {
 }
 
 const App = () => {
-  window.blockstack = blockstack;
 
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();
     const { username } = user;
 
-    const person = new blockstack.Person(user.profile);
-    // console.log({user, person})
-    const avatarUrl = person.avatarUrl();
-    // console.log({avatarUrl})
-
     store.dispatch({
       type: 'IS_SIGNED_IN',
       payload: {
-        username,
-        avatarUrl
+        username
       }
     });
 
-    // get our cache, then inform our store
-    blockstack.getFile("cache.json", { decrypt: false }).then((file) => {
-      // console.log(file);
+    const myProfile = new Profile({
+      username
+    });
 
+    myProfile.getCache().then(file => {
       store.dispatch({
         type: 'GET_CACHE_SUCCESS',
-        payload: JSON.parse(file)
+        payload: file
       });
-    });
+    })
+
+    // get our cache, then inform our store
+    // blockstack.getFile("cache.json", { decrypt: false }).then((file) => {
+    //   // console.log(file);
+
+    //   store.dispatch({
+    //     type: 'GET_CACHE_SUCCESS',
+    //     payload: JSON.parse(file)
+    //   });
+    // });
+
+    // Model.getAll().then(file => {
+    //   console.log({file})
+    // });
+
+
 
   } else {
     console.log('You are not signed in to Blockstack.');

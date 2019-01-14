@@ -5,10 +5,10 @@ import * as PostActions from '../actions/post';
 // for dev
 import Status from '../models/Status';
 
-const test = new Status({ text: 'test'})
-test.getCache().then(res => {
-  console.log(res);
-})
+// const test = new Status({ text: 'test'})
+// test.getCache().then(res => {
+//   console.log(res);
+// })
 
 export default function feed(
   state = {

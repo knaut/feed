@@ -1,7 +1,7 @@
 import Moment from 'moment';
 import * as blockstack from 'blockstack';
 
-import Model from './model';
+import Model from './Model';
 
 // UTILS
 import generateId from '../utils/generateId';
@@ -62,12 +62,12 @@ class Status extends Model {
     }
 
   }
+    /*
 
   async save() {
-    /*
       our save method handles "putting" our model on gaia storage.
       it also runs any validations before saving in case the model is invalid.
-    */
+    
     const { id } = this;
     if (this.isValid === true) {
       console.log('Saving model to Gaia.', id);
@@ -108,7 +108,7 @@ class Status extends Model {
       throw ('Could not save Status to Gaia; model is invalid.', id);
     }
   }
-
+*/
   async delete() {
     /*
       delete parses our file on gaia storage, then removes this model

@@ -11,9 +11,14 @@ class Model {
   */
   constructor() {
     this.id = this.generateId();
+
     // props are the content properties for our model that we save to the cache
     this.props = {};
 
+    // "is" is a special namespace for model-only variables, usually
+    // related to the model's status. they are not props that should be
+    // saved to the cache
+    this.isValid = null;
     this.isSaved = false;
   }
 
@@ -47,67 +52,35 @@ class Model {
             `cache.json`,
             { decrypt: false }
           ).then((content) => {
-            resolve(content);
-          })
+            resolve(JSON.parse(content));
+          }).catch(error => {
+            console.error(`${this.constructor.name} called getCache to GAIA, but it failed.`)
+            reject(error);
+          });
 
         }
       }
     })
   }
 
-  putCache(cache) {
-    return new Promise((resolve, reject) => {
-      switch(process.env.STORAGE) {
-        case 'LOCAL': {
-          fetch('/api/cache', {
-            method: 'POST',
-            body: JSON.stringify(cache)
-          })
-          .then(res => res.json())
-          .then(json => {
-            console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
-            resolve(json);
-          })
-          .catch(error => {
-            console.error(`${this.constructor.name} called getCache to LOCAL, but it failed.`)
-            reject(error);
-          });
-        }
-        case 'GAIA': {
-          const options = { encrypt: false };
-          const json = JSON.stringify(cache);
-          blockstack.putFile(
-            'cache.json',
-            json,
-            options
-          ).then(res => {
-            console.log('Gaia responded:', res);
-            resolve(res);
-          }).catch(error => {
-            console.error('Failed to putFile on Gaia.', error);
-            reject(error);
-          });
-        }
-      }
-
-    });
-  }
-
-  getProps() {
-    const props = {
+  getCachableProps() {
+    /*
+      delivers this model's entity props
+      which should be expected to save to the cache
+    */
+    return {
       id: this.id,
       ...this.props
     };
-
-    return {
-      id: this.id,
-      props: this.props,
-      isSaved: this.isSaved,
-    }
   }
 
-  setProps(cache, props) {
-    
+  async save() {
+    try {
+      const cache = await this.getCache();
+      console.log(cache);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }
