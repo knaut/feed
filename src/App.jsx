@@ -26,6 +26,7 @@ import rootReducer from './reducers/root';
 // SCREENS
 import Index from './screens/Index.jsx';
 import Feed from './screens/Feed.jsx';
+import ProfileScreen from './screens/Profile.jsx';
 
 // COMPONENTS
 import ProfileCard from './components/ProfileCard.jsx';
@@ -100,12 +101,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={ Index } />
           <Route path="/feed" exact component={ isSignedIn( Feed ) } />
-          <Route path="/:username?" 
-            exact
-            render={
-              routeProps => <ProfileCard {...routeProps} />
-            }
-          />
+          <Route path="/:username?" component={ isSignedIn( ProfileScreen ) }/>
         </Switch>
       </ConnectedRouter>
     </Provider>
