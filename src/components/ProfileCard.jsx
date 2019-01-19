@@ -6,38 +6,29 @@ import Moment from 'moment';
 import * as blockstack from 'blockstack';
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
+import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle } from 'grommet-icons';
 
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators({
-//       delete: PostThunks.deletePost
-//     }, dispatch)
-//   }
-// }
-
-// function mapStateToProps(state) {
-//   const profile = new blockstack.lookupProfile(state.user.username);
-
-//   console.log({profile});
-
-//   return {};
-// }
-
 class ProfileCard extends Component {
-  componentDidMount() {
-    console.log(this);
+  state = {
+    isLoaded: false
+  }
+  async componentDidMount() {
     // load a blockstack profile based on our route
-    const profile = new blockstack.lookupProfile(`${this.props.username}.id.blockstack`);
+    const profile = await blockstack.lookupProfile(`${this.props.username}.id.blockstack`);
 
     console.log({profile});
+    const isLoaded = true;
+    const { name, image, description } = profile;
+
+    this.setState({
+      name, image, description, isLoaded
+    });
   }
 
   render() {
-    return (
+    return this.state.isLoaded ? (
       <Box align="center" pad="medium">
         <Box
           pad='medium'
@@ -50,11 +41,25 @@ class ProfileCard extends Component {
           }}
         >
           <header>
-            This is a profile
+          <Box justify="center" align="center">
+            <Box background="brand" round={'full'} style={{
+              width: '150px',
+              height: '150px',
+              overflow: 'hidden'
+            }}>
+              <Image src={this.state.image[0].contentUrl} fit="cover" />
+            </Box>
+          </Box>
+            <Heading level={1} size={'small'}>
+              {this.state.name}
+            </Heading>
+            <Text level={1} size={'medium'}>
+              {this.state.description}
+            </Text>
           </header>
         </Box>
       </Box>
-    );
+    ) : null;
   }
 }
 
