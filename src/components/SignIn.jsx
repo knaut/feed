@@ -19,7 +19,7 @@ import * as UserActions from '../actions/user';
 
 function mapStateToProps(state) {
   const id = state.user.username.split('.')[0];
-  const hasFeed = state.Profile.hasOwnProperty(id);
+  const hasFeed = state.Profile.entities.hasOwnProperty(id);
   
   return {
     user: state.user,

@@ -25,6 +25,7 @@ const Avatar = (state) => {
   
     return (
       <Box background={styles.colors.primaries.purple} round={'full'} style={{
+        border: `5px solid ${styles.colors.neutrals.gray1}`,
         width: '150px',
         height: '150px',
         overflow: 'hidden'
@@ -39,6 +40,7 @@ const Avatar = (state) => {
       <Box background={styles.colors.primaries.purple} round={'full'} 
         justify="center" align="center"
         style={{
+          border: `5px solid ${styles.colors.neutrals.gray1}`,
           width: '150px',
           height: '150px',
           overflow: 'hidden'
@@ -53,6 +55,7 @@ const Avatar = (state) => {
       <Box background={styles.colors.primaries.purple} round={'full'} 
         justify="center" align="center"
         style={{
+          border: `5px solid ${styles.colors.neutrals.gray1}`,
           width: '150px',
           height: '150px',
           overflow: 'hidden'
@@ -76,6 +79,7 @@ const Avatar = (state) => {
       <Box background={styles.colors.primaries.purple} round={'full'} 
         justify="center" align="center"
         style={{
+          border: `5px solid ${styles.colors.neutrals.gray1}`,
           width: '150px',
           height: '150px',
           overflow: 'hidden'
