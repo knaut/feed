@@ -11,8 +11,13 @@ import { Link } from 'react-router-dom';
 import styles from '../styles';
 
 function mapStateToProps(state) {
+  const id = state.user.username.split('.')[0];
+  const hasFeed = state.Profile.hasOwnProperty(id);
+  
   return {
-    user: state.user
+    user: state.user,
+    hasFeed,
+    id
   };
 }
 
@@ -27,14 +32,33 @@ class SignIn extends Component {
   }
 
   renderEntry = () => {
-    if (this.props.user.isAuthenticated) {
+    const feedPath = `/${this.props.id}/feed`;
+
+    if (this.props.user.isAuthenticated && this.props.hasFeed) {
       return (
         <Box align="center" pad="small" gap="small">
           <Paragraph style={{
             color: styles.colors.pastels.cyan
           }}>Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
           </Paragraph>
-          <Link to="/feed">
+          <Link to={feedPath}>
+            <Button icon={<LinkNext />} label="go to your feed" primary style={{
+              background: 'transparent'
+            }}/>
+          </Link>
+        </Box>
+      )
+    } else if (this.props.user.isAuthenticated && !this.props.hasFeed) {
+      return (
+        <Box align="center" pad="small" gap="small">
+          <Paragraph margin={{bottom: 'none'}} style={{
+            color: styles.colors.pastels.cyan
+          }}>Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
+          </Paragraph>
+          <Paragraph margin={{top: 'none'}} style={{
+            color: styles.colors.pastels.cyan
+          }}>Sign in for the first time to get started!</Paragraph>
+          <Link to={feedPath}>
             <Button icon={<LinkNext />} label="go to your feed" primary style={{
               background: 'transparent'
             }}/>

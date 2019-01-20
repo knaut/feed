@@ -4,7 +4,7 @@ const container = {
   minHeight: '100vh',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'start'
+  justifyContent: 'center'
 };
 
 const app = {

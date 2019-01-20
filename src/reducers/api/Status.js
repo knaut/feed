@@ -2,7 +2,7 @@
 import * as UserActions from '../../actions/user';
 
 // MAIN REDUCER
-export default function Profile(
+export default function Status(
   state = {
     entities: {},
     ids: []

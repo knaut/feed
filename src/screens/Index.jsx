@@ -14,17 +14,20 @@ class App extends Component {
   render() {
     return (
       <Grommet theme={grommet} full>
-        <Box fill align="center" justify="center"
-          style={{
-            background: styles.colors.darks.purple,
-            ...styles.app.container,
-            alignItems: 'center',
-            align: 'center',
-            justify: 'center',
-            textAlign:'center'
-          }}
-        >
-          <SignIn />
+        <Box style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+        }}>
+          <Box fill align="center" justify="center"
+            style={{
+              alignItems: 'center',
+              align: 'center',
+              justify: 'center',
+              textAlign:'center'
+            }}
+          >
+            <SignIn />
+          </Box>
         </Box>
       </Grommet>
     );

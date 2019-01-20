@@ -166,7 +166,6 @@ class ProfileCard extends Component {
   }
 
   render() {
-    console.log(this)
     return (
       <Box align="center" pad="medium">
         <Box
