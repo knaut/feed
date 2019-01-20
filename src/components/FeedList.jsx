@@ -14,42 +14,48 @@ import { Add } from 'grommet-icons';
 import PostCard from './PostCard.jsx';
 
 function mapStateToProps(state) {
-  return state;
+  const id = state.user.username.split('.')[0];
+  const feedIds = state.Profile.entities[id].Status;
+  
+  let feed = {};
+  for (let f = 0; feedIds.length > f; ++f) {
+    feed[ feedIds[f] ] = state.Status.entities[f];
+  }
+
+  return feedIds.length ? {entities: feed, ids: feedIds} : false;
 }
 
 class FeedList extends Component {
   renderCards = () => {
-    const { posts, ids } = this.props.feed;
-    const cards = [];
-    for (let i = 0; ids.length > i; ++i) {
-      cards.push(
-        <PostCard 
-          post={ posts[ ids[i] ] }
-          key={ ids[i] }
-        />
+    if (this.props === false) {
+      return (
+        <h3 style={{
+          color: styles.colors.pastels.purple,
+          fontWeight: 300,
+          letterSpacing: '1px'
+        }}>…no posts to show.</h3>
       );
+    } else {
+
+      const { entities, ids } = this.props;
+      const cards = [];
+      for (let i = 0; ids.length > i; ++i) {
+        cards.push(
+          <PostCard 
+            post={ entities[ ids[i] ] }
+            key={ ids[i] }
+          />
+        );
+      }
+      return cards;
+
     }
-    return cards;
   }
 
   render() {
     return (
       <Box align="center" style={{ width: '100%' }} pad='medium'>
-        {
-          Object.keys(this.props.feed.posts).length > 0 ?
-            // post card component
-            (
-              this.renderCards()
-            )
-          :
-            (
-              <h3 style={{
-                color: styles.colors.pastels.purple,
-                fontWeight: 300,
-                letterSpacing: '1px'
-              }}>…no posts to show.</h3>
-            )
-        }
+        {this.renderCards()}
       </Box>
     );
   }

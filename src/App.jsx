@@ -91,16 +91,14 @@ const App = () => {
 
   } else {
     console.log('You are not signed in to Blockstack.');
-  }
-
-          // <Route path="/feed" exact component={ isSignedIn( Feed ) } />
-          
+  }          
 
   return (
     <Provider store={ store }>
       <ConnectedRouter history={ history }>
         <Switch>
           <Route path="/" exact component={ Index } />
+          <Route path="/feed" exact component={ isSignedIn( Feed ) } />
           <Route path="/:username?" component={ isSignedIn( ProfileScreen ) }/>
         </Switch>
       </ConnectedRouter>

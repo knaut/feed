@@ -24,7 +24,7 @@ class Model {
 
   generateId() {
     const idChars = `123456789abcdefhijklmnopqrstuvwxyz`;
-    const idLimit = 20;
+    const idLimit = 32;
 
     return generate(idChars, idLimit);
   }
