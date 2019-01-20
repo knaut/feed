@@ -13,17 +13,19 @@ import SignIn from '../components/SignIn.jsx';
 class App extends Component {
   render() {
     return (
-      <Grommet theme={grommet}>
-        <div 
+      <Grommet theme={grommet} full>
+        <Box fill align="center" justify="center"
           style={{
             background: styles.colors.darks.purple,
             ...styles.app.container,
             alignItems: 'center',
+            align: 'center',
+            justify: 'center',
             textAlign:'center'
           }}
         >
           <SignIn />
-        </div>
+        </Box>
       </Grommet>
     );
   }
