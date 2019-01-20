@@ -1,7 +1,11 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import * as blockstack from 'blockstack';
+
+// COMPONENTS
 import { Grommet, Box, Button, Paragraph, Anchor, Text } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Login, LinkNext } from "grommet-icons";
@@ -9,6 +13,9 @@ import { Link } from 'react-router-dom';
 
 // STYLES
 import styles from '../styles';
+
+// ACTIONS
+import * as UserActions from '../actions/user';
 
 function mapStateToProps(state) {
   const id = state.user.username.split('.')[0];
@@ -21,6 +28,14 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      initialSignIn: UserActions.initialSignIn
+    }, dispatch)
+  }
+}
+
 class SignIn extends Component {
   onClick = () => {
     const origin = window.location.origin;
@@ -29,6 +44,13 @@ class SignIn extends Component {
       origin + '/manifest.json',
       ['store_write', 'publish_data']
     );
+  }
+
+  initialSignIn = () => {
+    const { id } = this.props;
+    this.props.actions.initialSignIn({
+      username: id
+    });
   }
 
   renderEntry = () => {
@@ -58,7 +80,7 @@ class SignIn extends Component {
           <Paragraph margin={{top: 'none'}} style={{
             color: styles.colors.pastels.cyan
           }}>Sign in for the first time to get started!</Paragraph>
-          <Link to={feedPath}>
+          <Link to={feedPath} onClick={this.initialSignIn}>
             <Button icon={<LinkNext />} label="go to your feed" primary style={{
               background: 'transparent'
             }}/>
@@ -97,4 +119,4 @@ class SignIn extends Component {
   }
 };
 
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
