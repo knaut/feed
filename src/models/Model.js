@@ -29,7 +29,7 @@ class Model {
     return generate(idChars, idLimit);
   }
 
-  getCachableProps() {
+  getProps() {
     /*
       delivers this model's entity props
       which should be expected to save to the cache
@@ -76,6 +76,8 @@ class Model {
   }
 
   putCache( cache ) {
+    console.log('Attempting to put cache.', cache);
+
     const string = JSON.stringify(cache);
 
     return new Promise((resolve, reject) => {

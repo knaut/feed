@@ -2,9 +2,10 @@ import Status from '../models/Status';
 
 // ACTIONS
 import * as EditorActions from '../actions/editor';
+import * as PostActions from '../actions/post';
 
 export function postStatus(payload) {
-  return function(dispatch) {
+  return async function(dispatch) {
     /*
       thunks are the connecting api tissue in our serverless app.
       if our post is successful, the thunk should modify our files on gaia.
@@ -13,7 +14,7 @@ export function postStatus(payload) {
     const status = new Status(payload);
 
     try {
-      status.save();
+      await status.save();
       
       dispatch(
         EditorActions.submitSuccess(status)
@@ -27,5 +28,32 @@ export function postStatus(payload) {
       );
     }
 
+  }
+}
+
+
+
+export function deleteStatus(payload) {
+  return function(dispatch) {
+    /*
+      based on an id, we attempt to remove this status
+      from from gaia, then from our redux store
+    */
+    const status = new Status(payload);
+
+    try {
+      status.delete();
+
+      dispatch(
+        PostActions.deleteSuccess(status)
+      );
+
+    } catch (error) {
+      console.error(error);
+
+      dispatch(
+        PostActions.deleteFail(status)
+      );
+    }
   }
 }

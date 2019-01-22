@@ -57,8 +57,10 @@ class PostEditor extends Component {
   }
 
   onPostSubmit = () => {
+    const id = this.props.user.username.split('.')[0];
     const text = this.state.editorState.getCurrentContent().getPlainText();
     this.props.actions.submit({
+      Profile: id,
       text
     });
   }
