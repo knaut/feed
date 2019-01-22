@@ -54,7 +54,7 @@ class SignIn extends Component {
   }
 
   renderEntry = () => {
-    const feedPath = `/${this.props.id}/feed`;
+    const feedPath = `/feed`;
 
     if (this.props.user.isAuthenticated && this.props.hasFeed) {
       return (

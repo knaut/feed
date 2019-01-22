@@ -8,7 +8,7 @@ import Status from './api/Status.js';
 // CLIENT STATE
 import user from './user.js';
 import editor from './editor.js';
-import feed from './feed.js';
+import cache from './cache.js';
 
 // import all other reducers here
 // the root reducer will be fed to any generated store
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
 
   user,
   editor,
-  feed
+  cache
 });
 
 export default rootReducer;

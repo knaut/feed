@@ -14,42 +14,75 @@ import { Add } from 'grommet-icons';
 import PostCard from './PostCard.jsx';
 
 function mapStateToProps(state) {
-  const id = state.user.username.split('.')[0];
-  const feedIds = state.Profile.entities[id].Status;
-  
-  let feed = {};
-  for (let f = 0; feedIds.length > f; ++f) {
-    feed[ feedIds[f] ] = state.Status.entities[f];
+
+  const isLoaded = state.user.username && state.cache.isLoaded;
+  const statuses = [];
+  let hasStatuses = false;
+
+  if (isLoaded) {
+    const id = state.user.username.split('.')[0];
+    const profile = state.Profile.entities[id];
+    hasStatuses = profile.Status.length > 0;
+
+    if (hasStatuses) {
+
+      for (let s = 0; profile.Status.length > s; ++s) {
+        const status = profile.Status[s];
+        statuses.push( status );
+      }
+
+    }
+
   }
 
-  return feedIds.length ? {entities: feed, ids: feedIds} : false;
+  return {
+    isLoaded,
+    statuses,
+    hasStatuses
+  }
+  
 }
 
 class FeedList extends Component {
   renderCards = () => {
-    if (this.props === false) {
+
+    if (this.props.isLoaded) {
+
+      if (this.props.hasStatuses === false) {
+    
+        return (
+          <h3 style={{
+            color: styles.colors.pastels.purple,
+            fontWeight: 300,
+            letterSpacing: '1px'
+          }}>…no posts to show.</h3>
+        );
+
+      } else {
+
+        const { statuses } = this.props;
+        const cards = [];
+        for (let i = 0; statuses.length > i; ++i) {
+          cards.push(
+            <PostCard 
+              post={ statuses[ i ] }
+              key={ i }
+            />
+          );
+        }
+
+      }
+
+    } else {
       return (
         <h3 style={{
           color: styles.colors.pastels.purple,
           fontWeight: 300,
           letterSpacing: '1px'
-        }}>…no posts to show.</h3>
+        }}>…loading.</h3>
       );
-    } else {
-
-      const { entities, ids } = this.props;
-      const cards = [];
-      for (let i = 0; ids.length > i; ++i) {
-        cards.push(
-          <PostCard 
-            post={ entities[ ids[i] ] }
-            key={ ids[i] }
-          />
-        );
-      }
-      return cards;
-
     }
+
   }
 
   render() {
