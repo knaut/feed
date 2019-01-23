@@ -1,6 +1,7 @@
 // ACTION TYPES
 import * as UserActions from '../../actions/user';
 import * as EditorActions from '../../actions/editor';
+import * as PostActions from '../../actions/post';
 
 // MAIN REDUCER
 export default function Status(
@@ -34,6 +35,12 @@ export default function Status(
 
       return newState;
     }
+    // case PostActions.POST_DELETE_SUCCESS: {
+    //   const { id } = action.payload;
 
+    //   const status = 
+
+    //   return newState
+    // }
   }
 }

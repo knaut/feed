@@ -17,7 +17,7 @@ export function postStatus(payload) {
       dispatch(
         EditorActions.submitSuccess(status)
       );
-      
+
       await status.save();
 
     } catch (error) {
@@ -31,22 +31,22 @@ export function postStatus(payload) {
   }
 }
 
-
-
 export function deleteStatus(payload) {
-  return function(dispatch) {
+  return async function(dispatch, getState) {
     /*
       based on an id, we attempt to remove this status
       from from gaia, then from our redux store
     */
-    const status = new Status(payload);
-
+    const { id } = payload;
     try {
-      status.delete();
+      const status = Status.loadById(id, getState().Status );
+      console.log({status})
 
       dispatch(
         PostActions.deleteSuccess(status)
       );
+
+      // await status.delete();
 
     } catch (error) {
       console.error(error);

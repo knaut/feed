@@ -77,7 +77,7 @@ const App = () => {
       username
     });
 
-    myProfile.getCache().then(file => {
+    Profile.getCache().then(file => {
       store.dispatch({
         type: 'GET_CACHE_SUCCESS',
         payload: file

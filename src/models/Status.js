@@ -13,7 +13,7 @@ class Status extends Model {
   */
   constructor(props) {
     super();
-
+    console.log(this)
     // isValid is our determination whether it's "really" a status.
     let isValid = null;
 
@@ -99,33 +99,21 @@ class Status extends Model {
   }
 
   async delete() {
-    /*
-      delete parses our file on gaia storage, then removes this model
-    */
     const { id } = this;
-    console.log('Deleting model on Gaia.', id);
     
     try {
       const string = await this.getCache();
       const options = { encrypt: false };
 
-      // console.log('delete', cache, id);
+      const model = this.getProps();
+      delete cache.Status.entities[ model.id ];
+      const index = cache.Status.ids.indexOf( model.id );
+      cache.Status.ids.splice(index, 1);
 
-      delete cache.posts[id];
-
-      cache.ids.splice(
-        cache.ids.indexOf(id),
-        1
-      );
-
-      const json = JSON.stringify(cache);
-
-      const res = await blockstack.putFile(
-        `cache.json`,
-        json,
-        options
-      );
-      console.log('Gaia responded:', res);
+      // remove this dangling id from our profile
+      cache.Profile.entities[ model.Profile ].Status.splice(index, 1);
+      
+      const res = await this.putCache( cache );
       return this;
 
     } catch (error) {

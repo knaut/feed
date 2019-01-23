@@ -13,12 +13,13 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle } from 'grommet-icons';
 
 // THUNKS
-import * as PostThunks from '../thunks/post';
+// import * as PostThunks from '../thunks/post';
+import * as StatusThunks from '../thunks/status';
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      delete: PostThunks.deletePost
+      delete: StatusThunks.deleteStatus
     }, dispatch)
   }
 }

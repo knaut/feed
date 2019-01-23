@@ -9,8 +9,10 @@ class Model {
   /*
     our model is a base class that our data entities inherit from
   */
-  constructor( props ) {
-    this.id = this.generateId();
+  constructor( props, fetched ) {
+    const isLoaded = fetched ? true : false;
+    console.log({props, isLoaded, fetched, arguments})
+    this.id = isLoaded === true ? props.id : this.generateId();
 
     // props are the content properties for our model that we save to the cache
     this.props = props;
@@ -18,8 +20,30 @@ class Model {
     // "is" is a special namespace for model-only variables, usually
     // related to the model's status. they are not props that should be
     // saved to the cache
-    this.isValid = null;
-    this.isSaved = false;
+    this.isValid = isLoaded === true ? true : null;
+    this.isSaved = isLoaded === true ? true : false;
+    this.isLoaded = isLoaded;
+  }
+
+  static loadById(id, substate) {
+
+    try {
+      // const cache = await this.getCache();
+      // const blank = new this({}, true);
+      // console.log(cache, this.constructor.name);
+    
+      const entity = substate.entities[ id ];
+      
+      const model = new this(entity, true);
+
+      console.log({entity, model});
+      return model;
+
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+    
   }
 
   generateId() {
@@ -40,7 +64,7 @@ class Model {
     };
   }
 
-  getCache() {
+  static getCache() {
     console.log('Attempting to fetch cache.');
 
     return new Promise((resolve, reject) => {
