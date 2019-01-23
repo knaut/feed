@@ -14,11 +14,11 @@ export function postStatus(payload) {
     const status = new Status(payload);
 
     try {
-      await status.save();
-      
       dispatch(
         EditorActions.submitSuccess(status)
       );
+      
+      await status.save();
 
     } catch (error) {
       console.error(error);

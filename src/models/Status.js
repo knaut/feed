@@ -80,9 +80,11 @@ class Status extends Model {
 
         cache.Status.entities[ model.id ] = model;
         cache.Status.ids.push( model.id );
-        console.log({cache})
+
+        // add this status id to our profile
+        cache.Profile.entities[ model.Profile ].Status.splice(0, 0, model.id);
+
         const res = await this.putCache( cache );
-        console.log({res})
         return this;
 
       } catch (error) {

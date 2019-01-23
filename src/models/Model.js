@@ -41,6 +41,8 @@ class Model {
   }
 
   getCache() {
+    console.log('Attempting to fetch cache.');
+
     return new Promise((resolve, reject) => {
       switch(process.env.STORAGE) {
         case 'LOCAL': {

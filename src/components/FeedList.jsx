@@ -27,29 +27,25 @@ function mapStateToProps(state) {
     if (hasStatuses) {
 
       for (let s = 0; profile.Status.length > s; ++s) {
-        const status = profile.Status[s];
-        statuses.push( status );
+        const statusId = profile.Status[s];
+        statuses.push( state.Status.entities[ statusId ] );
       }
-
     }
-
   }
 
   return {
     isLoaded,
     statuses,
-    hasStatuses
+    hasStatuses,
   }
   
 }
 
 class FeedList extends Component {
   renderCards = () => {
-
     if (this.props.isLoaded) {
-
       if (this.props.hasStatuses === false) {
-    
+        // loaded, but have no posts
         return (
           <h3 style={{
             color: styles.colors.pastels.purple,
@@ -60,6 +56,7 @@ class FeedList extends Component {
 
       } else {
 
+        // load our props
         const { statuses } = this.props;
         const cards = [];
         for (let i = 0; statuses.length > i; ++i) {
@@ -70,10 +67,14 @@ class FeedList extends Component {
             />
           );
         }
-
+        // render our posts
+        return (
+          cards
+        );
       }
 
     } else {
+      // show that we're loading
       return (
         <h3 style={{
           color: styles.colors.pastels.purple,
@@ -82,7 +83,6 @@ class FeedList extends Component {
         }}>…loading.</h3>
       );
     }
-
   }
 
   render() {

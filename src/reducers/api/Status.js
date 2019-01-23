@@ -1,5 +1,6 @@
 // ACTION TYPES
 import * as UserActions from '../../actions/user';
+import * as EditorActions from '../../actions/editor';
 
 // MAIN REDUCER
 export default function Status(
@@ -25,7 +26,12 @@ export default function Status(
 
       return newState;
     }
-    case UserActions.IS_SIGNED_IN: {
+    case EditorActions.EDITOR_SUBMIT_SUCCESS: {
+      const status = action.payload;
+      const props = status.getProps();
+      newState.entities[ props.id ] = props;
+      newState.ids.splice(0, 0, props.id );
+
       return newState;
     }
 
