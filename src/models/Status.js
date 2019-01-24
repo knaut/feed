@@ -11,9 +11,9 @@ class Status extends Model {
   /*
     a status is a textual post limited to 500 characters.
   */
-  constructor(props) {
-    super();
-    console.log(this)
+  constructor(props, fetched) {
+    super(props, fetched);
+
     // isValid is our determination whether it's "really" a status.
     let isValid = null;
 
@@ -58,7 +58,9 @@ class Status extends Model {
       this.isValid = isValid;
 
     } else {
+
       console.error(`Status constructor expected object with key "text", was given:`, props);
+      
     }
 
   }
@@ -68,10 +70,9 @@ class Status extends Model {
     const { id, isValid } = this;
 
     if (isValid === true) {
-      console.log(this)
       try {
         
-        const cache = await this.getCache();
+        const cache = await Model.getCache();
         const options = { encrypt: false };
 
         this.isSaved = true;
@@ -84,7 +85,7 @@ class Status extends Model {
         // add this status id to our profile
         cache.Profile.entities[ model.Profile ].Status.splice(0, 0, model.id);
 
-        const res = await this.putCache( cache );
+        const res = await Model.putCache( cache );
         return this;
 
       } catch (error) {
@@ -102,18 +103,22 @@ class Status extends Model {
     const { id } = this;
     
     try {
-      const string = await this.getCache();
+      const cache = await Model.getCache();
       const options = { encrypt: false };
 
       const model = this.getProps();
+
       delete cache.Status.entities[ model.id ];
+      
       const index = cache.Status.ids.indexOf( model.id );
       cache.Status.ids.splice(index, 1);
 
       // remove this dangling id from our profile
-      cache.Profile.entities[ model.Profile ].Status.splice(index, 1);
+      const profile = cache.Profile.entities[ model.Profile ];
+      const statusIndex = profile.Status.indexOf( model.id );
+      profile.Status.splice(statusIndex, 1);
       
-      const res = await this.putCache( cache );
+      const res = await Model.putCache( cache );
       return this;
 
     } catch (error) {

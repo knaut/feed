@@ -38,15 +38,16 @@ export function deleteStatus(payload) {
       from from gaia, then from our redux store
     */
     const { id } = payload;
+    const state = getState();
+
     try {
-      const status = Status.loadById(id, getState().Status );
-      console.log({status})
+      const status = await Status.loadById(id, state.Status );
 
       dispatch(
         PostActions.deleteSuccess(status)
       );
 
-      // await status.delete();
+      await status.delete();
 
     } catch (error) {
       console.error(error);

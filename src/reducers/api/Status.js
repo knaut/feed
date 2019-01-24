@@ -35,12 +35,14 @@ export default function Status(
 
       return newState;
     }
-    // case PostActions.POST_DELETE_SUCCESS: {
-    //   const { id } = action.payload;
+    case PostActions.POST_DELETE_SUCCESS: {
+      const { id } = action.payload;
 
-    //   const status = 
+      delete newState.entities[ id ];
+      const index = newState.ids.indexOf( id );
+      newState.ids.splice(index, 1);
 
-    //   return newState
-    // }
+      return newState;
+    }
   }
 }

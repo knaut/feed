@@ -73,10 +73,6 @@ const App = () => {
       }
     });
 
-    const myProfile = new Profile({
-      username
-    });
-
     Profile.getCache().then(file => {
       store.dispatch({
         type: 'GET_CACHE_SUCCESS',

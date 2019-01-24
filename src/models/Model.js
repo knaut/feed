@@ -11,7 +11,7 @@ class Model {
   */
   constructor( props, fetched ) {
     const isLoaded = fetched ? true : false;
-    console.log({props, isLoaded, fetched, arguments})
+
     this.id = isLoaded === true ? props.id : this.generateId();
 
     // props are the content properties for our model that we save to the cache
@@ -23,27 +23,6 @@ class Model {
     this.isValid = isLoaded === true ? true : null;
     this.isSaved = isLoaded === true ? true : false;
     this.isLoaded = isLoaded;
-  }
-
-  static loadById(id, substate) {
-
-    try {
-      // const cache = await this.getCache();
-      // const blank = new this({}, true);
-      // console.log(cache, this.constructor.name);
-    
-      const entity = substate.entities[ id ];
-      
-      const model = new this(entity, true);
-
-      console.log({entity, model});
-      return model;
-
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-    
   }
 
   generateId() {
@@ -62,6 +41,15 @@ class Model {
       id: this.id,
       ...this.props
     };
+  }
+
+  static loadById(id, substate) {
+    return new Promise( async (resolve, reject) => {
+      const cache = await this.getCache();    
+      const entity = substate.entities[ id ];
+
+      return resolve(new this(entity, true));
+    });
   }
 
   static getCache() {
@@ -101,7 +89,7 @@ class Model {
     });
   }
 
-  putCache( cache ) {
+  static putCache( cache ) {
     console.log('Attempting to put cache.', cache);
 
     const string = JSON.stringify(cache);
