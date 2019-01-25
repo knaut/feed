@@ -8,8 +8,8 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import AddPostButton from '../components/AddPostButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';
+import MyFeedButton from '../components/MyFeedButton.jsx';
 import ProfileCard from '../components/ProfileCard.jsx';
 
 class Profile extends Component {
@@ -37,13 +37,14 @@ class Profile extends Component {
             gap='small'
           >
             <Box gridArea='left'>
-              <AddPostButton/>
+              
             </Box>
             <Box gridArea='main'>
               <ProfileCard username={this.props.match.params.username} />
             </Box>
             <Box gridArea='right'>
               <MyProfileButton/>
+              <MyFeedButton/>
             </Box>
           </Grid>
         </div>

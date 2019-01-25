@@ -11,6 +11,7 @@ import styles from '../styles';
 // COMPONENTS
 import Editor from '../components/Editor.jsx';
 import AddPostButton from '../components/AddPostButton.jsx';
+import MyFeedButton from '../components/MyFeedButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';
 import FeedList from '../components/FeedList.jsx';
 
@@ -45,6 +46,7 @@ class Feed extends Component {
             </Box>
             <Box gridArea='right'>
               <MyProfileButton/>
+              <MyFeedButton/>
             </Box>
           </Grid>
         </div>

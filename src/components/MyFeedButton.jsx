@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 // COMPONENTS
 import { Grommet, Box, Button } from 'grommet';
-import { User } from 'grommet-icons';
+import { User, Home } from 'grommet-icons';
 
 // ROUTER
 import { Link } from 'react-router-dom'
@@ -21,12 +21,12 @@ function mapStateToProps(state) {
   }
 }
 
-class MyProfileButton extends Component {
+class MyFeedButton extends Component {
   render() {
     return (
-      <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'small'}}>
-        <Link to={`/${this.props.id}`}>
-          <Button icon={<User />} primary style={{
+      <Box align="center" pad={{top: 'small', left: 'medium', right: 'medium', bottom: 'small'}}>
+        <Link to={`/feed`}>
+          <Button icon={<Home />} primary style={{
             background: 'transparent',
             border: `5px solid ${styles.colors.primaries.purple}`,
             borderRadius: '24px',
@@ -38,4 +38,4 @@ class MyProfileButton extends Component {
   }
 };
 
-export default connect(mapStateToProps)(MyProfileButton);
+export default connect(mapStateToProps)(MyFeedButton);

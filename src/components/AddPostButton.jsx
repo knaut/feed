@@ -24,7 +24,8 @@ class AddPostButton extends Component {
       <Box align="center" pad="medium">
         <Button icon={<Add />} onClick={() => {}} primary style={{
           background: 'transparent',
-          border: `5px solid ${styles.colors.primaries.purple}`
+          border: `5px solid ${styles.colors.primaries.purple}`,
+          display: 'flex'
         }}/>
       </Box>
     );
