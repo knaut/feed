@@ -46,7 +46,6 @@ class Feed extends Component {
             </Box>
             <Box gridArea='right'>
               <MyProfileButton/>
-              <MyFeedButton/>
             </Box>
           </Grid>
         </div>

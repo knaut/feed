@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 class MyFeedButton extends Component {
   render() {
     return (
-      <Box align="center" pad={{top: 'small', left: 'medium', right: 'medium', bottom: 'small'}}>
+      <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'small'}}>
         <Link to={`/feed`}>
           <Button icon={<Home />} primary style={{
             background: 'transparent',

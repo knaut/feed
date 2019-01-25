@@ -43,7 +43,6 @@ class Profile extends Component {
               <ProfileCard username={this.props.match.params.username} />
             </Box>
             <Box gridArea='right'>
-              <MyProfileButton/>
               <MyFeedButton/>
             </Box>
           </Grid>

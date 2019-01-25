@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 class MyProfileButton extends Component {
   render() {
     return (
-      <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'small'}}>
+      <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'none'}}>
         <Link to={`/${this.props.id}`}>
           <Button icon={<User />} primary style={{
             background: 'transparent',
