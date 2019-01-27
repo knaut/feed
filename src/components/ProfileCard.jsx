@@ -11,8 +11,8 @@ import styles from '../styles';
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, SubtractCircle, Gremlin } from 'grommet-icons';
-import { FadeLoader, BarLoader } from 'react-spinners';
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
+import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
 window.blockstack = blockstack;
 
@@ -198,15 +198,168 @@ class ProfileCard extends Component {
       this.setState({
         isLoaded: true,
         isValid: true,
-        
+
       })
 
     }
 
   }
 
-  render() {
+  // renderMyProfile() {
+  //   return (
+
+  //   );
+  // }
+
+  // renderFeedProfile() {
+  //   return (
+
+  //   );
+  // }
+
+  // renderBlockstackProfile() {
+  //   return (
+
+  //   );
+  // }
+
+  renderEmptyProfile(username) {
+    console.log(`${this.constructor.name} renderLoadingProfile`);
     return (
+      <Box align="center" pad="medium">
+        <Box
+          pad='medium'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            maxWidth: '800px',
+            minHeight: '320px'
+          }}
+        >
+          <header>
+            <Box justify="center" align="center">
+              <Box background={styles.colors.primaries.purple} round={'full'} 
+                justify="center" align="center"
+                style={{
+                  border: `5px solid ${styles.colors.neutrals.gray1}`,
+                  width: '150px',
+                  height: '150px',
+                  overflow: 'hidden'
+                }}>
+                <Box>
+                  <User color={styles.colors.pastels.purple} size='xlarge'/>
+                </Box>
+              </Box>
+            </Box>
+            <Box pad={'small'}>
+              <Text level={1} size={'medium'} style={{
+                color: styles.colors.neutrals.gray1
+              }}>
+                {`We couldn't find anyone by the name of "${username}". They may not have a Blockstack ID.`}
+              </Text>
+            </Box>
+          </header>
+        </Box>
+      </Box>
+    );
+  }
+
+  renderNoProfileFound(username) {
+    console.log(`${this.constructor.name} renderLoadingProfile`);
+    return (
+      <Box align="center" pad="medium">
+        <Box
+          pad='medium'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            maxWidth: '800px',
+            minHeight: '320px'
+          }}
+        >
+          <header>
+            <Box justify="center" align="center">
+              <Box background={styles.colors.primaries.purple} round={'full'} 
+                justify="center" align="center"
+                style={{
+                  border: `5px solid ${styles.colors.neutrals.gray1}`,
+                  width: '150px',
+                  height: '150px',
+                  overflow: 'hidden'
+                }}>
+                <Box>
+                  <Help color={styles.colors.pastels.red} size='xlarge'/>
+                </Box>
+              </Box>
+            </Box>
+            <Box pad={'small'}>
+              <Text level={1} size={'medium'} style={{
+                color: styles.colors.neutrals.gray1
+              }}>
+                {`We couldn't find anyone by the name of "${username}". They may not have a Blockstack ID.`}
+              </Text>
+            </Box>
+          </header>
+        </Box>
+      </Box>
+    );
+  }
+
+  renderLoadingProfile(username) {
+    console.log(`${this.constructor.name} renderLoadingProfile`);
+    return (
+      <Box align="center" pad="medium">
+        <Box
+          pad='medium'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            maxWidth: '800px',
+            minHeight: '320px'
+          }}
+        >
+          <header>
+            <Box justify="center" align="center">
+              <Box background={styles.colors.primaries.purple} round={'full'} 
+                justify="center" align="center"
+                style={{
+                  border: `5px solid ${styles.colors.neutrals.gray1}`,
+                  width: '150px',
+                  height: '150px',
+                  overflow: 'hidden'
+                }}>
+                <Box>
+                  <HashLoader
+                    color={styles.colors.pastels.purple}
+                    loading={true}
+                    size={75}
+                  />
+                </Box>
+              </Box>
+            </Box>
+            <Box pad={'small'}>
+              <Text level={1} size={'medium'} style={{
+                color: styles.colors.neutrals.gray1
+              }}>
+                {`Looking up "${username}"…`}
+              </Text>
+            </Box>
+          </header>
+        </Box>
+      </Box>
+    );
+  }
+
+  render() {
+    return this.renderNoProfileFound(this.props.username);
+
+    /*return (
       <Box align="center" pad="medium">
         <Box
           pad='medium'
@@ -234,7 +387,7 @@ class ProfileCard extends Component {
           </header>
         </Box>
       </Box>
-    );
+    );*/
   }
 }
 
