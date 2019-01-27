@@ -14,6 +14,8 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin } from 'grommet-icons';
 import { FadeLoader, BarLoader } from 'react-spinners';
 
+window.blockstack = blockstack;
+
 const Avatar = (state) => {
   const {
     isLoaded,
@@ -144,6 +146,13 @@ const ProfileName = (state) => {
   }
 }
 
+function mapStateToProps(state) {
+  const id = state.user.username.split('.')[0];
+  return {
+    id
+  }
+}
+
 class ProfileCard extends Component {
   state = {
     isLoaded: false,
@@ -151,22 +160,49 @@ class ProfileCard extends Component {
   }
 
   async componentDidMount() {
+
     // load a blockstack profile based on our route
-    const profile = await blockstack.lookupProfile(`${this.props.username}.id.blockstack`);
+    if (this.props.id === this.props.username) {
+      // this profile matched our own login; it's our profile
+      const profile = await blockstack.lookupProfile(`${this.props.username}.id.blockstack`);
 
-    const { username } = this.props;
-    const { name, image, description } = profile;
-    const isLoaded = true;
-    const isValid = true;
+      const { username } = this.props;
+      const { name, image, description } = profile;
+      const isLoaded = true;
+      const isValid = true;
 
-    this.setState({
-      isLoaded,
-      isValid,
-      username,
-      name,
-      image,
-      description
-    });
+      this.setState({
+        isLoaded,
+        isValid,
+        username,
+        name,
+        image,
+        description
+      });
+
+    } else {
+      // this is someone else's profile
+      const profile = await blockstack.lookupProfile(`${this.props.username}.id.blockstack`);
+      console.log(profile);
+
+      const person = new blockstack.Person(profile);
+
+      console.log(person);
+
+      const image = person.avatarUrl();
+      const name = person.name();
+      const json = person.toJSON();
+
+      // console.log({json});
+
+      this.setState({
+        isLoaded: true,
+        isValid: true,
+        
+      })
+
+    }
+
   }
 
   render() {
@@ -202,4 +238,4 @@ class ProfileCard extends Component {
   }
 }
 
-export default ProfileCard;
+export default connect(mapStateToProps)(ProfileCard);

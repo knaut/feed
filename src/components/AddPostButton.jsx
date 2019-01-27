@@ -10,26 +10,45 @@ import { Add } from 'grommet-icons';
 // STYLES
 import styles from '../styles';
 
+// ACTIONS
+import * as EditorActions from '../actions/editor';
+
+function mapStateToProps(state) {
+  return {
+
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
-    // actions: bindActionCreators({
-    //   onEditorInputChange: 
-    // }, dispatch)
+    actions: bindActionCreators({
+      activateEditor: EditorActions.activateEditor
+    }, dispatch)
   }
 }
 
 class AddPostButton extends Component {
+  handleClick = () => {
+    // console.log(this);
+    this.props.actions.activateEditor({
+      active: false
+    })
+  }
+
   render() {
     return (
       <Box align="center" pad="medium">
-        <Button icon={<Add />} onClick={() => {}} primary style={{
-          background: 'transparent',
-          border: `5px solid ${styles.colors.primaries.purple}`,
-          display: 'flex'
-        }}/>
+        <Button icon={<Add />} onClick={this.handleClick} primary 
+          style={{
+            background: 'transparent',
+            border: `5px solid ${styles.colors.primaries.purple}`,
+            borderRadius: '24px',
+            display: 'flex'
+          }}
+        />
       </Box>
     );
   }
 };
 
-export default connect(mapDispatchToProps)(AddPostButton);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPostButton);

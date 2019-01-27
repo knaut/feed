@@ -69,7 +69,12 @@ class PostEditor extends Component {
     const { value } = this.state;
 
     return (
-      <Box align="center" pad="medium" onClick={this.focusEditor}>
+      <Box 
+        align="center"
+        pad="medium"
+        onClick={this.focusEditor}
+        animation={'slideDown'}
+      >
         <Box
           pad='medium'
           gap='small'
