@@ -14,6 +14,7 @@ const Avatar = (props) => {
   const {
     isLoading,
     isOnBlockstack,
+    isMe,
     username,
     image
   } = props;
@@ -22,6 +23,15 @@ const Avatar = (props) => {
 
   const noAvatar = (<User color={styles.colors.pastels.purple} size='xlarge'/>);
   const avatar = (<Image src={image} fit="cover" />);
+  const isMeTag = (
+    <Box justify="center" align="center">
+      <Text size={'small'} pad={{top: 'small', bottom: 'none'}} style={{
+        color: styles.colors.primaries.cyan,
+        letterSpacing: '1px',
+        fontStyle: 'italic'
+      }}>This is you!</Text>
+    </Box>
+  );
 
   const loading = (
     <React.Fragment>
@@ -64,10 +74,10 @@ const Avatar = (props) => {
             height: '150px',
             overflow: 'hidden'
           }}>
-          <Box style={{
+          <Box style={image ? {
             width: '100%',
             height: '100%'
-          }}>
+          } : {}}>
             {image ? avatar : noAvatar}
           </Box>
         </Box>
@@ -80,6 +90,7 @@ const Avatar = (props) => {
           {username}
         </Text>
       </Box>
+      { isMe ? isMeTag : null }
     </React.Fragment>
   );
 
