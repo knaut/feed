@@ -16,6 +16,7 @@ const FeedLink = (props) => {
     username,
     isOnBlockstack,
     isOnFeed,
+    isMe,
     name,
 
     profiles
@@ -36,8 +37,8 @@ const FeedLink = (props) => {
   );
 
   const feed = (
-    <Link to={`/${username}/feed`}>
-      <Button icon={<LinkNext />} label={`go to ${name}'s feed`} primary style={{
+    <Link to={ isMe === true ? `/feed` : `/${username}/feed` }>
+      <Button icon={<LinkNext />} label={ isMe === true ? `go to your feed` : `go to ${name}'s feed` } primary style={{
       }}/>
     </Link>
   );
