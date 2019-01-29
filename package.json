@@ -42,7 +42,8 @@
     "webpack-dev-server": "^3.1.14"
   },
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "storybook": "start-storybook -p 9001 -c ./storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,5 +53,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@emotion/core": "^0.13.1",
+    "@emotion/styled": "^0.10.6",
+    "@storybook/react": "^4.1.11",
+    "ajv": "^6.7.0",
+    "jquery": "^3.3.1"
+  }
 }

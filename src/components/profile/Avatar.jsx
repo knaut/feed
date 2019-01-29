@@ -19,17 +19,17 @@ const Avatar = (props) => {
     image
   } = props;
 
-  console.log({props})
-
   const noAvatar = (<User color={styles.colors.pastels.purple} size='xlarge'/>);
   const avatar = (<Image src={image} fit="cover" />);
   const isMeTag = (
     <Box justify="center" align="center">
-      <Text size={'small'} pad={{top: 'small', bottom: 'none'}} style={{
-        color: styles.colors.primaries.cyan,
-        letterSpacing: '1px',
-        fontStyle: 'italic'
-      }}>This is you!</Text>
+      <Button color={styles.colors.primaries.cyan} margin='small'>
+        <Text size={'small'} margin={{top: 'small', bottom: 'none'}} style={{
+          color: styles.colors.primaries.cyan,
+          fontStyle: 'italic',
+          fontWeight: 'bold'
+        }}>This is you!</Text>
+      </Button>
     </Box>
   );
 
@@ -131,7 +131,6 @@ const Avatar = (props) => {
     }
 
   }
-    
   
 }
 
