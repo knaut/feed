@@ -22,8 +22,20 @@ const FeedLink = (props) => {
     profiles
   } = props;
 
+  const noId = (
+    <Box align='center' pad='medium' style={{
+      border: `1px solid ${styles.colors.neutrals.gray2}`,
+      borderRadius: '10px',
+      background: `${styles.colors.neutrals.light}`
+    }}>
+      <Text level={3}>
+        <span>{`We couldn't find anyone on Blockstack with the id of "${username}".`}</span>
+      </Text>
+    </Box>
+  );
+
   const noFeed = (
-    <Box pad='medium' style={{
+    <Box align='center' pad='medium' style={{
       border: `1px solid ${styles.colors.neutrals.gray2}`,
       borderRadius: '10px',
       background: `${styles.colors.neutrals.light}`
@@ -37,10 +49,12 @@ const FeedLink = (props) => {
   );
 
   const feed = (
-    <Link to={ isMe === true ? `/feed` : `/${username}/feed` }>
-      <Button icon={<LinkNext />} label={ isMe === true ? `go to your feed` : `go to ${name}'s feed` } primary style={{
-      }}/>
-    </Link>
+    <Box align='center' pad='medium'>
+      <Link to={ isMe === true ? `/feed` : `/${username}/feed` }>
+        <Button icon={<LinkNext />} label={ isMe === true ? `go to your feed` : `go to ${name}'s feed` } primary style={{
+        }}/>
+      </Link>
+    </Box>
   );
 
   if (isOnBlockstack) {
@@ -54,7 +68,7 @@ const FeedLink = (props) => {
     }
 
   } else {
-    return null;
+    return noId;
   }
 }
 

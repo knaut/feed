@@ -53,7 +53,7 @@ const Avatar = (props) => {
           </Box>
         </Box>
       </Box>
-      <Box pad={'small'}>
+      <Box justify="center" align="center" pad={'small'}>
         <Text level={1} size={'medium'} style={{
           color: styles.colors.neutrals.gray1
         }}>
@@ -82,7 +82,7 @@ const Avatar = (props) => {
           </Box>
         </Box>
       </Box>
-      <Box pad={{top: 'small'}}>
+      <Box justify="center" align="center" pad={{top: 'small'}}>
         <Text level={1} size={'medium'} style={{
           letterSpacing: '2px',
           color: styles.colors.neutrals.gray1
