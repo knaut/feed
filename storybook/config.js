@@ -1,7 +1,8 @@
 import { configure } from '@storybook/react';
 
 function loadStories() {
-  require('./stories/index.js');
+  // Profile
+  require('./stories/profile/Avatar.js');
 }
 
 configure(loadStories, module);

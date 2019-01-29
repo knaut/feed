@@ -129,9 +129,7 @@ class ProfileCard extends Component {
           }}
         >
           <header>
-            <Box justify="center" align="center">
-              <Avatar {...this.state} />
-            </Box>
+            <Avatar {...this.state} />
             <Heading level={1} size={'small'}>
               {this.state.name}
             </Heading>

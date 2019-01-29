@@ -110,7 +110,7 @@ const Avatar = (props) => {
           </Box>
         </Box>
       </Box>
-      <Box pad={{top: 'small'}}>
+      <Box justify="center" align="center" pad={{top: 'small'}}>
         <Text level={1} size={'medium'} style={{
           color: styles.colors.neutrals.gray1
         }}>
