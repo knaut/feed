@@ -4,6 +4,9 @@ function loadStories() {
   // Profile
   require('./stories/profile/Avatar.js');
   require('./stories/profile/FeedLink.js');
+
+  // Loaders
+  require('./stories/GlobalLoader.js');
 }
 
 configure(loadStories, module);
