@@ -19,13 +19,13 @@ const GlobalLoader = () => {
         size={'xlarge'}
         style={{
           position: 'absolute',
-          top: '5px'
+          top: '10px'
         }}
       />
       <HashLoader
         color={styles.colors.pastels.purple}
         loading={true}
-        size={105}
+        size={115}
         style={{
           position: 'absolute',
           top: 0
