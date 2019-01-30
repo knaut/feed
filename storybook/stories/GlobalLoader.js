@@ -10,6 +10,14 @@ storiesOf('GlobalLoader', module)
   .add('loading', () => (
     <Grommet theme={grommet}>
       <GlobalLoader
+        isLoading={true}
+      />
+    </Grommet>
+  ))
+  .add('loaded', () => (
+    <Grommet theme={grommet}>
+      <GlobalLoader
+        isLoading={false}
       />
     </Grommet>
   ))

@@ -24,6 +24,7 @@ const FeedLink = (props) => {
 
   const noId = (
     <Box align='center' pad='medium' style={{
+      textAlign: 'center',
       border: `1px solid ${styles.colors.neutrals.gray2}`,
       borderRadius: '10px',
       background: `${styles.colors.neutrals.light}`
@@ -36,6 +37,7 @@ const FeedLink = (props) => {
 
   const noFeed = (
     <Box align='center' pad='medium' style={{
+      textAlign: 'center',
       border: `1px solid ${styles.colors.neutrals.gray2}`,
       borderRadius: '10px',
       background: `${styles.colors.neutrals.light}`

@@ -10,29 +10,81 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Language } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader, BounceLoader } from 'react-spinners';
 
-const GlobalLoader = () => {
-  return (
-    <Box justify="center" align="center" style={{
-      position: 'relative'
-    }}>
-      <Language color={styles.colors.pastels.purple}
-        size={'xlarge'}
+class GlobalLoader extends Component {
+  quotes = [
+    'fetching from Gaia',
+    'counting kittens',
+    'stacking blocks',
+    'fitting odd-shaped pegs',
+    'spinning unturned cogs',
+    // 'unfolding packets',
+    // 'organizing stacks'
+  ];
+
+  state = {
+    index: 0
+  };
+
+  componentDidMount() {
+    const { isLoading } = this.props;
+
+    if (isLoading === true) {
+      this.interval = setInterval(() => {
+        
+        this.setState({
+          index: Math.floor( Math.random() * Math.floor(this.quotes.length) )
+        });
+
+      }, 3145);
+    } else {
+
+      clearInterval(this.interval);
+
+    }
+  }
+
+  render() {
+    const { isLoading } = this.props;
+    const { index } = this.state;
+
+    return (
+      <Box 
         style={{
-          position: 'absolute',
-          top: '10px'
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
         }}
-      />
-      <HashLoader
-        color={styles.colors.pastels.purple}
-        loading={true}
-        size={115}
-        style={{
-          position: 'absolute',
-          top: 0
-        }}
-      />
-    </Box>
-  );
+      >
+        <Box
+          animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
+          justify="center"
+          align="center"
+          style={{
+            position: 'relative'
+          }}
+        >
+          <Language color={styles.colors.primaries.purple}
+            size={'xlarge'}
+            style={{
+              position: 'absolute',
+              top: '10px'
+            }}
+          />
+          <HashLoader
+            color={styles.colors.pastels.purple}
+            loading={true}
+            size={115}
+            style={{
+              position: 'absolute',
+              top: 0
+            }}
+          />
+          <Text margin={'small'} color={styles.colors.neutrals.gray1}
+            size={'xlarge'}
+          >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
+        </Box>
+      </Box>
+    );
+  }
 }
 
 export default GlobalLoader;
