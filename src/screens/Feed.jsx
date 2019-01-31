@@ -14,44 +14,68 @@ import AddPostButton from '../components/AddPostButton.jsx';
 import MyFeedButton from '../components/MyFeedButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';
 import FeedList from '../components/FeedList.jsx';
+import GlobalLoader from '../components/GlobalLoader.jsx';
+
+function mapStateToProps(state) {
+  return state;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    // actions: bindActionCreators({
+      
+    // }, dispatch)
+  }
+}
 
 class Feed extends Component {
   render() {
+    const { isLoaded } = this.props.cache;
+    const loaded = (
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+          justifyContent: 'start'
+        }}
+      >
+        <Grid
+          fill
+          areas={[
+            { name: 'left', start: [0, 0], end: [0, 0] },
+            { name: 'main', start: [1, 0], end: [1, 0] },
+            { name: 'right', start: [2, 0], end: [2, 0] }
+          ]}
+          columns={['xsmall', 'flex', 'xsmall']}
+          rows={['flex']}
+          gap='small'
+        >
+          <Box gridArea='left'>
+            <AddPostButton/>
+          </Box>
+          <Box gridArea='main'>
+            <Editor />
+            <FeedList />
+          </Box>
+          <Box gridArea='right'>
+            <MyProfileButton/>
+          </Box>
+        </Grid>
+      </div>
+    );
+
+    const loading = (
+      <GlobalLoader
+        isLoading={true}
+      />
+    );
+
     return (
       <Grommet theme={grommet}>
-        <div 
-          style={{
-            background: styles.colors.darks.purple,
-            ...styles.app.container,
-            justifyContent: 'start'
-          }}
-        >
-          <Grid
-            fill
-            areas={[
-              { name: 'left', start: [0, 0], end: [0, 0] },
-              { name: 'main', start: [1, 0], end: [1, 0] },
-              { name: 'right', start: [2, 0], end: [2, 0] }
-            ]}
-            columns={['xsmall', 'flex', 'xsmall']}
-            rows={['flex']}
-            gap='small'
-          >
-            <Box gridArea='left'>
-              <AddPostButton/>
-            </Box>
-            <Box gridArea='main'>
-              <Editor />
-              <FeedList />
-            </Box>
-            <Box gridArea='right'>
-              <MyProfileButton/>
-            </Box>
-          </Grid>
-        </div>
+        { isLoaded === true ? loaded : loading }
       </Grommet>
     );
   }
 };
 
-export default Feed;
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
