@@ -43,6 +43,10 @@ class GlobalLoader extends Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   render() {
     const { isLoading } = this.props;
     const { index } = this.state;
