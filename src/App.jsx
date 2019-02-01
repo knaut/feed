@@ -1,16 +1,8 @@
-
 // IMPORTS
 import 'babel-polyfill';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as blockstack from 'blockstack';
-
-// REDUX
-import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
 
 // ROUTER
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -19,9 +11,6 @@ import createHistory from 'history/createBrowserHistory';
 
 // ROUTER AUTH
 import isSignedIn from './authentication/isSignedIn';
-
-// REDUCERS
-import rootReducer from './reducers/root';
 
 // SCREENS
 import Index from './screens/Index.jsx';
@@ -34,17 +23,8 @@ import ProfileCard from './components/ProfileCard.jsx';
 // MODELS
 import Profile from './models/Profile';
 
-const state = {};
-const history = createHistory();
-const store = createStore(
-  rootReducer,
-  state,
-  applyMiddleware(
-    promise(),
-    thunk,
-    createLogger()
-  )
-);
+// UTILS
+import generateStore from './utils/generateStore.js';
 
 const loginToBlockstack = () => {
   if (blockstack.isUserSignedIn()) {
@@ -61,6 +41,8 @@ const loginToBlockstack = () => {
 loginToBlockstack();
 
 const App = () => {
+
+  const store = generateStore();
 
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();

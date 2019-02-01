@@ -7,6 +7,9 @@ function loadStories() {
 
   // Loaders
   require('./stories/GlobalLoader.js');
+
+  // Editor
+  require('./stories/Editor.js');
 }
 
 configure(loadStories, module);
