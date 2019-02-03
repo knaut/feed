@@ -2,6 +2,7 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import * as blockstack from 'blockstack';
 
 // ROUTER
@@ -43,6 +44,9 @@ loginToBlockstack();
 const App = () => {
 
   const store = generateStore();
+  const history = createHistory();
+  
+  console.log(store);
 
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();
