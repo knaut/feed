@@ -10,6 +10,7 @@ import styles from '../styles';
 
 // COMPONENTS
 import Editor from '../components/Editor.jsx';
+// import PostEditor from '../components/editor/PostEditor.jsx';
 import AddPostButton from '../components/AddPostButton.jsx';
 import MyFeedButton from '../components/MyFeedButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';

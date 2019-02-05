@@ -3,7 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import StoryRouter from 'storybook-react-router';
-import Editor from '../../src/components/Editor.jsx';
+import PostCanvas from '../../src/components/editor/PostCanvas.jsx';
+import Counter from '../../src/components/editor/Counter.jsx';
 
 // STYLES
 import styles from '../../src/styles';
@@ -13,7 +14,7 @@ import generateStore from '../../src/utils/generateStore.js';
 
 const store = generateStore();
 
-storiesOf('Editor', module)
+storiesOf('PostCanvas', module)
   .add('active', () => (
     <Grommet theme={grommet}>
       <div 
@@ -23,7 +24,7 @@ storiesOf('Editor', module)
           justifyContent: 'start'
         }}
       >
-        <Editor store={store}/>
+        <PostCanvas/>
       </div>
     </Grommet>
   ))

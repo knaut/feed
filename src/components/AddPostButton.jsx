@@ -38,7 +38,7 @@ class AddPostButton extends Component {
   render() {
     return (
       <Box align="center" pad="medium">
-        <Button icon={<Add />} onClick={this.handleClick} primary 
+        <Button icon={<Add/>} onClick={this.handleClick} primary 
           style={{
             background: 'transparent',
             border: `5px solid ${styles.colors.primaries.purple}`,

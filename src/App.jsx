@@ -45,8 +45,6 @@ const App = () => {
 
   const store = generateStore();
   const history = createHistory();
-  
-  console.log(store);
 
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();
