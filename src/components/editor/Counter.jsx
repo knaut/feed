@@ -10,22 +10,28 @@ import { Add } from 'grommet-icons';
 import styles from '../../styles';
 
 class Counter extends Component {
+  onClick = () => {
+    const { count, limit } = this.props;
+    const block = count >= limit;
+
+    if (block) {
+      console.error('User tried to submit a status over the limit.');
+    } else {
+      this.props.handler();
+    }
+  }
+
   render() {
     const { count, limit } = this.props;
-    console.log({count,limit});
-
-
+    
     const reveal = (count / limit) * 100;
     const opacity = (count / limit);
     const warn = reveal > 92;
     const block = count >= limit;
-    
+
     return (
-      <Button onClick={this.onPostSubmit}>
+      <Button onClick={this.onClick}>
         <Box style={{
-          // position: 'absolute',
-          // right: '-5px',
-          // bottom: '-5px',
           width: '45px'
         }}>
           <PieChart
@@ -57,13 +63,16 @@ class Counter extends Component {
               }}
             />
             <Add 
-            color={block ? styles.colors.primaries.red : styles.colors.neutrals.gray3}
-            style={{
-              position: 'absolute',
-              zIndex: 25,
-              left: '23.5%',
-              top: '23.5%'
-            }}/>
+              color={block ? styles.colors.primaries.red : styles.colors.neutrals.gray3}
+              style={{
+                position: 'absolute',
+                zIndex: 25,
+                left: '23.5%',
+                top: '23.5%',
+                transform: block ? 'rotateZ(45deg)' : 'none',
+                transition: '0.2s all ease-in-out'
+              }}
+            />
           </Box>
         </Box>
       </Button>

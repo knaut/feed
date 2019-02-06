@@ -69,7 +69,7 @@ class PostCanvas extends Component {
             background: 'white',
             width: '100%',
             maxWidth: '800px',
-            borderRadius: '12px 18px 26px 12px'
+            borderRadius: '12px 18px 32px 12px'
           }}
         >
           <div 
@@ -84,8 +84,8 @@ class PostCanvas extends Component {
               onChange={this.onChange}
             />
           </div>
-          <Box align='end' style={{position: 'relative'}}>
-            <Counter onClick={this.onPostSubmit} count={this.state.count} limit={500}/>
+          <Box align='end' style={{position: 'relative', zIndex: 30}}>
+            <Counter handler={this.onPostSubmit} count={this.state.count} limit={500}/>
           </Box>
         </Box>
       </Box>
