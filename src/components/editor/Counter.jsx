@@ -16,9 +16,8 @@ class Counter extends Component {
 
     const reveal = (count / limit) * 100;
     const opacity = (count / limit);
-
-    console.log({reveal, opacity})
-
+    const warn = reveal > 92;
+    const block = reveal > limit;
     
     return (
       <Box style={{
@@ -28,8 +27,8 @@ class Counter extends Component {
         width: '45px'
       }}>
         <PieChart
-          data={[{ value: 1, key: 1, color: styles.colors.neutrals.gray2 }]}
-          reveal={reveal}
+          data={[{ value: 1, key: 1, color: warn ? styles.colors.primaries.orange : styles.colors.neutrals.gray2 }]}
+          reveal={ ( count >= limit ) ? 100 : reveal }
           lineWidth={10}
           animate
           style={{
