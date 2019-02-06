@@ -85,14 +85,7 @@ class PostCanvas extends Component {
             />
           </div>
           <Box align='end' style={{position: 'relative'}}>
-            <Button onClick={this.onPostSubmit}>
-              <Add style={{
-                position: 'relative',
-                zIndex: 25,
-                left: '-5px'
-              }}/>
-            </Button>
-            <Counter count={this.state.count} limit={500}/>
+            <Counter onClick={this.onPostSubmit} count={this.state.count} limit={500}/>
           </Box>
         </Box>
       </Box>
