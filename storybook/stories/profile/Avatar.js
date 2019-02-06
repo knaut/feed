@@ -4,7 +4,7 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import Avatar from '../../../src/components/profile/Avatar.jsx';
 
-import spoof from './user.json';
+import spoof from '../../user.json';
 
 storiesOf('Avatar', module)
   .add('no id found', () => (

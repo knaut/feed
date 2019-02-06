@@ -5,7 +5,7 @@ import { grommet, dark } from 'grommet/themes';
 import StoryRouter from 'storybook-react-router';
 import FeedLink from '../../../src/components/profile/FeedLink.jsx';
 
-import spoof from './user.json';
+import spoof from '../../user.json';
 
 storiesOf('FeedLink', module)
   .addDecorator(StoryRouter())

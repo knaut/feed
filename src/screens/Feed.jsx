@@ -10,6 +10,7 @@ import styles from '../styles';
 
 // COMPONENTS
 import Editor from '../components/Editor.jsx';
+import PostCanvas from '../components/editor/PostCanvas.jsx';
 // import PostEditor from '../components/editor/PostEditor.jsx';
 import AddPostButton from '../components/AddPostButton.jsx';
 import MyFeedButton from '../components/MyFeedButton.jsx';
@@ -31,6 +32,7 @@ function mapDispatchToProps(dispatch) {
 
 class Feed extends Component {
   render() {
+    // <Editor />
     const { isLoaded } = this.props.cache;
     const loaded = (
       <div 
@@ -55,7 +57,7 @@ class Feed extends Component {
             <AddPostButton/>
           </Box>
           <Box gridArea='main'>
-            <Editor />
+            <PostCanvas />
             <FeedList />
           </Box>
           <Box gridArea='right'>

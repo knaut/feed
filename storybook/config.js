@@ -8,8 +8,11 @@ function loadStories() {
   // Loaders
   require('./stories/GlobalLoader.js');
 
-  // Editor
-  require('./stories/Editor.js');
+  // Slate
+  require('./stories/Slate.js');
+
+  // PostCard
+  require('./stories/PostCard.js');
 }
 
 configure(loadStories, module);

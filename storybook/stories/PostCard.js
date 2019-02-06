@@ -3,8 +3,6 @@ import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import StoryRouter from 'storybook-react-router';
-import PostCanvas from '../../src/components/editor/PostCanvas.jsx';
-import Counter from '../../src/components/editor/Counter.jsx';
 
 // STYLES
 import styles from '../../src/styles';
@@ -14,8 +12,8 @@ import generateStore from '../../src/utils/generateStore.js';
 
 const store = generateStore();
 
-storiesOf('PostCanvas', module)
-  .add('active', () => (
+storiesOf('Card', module)
+  .add('plain', () => (
     <Grommet theme={grommet}>
       <div 
         style={{
@@ -24,7 +22,7 @@ storiesOf('PostCanvas', module)
           justifyContent: 'start'
         }}
       >
-        <PostCanvas/>
+        
       </div>
     </Grommet>
   ))

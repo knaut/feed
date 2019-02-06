@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import PostCanvas from './PostCanvas.jsx';
+import Slate from './Slate.jsx';
 
 // ACTIONS
 import * as EditorActions from '../../actions/editor';
@@ -29,7 +29,7 @@ class PostEditor extends Component {
   render() {
     console.log(this);
     return (
-      <PostCanvas />
+      <Slate />
     );
   }
 }
