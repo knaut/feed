@@ -53,12 +53,19 @@ storiesOf('Card', module)
         }}
       >
         <Box align="center" style={{ width: '100%' }} pad='medium'>
-          <DecoratedCard post={
-            new Status({
-              text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
-              Profile: spoof.user.username
-            }).getProps()
-          }/>
+          <DecoratedCard 
+            post={
+              new Status({
+                text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
+                Profile: spoof.user.username
+              }).getProps()
+            }
+            actions={{
+              delete: function(payload) {
+                console.log('delete', payload)
+              }
+            }}
+          />
         </Box>
       </div>
     </Grommet>

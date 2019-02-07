@@ -90,13 +90,14 @@ class Decorated extends Component {
   }
 
   onDelete = () => {
-    // const id = this.props.post.id;
-    // this.props.actions.delete({
-    //   id
-    // });
+    const id = this.props.post.id;
+    this.props.actions.delete({
+      id
+    });
   }
 
   render() {
+    console.log(this.props)
     return (
       <Box align="center" margin={{top: 'medium', bottom: 'small'}} style={{ width: '100%', maxWidth: '800px' }} 
         animation={['fadeIn', 'zoomIn']}

@@ -22,7 +22,8 @@ class Counter extends Component {
   }
 
   render() {
-    const { count, limit } = this.props;
+    const count = this.props.count === undefined ? 0 : this.props.count;
+    const { limit } = this.props;
     
     const reveal = (count / limit) * 100;
     const opacity = (count / limit);

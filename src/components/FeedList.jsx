@@ -11,7 +11,7 @@ import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Add } from 'grommet-icons';
 
-import PostCard from './PostCard.jsx';
+import WrappedDecoratedCard from './card/WrappedDecoratedCard.jsx';
 
 function mapStateToProps(state) {
 
@@ -61,7 +61,7 @@ class FeedList extends Component {
         const cards = [];
         for (let i = 0; statuses.length > i; ++i) {
           cards.push(
-            <PostCard 
+            <WrappedDecoratedCard 
               post={ statuses[ i ] }
               key={ i }
             />
