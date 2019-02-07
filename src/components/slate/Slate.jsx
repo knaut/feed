@@ -70,7 +70,7 @@ class Slate extends Component {
         ref='container'
         style={ active ? ({
           marginTop: 0,
-          transition: '0.2s all ease-in-out'
+          transition: '0.3s all ease-in-out'
         }) : ({
           marginTop: -height,
           transition: '0.2s all ease-in-out'
