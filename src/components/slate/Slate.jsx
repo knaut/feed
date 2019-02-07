@@ -11,11 +11,15 @@ import Counter from './Counter.jsx';
 class Slate extends Component {
   state = {
     input: false,
+    height: 0,
     editorState: EditorState.createEmpty()
   }
 
   componentDidMount() {
     this.focusEditor();
+    this.setState({
+      height: this.refs.container.clientHeight
+    });
   }
 
   // draftjs setup methods
@@ -33,6 +37,7 @@ class Slate extends Component {
     const count = editorState.getCurrentContent().getPlainText().length;
 
     this.setState({
+      height: this.refs.container.clientHeight,
       editorState,
       count
     });
@@ -53,7 +58,7 @@ class Slate extends Component {
   
 
   render() {
-    console.log(this.props)
+    const { height } = this.state;
     const { active } = this.props;
 
     return (
@@ -62,10 +67,13 @@ class Slate extends Component {
         pad="medium"
         onClick={this.focusEditor}
         animation={['slideDown', 'fadeIn']}
+        ref='container'
         style={ active ? ({
-          marginTop: '100px'
+          marginTop: 0,
+          transition: '0.2s all ease-in-out'
         }) : ({
-          marginTop: '-100px'
+          marginTop: -height,
+          transition: '0.2s all ease-in-out'
         }) }
       >
         <Box
