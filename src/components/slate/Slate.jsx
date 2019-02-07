@@ -53,12 +53,20 @@ class Slate extends Component {
   
 
   render() {
+    console.log(this.props)
+    const { active } = this.props;
+
     return (
       <Box 
         align="center"
         pad="medium"
         onClick={this.focusEditor}
         animation={['slideDown', 'fadeIn']}
+        style={ active ? ({
+          marginTop: '100px'
+        }) : ({
+          marginTop: '-100px'
+        }) }
       >
         <Box
           pad='medium'

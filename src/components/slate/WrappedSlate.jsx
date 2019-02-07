@@ -28,7 +28,8 @@ function mapDispatchToProps(dispatch) {
 class Wrapped extends Component {
   render() {
     return (
-      <Slate 
+      <Slate
+        active={this.props.editor.active} 
         submit={this.props.actions.submit}
         change={this.props.actions.change}
       />

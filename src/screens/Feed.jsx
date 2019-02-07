@@ -10,7 +10,7 @@ import styles from '../styles';
 
 // COMPONENTS
 import Editor from '../components/Editor.jsx';
-import Slate from '../components/slate/Slate.jsx';
+import WrappedSlate from '../components/slate/WrappedSlate.jsx';
 // import PostEditor from '../components/editor/PostEditor.jsx';
 import WrappedAddPost from '../components/button/WrappedAddPost.jsx';
 import MyFeedButton from '../components/MyFeedButton.jsx';
@@ -57,7 +57,7 @@ class Feed extends Component {
             <WrappedAddPost/>
           </Box>
           <Box gridArea='main'>
-            <Slate />
+            <WrappedSlate />
             <FeedList />
           </Box>
           <Box gridArea='right'>
