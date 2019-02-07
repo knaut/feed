@@ -53,9 +53,6 @@ class Slate extends Component {
   
 
   render() {
-
-    
-
     return (
       <Box 
         align="center"

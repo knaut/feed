@@ -12,7 +12,7 @@ import styles from '../styles';
 import Editor from '../components/Editor.jsx';
 import Slate from '../components/slate/Slate.jsx';
 // import PostEditor from '../components/editor/PostEditor.jsx';
-import AddPostButton from '../components/AddPostButton.jsx';
+import WrappedAddPost from '../components/button/WrappedAddPost.jsx';
 import MyFeedButton from '../components/MyFeedButton.jsx';
 import MyProfileButton from '../components/MyProfileButton.jsx';
 import FeedList from '../components/FeedList.jsx';
@@ -54,7 +54,7 @@ class Feed extends Component {
           gap='small'
         >
           <Box gridArea='left'>
-            <AddPostButton/>
+            <WrappedAddPost/>
           </Box>
           <Box gridArea='main'>
             <Slate />

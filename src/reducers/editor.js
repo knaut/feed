@@ -49,6 +49,10 @@ export default function editor(
       newState.type = null;
       return newState;
     }
+    case EditorActions.EDITOR_ACTIVE: {
+      newState.active = newState.active ? false : true;
+      return newState;
+    }
   }
 
 }

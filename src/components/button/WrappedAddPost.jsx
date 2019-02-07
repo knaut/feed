@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import DecoratedCard from './DecoratedCard.jsx';
+import AddPost from './AddPost.jsx';
 
 // ACTIONS
 import * as EditorActions from '../../actions/editor';
@@ -13,13 +13,13 @@ import * as EditorActions from '../../actions/editor';
 import * as StatusThunks from '../../thunks/status';
 
 function mapStateToProps(state) {
-  return state;
+  return state.editor;
 }
 
 function mapDispatchToProps(dispatch) {
   return { 
     actions: bindActionCreators({
-      delete: StatusThunks.deleteStatus
+      add: EditorActions.activateEditor
     }, dispatch) 
   };
 }
@@ -27,9 +27,7 @@ function mapDispatchToProps(dispatch) {
 class Wrapped extends Component {
   render() {
     return (
-      <DecoratedCard 
-        { ...this.props }
-      />
+      <AddPost {...this.props}/>
     );
   }
 }

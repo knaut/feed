@@ -2,41 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import StoryRouter from 'storybook-react-router';
-import Slate from '../../src/components/slate/Slate.jsx';
-import Counter from '../../src/components/slate/Counter.jsx';
 
 // STYLES
-import styles from '../../src/styles';
+import styles from '../../../src/styles';
 
-// UTILS
-import generateStore from '../../src/utils/generateStore.js';
+// COMPONENTS
+import AddPost from '../../../src/components/button/AddPost.jsx';
 
-// CONFIG
-import { user } from '../user.json';
-
-const store = generateStore();
-
-storiesOf('Slate', module)
-  .add('active', () => (
-    <Grommet theme={grommet}>
-      <div 
-        style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
-          justifyContent: 'start'
-        }}
-      >
-        <Slate 
-          user={user}
-          actions={{
-            submit: function(payload) {
-              console.log({payload});
-            }
-          }}/>
-      </div>
-    </Grommet>
-  ))
+storiesOf('Button - AddPost', module)
   .add('inactive', () => (
     <Grommet theme={grommet}>
       <div 
@@ -46,13 +19,34 @@ storiesOf('Slate', module)
           justifyContent: 'start'
         }}
       >
-        <Slate 
-          user={user}
+        <AddPost 
+          active={false}
           actions={{
-            submit: function(payload) {
-              console.log({payload});
+            add: function(payload) {
+              console.log('add', payload);
             }
-          }}/>
+          }}
+        />
+      </div>
+    </Grommet>
+  ))
+  .add('active', () => (
+    <Grommet theme={grommet}>
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+          justifyContent: 'start'
+        }}
+      >
+        <AddPost 
+          active={true}
+          actions={{
+            add: function(payload) {
+              console.log('add', payload);
+            }
+          }}
+        />
       </div>
     </Grommet>
   ))
