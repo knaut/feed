@@ -16,13 +16,13 @@ import { Add, Star, Note, SubtractCircle } from 'grommet-icons';
 // import * as PostThunks from '../thunks/post';
 import * as StatusThunks from '../thunks/status';
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({
-      delete: StatusThunks.deleteStatus
-    }, dispatch)
-  }
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators({
+//       delete: StatusThunks.deleteStatus
+//     }, dispatch)
+//   }
+// }
 
 class PostCard extends Component {
   state = {
@@ -126,7 +126,7 @@ class PostCard extends Component {
             animation={this.state.starHover === true ? 'pulse' : {}}
             onMouseEnter={this.onStarEnter}
             onMouseLeave={this.onStarLeave}
-            style={{cursor: 'pointer', display: 'none'}}
+            style={{cursor: 'pointer'}}
           >
             <Star size='medium' 
               color={this.state.starHover === true ? styles.colors.primaries.orange : styles.colors.neutrals.gray2} 
@@ -136,7 +136,7 @@ class PostCard extends Component {
           <Box gridArea='main' pad='medium'
             onMouseEnter={this.onNoteEnter}
             onMouseLeave={this.onNoteLeave}
-            style={{cursor: 'pointer', display: 'none'}}
+            style={{cursor: 'pointer'}}
           >
             <Note size='medium' color={styles.colors.neutrals.gray2} 
               color={this.state.noteHover === true ? styles.colors.primaries.cyan : styles.colors.neutrals.gray2} 
@@ -165,4 +165,5 @@ class PostCard extends Component {
   }
 };
 
-export default connect(() => new Object(), mapDispatchToProps)(PostCard);
+export default PostCard;
+// export default connect(() => new Object(), mapDispatchToProps)(PostCard);

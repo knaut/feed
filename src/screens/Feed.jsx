@@ -10,7 +10,7 @@ import styles from '../styles';
 
 // COMPONENTS
 import Editor from '../components/Editor.jsx';
-import PostCanvas from '../components/editor/PostCanvas.jsx';
+import Slate from '../components/slate/Slate.jsx';
 // import PostEditor from '../components/editor/PostEditor.jsx';
 import AddPostButton from '../components/AddPostButton.jsx';
 import MyFeedButton from '../components/MyFeedButton.jsx';
@@ -57,7 +57,7 @@ class Feed extends Component {
             <AddPostButton/>
           </Box>
           <Box gridArea='main'>
-            <PostCanvas />
+            <Slate />
             <FeedList />
           </Box>
           <Box gridArea='right'>

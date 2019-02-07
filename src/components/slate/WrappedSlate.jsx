@@ -25,13 +25,15 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class PostEditor extends Component {
+class Wrapped extends Component {
   render() {
-    console.log(this);
     return (
-      <Slate />
+      <Slate 
+        submit={this.props.actions.submit}
+        change={this.props.actions.change}
+      />
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapped);

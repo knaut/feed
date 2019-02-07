@@ -8,7 +8,7 @@ import { grommet, dark } from 'grommet/themes';
 import { Add } from 'grommet-icons';
 import Counter from './Counter.jsx';
 
-class PostCanvas extends Component {
+class Slate extends Component {
   state = {
     input: false,
     editorState: EditorState.createEmpty()
@@ -39,15 +39,16 @@ class PostCanvas extends Component {
   }  
 
   onPostSubmit = () => {
-
-    console.log('post submit!', this);
-
-    // const id = this.props.user.username.split('.')[0];
-    // const text = this.state.editorState.getCurrentContent().getPlainText();
-    // this.props.actions.submit({
-    //   Profile: id,
-    //   text
-    // });
+    const id = this.props.user.username.split('.')[0];
+    const text = this.state.editorState.getCurrentContent().getPlainText();
+    if (text.length) {
+      this.props.actions.submit({
+        Profile: id,
+        text
+      });
+    } else {
+      console.error('Empty posts are not allowed.');
+    }
   }
   
 
@@ -94,4 +95,4 @@ class PostCanvas extends Component {
 }
 
 
-export default PostCanvas;
+export default Slate;

@@ -12,6 +12,9 @@ import styles from '../../src/styles';
 // UTILS
 import generateStore from '../../src/utils/generateStore.js';
 
+// CONFIG
+import { user } from '../user.json';
+
 const store = generateStore();
 
 storiesOf('Slate', module)
@@ -24,7 +27,13 @@ storiesOf('Slate', module)
           justifyContent: 'start'
         }}
       >
-        <Slate/>
+        <Slate 
+          user={user}
+          actions={{
+            submit: function(payload) {
+              console.log({payload});
+            }
+          }}/>
       </div>
     </Grommet>
   ))

@@ -12,7 +12,7 @@ function loadStories() {
   require('./stories/Slate.js');
 
   // PostCard
-  require('./stories/PostCard.js');
+  require('./stories/card/Card.js');
 }
 
 configure(loadStories, module);
