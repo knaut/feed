@@ -23,12 +23,25 @@ const Avatar = (props) => {
   const avatar = (<Image src={image} fit="cover" />);
   const isMeTag = (
     <Box justify="center" align="center">
-      <Button color={styles.colors.primaries.cyan} margin='small'>
-        <Text size={'small'} margin={{top: 'small', bottom: 'none'}} style={{
-          color: styles.colors.primaries.cyan,
-          fontStyle: 'italic',
-          fontWeight: 'bold'
-        }}>This is you!</Text>
+      <Button margin='small'>
+        <Box
+          style={{
+            background: styles.colors.primaries.cyan
+          }}
+          round={'xlarge'}
+          pad={{
+            top: 'xxsmall',
+            left: 'small',
+            right: 'small',
+            bottom: 'xxsmall'
+          }}
+        >
+          <Text size={'small'} style={{
+            color: styles.colors.neutrals.light,
+            fontStyle: 'italic',
+            fontWeight: 'bold'
+          }}>This is you!</Text>
+        </Box>
       </Button>
     </Box>
   );
