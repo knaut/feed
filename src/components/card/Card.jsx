@@ -30,7 +30,10 @@ class Card extends Component {
             color: styles.colors.neutrals.gray2
           }}>{ Moment(this.props.post.timestamp).format('llll') }</span>
         </Box>
-        <div>{this.props.post.text}</div>
+        <div style={{
+          whitespace: 'pre-wrap',
+          overflowWrap: 'break-word'
+        }}>{this.props.post.text}</div>
       </Box>
     );
   }

@@ -45,6 +45,7 @@ export default function editor(
       /*
         we clear our editor's contents
       */
+      newState.active = false;
       newState.input = false;
       newState.type = null;
       return newState;

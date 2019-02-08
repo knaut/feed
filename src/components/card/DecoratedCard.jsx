@@ -97,7 +97,6 @@ class Decorated extends Component {
   }
 
   render() {
-    // console.log(this.props)
     return (
       <Box 
         align="center" 

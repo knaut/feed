@@ -8,6 +8,9 @@ import { grommet, dark } from 'grommet/themes';
 import { Add } from 'grommet-icons';
 import Counter from './Counter.jsx';
 
+// STYLES
+import styles from '../../styles';
+
 class Slate extends Component {
   state = {
     input: false,
@@ -47,10 +50,24 @@ class Slate extends Component {
     const id = this.props.user.username.split('.')[0];
     const text = this.state.editorState.getCurrentContent().getPlainText();
     if (text.length) {
+      
       this.props.actions.submit({
         Profile: id,
         text
+      }, (error) => {
+        console.log('aftereffect', {error}, this);
+        if (!error) {
+          const editorState = EditorState.push(
+            this.state.editorState, ContentState.createFromText('')
+          );
+          console.log({editorState});
+          this.setState({
+            editorState
+          });
+          console.log(this.state)
+        }
       });
+      
     } else {
       console.error('Empty posts are not allowed.');
     }
@@ -83,7 +100,8 @@ class Slate extends Component {
             background: 'white',
             width: '100%',
             maxWidth: '800px',
-            borderRadius: '12px 18px 32px 12px'
+            borderRadius: '12px 18px 32px 12px',
+            border: `5px solid ${styles.colors.neutrals.light}`
           }}
         >
           <div 

@@ -67,7 +67,7 @@ class Counter extends Component {
               color={block ? styles.colors.primaries.red : styles.colors.neutrals.gray3}
               style={{
                 position: 'absolute',
-                zIndex: 25,
+                zIndex: 28,
                 left: '23.5%',
                 top: '23.5%',
                 transform: block ? 'rotateZ(45deg)' : 'none',

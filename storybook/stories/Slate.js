@@ -29,6 +29,7 @@ storiesOf('Slate', module)
       >
         <Slate 
           user={user}
+          active={true}
           actions={{
             submit: function(payload) {
               console.log({payload});
@@ -48,6 +49,7 @@ storiesOf('Slate', module)
       >
         <Slate 
           user={user}
+          active={false}
           actions={{
             submit: function(payload) {
               console.log({payload});
