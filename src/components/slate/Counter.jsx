@@ -46,7 +46,7 @@ class Counter extends Component {
             animate
             style={{
               position: 'relative',
-              zIndex: 20,
+              zIndex: 21,
               opacity
             }}
           />
@@ -59,7 +59,7 @@ class Counter extends Component {
               lineWidth={10}
               style={{
                 position: 'relative',
-                zIndex: 19,
+                zIndex: 21,
                 opacity: 1
               }}
             />

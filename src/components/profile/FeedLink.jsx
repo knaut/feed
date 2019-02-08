@@ -7,7 +7,7 @@ import styles from '../../styles';
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Login, LinkNext } from 'grommet-icons';
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Login, LinkNext, Home } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 
@@ -53,7 +53,7 @@ const FeedLink = (props) => {
   const feed = (
     <Box align='center' pad='medium'>
       <Link to={ isMe === true ? `/feed` : `/${username}/feed` }>
-        <Button icon={<LinkNext />} label={ isMe === true ? `go to your feed` : `go to ${name}'s feed` } primary style={{
+        <Button icon={<Home />} label={ isMe === true ? `go to your feed` : `go to ${name}'s feed` } primary style={{
         }}/>
       </Link>
     </Box>

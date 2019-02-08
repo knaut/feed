@@ -29,8 +29,8 @@ class AddPost extends Component {
           onClick={this.add}
           primary 
           style={{
-            background: active ? styles.colors.pastels.purple : styles.colors.darks.purple,
-            border: active ? `5px solid ${styles.colors.primaries.purple}` : `5px solid ${styles.colors.primaries.purple}`,
+            background: active ? styles.colors.neutrals.light : styles.colors.darks.purple,
+            border: active ? `5px solid ${styles.colors.neutrals.dark}` : `5px solid ${styles.colors.primaries.purple}`,
             borderRadius: '24px',
             display: 'flex',
             transition: '0.2s all ease-in-out'
