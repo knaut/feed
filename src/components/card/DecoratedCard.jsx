@@ -97,12 +97,15 @@ class Decorated extends Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
-      <Box align="center" margin={{top: 'medium', bottom: 'small'}} style={{ width: '100%', maxWidth: '800px' }} 
+      <Box 
+        align="center" 
+        style={{ width: '100%', maxWidth: '800px' }} 
         animation={['fadeIn', 'zoomIn']}
       >
         <Box 
+          style={{ width: '100%', maxWidth: '800px' }} 
           onMouseEnter={this.onEnter}
           onMouseLeave={this.onLeave}
         >

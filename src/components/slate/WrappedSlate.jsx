@@ -30,8 +30,8 @@ class Wrapped extends Component {
     return (
       <Slate
         active={this.props.editor.active} 
-        submit={this.props.actions.submit}
-        change={this.props.actions.change}
+        user={this.props.user}
+        actions={this.props.actions}
       />
     );
   }
