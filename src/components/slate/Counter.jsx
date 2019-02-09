@@ -46,7 +46,7 @@ class Counter extends Component {
             animate
             style={{
               position: 'relative',
-              zIndex: 21,
+              zIndex: 22,
               opacity
             }}
           />
