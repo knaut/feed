@@ -111,6 +111,10 @@ class Decorated extends Component {
     });
   }
 
+  onPermalink = () => {
+    console.log('copy a permalink!');
+  }
+
   render() {
     return (
       <Box 
@@ -139,7 +143,7 @@ class Decorated extends Component {
           <Box gridArea='permalink' align='start' pad='medium'
             onMouseEnter={this.onPermalinkEnter}
             onMouseLeave={this.onPermalinkLeave}
-            onClick={this.onDelete}
+            onClick={this.onPermalink}
             style={{cursor: 'pointer'}}
           >
             <Link
