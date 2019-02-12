@@ -7,7 +7,7 @@ import styles from '../../../src/styles';
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
 import Card from './Card.jsx';
-import { Add, Star, Note, SubtractCircle } from 'grommet-icons';
+import { Add, Star, Note, SubtractCircle, Link } from 'grommet-icons';
 
 /*  v2 features
           <Box gridArea='left' pad='medium'
@@ -40,6 +40,7 @@ class Decorated extends Component {
     onHover: false,
     starHover: false,
     noteHover: false,
+    permalinkHover: false,
     minusHover: false
   }
 
@@ -62,6 +63,20 @@ class Decorated extends Component {
     this.setState({
       onHover: false,
       minusHover: false
+    });
+  }
+
+  onPermalinkEnter = () => {
+    this.setState({
+      onHover: true,
+      permalinkHover: true
+    });
+  }
+
+  onPermalinkLeave = () => {
+    this.setState({
+      onHover: false,
+      permalinkHover: false
     });
   }
 
@@ -113,15 +128,34 @@ class Decorated extends Component {
         <Grid
           fill
           areas={[
-            { name: 'left', start: [0, 0], end: [0, 0] },
-            { name: 'main', start: [1, 0], end: [1, 0] },
-            { name: 'right', start: [2, 0], end: [2, 0] }
+            { name: 'permalink', start: [0, 0], end: [0, 0] },
+            { name: 'flex', start: [1, 0], end: [1, 0] },
+            { name: 'delete', start: [2, 0], end: [2, 0] }
           ]}
           columns={['xsmall', 'flex', 'xsmall']}
           rows={['flex']}
           gap='small'
         >
-          <Box gridArea='right' align='end' pad='medium'
+          <Box gridArea='permalink' align='start' pad='medium'
+            onMouseEnter={this.onPermalinkEnter}
+            onMouseLeave={this.onPermalinkLeave}
+            onClick={this.onDelete}
+            style={{cursor: 'pointer'}}
+          >
+            <Link
+              size='medium' 
+              color={this.state.permalinkHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
+              style={{
+                position: 'relative',
+                top: this.state.onHover === true ? 0 : '-50px',
+                transition: 'all 0.2s ease-in-out'
+              }}
+            />
+          </Box>
+          <Box gridArea='flex'>
+
+          </Box>
+          <Box gridArea='delete' align='end' pad='medium'
             onMouseEnter={this.onMinusEnter}
             onMouseLeave={this.onMinusLeave}
             onClick={this.onDelete}
