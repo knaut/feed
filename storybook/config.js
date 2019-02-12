@@ -6,6 +6,7 @@ function loadStories() {
   // Profile
   require('./stories/profile/Avatar.js');
   require('./stories/profile/FeedLink.js');
+  require('./stories/profile/Card.js');
 
   // Loaders
   require('./stories/GlobalLoader.js');

@@ -11,8 +11,8 @@ import styles from '../../../src/styles';
 import generateStore from '../../../src/utils/generateStore.js';
 
 // COMPONENTS
-import Card from '../../../src/components/card/Card.jsx';
-import DecoratedCard from '../../../src/components/card/DecoratedCard.jsx';
+import Card from '../../../src/components/post/Card.jsx';
+import DecoratedCard from '../../../src/components/post/DecoratedCard.jsx';
 
 // MODELS
 import Status from '../../../src/models/Status';
@@ -22,7 +22,7 @@ import spoof from '../../user.json';
 
 const store = generateStore();
 
-storiesOf('Card', module)
+storiesOf('Status Card', module)
   .add('Status undecorated', () => (
     <Grommet theme={grommet}>
       <div 

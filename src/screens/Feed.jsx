@@ -61,7 +61,7 @@ class Feed extends Component {
             <FeedList />
           </Box>
           <Box gridArea='right'>
-            <MyProfileButton/>
+            <MyProfileButton id={this.props.user.username}/>
           </Box>
         </Grid>
       </div>

@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 const FeedLink = (props) => {
   const {
     username,
+    isLoading,
     isOnBlockstack,
     isOnFeed,
     isMe,
@@ -43,7 +44,7 @@ const FeedLink = (props) => {
       background: `${styles.colors.neutrals.light}`
     }}>
       <Text level={3}>
-        <span>{`Looks like "${username}" has a Blockstack ID, but has not signed into `}</span>
+        <span><strong>{username}</strong> has a Blockstack ID, but has not signed into </span>
         <span style={{fontWeight: 'bold', color: styles.colors.primaries.purple}}>feed</span>
         <span>{` yet.`}</span>
       </Text>
@@ -59,19 +60,25 @@ const FeedLink = (props) => {
     </Box>
   );
 
-  if (isOnBlockstack) {
+  if (isLoading) {
+    return null;
+  } else {
+    if (isOnBlockstack) {
     
-    if (isOnFeed === true) {
-      return feed;
-    } else if (isOnFeed === false) {
-      return noFeed;
+      if (isOnFeed === true) {
+        return feed;
+      } else if (isOnFeed === false) {
+        return noFeed;
+      } else {
+        return null;
+      }
+
     } else {
-      return null;
+      return noId;
     }
 
-  } else {
-    return noId;
   }
+  
 }
 
 export default FeedLink;
