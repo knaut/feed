@@ -14,7 +14,6 @@ import { Link } from 'react-router-dom'
 import styles from '../styles';
 
 const MyProfileButton = (user) => {
-  console.log({user})
   return (
     <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'none'}}>
       <Link to={`/${user.id}`}>
