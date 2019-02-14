@@ -10,7 +10,7 @@ import styles from '../styles';
 // COMPONENTS
 import SignIn from '../components/SignIn.jsx';
 
-class App extends Component {
+class Index extends Component {
   render() {
     return (
       <Grommet theme={grommet} full>
@@ -34,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Index;

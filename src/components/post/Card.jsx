@@ -21,8 +21,6 @@ class Card extends Component {
           cursor: 'pointer',
           zIndex: 1
         }}
-        onMouseEnter={this.onEnter}
-        onMouseLeave={this.onLeave}
       >
         <Box style={{ textAlign: 'right' }}>
           <span style={{

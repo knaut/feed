@@ -17,6 +17,7 @@ import isSignedIn from './authentication/isSignedIn';
 import Index from './screens/Index.jsx';
 import Feed from './screens/Feed.jsx';
 import ProfileScreen from './screens/Profile.jsx';
+import Permalinked from './screens/Permalinked.jsx';
 
 // COMPONENTS
 import ProfileCard from './components/ProfileCard.jsx';
@@ -79,7 +80,9 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={ Index } />
           <Route path="/feed" exact component={ isSignedIn( Feed ) } />
-          <Route path="/:username?" component={ isSignedIn( ProfileScreen ) }/>
+          <Route path="/permalink/:id?" component={ Permalinked }/>
+          <Route path="/:username?" component={ ProfileScreen }/>
+          
         </Switch>
       </ConnectedRouter>
     </Provider>
