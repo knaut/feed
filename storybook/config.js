@@ -16,6 +16,13 @@ function loadStories() {
 
   // PostCard
   require('./stories/card/Card.js');
+
+  // v2
+  // Circles
+  require('./stories/button/Circles.js');
+
+  // Search
+  require('./stories/button/Search.js');
 }
 
 configure(loadStories, module);
