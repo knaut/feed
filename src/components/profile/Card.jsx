@@ -15,15 +15,16 @@ import FeedLink from './FeedLink.jsx';
 
 class ProfileCard extends Component {
   render() {
-    // const {
-    //   isLoading,
-    //   isOnBlockstack,
-    //   isMe,
-    //   isOnFeed,
-    //   image,
-    //   name,
-    //   description
-    // } = this.props;
+    const {
+      isLoading,
+      isOnBlockstack,
+      isMe,
+      isOnFeed,
+      image,
+      name,
+      username,
+      description
+    } = this.props;
 
     return (
       <Box align="center" pad="medium">
@@ -37,6 +38,16 @@ class ProfileCard extends Component {
             maxWidth: '800px'
           }}
         >
+          <header>
+            <Avatar {...this.props} />
+          </header>
+          <Heading level={1} size={'small'}>
+            {this.props.name}
+          </Heading>
+          <Text level={1} size={'medium'} margin={{bottom: 'small'}} style={{display: 'block'}}>
+            {this.props.description}
+          </Text>
+          <FeedLink {...this.props} />
         </Box>
       </Box>
     );

@@ -7,7 +7,7 @@ import ProfileCard from '../../../src/components/profile/Card.jsx';
 import spoof from '../../user.json';
 
 storiesOf('Profile Card', module)
-  .add('loading', () => (
+  .add('not found', () => (
     <Grommet theme={grommet}>
       <ProfileCard
         isLoading={false}
