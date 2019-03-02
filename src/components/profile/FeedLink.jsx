@@ -18,9 +18,7 @@ const FeedLink = (props) => {
     isOnBlockstack,
     isOnFeed,
     isMe,
-    name,
-
-    profiles
+    name
   } = props;
 
   const noId = (

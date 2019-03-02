@@ -15,7 +15,7 @@ function loadStories() {
   require('./stories/Slate.js');
 
   // PostCard
-  require('./stories/card/Card.js');
+  require('./stories/status/Card.js');
 
   // v2
   // Circles

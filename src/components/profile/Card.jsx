@@ -40,13 +40,18 @@ class ProfileCard extends Component {
         >
           <header>
             <Avatar {...this.props} />
+            <Heading level={1} size={'small'} style={{
+              textAlign: 'center'
+            }}>
+              {this.props.name}
+            </Heading>
+            <Text level={1} size={'medium'} margin={{bottom: 'small'}} style={{
+              display: 'block',
+              textAlign: 'center'
+            }}>
+              {this.props.description}
+            </Text>
           </header>
-          <Heading level={1} size={'small'}>
-            {this.props.name}
-          </Heading>
-          <Text level={1} size={'medium'} margin={{bottom: 'small'}} style={{display: 'block'}}>
-            {this.props.description}
-          </Text>
           <FeedLink {...this.props} />
         </Box>
       </Box>

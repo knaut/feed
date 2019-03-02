@@ -23,7 +23,7 @@ import spoof from '../../user.json';
 const store = generateStore();
 
 storiesOf('Status Card', module)
-  .add('Status undecorated', () => (
+  .add('undecorated', () => (
     <Grommet theme={grommet}>
       <div 
         style={{
@@ -43,7 +43,7 @@ storiesOf('Status Card', module)
       </div>
     </Grommet>
   ))
-  .add('Status decorated', () => (
+  .add('decorated', () => (
     <Grommet theme={grommet}>
       <div 
         style={{
