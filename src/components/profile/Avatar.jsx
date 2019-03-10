@@ -16,7 +16,8 @@ const Avatar = (props) => {
     isOnBlockstack,
     isMe,
     username,
-    image
+    image,
+    mini
   } = props;
 
   const noAvatar = (<User color={styles.colors.pastels.purple} size='xlarge'/>);
@@ -51,12 +52,11 @@ const Avatar = (props) => {
       <Box justify="center" align="center">
         <Box background={styles.colors.primaries.purple} round={'full'} 
           justify="center" align="center"
-          style={{
-            border: `5px solid ${styles.colors.neutrals.gray1}`,
-            width: '150px',
-            height: '150px',
-            overflow: 'hidden'
-          }}>
+          style={
+            mini === true ? 
+              styles.avatar.mini :
+              styles.avatar.normal
+          }>
           <Box>
             <HashLoader
               color={styles.colors.pastels.purple}
@@ -81,12 +81,11 @@ const Avatar = (props) => {
       <Box justify="center" align="center">
         <Box background={styles.colors.primaries.purple} round={'full'} 
           justify="center" align="center"
-          style={{
-            border: `5px solid ${styles.colors.neutrals.gray1}`,
-            width: '150px',
-            height: '150px',
-            overflow: 'hidden'
-          }}>
+          style={
+            mini === true ? 
+              styles.avatar.mini :
+              styles.avatar.normal
+          }>
           <Box style={image ? {
             width: '100%',
             height: '100%'
@@ -112,12 +111,11 @@ const Avatar = (props) => {
       <Box justify="center" align="center">
         <Box background={styles.colors.primaries.purple} round={'full'} 
           justify="center" align="center"
-          style={{
-            border: `5px solid ${styles.colors.neutrals.gray1}`,
-            width: '150px',
-            height: '150px',
-            overflow: 'hidden'
-          }}>
+          style={
+            mini === true ? 
+              styles.avatar.mini :
+              styles.avatar.normal
+          }>
           <Box>
             <Help color={styles.colors.pastels.red} size='xlarge'/>
           </Box>

@@ -10,6 +10,14 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 
 class Card extends Component {
   render() {
+
+    const {
+      post,
+      permalink
+    } = this.props;
+
+    console.log(this.props);
+
     return (
       <Box
         pad='medium'
@@ -23,6 +31,7 @@ class Card extends Component {
         }}
       >
         <Box style={{ textAlign: 'right' }}>
+
           <span style={{
             ...styles.typography.card_date,
             color: styles.colors.neutrals.gray2

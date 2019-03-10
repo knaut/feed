@@ -36,7 +36,7 @@ storiesOf('Status Card', module)
           <Card post={
             new Status({
               text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
-              Profile: spoof.user.username
+              Profile: spoof.user.username,
             }).getProps()
           }/>
         </Box>
@@ -65,6 +65,29 @@ storiesOf('Status Card', module)
                 console.log('delete', payload)
               }
             }}
+          />
+        </Box>
+      </div>
+    </Grommet>
+  ))
+  .add('permalinked', () => (
+    <Grommet theme={grommet}>
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+          justifyContent: 'start'
+        }}
+      >
+        <Box align="center" style={{ width: '100%' }} pad='medium'>
+          <Card 
+            permalink={true}
+            post={
+              new Status({
+                text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
+                Profile: spoof.user.username,
+              }).getProps()
+            }
           />
         </Box>
       </div>
