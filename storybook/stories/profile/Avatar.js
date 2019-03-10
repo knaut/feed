@@ -16,16 +16,29 @@ storiesOf('Avatar', module)
         style={{
           background: styles.colors.neutrals.dark,
           ...styles.app.container,
-          justifyContent: 'start'
+          justifyContent: 'start',
+          padding: '30px'
         }}
       >
-        <Avatar
-          isLoading={false}
-          isOnBlockstack={false}
-          isMe={false}
-          username={spoof.user.username}
-          image={null}
-        />
+        <Box
+          pad='xlarge'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            cursor: 'pointer',
+            zIndex: 1
+          }}
+        >
+          <Avatar
+            isLoading={false}
+            isOnBlockstack={false}
+            isMe={false}
+            username={spoof.user.username}
+            image={null}
+          />
+        </Box>
       </div>
     </Grommet>
   ))
@@ -35,16 +48,29 @@ storiesOf('Avatar', module)
         style={{
           background: styles.colors.neutrals.dark,
           ...styles.app.container,
-          justifyContent: 'start'
+          justifyContent: 'start',
+          padding: '30px'
         }}
       >
-        <Avatar
-          isLoading={true}
-          isOnBlockstack={null}
-          isMe={null}
-          username={spoof.user.username}
-          image={null}
-        />
+        <Box
+          pad='xlarge'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            cursor: 'pointer',
+            zIndex: 1
+          }}
+        >
+          <Avatar
+            isLoading={true}
+            isOnBlockstack={null}
+            isMe={null}
+            username={spoof.user.username}
+            image={null}
+          />
+        </Box>
       </div>
     </Grommet>
   ))
@@ -54,16 +80,29 @@ storiesOf('Avatar', module)
         style={{
           background: styles.colors.neutrals.dark,
           ...styles.app.container,
-          justifyContent: 'start'
+          justifyContent: 'start',
+          padding: '30px'
         }}
       >
-        <Avatar
-          isLoading={false}
-          isOnBlockstack={true}
-          isMe={null}
-          username={spoof.user.username}
-          image={spoof.user.image}
-        />
+        <Box
+          pad='xlarge'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            cursor: 'pointer',
+            zIndex: 1
+          }}
+        >
+          <Avatar
+            isLoading={false}
+            isOnBlockstack={true}
+            isMe={null}
+            username={spoof.user.username}
+            image={spoof.user.image}
+          />
+        </Box>
       </div>
     </Grommet>
   ))
@@ -73,16 +112,29 @@ storiesOf('Avatar', module)
         style={{
           background: styles.colors.neutrals.dark,
           ...styles.app.container,
-          justifyContent: 'start'
+          justifyContent: 'start',
+          padding: '30px'
         }}
       >
-        <Avatar
-          isLoading={false}
-          isOnBlockstack={true}
-          isMe={true}
-          username={spoof.user.username}
-          image={spoof.user.image}
-        />
+        <Box
+          pad='xlarge'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            cursor: 'pointer',
+            zIndex: 1
+          }}
+        >
+          <Avatar
+            isLoading={false}
+            isOnBlockstack={true}
+            isMe={true}
+            username={spoof.user.username}
+            image={spoof.user.image}
+          />
+        </Box>
       </div>
     </Grommet>
   ))
@@ -92,16 +144,29 @@ storiesOf('Avatar', module)
         style={{
           background: styles.colors.neutrals.dark,
           ...styles.app.container,
-          justifyContent: 'start'
+          justifyContent: 'start',
+          padding: '30px'
         }}
       >
-        <Avatar
-          isLoading={false}
-          isOnBlockstack={true}
-          isMe={false}
-          username={spoof.user.username}
-          image={null}
-        />
+        <Box
+          pad='xlarge'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            cursor: 'pointer',
+            zIndex: 1
+          }}
+        >
+          <Avatar
+            isLoading={false}
+            isOnBlockstack={true}
+            isMe={false}
+            username={spoof.user.username}
+            image={null}
+          />
+        </Box>
       </div>
     </Grommet>
   ))
@@ -111,17 +176,30 @@ storiesOf('Avatar', module)
         style={{
           background: styles.colors.neutrals.dark,
           ...styles.app.container,
-          justifyContent: 'start'
+          justifyContent: 'start',
+          padding: '30px'
         }}
       >
-        <Avatar
-          isLoading={false}
-          isOnBlockstack={true}
-          isMe={null}
-          username={spoof.user.username}
-          image={spoof.user.image}
-          mini={true}
-        />
+        <Box
+          pad='xlarge'
+          gap='small'
+          round
+          style={{
+            background: 'white',
+            width: '100%',
+            cursor: 'pointer',
+            zIndex: 1
+          }}
+        >
+          <Avatar
+            isLoading={false}
+            isOnBlockstack={true}
+            isMe={null}
+            username={spoof.user.username}
+            image={spoof.user.image}
+            mini={true}
+          />
+        </Box>
       </div>
     </Grommet>
   ))
