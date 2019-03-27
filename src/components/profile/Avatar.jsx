@@ -10,71 +10,6 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
-const NoAvatar = () => <User color={styles.colors.pastels.purple} size='xlarge'/>;
-
-const AvatarImage = (image) => <Image src={image} fit="cover" />;
-
-const IsMePill = () => {
-  return (
-    <Box justify="center" align="center">
-      <Button margin='small'>
-        <Box
-          style={{
-            background: styles.colors.primaries.cyan
-          }}
-          round={'xlarge'}
-          pad={{
-            top: 'xxsmall',
-            left: 'small',
-            right: 'small',
-            bottom: 'xxsmall'
-          }}
-        >
-          <Text size={'small'} style={{
-            color: styles.colors.neutrals.light,
-            fontStyle: 'italic',
-            fontWeight: 'bold'
-          }}>This is you!</Text>
-        </Box>
-      </Button>
-    </Box>
-  );
-}
-
-const AvatarLoading = () => {
-  return (
-    <Box justify="center" align="center">
-      <Box background={styles.colors.primaries.purple} round={'full'} 
-        justify="center" align="center"
-        style={
-          mini === true ? 
-            styles.avatar.mini :
-            styles.avatar.normal
-        }>
-        <Box>
-          <HashLoader
-            color={styles.colors.pastels.purple}
-            loading={true}
-            size={75}
-          />
-        </Box>
-      </Box>
-    </Box>
-  );
-}
-
-const AvatarLabelLoading = (username) => {
-  return (
-    <Box justify="center" align="center" pad={'small'}>
-      <Text level={1} size={'medium'} style={{
-        color: styles.colors.neutrals.gray1
-      }}>
-        {`Looking up "${username}"…`}
-      </Text>
-    </Box>
-  );
-}
-
 const Avatar = (props) => {
   const {
     isLoading,
@@ -112,7 +47,6 @@ const Avatar = (props) => {
     </Box>
   );
 
-  
   const loading = (
     <React.Fragment>
       <Box justify="center" align="center">
@@ -141,7 +75,6 @@ const Avatar = (props) => {
       </Box>
     </React.Fragment>
   );
-  
 
   const loaded = (
     <React.Fragment>
@@ -162,8 +95,8 @@ const Avatar = (props) => {
         </Box>
       </Box>
       <Box justify="center" align="center" pad={{top: 'small'}}>
-        <Text level={1} size={ mini === false ? 'medium' : 'small' } style={{
-          letterSpacing: mini === false ? '2px' : '0',
+        <Text level={1} size={'medium'} style={{
+          letterSpacing: '2px',
           color: styles.colors.neutrals.gray1
         }}>
           {username}
