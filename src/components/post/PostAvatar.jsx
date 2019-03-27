@@ -17,7 +17,12 @@ const IconLoading = () => {
     <Box justify="center" align="center">
       <Box background={styles.colors.primaries.purple} round={'full'} 
         justify="center" align="center"
-        style={ styles.avatar }>
+        css={{
+            border: `5px solid ${styles.colors.neutrals.gray1}`,
+            width: '100px',
+            height: '100px',
+            overflow: 'hidden',
+        }}>
         <Box>
           <HashLoader
             color={styles.colors.pastels.purple}
@@ -46,16 +51,21 @@ const IconLoaded = (props) => {
   const {
     image
   } = props;
-  
+
   return (
     <Box justify="center" align="center">
       <Box background={styles.colors.primaries.purple} round={'full'} 
         justify="center" align="center"
-        style={ styles.avatar }>
-        <Box style={image ? {
+        css={{
+            border: `5px solid ${styles.colors.neutrals.gray1}`,
+            width: '100px',
+            height: '100px',
+            overflow: 'hidden',
+        }}>
+        <Box style={{
           width: '100%',
           height: '100%'
-        } : {}}>
+        }}>
           <IconImage image={props.image}/>
         </Box>
       </Box>
