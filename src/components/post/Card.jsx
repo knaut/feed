@@ -7,6 +7,49 @@ import styles from '../../../src/styles';
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
+import Avatar from '../profile/Avatar.jsx';
+
+class Header extends Component {
+  componentDidMount() {
+    const { permalink } = this.props;
+
+    if (permalink === true) {
+      // load the profile
+    }
+    // no other use cases, display as normal
+  }
+
+  render() {
+    const { permalink, post } = this.props;
+    if (permalink === true) {
+      return (
+        <Box style={{ textAlign: 'right' }}>
+          <Avatar
+            isLoading={false}
+            isOnBlockstack={true}
+            isMe={false}
+            username={post.Profile}
+            image={null}
+            mini={true}
+          />
+          <span style={{
+            ...styles.typography.card_date,
+            color: styles.colors.neutrals.gray2
+          }}>{ Moment(post.timestamp).format('llll') }</span>
+        </Box>
+      );
+    } else {
+      return (
+        <Box style={{ textAlign: 'right' }}>
+          <span style={{
+            ...styles.typography.card_date,
+            color: styles.colors.neutrals.gray2
+          }}>{ Moment(post.timestamp).format('llll') }</span>
+        </Box>
+      );
+    }
+  } 
+}
 
 class Card extends Component {
   render() {
@@ -15,8 +58,6 @@ class Card extends Component {
       post,
       permalink
     } = this.props;
-
-    console.log(this.props);
 
     return (
       <Box
@@ -30,13 +71,7 @@ class Card extends Component {
           zIndex: 1
         }}
       >
-        <Box style={{ textAlign: 'right' }}>
-
-          <span style={{
-            ...styles.typography.card_date,
-            color: styles.colors.neutrals.gray2
-          }}>{ Moment(this.props.post.timestamp).format('llll') }</span>
-        </Box>
+        <Header {...this.props}/>
         <div style={{
           whitespace: 'pre-wrap',
           overflowWrap: 'break-word'
