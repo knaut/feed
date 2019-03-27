@@ -7,7 +7,7 @@ import styles from '../../../src/styles';
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
-import Avatar from '../profile/Avatar.jsx';
+import PostAvatar from './PostAvatar.jsx';
 
 class Header extends Component {
   componentDidMount() {
@@ -24,13 +24,11 @@ class Header extends Component {
     if (permalink === true) {
       return (
         <Box style={{ textAlign: 'right' }}>
-          <Avatar
+          <PostAvatar
             isLoading={false}
-            isOnBlockstack={true}
             isMe={false}
             username={post.Profile}
             image={null}
-            mini={true}
           />
           <span style={{
             ...styles.typography.card_date,

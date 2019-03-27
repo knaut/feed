@@ -52,11 +52,7 @@ const Avatar = (props) => {
       <Box justify="center" align="center">
         <Box background={styles.colors.primaries.purple} round={'full'} 
           justify="center" align="center"
-          style={
-            mini === true ? 
-              styles.avatar.mini :
-              styles.avatar.normal
-          }>
+          style={ styles.avatar }>
           <Box>
             <HashLoader
               color={styles.colors.pastels.purple}
@@ -81,11 +77,7 @@ const Avatar = (props) => {
       <Box justify="center" align="center">
         <Box background={styles.colors.primaries.purple} round={'full'} 
           justify="center" align="center"
-          style={
-            mini === true ? 
-              styles.avatar.mini :
-              styles.avatar.normal
-          }>
+          style={ styles.avatar }>
           <Box style={image ? {
             width: '100%',
             height: '100%'
@@ -111,11 +103,7 @@ const Avatar = (props) => {
       <Box justify="center" align="center">
         <Box background={styles.colors.primaries.purple} round={'full'} 
           justify="center" align="center"
-          style={
-            mini === true ? 
-              styles.avatar.mini :
-              styles.avatar.normal
-          }>
+          style={ styles.avatar }>
           <Box>
             <Help color={styles.colors.pastels.red} size='xlarge'/>
           </Box>
