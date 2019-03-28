@@ -1,0 +1,45 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { Grommet, Box, Button, Grid } from 'grommet';
+import { grommet, dark } from 'grommet/themes';
+import StoryRouter from 'storybook-react-router';
+
+// STYLES
+import styles from '../../../src/styles';
+
+// UTILS
+import generateStore from '../../../src/utils/generateStore.js';
+
+// COMPONENTS
+import PostAvatar from '../../../src/components/post/PostAvatar.jsx';
+
+// MODELS
+import Status from '../../../src/models/Status';
+
+// SPOOF USER
+import spoof from '../../user.json';
+
+const store = generateStore();
+
+storiesOf('Post Avatar', module)
+  .add('is loaded, no image', () => (
+    <Grommet theme={grommet}>
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+          justifyContent: 'start'
+        }}
+      >
+        <Box align="center" style={{ width: '100%' }} pad='medium'>
+          <PostAvatar
+            isLoading={false}
+            isMe={false}
+            username={spoof.user.username}
+            image={spoof.user.image}
+          />
+        </Box>
+      </div>
+    </Grommet>
+  ))
+;

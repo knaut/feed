@@ -1,5 +1,6 @@
 // IMPORTS
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // STYLES
 import styles from '../../styles';
@@ -120,7 +121,7 @@ class Label extends Component {
   }
 }
 
-export default class PostAvatar extends Component {
+class PostAvatar extends Component {
   render() {
     console.log(this.props)
 
@@ -139,5 +140,12 @@ export default class PostAvatar extends Component {
   }
 }
 
+PostAvatar.propTypes = {
+  isLoaded: PropTypes.bool.isRequired,
+  isMe: PropTypes.bool.isRequired,
+  username: PropTypes.string.isRequired,
+  image: PropTypes.any.isRequired
+}
 
+export default PostAvatar;
 

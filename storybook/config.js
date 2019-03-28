@@ -14,7 +14,10 @@ function loadStories() {
   // Slate
   require('./stories/Slate.js');
 
-  // PostCard
+  // Post Avatar
+  require('./stories/status/PostAvatar.js');
+
+  // Post Card
   require('./stories/status/Card.js');
 
   // v2
