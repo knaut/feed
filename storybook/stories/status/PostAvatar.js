@@ -22,7 +22,7 @@ import spoof from '../../user.json';
 const store = generateStore();
 
 storiesOf('Post Avatar', module)
-  .add('is loaded, no image', () => (
+  .add('is loaded, has image', () => (
     <Grommet theme={grommet}>
       <div 
         style={{
@@ -37,6 +37,26 @@ storiesOf('Post Avatar', module)
             isMe={false}
             username={spoof.user.username}
             image={spoof.user.image}
+          />
+        </Box>
+      </div>
+    </Grommet>
+  ))
+  .add('is loaded, no image', () => (
+    <Grommet theme={grommet}>
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+          justifyContent: 'start'
+        }}
+      >
+        <Box align="center" style={{ width: '100%' }} pad='medium'>
+          <PostAvatar
+            isLoading={false}
+            isMe={false}
+            username={spoof.user.username}
+            image={null}
           />
         </Box>
       </div>

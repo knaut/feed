@@ -9,6 +9,9 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@emotion/babel-preset-css-prop": "^10.0.9",
+    "@emotion/core": "^0.13.1",
+    "@emotion/styled": "^0.10.6",
     "babel-loader": "^8.0.4",
     "babel-plugin-emotion": "^10.0.9",
     "babel-polyfill": "^6.26.0",
@@ -17,7 +20,6 @@
     "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.6.0",
     "draft-js": "^0.10.5",
-    "emotion": "^10.0.6",
     "grommet": "^2.2.1",
     "grommet-icons": "^4.1.0",
     "html-webpack-plugin": "^3.2.0",
@@ -59,8 +61,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@emotion/core": "^0.13.1",
-    "@emotion/styled": "^0.10.6",
     "@storybook/addon-actions": "^4.1.11",
     "@storybook/react": "^4.1.11",
     "ajv": "^6.7.0",
