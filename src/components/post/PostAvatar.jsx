@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import styles from '../../styles';
 /** @jsx jsx */ import { jsx, Global } from '@emotion/core'
 import css from '@emotion/css'
+import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
@@ -16,46 +17,51 @@ import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 const IconImage = (props) => {
   if (props.image) {
     return (
-      <Image src={props.image} fit="cover" />
+      <Image src={props.image} fit='cover' />
     );
   } else {
     return (
-      <User color={styles.colors.pastels.purple} size='xlarge'/>
+      <User color={styles.colors.pastels.purple} size='large'/>
     );
   }
 }
 
 const IconLoading = () => {
   return (
-    <Box justify="center" align="center">
-      <Box background={styles.colors.primaries.purple} round={'full'} 
-        justify="center" align="center"
-        css={{
-            border: `5px solid ${styles.colors.neutrals.gray1}`,
-            width: '100px',
-            height: '100px',
-            overflow: 'hidden',
-        }}>
-        <Box>
-          <HashLoader
-            color={styles.colors.pastels.purple}
-            loading={true}
-            size={75}
-          />
-        </Box>
-      </Box>
-    </Box>
+    <IconFrame>
+      <HashLoader
+        color={styles.colors.pastels.purple}
+        loading={true}
+        size={35}
+      />
+    </IconFrame>
   );
 }
 
-const LabelLoading = (props) => {
+const IconFrame = (props) => {
+  const { children } = props;
   return (
-    <Box justify="center" align="center" pad={'small'}>
-      <Text level={1} size={'medium'} style={{
-        color: styles.colors.neutrals.gray1
-      }}>
-        {`Looking up "${props.username}"…`}
-      </Text>
+    <Box justify="center" align="center">
+      <Box
+        background={styles.colors.primaries.purple}
+        round='full'
+        justify='center'
+        align='center'
+        css={css`
+          border: 2px solid ${styles.colors.neutrals.gray1};
+          width: 70px;
+          height: 70px;
+          overflow: hidden;
+        `}>
+        <Box>
+          <Box style={{
+            width: '100%',
+            height: '100%'
+          }}>
+            { children }
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 }
@@ -66,24 +72,9 @@ const IconLoaded = (props) => {
   } = props;
 
   return (
-    <Box justify="center" align="center">
-      <Box background={styles.colors.primaries.purple} round={'full'} 
-        justify="center" align="center" css={css`
-          border: 5px solid ${styles.colors.neutrals.gray1};
-          width: 100px;
-          height: 100px;
-          overflow: hidden;
-        `}>
-        <Box>
-          <Box style={{
-            width: '100%',
-            height: '100%'
-          }}>
-            <IconImage image={props.image}/>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+    <IconFrame>
+      <IconImage image={props.image}/>
+    </IconFrame>
   );
 }
 
@@ -114,7 +105,7 @@ class Icon extends Component {
     if (isLoading === true) {
       return <IconLoading/>;
     } else {
-      return <IconLoaded image={image}/>
+      return <IconLoaded image={image}/>;
     }
   }
 }
@@ -127,7 +118,7 @@ class Label extends Component {
     } = this.props;
 
     if (isLoading === true) {
-      return <LabelLoading username={username}/>;
+      return null;
     } else {
       return <LabelLoaded username={username}/>;
     }
@@ -157,7 +148,7 @@ PostAvatar.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isMe: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
-  image: PropTypes.any.isRequired
+  image: PropTypes.any
 }
 
 export default PostAvatar;

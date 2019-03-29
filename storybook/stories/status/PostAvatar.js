@@ -62,4 +62,24 @@ storiesOf('Post Avatar', module)
       </div>
     </Grommet>
   ))
+  .add('is loading', () => (
+    <Grommet theme={grommet}>
+      <div 
+        style={{
+          background: styles.colors.darks.purple,
+          ...styles.app.container,
+          justifyContent: 'start'
+        }}
+      >
+        <Box align="center" style={{ width: '100%' }} pad='medium'>
+          <PostAvatar
+            isLoading={true}
+            isMe={false}
+            username={spoof.user.username}
+            image={null}
+          />
+        </Box>
+      </div>
+    </Grommet>
+  ))
 ;
