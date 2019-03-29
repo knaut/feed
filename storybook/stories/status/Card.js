@@ -88,6 +88,7 @@ storiesOf('Status Card', module)
                 Profile: spoof.user.username,
               }).getProps()
             }
+            name={spoof.user.name}
           />
         </Box>
       </div>

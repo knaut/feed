@@ -4,6 +4,9 @@ import Moment from 'moment';
 
 // STYLES
 import styles from '../../../src/styles';
+/** @jsx jsx */ import { jsx, Global } from '@emotion/core'
+import css from '@emotion/css'
+import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
@@ -23,18 +26,31 @@ class Header extends Component {
     const { permalink, post } = this.props;
     if (permalink === true) {
       return (
-        <Box style={{ textAlign: 'right' }}>
-          <PostAvatar
-            isLoading={false}
-            isMe={false}
-            username={post.Profile}
-            image={null}
-          />
-          <span style={{
-            ...styles.typography.card_date,
-            color: styles.colors.neutrals.gray2
-          }}>{ Moment(post.timestamp).format('llll') }</span>
-        </Box>
+        <Grid
+          areas={[
+            { name: 'user', start: [0, 0], end: [0, 0] },
+            { name: 'date', start: [1, 0], end: [1, 0] }
+          ]}
+          columns={['flex', 'flex']}
+          rows={['flex']}
+          gap='small'
+        >
+          <Box gridArea='user'>
+            <PostAvatar
+              isLoading={false}
+              isMe={false}
+              username={post.Profile}
+              name={this.props.name}
+              image={null}
+            />
+          </Box>
+          <Box gridArea='date' css={css`text-align:right;`}>
+            <span style={{
+              ...styles.typography.card_date,
+              color: styles.colors.neutrals.gray2
+            }}>{ Moment(post.timestamp).format('llll') }</span>
+          </Box>
+        </Grid>
       );
     } else {
       return (

@@ -151,14 +151,23 @@ class PostAvatar extends Component {
           { name: 'left', start: [0, 0], end: [0, 0] },
           { name: 'right', start: [1, 0], end: [1, 0] }
         ]}
-        columns={['flex, flex']}
+        columns={['auto, flex']}
         rows={['flex']}
         gap='small'
+        style={{display: 'flex'}}
       >
-        <Box gridArea='left'>
+        <Box
+          gridArea='left'
+          align='start'
+        >
           <Icon {...this.props} />
         </Box>
-        <Box gridArea='right' justify='center'>
+        <Box
+          gridArea='right'
+          justify='center'
+          align='left'
+          style={{paddingLeft: '15px'}}
+        >
           <Label {...this.props} />
         </Box>
       </Grid>
