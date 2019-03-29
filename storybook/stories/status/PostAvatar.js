@@ -35,7 +35,7 @@ storiesOf('Post Avatar', module)
           <PostAvatar
             isLoading={false}
             isMe={false}
-            username={spoof.user.username}
+            name={spoof.user.name}
             image={spoof.user.image}
           />
         </Box>
@@ -55,7 +55,7 @@ storiesOf('Post Avatar', module)
           <PostAvatar
             isLoading={false}
             isMe={false}
-            username={spoof.user.username}
+            name={spoof.user.name}
             image={null}
           />
         </Box>

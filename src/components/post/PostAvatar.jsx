@@ -38,6 +38,19 @@ const IconLoading = () => {
   );
 }
 
+
+const LabelLoading = (props) => {
+  return (
+    <Box justify="center" align="center" pad={'small'}>
+      <Text level={1} size={'small'} style={{
+        color: styles.colors.neutrals.gray1
+      }}>
+        {`Fetching "${props.username}"…`}
+      </Text>
+    </Box>
+  );
+}
+
 const IconFrame = (props) => {
   const { children } = props;
   return (
@@ -49,8 +62,8 @@ const IconFrame = (props) => {
         align='center'
         css={css`
           border: 2px solid ${styles.colors.neutrals.gray1};
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           overflow: hidden;
         `}>
         <Box>
@@ -80,18 +93,16 @@ const IconLoaded = (props) => {
 
 const LabelLoaded = (props) => {
   const {
-    username
+    name
   } = props;
 
   return (
-    <Box justify="center" align="center" pad={{top: 'small'}}>
-      <Text level={1} size={ 'small' } style={{
-        letterSpacing: 0,
-        color: styles.colors.neutrals.gray1
-      }}>
-        {username}
-      </Text>
-    </Box>
+    <Text level={1} size={'medium'} style={{
+      letterSpacing: 0,
+      color: styles.colors.neutrals.gray1
+    }}>
+      {name}
+    </Text>
   );
 }
 
@@ -114,32 +125,43 @@ class Label extends Component {
   render() {
     const {
       isLoading,
+      name,
       username
     } = this.props;
 
     if (isLoading === true) {
-      return null;
+      return <LabelLoading username={username}/>;
     } else {
-      return <LabelLoaded username={username}/>;
+      return <LabelLoaded name={name}/>;
     }
   }
 }
 
 class PostAvatar extends Component {
   render() {
-    console.log(this.props)
-
     const {
       isLoading,
-      username,
+      name,
       image
     } = this.props;
 
     return (
-      <React.Fragment>
-        <Icon {...this.props} />
-        <Label {...this.props} />
-      </React.Fragment>
+      <Grid
+        areas={[
+          { name: 'left', start: [0, 0], end: [0, 0] },
+          { name: 'right', start: [1, 0], end: [1, 0] }
+        ]}
+        columns={['flex, flex']}
+        rows={['flex']}
+        gap='small'
+      >
+        <Box gridArea='left'>
+          <Icon {...this.props} />
+        </Box>
+        <Box gridArea='right' justify='center'>
+          <Label {...this.props} />
+        </Box>
+      </Grid>
     );
   }
 }
@@ -147,7 +169,8 @@ class PostAvatar extends Component {
 PostAvatar.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isMe: PropTypes.bool.isRequired,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
+  name: PropTypes.string,
   image: PropTypes.any
 }
 
