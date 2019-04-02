@@ -84,9 +84,11 @@ const IconLoaded = (props) => {
     image
   } = props;
 
+  console.log(image)
+
   return (
     <IconFrame>
-      <IconImage image={props.image}/>
+      <IconImage image={image}/>
     </IconFrame>
   );
 }
@@ -165,7 +167,7 @@ class PostAvatar extends Component {
         <Box
           gridArea='right'
           justify='center'
-          align='left'
+          align='start'
           style={{paddingLeft: '15px'}}
         >
           <Label {...this.props} />
