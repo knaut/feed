@@ -20,13 +20,13 @@ export default (props) => {
   } = props;
 
   return (
-    <Box gridArea='permalink' align='start' pad='medium'
-      onMouseEnter={onPermalinkEnter}
-      onMouseLeave={onPermalinkLeave}
-      onClick={onPermalink}
-      style={{cursor: 'pointer'}}
-    >
-      <Router.Link to={link}>
+    <Router.Link to={link}>
+      <Box gridArea='permalink' align='start' pad='medium'
+        onMouseEnter={onPermalinkEnter}
+        onMouseLeave={onPermalinkLeave}
+        onClick={onPermalink}
+        style={{cursor: 'pointer'}}
+      >
         <Link
           size='medium' 
           color={permalinkHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
@@ -36,7 +36,7 @@ export default (props) => {
             transition: 'all 0.2s ease-in-out'
           }}
         />
-      </Router.Link>
-    </Box>
+      </Box>
+    </Router.Link>
   );
 }
