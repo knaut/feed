@@ -123,7 +123,6 @@ class Decorated extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <Box 
         align="center" 
@@ -152,7 +151,7 @@ class Decorated extends Component {
             { ...this.state } 
             onPermalinkEnter={this.onPermalinkEnter} 
             onPermalinkLeave={this.onPermalinkLeave}
-            link={`/permalink/${this.props.post.id}`}
+            link={`/status/${this.props.post.id}`}
           />
           <Box gridArea='flex'>
 
