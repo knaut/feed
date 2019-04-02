@@ -84,8 +84,6 @@ const IconLoaded = (props) => {
     image
   } = props;
 
-  console.log(image)
-
   return (
     <IconFrame>
       <IconImage image={image}/>

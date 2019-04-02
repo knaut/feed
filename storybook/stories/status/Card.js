@@ -23,6 +23,7 @@ import spoof from '../../user.json';
 const store = generateStore();
 
 storiesOf('Status Card', module)
+  .addDecorator(StoryRouter())
   .add('undecorated', () => (
     <Grommet theme={grommet}>
       <div 

@@ -5,9 +5,16 @@ import React, { Component } from 'react';
 import styles from '../../../src/styles';
 
 // COMPONENTS
+// GROMMET
 import { Grommet, Box, Button, Grid } from 'grommet';
-import Card from './Card.jsx';
+// ICONS
 import { Add, Star, Note, SubtractCircle, Link } from 'grommet-icons';
+// BUTTONS
+import PermalinkButton from './PermalinkButton.jsx';
+import Card from './Card.jsx';
+
+// ROUTER
+import * as Router from 'react-router-dom';
 
 /*  v2 features
           <Box gridArea='left' pad='medium'
@@ -116,6 +123,7 @@ class Decorated extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Box 
         align="center" 
@@ -140,22 +148,12 @@ class Decorated extends Component {
           rows={['flex']}
           gap='small'
         >
-          <Box gridArea='permalink' align='start' pad='medium'
-            onMouseEnter={this.onPermalinkEnter}
-            onMouseLeave={this.onPermalinkLeave}
-            onClick={this.onPermalink}
-            style={{cursor: 'pointer'}}
-          >
-            <Link
-              size='medium' 
-              color={this.state.permalinkHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
-              style={{
-                position: 'relative',
-                top: this.state.onHover === true ? 0 : '-50px',
-                transition: 'all 0.2s ease-in-out'
-              }}
-            />
-          </Box>
+          <PermalinkButton 
+            { ...this.state } 
+            onPermalinkEnter={this.onPermalinkEnter} 
+            onPermalinkLeave={this.onPermalinkLeave}
+            link={`/permalink/${this.props.post.id}`}
+          />
           <Box gridArea='flex'>
 
           </Box>
