@@ -26,11 +26,29 @@ function mapDispatchToProps(dispatch) {
 
 class Wrapped extends Component {
   render() {
-    return (
-      <DecoratedCard 
-        { ...this.props }
-      />
-    );
+    const {
+      Status,
+      id
+    } = this.props;
+
+    const slice = Status.entities[id];
+
+    if (slice) {
+      return (
+        <DecoratedCard 
+          { ...this.props }
+          post={slice}
+        />
+      );
+    } else {
+      return (
+        <DecoratedCard 
+          { ...this.props }
+        />
+      );
+    }
+
+    
   }
 }
 

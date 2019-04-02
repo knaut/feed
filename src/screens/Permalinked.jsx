@@ -30,9 +30,9 @@ class Permalinked extends Component {
     if (isLoaded === true) {
       // get the post that matches this permalink
       const { id } = this.props.match.params;
-
       const hasIndex = this.props.cached.Status.ids.indexOf(id) > -1;
       
+      console.log(id, hasIndex)
 
       return (
         <Grommet theme={grommet}>
@@ -50,14 +50,26 @@ class Permalinked extends Component {
                 { name: 'main', start: [1, 0], end: [1, 0] },
                 { name: 'right', start: [2, 0], end: [2, 0] }
               ]}
-              columns={['xsmall', 'flex', 'xsmall']}
+              columns={['xxsmall', 'flex', 'xxsmall']}
               rows={['flex']}
               gap='large'
             >
               <Box gridArea='left'>
               </Box>
               <Box gridArea='main'>
-                This is card
+                <div 
+                  style={{
+                    background: styles.colors.darks.purple,
+                    ...styles.app.container,
+                    justifyContent: 'start'
+                  }}
+                >
+                  <Box align="center" style={{ width: '100%' }} pad='medium'>
+                    <WrappedDecoratedCard
+                      id={id}
+                    />
+                  </Box>
+                </div>
               </Box>
               <Box gridArea='right'>
               </Box>
