@@ -24,6 +24,9 @@ export default function user(
     case UserActions.IS_SIGNED_IN: {
       newState.username = action.payload.username.split('.')[0];
       newState.isAuthenticated = true;
+      newState.name = action.payload.name;
+      newState.description = action.payload.description;
+      newState.image = action.payload.image;
 
       return newState;
     }

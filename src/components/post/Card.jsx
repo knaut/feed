@@ -34,8 +34,8 @@ class Header extends Component {
             isLoading={false}
             isMe={false}
             username={post.Profile}
-            name={this.props.name}
-            image={this.props.image}
+            name={this.props.user.name}
+            image={this.props.user.image}
           />
         </Box>
         <Box gridArea='date' css={css`text-align:right;`}>

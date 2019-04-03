@@ -40,22 +40,39 @@ const loginToBlockstack = () => {
   }
 }
 
-loginToBlockstack();
+const getProfileData = (user) => {
+  // take a blockstack user profile data,
+  // return the data our user reducer will consume.
+  const username = user.username;
+  const name = user.profile.name;
+  const description = user.profile.description;
+  const image = user.profile.image[0].contentUrl
+
+  return {
+    username,
+    name,
+    image,
+    description
+  }
+}
 
 const App = () => {
+  
+  loginToBlockstack();
 
   const store = generateStore();
   const history = createHistory();
 
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();
-    const { username } = user;
+    const { username } = user;    
+    const profileData = getProfileData(user);
+
+    console.log(profileData);
 
     store.dispatch({
       type: 'IS_SIGNED_IN',
-      payload: {
-        username
-      }
+      payload: profileData
     });
 
     Profile.getCache().then(file => {
