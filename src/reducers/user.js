@@ -5,6 +5,10 @@ import * as UserActions from '../actions/user';
 export default function user(
   state = {
     username: null,
+    name: null,
+    image: null,
+    description: null,
+
     isAuthenticated: false
   },
   action

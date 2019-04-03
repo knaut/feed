@@ -118,10 +118,6 @@ class Decorated extends Component {
     });
   }
 
-  onPermalink = () => {
-    console.log('copy a permalink!');
-  }
-
   render() {
     return (
       <Box 
@@ -151,7 +147,7 @@ class Decorated extends Component {
             { ...this.state } 
             onPermalinkEnter={this.onPermalinkEnter} 
             onPermalinkLeave={this.onPermalinkLeave}
-            link={`/status/${this.props.post.id}`}
+            link={`/permalink/${this.props.post.id}`}
           />
           <Box gridArea='flex'>
 

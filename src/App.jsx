@@ -80,7 +80,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={ Index } />
           <Route path="/feed" exact component={ isSignedIn( Feed ) } />
-          <Route path="/status/:id?" component={ Permalinked }/>
+          <Route path="/permalink/:id?" component={ Permalinked }/>
           <Route path="/:username?" component={ ProfileScreen }/>
           
         </Switch>
