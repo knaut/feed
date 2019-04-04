@@ -1,6 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react';
 import Moment from 'moment';
+import { LoremIpsum } from 'lorem-ipsum';
 
 // STYLES
 import styles from '../../../src/styles';
@@ -9,7 +10,24 @@ import css from '@emotion/css'
 import styled from '@emotion/styled'
 
 // COMPONENTS
-import { Grommet } from 'grommet';
+import { Grommet, Box } from 'grommet';
+
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4
+  }
+});
+
+lorem.generateWords(1);
+lorem.generateSentences(5);
+lorem.generateParagraphs(7);
+
+console.log(lorem.generateParagraphs(7))
 
 export default (props) => {
   return (

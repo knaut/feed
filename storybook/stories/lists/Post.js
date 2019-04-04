@@ -7,6 +7,9 @@ import StoryRouter from 'storybook-react-router';
 // STYLES
 import styles from '../../../src/styles';
 
+// COMPONENTS
+import Posts from '../../../src/components/list/Posts.jsx';
+
 storiesOf('Post List', module)
   .addDecorator(StoryRouter())
   .add('default', () => (
@@ -19,7 +22,7 @@ storiesOf('Post List', module)
         }}
       >
         <Box align="center" style={{ width: '100%' }} pad='medium'>
-          {'this is post list'}
+          <Posts />
         </Box>
       </div>
     </Grommet>
