@@ -11,59 +11,8 @@ import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
-import PostAvatar from './PostAvatar.jsx';
-
-const Header = (props) => {
-  const { 
-    username,
-    name,
-    image,
-    timestamp
-  } = props;
-
-  return (
-    <Grid
-      areas={[
-        { name: 'user', start: [0, 0], end: [0, 0] },
-        { name: 'date', start: [1, 0], end: [1, 0] }
-      ]}
-      columns={['flex', 'flex']}
-      rows={['flex']}
-      gap='small'
-    >
-      <Box gridArea='user'>
-        <PostAvatar
-          isLoading={image ? false : true}
-          isMe={false}
-          username={username}
-          name={name}
-          image={image}
-        />
-      </Box>
-      <Box gridArea='date' css={css`text-align:right;`}>
-        <span style={{
-          ...styles.typography.card_date,
-          color: styles.colors.neutrals.gray2
-        }}>{ Moment(timestamp).format('llll') }</span>
-      </Box>
-    </Grid>
-  );
-}
-
-const Post = (post) => {
-  const {
-    text
-  } = post;
-
-  return (
-    <div css={css`
-      whitespace: pre-wrap;
-      overflow-wrap: break-word;
-    `}>
-      {text}
-    </div>
-  );
-}
+import CardHeader from './CardHeader.jsx';
+import CardText from './CardText.jsx';
 
 class Card extends Component {
   render() {
@@ -71,9 +20,7 @@ class Card extends Component {
       post,
       author
     } = this.props;
-
-    console.log(post, author);
-
+    
     const {
       username,
       name,
@@ -97,15 +44,13 @@ class Card extends Component {
           zIndex: 1
         }}
       >
-        <Header 
+        <CardHeader 
           username={username}
           image={image}
           name={name}
           timestamp={timestamp}
         />
-        <Post
-          text={text}
-        />
+        <CardText text={text} />
       </Box>
     );
   }
