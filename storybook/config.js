@@ -20,6 +20,10 @@ function loadStories() {
   // Post Card
   require('./stories/status/Card.js');
 
+  // Lists
+  // Posts
+  require('./stories/lists/Post.js');
+
   // v2
   // Circles
   require('./stories/button/Circles.js');

@@ -14,13 +14,13 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 import CardHeader from './CardHeader.jsx';
 import CardText from './CardText.jsx';
 
-class Card extends Component {
+export default class Card extends Component {
   render() {
     const {
       post,
       author
     } = this.props;
-    
+
     const {
       username,
       name,
@@ -55,5 +55,3 @@ class Card extends Component {
     );
   }
 }
-
-export default Card;
