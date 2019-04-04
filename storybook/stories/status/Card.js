@@ -34,12 +34,15 @@ storiesOf('Status Card', module)
         }}
       >
         <Box align="center" style={{ width: '100%' }} pad='medium'>
-          <Card post={
-            new Status({
-              text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
-              Profile: spoof.user.username,
-            }).getProps()
-          }/>
+          <Card 
+            post={
+              new Status({
+                text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
+                Profile: spoof.user.username,
+              }).getProps()
+            }
+            author={spoof.user}
+          />
         </Box>
       </div>
     </Grommet>
@@ -66,6 +69,7 @@ storiesOf('Status Card', module)
                 console.log('delete', payload)
               }
             }}
+            author={spoof.user}
           />
         </Box>
       </div>
