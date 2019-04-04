@@ -86,16 +86,13 @@ storiesOf('Status Card', module)
       >
         <Box align="center" style={{ width: '100%' }} pad='medium'>
           <Card
-            isLoading={false}
-            isMe={false}
-            image={spoof.user.image}
             post={
               new Status({
                 text: `Non irure ut sint nostrud magna cillum dolor proident labore ad dolor minim magna cupidatat ut velit do sit ullamco eiusmod consectetur. Officia sunt qui amet sint dolore eu laborum voluptate fugiat sit ea esse id dolor esse exercitation laboris sint dolore pariatur velit consectetur exercitation enim ea consectetur sint et occaecat duis reprehenderit.`,
                 Profile: spoof.user.username,
               }).getProps()
             }
-            name={spoof.user.name}
+            author={spoof.user}
           />
         </Box>
       </div>
