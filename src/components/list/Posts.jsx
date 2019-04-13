@@ -12,27 +12,14 @@ import styled from '@emotion/styled'
 // COMPONENTS
 import { Grommet, Box } from 'grommet';
 
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
+class Posts extends Component {
+  render() {
+    return (
+      <Box align="center" style={{ width: '100%' }} pad='medium'>
+        this is a list of post cards
+      </Box>
+    );
   }
-});
-
-lorem.generateWords(1);
-lorem.generateSentences(5);
-lorem.generateParagraphs(7);
-
-console.log(lorem.generateParagraphs(7))
-
-export default (props) => {
-  return (
-    <Box align="center" style={{ width: '100%' }} pad='medium'>
-      this is a list of post cards
-    </Box>
-  );
 }
+
+export default Posts;

@@ -14,7 +14,7 @@ import { Add } from 'grommet-icons';
 import WrappedDecoratedCard from './post/WrappedDecoratedCard.jsx';
 
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state);
 
   const isLoaded = state.user.username && state.cache.isLoaded;
   const statuses = [];
@@ -37,7 +37,7 @@ function mapStateToProps(state) {
   return {
     isLoaded,
     statuses,
-    hasStatuses,
+    hasStatuses
   }
   
 }
