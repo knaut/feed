@@ -3,33 +3,14 @@ import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import StoryRouter from 'storybook-react-router';
-import { LoremIpsum } from 'lorem-ipsum';
 
 // STYLES
 import styles from '../../../src/styles';
 
 // COMPONENTS
-import Posts from '../../../src/components/list/Posts.jsx';
+import PostList from '../../../src/components/list/PostList.jsx';
+import PostListProvider from './providers/PostListProvider.jsx';
 
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
-});
-
-const spoof = [
-  lorem.generateWords(1),
-  lorem.generateSentences(5),
-  lorem.generateParagraphs(7)
-];
-
-console.log(spoof)
 
 storiesOf('Post List', module)
   .addDecorator(StoryRouter())
@@ -43,7 +24,9 @@ storiesOf('Post List', module)
         }}
       >
         <Box align="center" style={{ width: '100%' }} pad='medium'>
-          <Posts />
+          <PostListProvider>
+            <PostList/>
+          </PostListProvider>
         </Box>
       </div>
     </Grommet>

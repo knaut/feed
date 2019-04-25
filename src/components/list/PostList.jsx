@@ -14,6 +14,7 @@ import { Grommet, Box } from 'grommet';
 
 class Posts extends Component {
   render() {
+    console.log(this.props)
     return (
       <Box align="center" style={{ width: '100%' }} pad='medium'>
         this is a list of post cards

@@ -5,6 +5,13 @@ import {
 } from 'reactstrap';
 import { LoremIpsum } from 'lorem-ipsum';
 
+// MODELS
+import Status from '../../../../src/models/Status';
+
+// SPOOF USER
+import spoof from '../../../user.json';
+
+
 /*
   This PostListProvider is a spoofing component.
   It provides a series of arbitrary posts data
@@ -28,10 +35,11 @@ export default class PostListProvider extends Component {
   ) => {
     const {
       sentences,
-      words
+      words,
+      sentencesLength
     } = params;
 
-    return new LoremIpsum({
+    const ipsum = new LoremIpsum({
       sentencesPerParagraph: {
         max: sentences.max,
         min: sentences.min
@@ -41,20 +49,51 @@ export default class PostListProvider extends Component {
         min: words.min
       }
     });
+
+    const string = ipsum.generateSentences(sentencesLength);
+
+    // cull length based on our limit for basic statuses
+    const sub = string.substring(0, 500);
+
+    return sub;
   }
 
   spoofPosts = (
-
+    numPosts = 3,
+    loremConfig
   ) => {
+    const posts = [];
     
+    for (let n = 0; numPosts > n; ++n) {
+      posts.push(
+        new Status({
+          text: this.lorem(),
+          Profile: spoof.user.username,
+        }).getProps()
+      );
+    }
+
+    return posts;
   }
 
   render() {
+    const posts = this.spoofPosts();
+
+    const props = {
+      ...posts
+    };
+
     const children = React.Children.map( this.props.children, child => {
       return React.cloneElement(child, {
-        datum,
+        ...child.props,
         ...props
       })
-    })
+    });
+
+    return (
+      <React.Fragment>
+        { children }
+      </React.Fragment>
+    );
   }
 }
