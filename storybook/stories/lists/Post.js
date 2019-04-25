@@ -29,6 +29,7 @@ const spoof = [
   lorem.generateParagraphs(7)
 ];
 
+console.log(spoof)
 
 storiesOf('Post List', module)
   .addDecorator(StoryRouter())
