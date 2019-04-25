@@ -12,9 +12,8 @@ import styled from '@emotion/styled'
 // COMPONENTS
 import { Grommet, Box } from 'grommet';
 
-class Posts extends Component {
+class PostList extends Component {
   render() {
-    console.log(this.props)
     return (
       <Box align="center" style={{ width: '100%' }} pad='medium'>
         this is a list of post cards
@@ -23,4 +22,4 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default PostList;
