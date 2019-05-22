@@ -17,8 +17,8 @@ class GlobalLoader extends Component {
     'stacking blocks',
     'fitting odd-shaped pegs',
     'spinning unturned cogs',
-    // 'unfolding packets',
-    // 'organizing stacks'
+    'unfolding packets',
+    'chaining stacks'
   ];
 
   state = {
