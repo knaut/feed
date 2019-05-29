@@ -1,13 +1,12 @@
 // IMPORTS
-import 'babel-polyfill';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import * as blockstack from 'blockstack';
 
 // ROUTER
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import { Route, Switch } from 'react-router';
+import { ConnectedRouter } from 'connected-react-router';
 import createHistory from 'history/createBrowserHistory';
 
 // ROUTER AUTH
