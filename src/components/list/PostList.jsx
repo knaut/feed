@@ -4,7 +4,7 @@ import Moment from 'moment';
 import { LoremIpsum } from 'lorem-ipsum';
 
 // STYLES
-import styles from '../../../src/styles';
+import styles from '../../styles';
 /** @jsx jsx */ import { jsx, Global } from '@emotion/core'
 import css from '@emotion/css'
 import styled from '@emotion/styled'

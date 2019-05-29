@@ -25,6 +25,7 @@
     "react-dom": "^16.8.6",
     "react-minimal-pie-chart": "^4.0.0",
     "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
     "react-spinners": "^0.5.4",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
