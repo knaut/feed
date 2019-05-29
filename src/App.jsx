@@ -1,3 +1,6 @@
+
+import 'babel-polyfill'
+
 // IMPORTS
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
@@ -27,13 +30,18 @@ import Profile from './models/Profile';
 // UTILS
 import generateStore from './utils/generateStore.js';
 
+window.blockstack = blockstack
+
 const loginToBlockstack = () => {
+  const userSession = new blockstack.UserSession()
+
   if (blockstack.isUserSignedIn()) {
     const profile = blockstack.loadUserData().profile;
     const person = new blockstack.Person(profile);
 
-  } else if (blockstack.isSignInPending()) {
-    blockstack.handlePendingSignIn().then(function(userData) {
+  } else if (userSession.isSignInPending()) {
+    userSession.handlePendingSignIn().then(function(userData) {
+      console.log(userData)
       window.location = window.location.origin
     });
   }
