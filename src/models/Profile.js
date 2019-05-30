@@ -24,6 +24,35 @@ class Profile extends Model {
     }
   }
 
+  async save() {
+    const { id } = this;
+
+    try {
+
+      const cache = await Model.getCache();
+      const options = { encrypt: false };
+
+      this.isSaved = true
+
+      const model = this.getProps()
+
+      cache.Profile.entities[ model.id ] = model
+      cache.Profile.ids.push( model.id )
+
+      const res = await Model.putCache( cache )
+
+      return this
+
+    } catch (error) {
+    
+      this.isSaved = false
+      console.error(error, this)
+
+      return this
+    }
+
+  }
+
 }
 
 export default Profile;
