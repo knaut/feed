@@ -9,14 +9,14 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import Editor from '../components/Editor.jsx';
-import WrappedSlate from '../components/slate/WrappedSlate.jsx';
-// import PostEditor from '../components/editor/PostEditor.jsx';
-import WrappedAddPost from '../components/button/WrappedAddPost.jsx';
-import MyFeedButton from '../components/MyFeedButton.jsx';
-import MyProfileButton from '../components/MyProfileButton.jsx';
-import FeedList from '../components/FeedList.jsx';
-import GlobalLoader from '../components/GlobalLoader.jsx';
+import Editor from '../components/Editor';
+import WrappedSlate from '../components/slate/WrappedSlate';
+// import PostEditor from '../components/editor/PostEditor';
+import WrappedAddPost from '../components/button/WrappedAddPost';
+import MyFeedButton from '../components/MyFeedButton';
+import MyProfileButton from '../components/MyProfileButton';
+import FeedList from '../components/FeedList';
+import GlobalLoader from '../components/GlobalLoader';
 
 function mapStateToProps(state) {
   return state;

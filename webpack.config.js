@@ -27,7 +27,7 @@ module.exports = {
   },
   mode: 'development',
   entry: {
-    app: './src/App.jsx'
+    app: './src/App.js'
   },
   output: {
     path: path.resolve( __dirname, 'build' ),
@@ -52,7 +52,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx$|.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"

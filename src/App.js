@@ -16,13 +16,13 @@ import createHistory from 'history/createBrowserHistory';
 import isSignedIn from './authentication/isSignedIn';
 
 // SCREENS
-import Index from './screens/Index.jsx';
-import Feed from './screens/Feed.jsx';
-import ProfileScreen from './screens/Profile.jsx';
-import Permalinked from './screens/Permalinked.jsx';
+import Index from './screens/Index.js';
+import Feed from './screens/Feed.js';
+import ProfileScreen from './screens/Profile.js';
+import Permalinked from './screens/Permalinked.js';
 
 // COMPONENTS
-import ProfileCard from './components/ProfileCard.jsx';
+import ProfileCard from './components/ProfileCard.js';
 
 // MODELS
 import Profile from './models/Profile';

@@ -10,7 +10,7 @@ import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
-import PostAvatar from './PostAvatar.jsx';
+import PostAvatar from './PostAvatar.js';
 
 export default (props) => {
   const { 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import Slate from './Slate.jsx';
+import Slate from './Slate';
 
 // ACTIONS
 import * as EditorActions from '../../actions/editor';

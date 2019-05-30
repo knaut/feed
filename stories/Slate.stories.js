@@ -10,9 +10,9 @@ import StoryRouter from 'storybook-react-router';
 // COMPONENTS
 import { Grommet } from 'grommet'
 import { grommet, dark } from 'grommet/themes'
-import GlobalLoader from '../src/components/GlobalLoader.jsx';
-// import Counter from '../src/components/slate/Counter.jsx';
-import Slate from '../src/components/slate/Slate.jsx';
+import GlobalLoader from '../src/components/GlobalLoader';
+// import Counter from '../src/components/slate/Counter';
+import Slate from '../src/components/slate/Slate';
 
 // STYLES
 import styles from '../src/styles';

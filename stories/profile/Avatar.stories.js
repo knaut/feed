@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import Avatar from '../../src/components/profile/Avatar.jsx';
+import Avatar from '../../src/components/profile/Avatar';
 
 import spoof from '../../.storybook/user.json';
 

@@ -10,7 +10,7 @@ import StoryRouter from 'storybook-react-router';
 // COMPONENTS
 import { Grommet } from 'grommet'
 import { grommet, dark } from 'grommet/themes'
-import GlobalLoader from '../src/components/GlobalLoader.jsx';
+import GlobalLoader from '../src/components/GlobalLoader';
 
 storiesOf('GlobalLoader', module)
   .addDecorator(StoryRouter())

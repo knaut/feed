@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import StoryRouter from 'storybook-react-router';
-import FeedLink from '../../src/components/profile/FeedLink.jsx';
+import FeedLink from '../../src/components/profile/FeedLink';
 
 import spoof from '../../.storybook/user.json';
 

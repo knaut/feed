@@ -7,7 +7,7 @@ import { grommet, dark } from 'grommet/themes';
 import styles from '../../src/styles';
 
 // COMPONENTS
-import Search from '../../src/components/button/Search.jsx';
+import Search from '../../src/components/button/Search';
 
 storiesOf('Button - Search', module)
   .add('inactive', () => (

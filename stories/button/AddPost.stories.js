@@ -7,7 +7,7 @@ import { grommet, dark } from 'grommet/themes';
 import styles from '../../src/styles';
 
 // COMPONENTS
-import AddPost from '../../src/components/button/AddPost.jsx';
+import AddPost from '../../src/components/button/AddPost';
 
 storiesOf('Button - AddPost', module)
   .add('inactive', () => (

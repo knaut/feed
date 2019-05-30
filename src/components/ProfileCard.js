@@ -14,8 +14,8 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
-import Avatar from './profile/Avatar.jsx';
-import FeedLink from './profile/FeedLink.jsx';
+import Avatar from './profile/Avatar.js';
+import FeedLink from './profile/FeedLink.js';
 
 function mapStateToProps(state) {
   const id = state.user.username.split('.')[0];

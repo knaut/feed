@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import DecoratedCard from './DecoratedCard.jsx';
+import DecoratedCard from './DecoratedCard';
 
 // ACTIONS
 import * as EditorActions from '../../actions/editor';

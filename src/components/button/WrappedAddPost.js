@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import AddPost from './AddPost.jsx';
+import AddPost from './AddPost.js';
 
 // ACTIONS
 import * as EditorActions from '../../actions/editor';

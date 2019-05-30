@@ -11,8 +11,8 @@ import styles from '../../src/styles';
 import generateStore from '../../src/utils/generateStore.js';
 
 // COMPONENTS
-import Card from '../../src/components/post/Card.jsx';
-import DecoratedCard from '../../src/components/post/DecoratedCard.jsx';
+import Card from '../../src/components/post/Card';
+import DecoratedCard from '../../src/components/post/DecoratedCard';
 
 // MODELS
 import Status from '../../src/models/Status';

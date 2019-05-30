@@ -11,7 +11,7 @@ import styles from '../../src/styles';
 import generateStore from '../../src/utils/generateStore.js';
 
 // COMPONENTS
-import PostAvatar from '../../src/components/post/PostAvatar.jsx';
+import PostAvatar from '../../src/components/post/PostAvatar';
 
 // MODELS
 import Status from '../../src/models/Status';

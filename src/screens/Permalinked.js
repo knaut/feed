@@ -11,8 +11,8 @@ import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Login } from "grommet-icons";
 
-import GlobalLoader from '../components/GlobalLoader.jsx';
-import WrappedDecoratedCard from '../components/post/WrappedDecoratedCard.jsx';
+import GlobalLoader from '../components/GlobalLoader';
+import WrappedDecoratedCard from '../components/post/WrappedDecoratedCard';
 
 function mapStateToProps(state) {
 

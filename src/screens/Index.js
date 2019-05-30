@@ -8,7 +8,7 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import SignIn from '../components/SignIn.jsx';
+import SignIn from '../components/SignIn';
 
 class Index extends Component {
   render() {

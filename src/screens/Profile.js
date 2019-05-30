@@ -12,10 +12,10 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import GlobalLoader from '../components/GlobalLoader.jsx';
-import MyProfileButton from '../components/MyProfileButton.jsx';
-import MyFeedButton from '../components/MyFeedButton.jsx';
-import ProfileCard from '../components/ProfileCard.jsx';
+import GlobalLoader from '../components/GlobalLoader';
+import MyProfileButton from '../components/MyProfileButton';
+import MyFeedButton from '../components/MyFeedButton';
+import ProfileCard from '../components/ProfileCard';
 
 function mapStateToProps(state) {
   const {

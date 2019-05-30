@@ -6,7 +6,7 @@ import { Editor, EditorState, ContentState } from 'draft-js';
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Add } from 'grommet-icons';
-import Counter from './Counter.jsx';
+import Counter from './Counter';
 
 // STYLES
 import styles from '../../styles';

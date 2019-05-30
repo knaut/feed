@@ -8,8 +8,8 @@ import StoryRouter from 'storybook-react-router';
 import styles from '../../src/styles';
 
 // COMPONENTS
-import PostList from '../../src/components/list/PostList.jsx';
-import PostListProvider from './providers/PostListProvider.jsx';
+import PostList from '../../src/components/list/PostList';
+import PostListProvider from './providers/PostListProvider';
 
 
 storiesOf('Post List', module)

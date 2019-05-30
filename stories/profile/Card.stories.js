@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import StoryRouter from 'storybook-react-router';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import ProfileCard from '../../src/components/profile/Card.jsx';
+import ProfileCard from '../../src/components/profile/Card';
 
 import spoof from '../../.storybook/user.json';
 

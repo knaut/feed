@@ -10,8 +10,8 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 // ICONS
 import { Add, Star, Note, SubtractCircle, Link } from 'grommet-icons';
 // BUTTONS
-import PermalinkButton from './PermalinkButton.jsx';
-import Card from './Card.jsx';
+import PermalinkButton from './PermalinkButton';
+import Card from './Card';
 
 // ROUTER
 import * as Router from 'react-router-dom';

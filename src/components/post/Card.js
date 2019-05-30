@@ -11,8 +11,8 @@ import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
-import CardHeader from './CardHeader.jsx';
-import CardText from './CardText.jsx';
+import CardHeader from './CardHeader.js';
+import CardText from './CardText.js';
 
 export default class Card extends Component {
   render() {

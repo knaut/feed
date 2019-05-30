@@ -10,8 +10,8 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
-import Avatar from './Avatar.jsx';
-import FeedLink from './FeedLink.jsx';
+import Avatar from './Avatar';
+import FeedLink from './FeedLink';
 
 class ProfileCard extends Component {
   render() {

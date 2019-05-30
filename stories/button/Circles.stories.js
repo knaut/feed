@@ -7,7 +7,7 @@ import { grommet, dark } from 'grommet/themes';
 import styles from '../../src/styles';
 
 // COMPONENTS
-import Circles from '../../src/components/button/Circles.jsx';
+import Circles from '../../src/components/button/Circles';
 
 storiesOf('Button - v2 - Circles', module)
   .add('inactive', () => (
