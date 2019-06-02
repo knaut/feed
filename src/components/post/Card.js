@@ -35,7 +35,7 @@ class Card extends Component {
     return (
       <Box
         pad='medium'
-        margin={{bottom: 'medium'}}
+        margin={{bottom: 'large'}}
         gap='small'
         round
         style={{
