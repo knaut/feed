@@ -14,7 +14,7 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 import CardHeader from './CardHeader.js';
 import CardText from './CardText.js';
 
-export default class Card extends Component {
+class Card extends Component {
   render() {
     const {
       post,
@@ -35,6 +35,7 @@ export default class Card extends Component {
     return (
       <Box
         pad='medium'
+        margin={{bottom: 'medium'}}
         gap='small'
         round
         style={{
@@ -55,3 +56,10 @@ export default class Card extends Component {
     );
   }
 }
+
+Card.propTypes = {
+  author: PropTypes.object,
+  post: PropTypes.object
+}
+
+export default Card

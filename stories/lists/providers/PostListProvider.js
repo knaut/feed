@@ -80,7 +80,8 @@ export default class PostListProvider extends Component {
     const posts = this.spoofPosts();
 
     const props = {
-      ...posts
+      posts,
+      author: spoof.user
     };
 
     const children = React.Children.map( this.props.children, child => {

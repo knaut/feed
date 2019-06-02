@@ -11,12 +11,30 @@ import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box } from 'grommet';
+import Card from '../post/Card'
 
 class PostList extends Component {
+
   render() {
+    console.log(this)
+    const { posts, author } = this.props
+    const cards = []
+
+    for (let p = 0; posts.length > p; ++p) {
+      const post = posts[p]
+
+      cards.push(
+        <Card
+          key={p}
+          post={post}
+          author={author}
+        />
+      )
+    }
+
     return (
       <Box align="center" style={{ width: '100%' }} pad='medium'>
-        this is a list of post cards
+        { cards }
       </Box>
     );
   }
