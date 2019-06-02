@@ -7,6 +7,8 @@ import { Link } from 'grommet-icons';
 import * as Router from 'react-router-dom';
 
 // STYLES
+import css from '@emotion/css'
+
 import styles from '../../../src/styles';
 
 class Permalink extends Component {
@@ -45,6 +47,9 @@ class Permalink extends Component {
           <Link
             size='medium' 
             color={onHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
+            css={css`
+              transition: all 0.2s ease-in-out;
+            `}
           />
         </Box>
       </Router.Link>
