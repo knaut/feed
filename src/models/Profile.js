@@ -53,6 +53,18 @@ class Profile extends Model {
 
   }
 
+  // async delete() {
+  //   const { id } = this
+
+  //   try {
+  //     const cache = await Model.getCache()
+  //     const options = { encrypt: false }
+  //     const model = this.getProps()
+
+      
+  //   }
+  // }
+
 }
 
 export default Profile;

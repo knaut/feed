@@ -22,50 +22,21 @@ import ProfileScreen from './screens/Profile.js';
 import Permalinked from './screens/Permalinked.js';
 
 // COMPONENTS
-import ProfileCard from './components/ProfileCard.js';
+import Theme from './Theme.js';
 
 // MODELS
 import Profile from './models/Profile';
 
 // UTILS
 import generateStore from './utils/generateStore.js';
-
-window.blockstack = blockstack
-
-const loginToBlockstack = () => {
-  const userSession = new blockstack.UserSession()
-
-  if (blockstack.isUserSignedIn()) {
-    const profile = blockstack.loadUserData().profile;
-    const person = new blockstack.Person(profile);
-
-  } else if (userSession.isSignInPending()) {
-    userSession.handlePendingSignIn().then(function(userData) {
-      console.log(userData)
-      window.location = window.location.origin
-    });
-  }
-}
-
-const getProfileData = (user) => {
-  // take a blockstack user profile data,
-  // return the data our user reducer will consume.
-  const username = user.username;
-  const name = user.profile.name;
-  const description = user.profile.description;
-  const image = user.profile.image[0].contentUrl
-
-  return {
-    username,
-    name,
-    image,
-    description
-  }
-}
+// BLOCKSTACK AUTH UTILS
+import {
+  loginToBlockstack,
+  getProfileData,
+  signInPending
+} from './authentication/loginToBlockstack'
 
 const App = () => {
-  
-  loginToBlockstack();
 
   const store = generateStore();
   const history = createHistory();
@@ -75,7 +46,7 @@ const App = () => {
     const { username } = user;    
     const profileData = getProfileData(user);
 
-    console.log(profileData);
+    // console.log(profileData);
 
     store.dispatch({
       type: 'IS_SIGNED_IN',
@@ -83,6 +54,7 @@ const App = () => {
     });
 
     Profile.getCache().then(file => {
+      console.log(file)
       store.dispatch({
         type: 'GET_CACHE_SUCCESS',
         payload: file
@@ -101,13 +73,14 @@ const App = () => {
   return (
     <Provider store={ store }>
       <ConnectedRouter history={ history }>
-        <Switch>
-          <Route path="/" exact component={ Index } />
-          <Route path="/feed" exact component={ isSignedIn( Feed ) } />
-          <Route path="/permalink/:id?" component={ Permalinked }/>
-          <Route path="/:username?" component={ ProfileScreen }/>
-          
-        </Switch>
+        <Theme>
+          <Switch>
+            <Route path="/" exact component={ Index } />
+            <Route path="/feed" exact component={ isSignedIn( Feed ) } />
+            <Route path="/permalink/:id?" component={ Permalinked }/>
+            <Route path="/:username?" component={ ProfileScreen }/>
+          </Switch>
+        </Theme>
       </ConnectedRouter>
     </Provider>
   );
