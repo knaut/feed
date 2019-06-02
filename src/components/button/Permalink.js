@@ -9,34 +9,47 @@ import * as Router from 'react-router-dom';
 // STYLES
 import styles from '../../../src/styles';
 
-export default (props) => {
-  const {
-    onPermalinkEnter,
-    onPermalinkLeave,
-    onPermalink,
-    permalinkHover,
-    onHover,
-    link
-  } = props;
+class Permalink extends Component {
+  state = {
+    onHover: false
+  }
 
-  return (
-    <Router.Link to={link}>
-      <Box gridArea='permalink' align='start' pad='small'
-        onMouseEnter={onPermalinkEnter}
-        onMouseLeave={onPermalinkLeave}
-        onClick={onPermalink}
-        style={{cursor: 'pointer'}}
-      >
-        <Link
-          size='medium' 
-          color={permalinkHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
-          style={{
-            position: 'relative',
-            top: onHover === true ? 0 : '-50px',
-            transition: 'all 0.2s ease-in-out'
-          }}
-        />
-      </Box>
-    </Router.Link>
-  );
+  onEnter = () => {
+    this.setState({
+      onHover: true
+    });
+  }
+
+  onLeave = () => {
+    this.setState({
+      onHover: false
+    });
+  }
+
+  render() {
+    const {
+      link
+    } = this.props;
+
+    const {
+      onHover
+    } = this.state
+
+    return (
+      <Router.Link to={link}>
+        <Box gridArea='permalink' align='start' pad='small'
+          onMouseEnter={this.onEnter}
+          onMouseLeave={this.onLeave}
+          style={{cursor: 'pointer'}}
+        >
+          <Link
+            size='medium' 
+            color={onHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
+          />
+        </Box>
+      </Router.Link>
+    );
+  }
 }
+
+export default Permalink

@@ -18,8 +18,51 @@ import Permalink from '../button/Permalink'
 // ICONS
 import { SubtractCircle } from 'grommet-icons';
 
+class Remove extends Component {
+  state = {
+    onHover: false
+  }
+
+  onEnter = () => {
+    this.setState({
+      onHover: true
+    });
+  }
+
+  onLeave = () => {
+    this.setState({
+      onHover: false
+    });
+  }
+
+  render() {
+    const {
+      onHover
+    } = this.state
+
+    return (
+      <Box gridArea='delete' align='end' pad='small'
+        onMouseEnter={this.onEnter}
+        onMouseLeave={this.onLeave}
+        onClick={this.onDelete}
+        style={{cursor: 'pointer'}}
+      >
+        <SubtractCircle
+          size='medium' 
+          color={onHover ? styles.colors.primaries.red : styles.colors.neutrals.gray2}
+        />
+      </Box>
+    )
+  }
+}
+
 class Toolbar extends Component {
   render() {
+    const {
+      onHover,
+      post
+    } = this.props
+
     return (
       <Grid
         fill
@@ -31,32 +74,17 @@ class Toolbar extends Component {
         columns={['xsmall', 'flex', 'xsmall']}
         rows={['flex']}
         gap='small'
+        style={{
+          position: 'relative',
+          top: onHover === true ? 0 : '-50px',
+          transition: 'all 0.2s ease-in-out'
+        }}
       >
-        <Permalink
-          { ...this.props } 
-          onPermalinkEnter={this.onPermalinkEnter} 
-          onPermalinkLeave={this.onPermalinkLeave}
-          link={`/permalink/${this.props.post.id}`}
-        />
+        <Permalink link={`/permalink/${post.id}`} />
         <Box gridArea='flex'>
 
         </Box>
-        <Box gridArea='delete' align='end' pad='small'
-          onMouseEnter={this.onMinusEnter}
-          onMouseLeave={this.onMinusLeave}
-          onClick={this.onDelete}
-          style={{cursor: 'pointer'}}
-        >
-          <SubtractCircle
-            size='medium' 
-            color={this.props.minusHover ? styles.colors.primaries.red : styles.colors.neutrals.gray2}
-            style={{
-              position: 'relative',
-              top: this.props.onHover === true ? 0 : '-50px',
-              transition: 'all 0.2s ease-in-out'
-            }}
-          />
-        </Box>
+        <Remove/>
       </Grid>
     )
   }
@@ -70,10 +98,6 @@ Toolbar.propTypes = {
 class Card extends Component {
   state = {
     onHover: false,
-    // starHover: false,
-    // noteHover: false,
-    permalinkHover: false,
-    minusHover: false
   }
 
   onEnter = () => {
