@@ -58,7 +58,6 @@ class Feed extends Component {
           </Box>
           <Box gridArea='main'>
             <WrappedSlate />
-            <FeedList />
           </Box>
           <Box gridArea='right'>
             <MyProfileButton id={this.props.user.username}/>

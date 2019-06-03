@@ -76,9 +76,9 @@ const App = () => {
         <Theme>
           <Switch>
             <Route path="/" exact component={ Index } />
-            <Route path="/feed" exact component={ isSignedIn( Feed ) } />
+            {/*<Route path="/feed" exact component={ isSignedIn( Feed ) } />*/}
             <Route path="/permalink/:id?" component={ Permalinked }/>
-            <Route path="/:username?" component={ ProfileScreen }/>
+            <Route path="/:username?/profile" component={ ProfileScreen }/>
           </Switch>
         </Theme>
       </ConnectedRouter>
