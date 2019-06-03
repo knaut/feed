@@ -23,6 +23,7 @@ import Permalinked from './screens/Permalinked.js';
 
 // COMPONENTS
 import Theme from './Theme.js';
+import UserFeed from './screens/UserFeed'
 
 // MODELS
 import Profile from './models/Profile';
@@ -77,8 +78,9 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={ Index } />
             {/*<Route path="/feed" exact component={ isSignedIn( Feed ) } />*/}
-            <Route path="/permalink/:id?" component={ Permalinked }/>
-            <Route path="/:username?/profile" component={ ProfileScreen }/>
+            <Route path="/permalink/:id?" exact component={ Permalinked }/>
+            <Route path="/:username?" exact component={ ProfileScreen }/>
+            <Route path="/:username?/feed" exact component={ UserFeed }/>
           </Switch>
         </Theme>
       </ConnectedRouter>
