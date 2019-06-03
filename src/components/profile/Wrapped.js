@@ -1,21 +1,15 @@
 // IMPORTS
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import Moment from 'moment';
-import * as blockstack from 'blockstack';
-
-// STYLES
-import styles from '../styles';
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
+import Card from './Card'
 
-import Avatar from './profile/Avatar.js';
-import FeedLink from './profile/FeedLink.js';
+// STYLES
+import styles from '../../styles'
+
+// COMPONENTS
 
 function mapStateToProps(state) {
   const id = state.user.username.split('.')[0];
@@ -26,7 +20,7 @@ function mapStateToProps(state) {
   }
 }
 
-class ProfileCard extends Component {
+class Wrapped extends Component {
   state = {
     isLoading: true,
     isOnBlockstack: null,
@@ -40,6 +34,8 @@ class ProfileCard extends Component {
   }
 
   async componentDidMount() {
+    console.log(this)
+    
     const { 
       id,
       username
@@ -105,44 +101,32 @@ class ProfileCard extends Component {
 
   }
 
-  render() {
+  render () {
+
     const {
       isLoading,
       isOnBlockstack,
       isMe,
-      isOnFeed,
+      username,
       image,
       name,
-      description
-    } = this.state;
-    
-    return (
-      <Box align="center" pad="medium">
-        <Box
-          pad='medium'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            maxWidth: '800px',
-            textAlign: 'center'
-          }}
-        >
-          <header>
-            <Avatar {...this.state} />
-            <Heading level={1} size={'small'}>
-              {this.state.name}
-            </Heading>
-            <Text level={1} size={'medium'} margin={{bottom: 'small'}} style={{display: 'block'}}>
-              {this.state.description}
-            </Text>
-          </header>
-          <FeedLink {...this.state} />
-        </Box>
-      </Box>
-    );
-  }
-}
+      description,
+      profiles
+    } = this.state
 
-export default connect(mapStateToProps)(ProfileCard);
+    return (
+      <Card
+        isLoading={isLoading}
+        isOnBlockstack={isOnBlockstack}
+        isMe={isMe}
+        isOnFeed={isOnFeed}
+        username={username}
+        image={image}
+        name={name}
+        description={description}
+      />
+    )
+  }
+} 
+
+export default connect(mapStateToProps, () => new Object() )(Wrapped)
