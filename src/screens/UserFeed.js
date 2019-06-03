@@ -8,6 +8,7 @@ import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import Layout from '../Layout'
 import PostListProvider from '../components/post/PostListProvider'
 import PostList from '../components/post/List'
+import WrappedSlate from '../components/slate/WrappedSlate'
 
 // STYLES
 import styles from '../styles'
@@ -23,6 +24,7 @@ class UserFeed extends Component {
     return (
       <Layout>
         <PostListProvider>
+          <WrappedSlate />
           <PostList/>
         </PostListProvider>
       </Layout>

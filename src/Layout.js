@@ -10,7 +10,7 @@ import {
   Grid
 } from 'grommet'
 import MyProfile from './components/button/MyProfile'
-import AddPost from './components/button/AddPost'
+import WrappedAddPost from './components/button/WrappedAddPost'
 import Circles from './components/button/Circles'
 import Search from './components/button/Search'
 import MyFeed from './components/button/MyFeed'
@@ -44,7 +44,7 @@ export default class GlobalLayout extends Component {
             gap='small'
           >
             <Box gridArea='left'>
-              <AddPost/>
+              <WrappedAddPost/>
             </Box>
             <Box gridArea='main'>
               { this.props.children }
