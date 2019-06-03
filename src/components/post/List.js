@@ -9,7 +9,7 @@ import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box } from 'grommet';
-import Card from '../post/Card'
+import Card from './Card'
 
 class PostList extends Component {
 

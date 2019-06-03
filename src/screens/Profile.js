@@ -16,6 +16,7 @@ import GlobalLoader from '../components/GlobalLoader';
 import MyProfileButton from '../components/MyProfileButton';
 import MyFeedButton from '../components/MyFeedButton';
 import ProfileCard from '../components/ProfileCard';
+import Layout from '../Layout'
 
 function mapStateToProps(state) {
   const {
@@ -30,43 +31,16 @@ function mapStateToProps(state) {
 class Profile extends Component {
   renderProfile() {
     return (
-      <div 
-        style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
-          alignItems: 'center',
-          textAlign:'center',
-          justifyContent: 'start'
-        }}
-      >
-        <Grid
-          fill
-          areas={[
-            { name: 'left', start: [0, 0], end: [0, 0] },
-            { name: 'main', start: [1, 0], end: [1, 0] },
-            { name: 'right', start: [2, 0], end: [2, 0] }
-          ]}
-          columns={['xsmall', 'flex', 'xsmall']}
-          rows={['flex']}
-          gap='small'
-        >
-          <Box gridArea='left'>              
-          </Box>
-          <Box gridArea='main'>
-            <ProfileCard username={this.props.match.params.username} />
-          </Box>
-          <Box gridArea='right'>
-            <MyFeedButton/>
-          </Box>
-        </Grid>
-      </div>
+      <Layout>
+        <ProfileCard username={this.props.match.params.username} />
+      </Layout>
     );
   }
   render() {
     return (
-      <Grommet theme={grommet}>
+      <React.Fragment>
         { this.props.isLoaded ? this.renderProfile() : <GlobalLoader isLoading={true}/>}
-      </Grommet>
+      </React.Fragment>
     );
   }
 }
