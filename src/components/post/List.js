@@ -18,17 +18,21 @@ class PostList extends Component {
     const { posts, author, user } = this.props
     const cards = []
 
-    for (let p = 0; posts.length > p; ++p) {
-      const post = posts[p]
+    if (posts) {
 
-      cards.push(
-        <Card
-          key={p}
-          post={post}
-          author={author}
-          user={user}
-        />
-      )
+      for (let p = 0; posts.length > p; ++p) {
+        const post = posts[p]
+
+        cards.push(
+          <Card
+            key={p}
+            post={post}
+            author={author}
+            user={user}
+          />
+        )
+      }
+
     }
 
     return (
