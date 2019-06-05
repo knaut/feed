@@ -26,7 +26,8 @@ class PostListProvider extends Component {
         const statusObj = {
           timestamp,
           text,
-          author
+          author,
+          id: ids[p]
         }
 
         posts.push(
