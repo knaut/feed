@@ -11,26 +11,18 @@ import { LoremIpsum } from 'lorem-ipsum';
 // MODELS
 import Status from '../../../src/models/Status';
 
-
-
 function mapStateToProps(state) {
-  const { Status, Profile, user, router } = state
-  const author = user
-  const regx = /\/(.*)\/feed\//
-  const pathUsername = regx.exec( router.location.pathname )
-  console.log(pathUsername)
-  if (pathUsername) {
+  return state
+}
 
-    // slice out the ids of our statuses
-    const postIds = Profile.entities[
-      user.username
-    ].Status
-
+class PostListProvider extends Component {
+  getPosts = (ids, entities, author) => {
     const posts = []
-    for (let p = 0; postIds.length > p; ++p) {
+
+    for (let p = 0; ids.length > p; ++p) {
       // filter out the statuses that match our ids
-      if ( Status.entities[ postIds[p] ] ) {
-        const { timestamp, text } = Status.entities[ postIds[p] ]
+      if ( entities[ ids[p] ] ) {
+        const { timestamp, text } = entities[ ids[p] ]
         const statusObj = {
           timestamp,
           text,
@@ -43,37 +35,77 @@ function mapStateToProps(state) {
       }
     }
 
-    return {
-      author,
-      posts,
-      username: user.username
-    }
-
-  } else {
-    return {
-      author: {},
-      posts: [],
-      username: state.user.username
-    }
+    return posts
   }
-}
 
-class PostListProvider extends Component {
   render() {
-    console.log(this)
+    const { Status, Profile, username, user } = this.props
 
-    const children = React.Children.map( this.props.children, child => {
-      return React.cloneElement(child, {
-        ...child.props,
-        ...this.props
-      })
-    });
+    const author = {}
 
-    return (
-      <React.Fragment>
-        { children }
-      </React.Fragment>
-    );
+    let postIds = []
+    let posts = []
+
+    // optimistically check if it is us
+    if ( username === user.username ) {
+
+      author.username = username
+      author.image = user.image
+      author.name = user.name
+
+      // slice out the ids of our statuses
+      postIds = Profile.entities[username].Status
+
+      posts = this.getPosts(postIds, Status.entities, user)
+
+      const children = React.Children.map( this.props.children, child => {
+        return React.cloneElement(child, {
+          ...child.props,
+          posts,
+          author,
+          username
+        })
+      });
+
+      return (
+        <React.Fragment>
+          { children }
+        </React.Fragment>
+      );
+
+    } else if ( Profile.entities[username] ) {
+
+      author.username = username
+      author.image = Profile.entities[username].image
+      author.name = Profile.entities[username].name
+
+      // slice out the ids of our statuses
+      postIds = Profile.entities[username].Status
+
+      posts = this.getPosts(postIds, Status.entities, user)
+
+      const children = React.Children.map( this.props.children, child => {
+        return React.cloneElement(child, {
+          ...child.props,
+          posts,
+          author,
+          username
+        })
+      });
+
+      return (
+        <React.Fragment>
+          { children }
+        </React.Fragment>
+      );
+    
+    } else {
+
+      return <h1>No posts for someone with the blockstack id of "{username}"</h1>
+    
+    }
+
+    
 
     
   }

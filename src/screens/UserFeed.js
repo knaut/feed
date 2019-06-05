@@ -31,7 +31,7 @@ class UserFeed extends Component {
       <Layout>
         <GlobalLoaderProvider>
           <WrappedSlate />
-          <PostListProvider>
+          <PostListProvider username={this.props.match.params.username}>
             <PostList/>
           </PostListProvider>
         </GlobalLoaderProvider>
