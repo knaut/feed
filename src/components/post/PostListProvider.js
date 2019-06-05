@@ -1,5 +1,8 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
+// COMPONENTS
 import {
   Card
 } from 'reactstrap';
@@ -8,57 +11,65 @@ import { LoremIpsum } from 'lorem-ipsum';
 // MODELS
 import Status from '../../../src/models/Status';
 
-// SPOOF USER
-import spoof from '../../../.storybook/user.json';
 
 function mapStateToProps(state) {
-  const {
-    Profile,
-    Status
-  } = state
+  console.log(state)
+
+  const { Status, Profile, user } = state
+
+  const author = user
+
+  // slice out the ids of our statuses
+  const postIds = Profile.entities[
+    user.username
+  ].Status
+
+  const posts = []
+
+  for (let p = 0; postIds.length > p; ++p) {
+    // filter out the statuses that match our ids
+    if ( Status.entities[ postIds[p] ] ) {
+      const { timestamp, text } = Status.entities[ postIds[p] ]
+
+      const statusObj = {
+        timestamp,
+        text,
+        author
+      }
+
+      console.log(statusObj)
+      posts.push(
+        statusObj
+      )
+    }
+  }
 
   return {
-    Profile,
-    Status
+    author,
+    posts,
+    username: user.username
   }
 }
 
 class PostListProvider extends Component {
   render() {
-    const { Profile, Status, username } = this.props
+    console.log(this)
 
-    if (Profile.entities[username]) {
-      const name = Profile.enti
+    const children = React.Children.map( this.props.children, child => {
+      return React.cloneElement(child, {
+        ...child.props,
+        ...this.props
+      })
+    });
 
-      const author = {
-        username,
-        name,
-        image
-      }
-
-      const props = {
-        posts,
-        author
-      };
-
-      const children = React.Children.map( this.props.children, child => {
-        return React.cloneElement(child, {
-          ...child.props,
-          ...props
-        })
-      });
-
-      return (
-        <React.Fragment>
-          { children }
-        </React.Fragment>
-      );
-    } else {
-
-    }
+    return (
+      <React.Fragment>
+        { children }
+      </React.Fragment>
+    );
 
     
   }
 }
 
-export default PostListProvider
+export default connect(mapStateToProps, () => new Object())(PostListProvider)

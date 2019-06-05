@@ -1,5 +1,6 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 // STYLES
 import styles from '../styles';
@@ -92,3 +93,4 @@ class GlobalLoader extends Component {
 }
 
 export default GlobalLoader;
+
