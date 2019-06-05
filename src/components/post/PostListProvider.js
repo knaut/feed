@@ -12,42 +12,49 @@ import { LoremIpsum } from 'lorem-ipsum';
 import Status from '../../../src/models/Status';
 
 
+
 function mapStateToProps(state) {
-  console.log(state)
-
-  const { Status, Profile, user } = state
-
+  const { Status, Profile, user, router } = state
   const author = user
+  const regx = /\/(.*)\/feed\//
+  const pathUsername = regx.exec( router.location.pathname )
+  console.log(pathUsername)
+  if (pathUsername) {
 
-  // slice out the ids of our statuses
-  const postIds = Profile.entities[
-    user.username
-  ].Status
+    // slice out the ids of our statuses
+    const postIds = Profile.entities[
+      user.username
+    ].Status
 
-  const posts = []
+    const posts = []
+    for (let p = 0; postIds.length > p; ++p) {
+      // filter out the statuses that match our ids
+      if ( Status.entities[ postIds[p] ] ) {
+        const { timestamp, text } = Status.entities[ postIds[p] ]
+        const statusObj = {
+          timestamp,
+          text,
+          author
+        }
 
-  for (let p = 0; postIds.length > p; ++p) {
-    // filter out the statuses that match our ids
-    if ( Status.entities[ postIds[p] ] ) {
-      const { timestamp, text } = Status.entities[ postIds[p] ]
-
-      const statusObj = {
-        timestamp,
-        text,
-        author
+        posts.push(
+          statusObj
+        )
       }
-
-      console.log(statusObj)
-      posts.push(
-        statusObj
-      )
     }
-  }
 
-  return {
-    author,
-    posts,
-    username: user.username
+    return {
+      author,
+      posts,
+      username: user.username
+    }
+
+  } else {
+    return {
+      author: {},
+      posts: [],
+      username: state.user.username
+    }
   }
 }
 

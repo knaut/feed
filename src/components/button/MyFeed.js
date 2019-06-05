@@ -14,21 +14,33 @@ import { Link } from 'react-router-dom'
 import styles from '../../styles';
 
 function mapStateToProps(state) {
-  const id = state.user.username.split('.')[0]
-  
+  const id = state.user.username
+  let active = false
+
+  if (state.router.location.pathname === `/${id}/feed`) {
+    active = true
+  }
+
   return {
-    id
+    id,
+    active
   }
 }
 
 class MyFeedButton extends Component {
   render() {
+    const { active, id } = this.props
+    console.log({active, id})
+
     return (
       <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'none'}}>
-        <Link to={`/feed`}>
-          <Button icon={<Home />} primary style={{
-            background: 'transparent',
-            border: `5px solid ${styles.colors.primaries.purple}`,
+        <Link to={`/${id}/feed`}>
+          <Button icon={
+            <Home
+              color={active ? styles.colors.darks.purple : styles.colors.neutrals.light}
+            />} primary active style={{
+            background: active ? styles.colors.neutrals.light : styles.colors.darks.purple,
+            border: active ? `5px solid ${styles.colors.neutrals.dark}` : `5px solid ${styles.colors.primaries.purple}`,
             borderRadius: '24px',
             display: 'flex'
           }}/>
