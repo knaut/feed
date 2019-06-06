@@ -10,7 +10,7 @@ import * as blockstack from 'blockstack';
 // ROUTER
 import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 // ROUTER AUTH
 import isSignedIn from './authentication/isSignedIn';
@@ -40,14 +40,12 @@ import {
 const App = () => {
 
   const store = generateStore();
-  const history = createHistory();
+  const history = createBrowserHistory();
 
   if (blockstack.isUserSignedIn()) {
     const user = blockstack.loadUserData();
     const { username } = user;    
     const profileData = getProfileData(user);
-
-    // console.log(profileData);
 
     store.dispatch({
       type: 'IS_SIGNED_IN',
@@ -55,7 +53,6 @@ const App = () => {
     });
 
     Profile.getCache().then(file => {
-      console.log(file)
       store.dispatch({
         type: 'GET_CACHE_SUCCESS',
         payload: file

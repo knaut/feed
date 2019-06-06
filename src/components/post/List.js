@@ -12,9 +12,7 @@ import { Grommet, Box } from 'grommet';
 import Card from './Card'
 
 class PostList extends Component {
-
   render() {
-    console.log(this)
     const { posts, author, user } = this.props
     const cards = []
 

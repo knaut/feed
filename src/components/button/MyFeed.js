@@ -30,7 +30,6 @@ function mapStateToProps(state) {
 class MyFeedButton extends Component {
   render() {
     const { active, id } = this.props
-    console.log({active, id})
 
     return (
       <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'none'}}>

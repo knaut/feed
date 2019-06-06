@@ -1,6 +1,5 @@
 // IMPORTS
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Moment from 'moment';
 
 // STYLES
@@ -49,11 +48,6 @@ class Toolbar extends Component {
       </Grid>
     )
   }
-}
-
-Toolbar.propTypes = {
-  post: PropTypes.object,
-  onHover: PropTypes.boolean
 }
 
 export default Toolbar

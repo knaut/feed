@@ -25,8 +25,6 @@ function mapStateToProps (state) {
 
 class UserFeed extends Component {
   render() {
-    console.log(this)
-
     return (
       <Layout>
         <GlobalLoaderProvider>

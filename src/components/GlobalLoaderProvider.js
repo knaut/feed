@@ -22,7 +22,6 @@ function mapStateToProps(state) {
 }
 
 const Provider = ({ isLoaded, children }) => {
-  console.log(this, isLoaded)
   return isLoaded ? children : <GlobalLoader/>
 }
 
