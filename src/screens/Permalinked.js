@@ -26,9 +26,7 @@ class Permalinked extends Component {
 
     return (
       <Layout
-        left={
-          <WrappedAddPost/>
-        }
+        left={null}
         right={
           <React.Fragment>
             <MyFeed/>
@@ -38,7 +36,7 @@ class Permalinked extends Component {
         }
       >
         <GlobalLoaderProvider>
-          <Box margin={{top: 'medium'}}>
+          <Box align='center' margin={{top: 'medium'}}>
             <PermalinkProvider id={id}>
               <Card />
             </PermalinkProvider>
