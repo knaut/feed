@@ -17,8 +17,6 @@ import MyFeed from './components/button/MyFeed'
 
 export default class GlobalLayout extends Component {
   render() {
-    console.log(this)
-
     const {
       left,
       right
