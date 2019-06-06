@@ -12,37 +12,34 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import GlobalLoader from '../components/GlobalLoader';
-import MyProfileButton from '../components/MyProfileButton';
-import MyFeedButton from '../components/MyFeedButton';
+import GlobalLoaderProvider from '../components/GlobalLoaderProvider';
 import ProfileCard from '../components/ProfileCard';
 import Layout from '../Layout'
 
-function mapStateToProps(state) {
-  const {
-    isLoaded
-  } = state.cache;
-
-  return {
-    isLoaded
-  }
-}
+import WrappedAddPost from '../components/button/WrappedAddPost'
+import MyProfile from '../components/button/MyProfile'
+import Search from '../components/button/Search'
+import MyFeed from '../components/button/MyFeed'
 
 class Profile extends Component {
-  renderProfile() {
+  render() {
     return (
-      <Layout>
-        <ProfileCard username={this.props.match.params.username} />
+      <Layout
+        left={null}
+        right={
+          <React.Fragment>
+            <MyFeed/>
+            <MyProfile/>
+            <Search/>
+          </React.Fragment>
+        }
+      >
+        <GlobalLoaderProvider>
+          <ProfileCard username={this.props.match.params.username} />
+        </GlobalLoaderProvider>
       </Layout>
     );
   }
-  render() {
-    return (
-      <React.Fragment>
-        { this.props.isLoaded ? this.renderProfile() : <GlobalLoader isLoading={true}/>}
-      </React.Fragment>
-    );
-  }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default Profile;

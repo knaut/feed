@@ -17,6 +17,13 @@ import MyFeed from './components/button/MyFeed'
 
 export default class GlobalLayout extends Component {
   render() {
+    console.log(this)
+
+    const {
+      left,
+      right
+    } = this.props
+
     return (
        <div 
         style={{
@@ -44,15 +51,13 @@ export default class GlobalLayout extends Component {
             gap='small'
           >
             <Box gridArea='left'>
-              <WrappedAddPost/>
+              { left }
             </Box>
             <Box gridArea='main'>
               { this.props.children }
             </Box>
             <Box gridArea='right'>
-              <MyFeed/>
-              <MyProfile/>
-              <Search/>
+              { right }
             </Box>
           </Grid>
         </Box>

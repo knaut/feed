@@ -12,6 +12,11 @@ import WrappedSlate from '../components/slate/WrappedSlate'
 
 import GlobalLoaderProvider from '../components/GlobalLoaderProvider'
 
+import WrappedAddPost from '../components/button/WrappedAddPost'
+import MyProfile from '../components/button/MyProfile'
+import Search from '../components/button/Search'
+import MyFeed from '../components/button/MyFeed'
+
 // STYLES
 import styles from '../styles'
 
@@ -26,7 +31,18 @@ function mapStateToProps (state) {
 class UserFeed extends Component {
   render() {
     return (
-      <Layout>
+      <Layout
+        left={
+          <WrappedAddPost/>
+        }
+        right={
+          <React.Fragment>
+            <MyFeed/>
+            <MyProfile/>
+            <Search/>
+          </React.Fragment>
+        }
+      >
         <GlobalLoaderProvider>
           <WrappedSlate />
           <PostListProvider username={this.props.match.params.username}>

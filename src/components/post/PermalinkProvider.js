@@ -21,8 +21,6 @@ class PermalinkProvider extends Component {
       id
     } = this.props
 
-    console.log(this)
-
     const author = {
       image: false,
       name: user.name

@@ -26,6 +26,7 @@ function mapDispatchToProps(dispatch) {
 
 class Wrapped extends Component {
   render() {
+    console.log(this)
     return (
       <AddPost {...this.props}/>
     );
