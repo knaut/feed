@@ -147,6 +147,7 @@ class PostAvatar extends Component {
 
     return (
       <Grid
+        fill
         areas={[
           { name: 'left', start: [0, 0], end: [0, 0] },
           { name: 'right', start: [1, 0], end: [1, 0] }

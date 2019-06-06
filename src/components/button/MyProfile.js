@@ -14,19 +14,32 @@ import { Link } from 'react-router-dom'
 import styles from '../../styles';
 
 function mapStateToProps(state) {
+  const id = state.user.username
+  let active = false
+
+  if (state.router.location.pathname === `/${id}`) {
+    active = true
+  }
+
   return {
-    username: state.user.username
+    id,
+    active
   }
 }
 
 class MyProfileButton extends Component {
   render() {
+    const { active, id } = this.props
+
     return (
       <Box align="center" pad={{top: 'medium', left: 'medium', right: 'medium', bottom: 'none'}}>
-        <Link to={`/${this.props.username}`}>
-          <Button icon={<User />} primary style={{
-            background: 'transparent',
-            border: `5px solid ${styles.colors.primaries.purple}`,
+        <Link to={`/${id}`}>
+          <Button icon={<User 
+            color={active ? styles.colors.darks.purple : styles.colors.neutrals.light}
+          />} primary 
+          style={{
+            background: active ? styles.colors.neutrals.light : styles.colors.darks.purple,
+            border: active ? `5px solid ${styles.colors.neutrals.dark}` : `5px solid ${styles.colors.primaries.purple}`,
             borderRadius: '24px',
             display: 'flex'
           }}/>

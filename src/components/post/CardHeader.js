@@ -22,6 +22,7 @@ export default (props) => {
 
   return (
     <Grid
+      fill
       areas={[
         { name: 'user', start: [0, 0], end: [0, 0] },
         { name: 'date', start: [1, 0], end: [1, 0] }
