@@ -16,20 +16,21 @@ import { createBrowserHistory } from 'history';
 import isSignedIn from './authentication/isSignedIn';
 
 // SCREENS
-import Index from './screens/Index.js';
-import Feed from './screens/Feed.js';
-import ProfileScreen from './screens/Profile.js';
-import Permalinked from './screens/Permalinked.js';
+import Index from './screens/Index';
+import Feed from './screens/Feed';
+import ProfileScreen from './screens/Profile';
+import Permalinked from './screens/Permalinked';
+import Search from './screens/Search';
 
 // COMPONENTS
-import Theme from './Theme.js';
+import Theme from './Theme';
 import UserFeed from './screens/UserFeed'
 
 // MODELS
 import Profile from './models/Profile';
 
 // UTILS
-import generateStore from './utils/generateStore.js';
+import generateStore from './utils/generateStore';
 // BLOCKSTACK AUTH UTILS
 import {
   loginToBlockstack,
@@ -75,6 +76,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={ Index } />
             {/*<Route path="/feed" exact component={ isSignedIn( Feed ) } />*/}
+            <Route path="/search" exact component={ Search }/>
             <Route path="/permalink/:id?" exact component={ Permalinked }/>
             <Route path="/:username?" exact component={ ProfileScreen }/>
             <Route path="/:username?/feed" exact component={ isSignedIn( UserFeed ) }/>
