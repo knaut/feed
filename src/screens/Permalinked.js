@@ -23,9 +23,11 @@ class Permalinked extends Component {
     return (
       <Layout>
         <GlobalLoaderProvider>
-          <PermalinkProvider id={id}>
-            <Card />
-          </PermalinkProvider>
+          <Box margin={{top: 'medium'}}>
+            <PermalinkProvider id={id}>
+              <Card />
+            </PermalinkProvider>
+          </Box>
         </GlobalLoaderProvider>
       </Layout>
     );

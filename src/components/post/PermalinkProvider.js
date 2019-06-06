@@ -24,12 +24,17 @@ class PermalinkProvider extends Component {
     console.log(this)
 
     const author = {
-      username,
       image: false,
       name: user.name
     }
 
     const post = Status.entities[ id ]
+    author.username = post.Profile
+
+    // optimistically checking the logged in user's cached image
+    if (author.username = user.username) {
+      author.image = user.image
+    }
 
     const children = React.Children.map( this.props.children, child => {
       return React.cloneElement(child, {
