@@ -6,10 +6,6 @@ import { connect } from 'react-redux'
 import {
   Card
 } from 'reactstrap';
-import { LoremIpsum } from 'lorem-ipsum';
-
-// MODELS
-import Status from '../../../src/models/Status';
 
 function mapStateToProps(state) {
   return state
