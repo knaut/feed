@@ -52,7 +52,15 @@ class SearchScreen extends Component {
         }
       >
         <GlobalLoaderProvider>
+        <Box
+          width='100%'
+          alignContent='center'
+          direction="row-responsive"
+          justify="center"
+          align="center"
+        >
           <Box
+            width='large'
             round='large'
             pad={{left: 'medium', right: 'large'}}
             background='light-1'
@@ -76,6 +84,7 @@ class SearchScreen extends Component {
               <TextInput placeholder='Enter a Blockstack ID...' width='100%'/>
             </FormField>
           </Box>
+        </Box>
         </GlobalLoaderProvider>
       </Layout>
     )
