@@ -8,7 +8,7 @@ import StoryRouter from 'storybook-react-router';
 import styles from '../../src/styles';
 
 // COMPONENTS
-import PostList from '../../src/components/list/PostList';
+import PostList from '../../src/components/post/List';
 import PostListProvider from './providers/PostListProvider';
 
 

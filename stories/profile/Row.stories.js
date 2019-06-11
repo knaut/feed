@@ -17,13 +17,42 @@ import ProfileRow from '../../src/components/profile/Row'
 
 storiesOf('Profile Row', module)
   .addDecorator(StoryRouter())
-  .add('loading', () => (
+  .addDecorator(getStory => (
     <Theme>
       <Layout>
-        <ProfileRow
-
-        />
+        { getStory() }
       </Layout>
     </Theme>
-
+  ))
+  .add('loading', () => (
+    <ProfileRow
+      isLoading={true}
+      isOnBlockstack={null}
+      isMe={false}
+      name={spoof.user.name}
+      username={spoof.user.username}
+      image={spoof.user.image}
+    />
+  ))
+  .add('no image available', () => (
+    <ProfileRow
+      isLoading={false}
+      isOnBlockstack={true}
+      isMe={false}
+      name={spoof.user.name}
+      username={spoof.user.username}
+      image={false}
+      description={spoof.user.description}
+    />
+  ))
+  .add('loaded, is on Blockstack', () => (
+    <ProfileRow
+      isLoading={false}
+      isOnBlockstack={true}
+      isMe={false}
+      name={spoof.user.name}
+      username={spoof.user.username}
+      image={spoof.user.image}
+      description={spoof.user.description}
+    />
   ))

@@ -99,7 +99,7 @@ const LabelLoaded = (props) => {
   return (
     <Text level={1} size={'medium'} style={{
       letterSpacing: 0,
-      color: styles.colors.neutrals.gray1
+      color: styles.colors.neutrals.dark
     }}>
       {name}
     </Text>
@@ -147,15 +147,14 @@ class PostAvatar extends Component {
 
     return (
       <Grid
-        fill
         areas={[
           { name: 'left', start: [0, 0], end: [0, 0] },
           { name: 'right', start: [1, 0], end: [1, 0] }
         ]}
-        columns={['auto, flex']}
+        columns={['auto', 'auto']}
         rows={['flex']}
         gap='small'
-        style={{display: 'flex'}}
+        style={{display: 'auto'}}
       >
         <Box
           gridArea='left'
