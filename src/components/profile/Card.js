@@ -5,7 +5,16 @@ import React, { Component } from 'react';
 import styles from '../../../src/styles';
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
+import {
+  Grommet,
+  Box,
+  Button,
+  Grid,
+  TextArea,
+  Heading,
+  Text,
+  Image
+} from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
