@@ -52,39 +52,39 @@ class SearchScreen extends Component {
         }
       >
         <GlobalLoaderProvider>
-        <Box
-          width='100%'
-          alignContent='center'
-          direction="row-responsive"
-          justify="center"
-          align="center"
-        >
           <Box
-            width='large'
-            round='large'
-            pad={{left: 'medium', right: 'large'}}
-            background='light-1'
-            align='center'
-            margin={{top: 'medium'}}
-            direction='row'
+            width='100%'
+            alignContent='center'
+            direction="row-responsive"
+            justify="center"
+            align="center"
           >
             <Box
-              margin={{right: 'small'}}
+              width='large'
+              round='large'
+              pad={{left: 'medium', right: 'large'}}
+              background='light-1'
+              align='center'
+              margin={{top: 'medium'}}
+              direction='row'
             >
-              <SearchIcon 
-                color='dark-3'
-              />
+              <Box
+                margin={{right: 'small'}}
+              >
+                <SearchIcon 
+                  color='dark-3'
+                />
+              </Box>
+              <FormField 
+              color='dark-1'
+              css={css`
+                width: 100%;
+                margin
+              `}>
+                <TextInput placeholder='Enter a Blockstack ID...' width='100%'/>
+              </FormField>
             </Box>
-            <FormField 
-            color='dark-1'
-            css={css`
-              width: 100%;
-              margin
-            `}>
-              <TextInput placeholder='Enter a Blockstack ID...' width='100%'/>
-            </FormField>
           </Box>
-        </Box>
         </GlobalLoaderProvider>
       </Layout>
     )

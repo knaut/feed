@@ -56,3 +56,21 @@ storiesOf('Profile Row', module)
       description={spoof.user.description}
     />
   ))
+  .add('loaded, is on Feed', () => (
+    <ProfileRow
+      isLoading={false}
+      isOnFeed={true}
+      isOnBlockstack={true}
+      isMe={false}
+      name={spoof.user.name}
+      username={spoof.user.username}
+      image={spoof.user.image}
+      description={spoof.user.description}
+    />
+  ))
+
+
+
+
+
+
