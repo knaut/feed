@@ -24,6 +24,8 @@ import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
 
+import SearchInput from '../components/search'
+
 // STYLES
 import styles from '../styles'
 import css from '@emotion/css'
@@ -52,39 +54,7 @@ class SearchScreen extends Component {
         }
       >
         <GlobalLoaderProvider>
-          <Box
-            width='100%'
-            alignContent='center'
-            direction="row-responsive"
-            justify="center"
-            align="center"
-          >
-            <Box
-              width='large'
-              round='large'
-              pad={{left: 'medium', right: 'large'}}
-              background='light-1'
-              align='center'
-              margin={{top: 'medium'}}
-              direction='row'
-            >
-              <Box
-                margin={{right: 'small'}}
-              >
-                <SearchIcon 
-                  color='dark-3'
-                />
-              </Box>
-              <FormField 
-              color='dark-1'
-              css={css`
-                width: 100%;
-                margin
-              `}>
-                <TextInput placeholder='Enter a Blockstack ID...' width='100%'/>
-              </FormField>
-            </Box>
-          </Box>
+          <SearchInput/>
         </GlobalLoaderProvider>
       </Layout>
     )
