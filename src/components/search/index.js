@@ -1,5 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 // COMPONENTS
 import {
@@ -13,6 +15,17 @@ import { Search as SearchIcon } from 'grommet-icons';
 // STYLES
 import css from '@emotion/css'
 
+// ACTIONS
+import * as SearchActions from '../../actions/search'
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      search: SearchActions.search
+    }, dispatch)
+  }
+}
+
 class Search extends Component {
   state = {
     input: ''
@@ -21,6 +34,13 @@ class Search extends Component {
   onChange = (e) => {
     this.setState({
       input: e.target.value
+    })
+  }
+
+  onSubmit = () => {
+    // console.log('submit', this.state.input)
+    this.props.actions.search({
+      username: this.state.input
     })
   }
 
@@ -66,6 +86,7 @@ class Search extends Component {
           <Button
             primary
             icon={<SearchIcon/>}
+            onClick={this.onSubmit}
             css={css`
               padding-left: 24px;
               padding-right: 24px;
@@ -82,4 +103,4 @@ class Search extends Component {
   }
 }
 
-export default Search
+export default connect( () => new Object(), mapDispatchToProps )(Search)
