@@ -16,8 +16,10 @@ import GlobalLoader from './GlobalLoader'
 // from rendering until the cache is loaded.
 // once the cache loads, render the children as normal
 function mapStateToProps(state) {
+  const isLoaded = state.cache.isLoaded
+
   return {
-    isLoaded: state.cache.isLoaded
+    isLoaded
   }
 }
 

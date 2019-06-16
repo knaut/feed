@@ -10,7 +10,7 @@ class Profile extends Model {
     feed profiles are used to build a searchable directory of feed users.
     we piggyback off of their blockstack username.
   */
-  constructor(props) {
+  constructor(props, fetched) {
     super();
 
     const { username } = props;
@@ -24,6 +24,7 @@ class Profile extends Model {
     }
   }
 
+  /*
   async save() {
     const { id } = this;
 
@@ -51,6 +52,26 @@ class Profile extends Model {
       return this
     }
 
+  }
+  */
+
+  async load() {
+    const { id } = this;
+
+    try {
+      const cache = await Model.getCache();
+      const entity = cache.Profile.entities[ id ]
+
+      if (entity) {
+        return entity;
+      } else {
+        return false
+      }
+
+    } catch (error) {
+      console.error(error, this)
+      return false
+    }
   }
 
   // async delete() {

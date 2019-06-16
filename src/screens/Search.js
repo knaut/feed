@@ -17,7 +17,7 @@ import PostList from '../components/post/List'
 import PostListProvider from '../components/post/PostListProvider'
 import WrappedSlate from '../components/slate/WrappedSlate'
 
-import GlobalLoaderProvider from '../components/GlobalLoaderProvider'
+import GlobalLoader from '../components/GlobalLoader'
 
 import WrappedAddPost from '../components/button/WrappedAddPost'
 import MyProfile from '../components/button/MyProfile'
@@ -30,13 +30,19 @@ import SearchInput from '../components/search'
 import styles from '../styles'
 import css from '@emotion/css'
 
-function mapStateToProps (state) {
-  const username = state.user.username
-
-  return {
-    username
-  }
+const LoaderProvider = ({ isLoading, children }) => {
+  console.log(isLoading, children)
+  return isLoading ? children : <GlobalLoader />
 }
+
+const WrappedLoader = connect(
+  (state) => {
+    return {
+      isLoading: state.loader.isLoading
+    }
+  },
+  () => new Object()
+)(LoaderProvider)
 
 class SearchScreen extends Component {
   render() {
@@ -53,12 +59,13 @@ class SearchScreen extends Component {
           </React.Fragment>
         }
       >
-        <GlobalLoaderProvider>
-          <SearchInput/>
-        </GlobalLoaderProvider>
+        <SearchInput/>
+        <WrappedLoader>
+          <span>Test</span>
+        </WrappedLoader>
       </Layout>
     )
   }
 }
 
-export default connect(mapStateToProps, () => new Object() )(SearchScreen)
+export default SearchScreen

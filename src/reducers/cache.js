@@ -15,6 +15,16 @@ export default function cache(
     default: {
       return newState;
     }
+    case 'GET_CACHE_FAIL': {
+      newState.isLoaded = false;
+
+      return newState;
+    }
+    case 'GET_CACHE_PENDING': {
+      newState.isLoaded = false;
+
+      return newState;
+    }
     case 'GET_CACHE_SUCCESS': {
       newState.isLoaded = true;
 
