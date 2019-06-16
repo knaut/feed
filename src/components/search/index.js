@@ -55,7 +55,7 @@ class Search extends Component {
         align="center"
         css={css`
           position: relative;
-          top: 3px;
+          top: 2px;
         `}
       >
         <Box
@@ -66,7 +66,6 @@ class Search extends Component {
             background='light-1' 
             width='large'
             css={css`
-              border: 2px solid white;
               border-top-left-radius: 25px;
               border-bottom-left-radius: 25px;
             `}
@@ -76,7 +75,8 @@ class Search extends Component {
               value={this.state.input}
               onChange={this.onChange}
               css={css`
-                border: 0;
+                border: 5px solid white;
+                box-sizing: border-box;
                 padding-left: 24px;
                 border-top-left-radius: 25px;
                 border-bottom-left-radius: 25px;
@@ -88,8 +88,12 @@ class Search extends Component {
             icon={<SearchIcon/>}
             onClick={this.onSubmit}
             css={css`
-              padding-left: 24px;
-              padding-right: 24px;
+              background: transparent;
+              border: 5px solid #7D4CDB;
+              padding-left: 16px;
+              padding-right: 18px;
+              padding-top: 10px;
+              padding-bottom: 9px;
               border-top-right-radius: 25px;
               border-bottom-right-radius: 25px;
               border-bottom-left-radius: 0;
