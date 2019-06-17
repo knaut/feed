@@ -12,18 +12,41 @@ import {
   Text,
   Image
 } from 'grommet';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Login, LinkNext, Home } from 'grommet-icons';
-import PostAvatar from '../post/PostAvatar'
 
+import {
+  LinkNext,
+  Grow,
+  Alert
+} from 'grommet-icons';
+
+import PostAvatar from '../post/PostAvatar'
 import FeedLink from './FeedLink';
 
-const Feed = (props) => (
-  <Box justify='center' pad={{left: 'medium'}}>
-    <Link to={ `/${props.username}/feed` }>
-      <Button icon={<Home />} label={'visit feed'} primary/>
-    </Link>
-  </Box>
-);
+const FeedButton = (props) => {
+  const {
+    username,
+    name,
+    isOnFeed
+  } = props
+
+  return isOnFeed ? (
+    <Box justify='center'>
+      <Link to={ `/${username}/feed` }>
+        <Button
+          icon={<LinkNext />}
+          label={`visit ${name}'s feed`}
+        />
+      </Link>
+    </Box>
+  ) : (
+    <Box round pad='small' justify='center' direction="row" align='center' border={{ color: 'light-6', size: 'small', style: 'solid', side: 'all' }}>
+      <Box margin='small'>
+        <Alert color='dark-3' size='medium'/>
+      </Box>
+      <Text color='dark-3'>{`${name} is on Blockstack, but has not signed into Feed.`}</Text>
+    </Box>
+  )
+};
 
 const Row = (props) => {
   const {
@@ -58,13 +81,15 @@ const Row = (props) => {
             />
           </Box>
           <Box flex={'shrink'} align='start' justify='center'>
-            <Text color='dark-3' margin={{left: 'small'}}>
-              { description }
-            </Text>
+            <Box margin={{left: 'small'}}>
+              <Text color='dark-3'>
+                { description }
+              </Text>
+            </Box>
           </Box>
         </Box>
-        <Box>
-          { isOnFeed === true ? <Feed { ...props }/> : null }
+        <Box align="center" pad={{top: 'small'}}>
+          <FeedButton { ...props }/>
         </Box>
       </Box>
     </Box>

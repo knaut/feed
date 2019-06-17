@@ -34,8 +34,6 @@ class ProfileList extends Component {
     for (let key in matches) {
       const match = matches[key]
 
-      console.log(match)
-
       const {
         name,
         username,
@@ -67,8 +65,6 @@ class ProfileList extends Component {
         />
       )
     }
-
-    console.log(list)
 
     return (
       <React.Fragment>
