@@ -7,12 +7,23 @@ import * as blockstack from 'blockstack';
 // COMPONENTS
 import Card from './Card'
 
-function mapStateToProps(state) {
-  const id = state.user.username.split('.')[0];
+// ACTIONS
+import * as UserActions from '../../actions/user'
 
+// MODELS
+import Profile from '../../models/Profile'
+
+function mapStateToProps(state) {
   return {
-    id,
-    profiles: state.Profile.ids
+    me: state.user.username
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      loadUser: UserActions.loadUser
+    })
   }
 }
 
@@ -20,80 +31,60 @@ class ProfileLoader extends Component {
   state = {
     isLoading: true,
     isOnBlockstack: null,
-    isMe: this.props.id === this.props.username,
+    isOnFeed: null,
+    isMe: this.props.me === this.props.username,
 
     username: this.props.username,  // prop provided from the router
     image: null,
     name: null,
     description: null,
-
-    profiles: this.props.profiles
   }
 
   async componentDidMount() {
-    const { 
-      id,
+    const {
       username
-    } = this.props;
-    
-    const { profiles } = this.state;
-    const isOnFeed = profiles.indexOf(id) > -1;
+    } = this.props
 
     try {
+      // load blockstack profile
+      const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
 
-      // load a blockstack profile based on our route
-      if (id === username) {
-        // this profile matched our own login; it's our profile
-        const profile = await blockstack.lookupProfile(`${id}.id.blockstack`);
-        const { name, image, description } = profile;
+      const name = blockstackUser.name
+      const description = blockstackUser.description
+      const image = blockstackUser.image[0].contentUrl
 
-        this.setState({
-          isLoading: false,
-          isOnBlockstack: true,
-          isMe: true,
-          isOnFeed,
-          image: image[0].contentUrl,
-          name,
-          description,
-        });
+      // load our cached user profile
+      let isOnFeed = false
 
-      } else {
+      const profile = new Profile({
+        username
+      });
 
-        // this is someone else's profile
-        const profile = await blockstack.lookupProfile(`${username}.id.blockstack`);
-        const person = new blockstack.Person(profile);
-        const json = person.toJSON();
+      const entity = await profile.load()
 
-        const image = person.avatarUrl();
-        const name = json.name ? json.name : false;
-        const description = json.description ? json.description : false;
+      if (entity) {
+        isOnFeed = true
+      }
 
-        this.setState({
-          isLoading: false,
-          isOnBlockstack: true,
-          isMe: false,
-          isOnFeed,
-          image,
-          name,
-          description,
-        });
-
-      }  
+      this.setState({
+        isLoading: false,
+        isOnBlockstack: true,
+        isOnFeed,
+        image,
+        name,
+        description
+      })
 
     } catch (error) {
-      console.error(error);
+      console.error(error)
 
       this.setState({
         isLoading: false,
         isOnBlockstack: false,
-        isMe: false,
-        isOnFeed,
-        image: false,
-        name: false,
-        description: false,
-      });
-
+        isOnFeed: false,
+      })
     }
+    
   }
 
   render() {
@@ -105,4 +96,4 @@ class ProfileLoader extends Component {
   }
 }
 
-export default connect(mapStateToProps, () => new Object())(ProfileLoader)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileLoader)
