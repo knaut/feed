@@ -34,7 +34,9 @@ export default function search (
       let newState = { ...state }
 
       newState.isFetching = false
-      // newState.matches = action.payload
+      newState.matches = {
+        ...action.payload
+      }
 
       return newState
     }

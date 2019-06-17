@@ -60,18 +60,20 @@ export function searchSubmit( payload ) {
         const description = blockstackUser.description
         const image = blockstackUser.image[0].contentUrl
 
-        const fullProfile = {
-          ...entity,
-          blockstack: {
-            name,
-            username,
-            description,
-            image
+        const result = {
+          [username]: {
+            profile: entity,
+            blockstack: {
+              name,
+              username,
+              description,
+              image
+            }
           }
         }
 
         dispatch(
-          searchSubmitSuccess(fullProfile)
+          searchSubmitSuccess(result)
         )
       } else {
         dispatch(
