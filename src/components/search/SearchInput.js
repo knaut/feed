@@ -64,10 +64,11 @@ class SearchInput extends Component {
         <Box
           align='center'
           direction='row'
+          width='large'
         >
           <Box 
+            fill
             background='light-1' 
-            width='large'
             css={css`
               border-top-left-radius: 25px;
               border-bottom-left-radius: 25px;

@@ -42,6 +42,7 @@ const Row = (props) => {
       <Box
         pad='medium'
         round
+        width='large'
         style={{
           background: 'white',
         }}

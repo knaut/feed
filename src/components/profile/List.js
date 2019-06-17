@@ -16,24 +16,23 @@ import GlobalLoader from '../GlobalLoader'
 import ProfileRow from './Row'
 
 function mapStateToProps(state) {
-  return state.search
+  return {
+    ...state.search,
+    loggedInUser: state.user.username
+  }
 }
 
 class ProfileList extends Component {
   render() {
     const {
       isFetching,
-      matches
+      matches,
+      loggedInUser
     } = this.props
 
     const list = []
     for (let key in matches) {
       const match = matches[key]
-
-      const {
-        id, 
-        Status
-      } = match.profile
 
       const {
         name,
@@ -42,13 +41,23 @@ class ProfileList extends Component {
         description
       } = match.blockstack
 
+      let isOnFeed = false
+      if (match.profile) {
+        isOnFeed = true
+      }
+
+      let isMe = false
+      if (loggedInUser === username) {
+        isMe = true
+      }
+
       list.push(
         <ProfileRow
           key={key}
           isLoading={false}
-          isOnFeed={true}
+          isOnFeed={isOnFeed}
           isOnBlockstack={true}
-          isMe={false}
+          isMe={isMe}
           name={name}
           username={username}
           description={description}
