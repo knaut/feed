@@ -21,12 +21,12 @@ import * as SearchActions from '../../actions/search'
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      search: SearchActions.search
+      submit: SearchActions.searchSubmit
     }, dispatch)
   }
 }
 
-class Search extends Component {
+class SearchInput extends Component {
   state = {
     input: ''
   }
@@ -38,13 +38,16 @@ class Search extends Component {
   }
 
   onSubmit = () => {
-    // console.log('submit', this.state.input)
-    this.props.actions.search({
+    this.props.actions.submit({
       username: this.state.input
     })
   }
 
   render() {
+    const {
+      input
+    } = this.state
+
     return (
       <Box
         margin={{top: 'medium'}}
@@ -72,7 +75,7 @@ class Search extends Component {
           >
             <TextInput 
               placeholder='Enter a Blockstack ID...'
-              value={this.state.input}
+              value={input}
               onChange={this.onChange}
               css={css`
                 border: 5px solid white;
@@ -107,4 +110,4 @@ class Search extends Component {
   }
 }
 
-export default connect( () => new Object(), mapDispatchToProps )(Search)
+export default connect( () => new Object(), mapDispatchToProps )(SearchInput)

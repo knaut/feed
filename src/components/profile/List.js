@@ -1,5 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // COMPONENTS
 import {
@@ -28,13 +30,6 @@ const Row = () => (
 
 class ProfileList extends Component {
   render() {
-
-    const { list } = this.props
-
-    for (let i = 0; list.length > i; ++i) {
-      console.log(list[i])
-
-    }
 
     return (
       <span>

@@ -12,6 +12,7 @@ import user from '../reducers/user.js';
 import editor from '../reducers/editor.js';
 import cache from '../reducers/cache.js';
 import loader from '../reducers/loader.js';
+import search from '../reducers/search.js';
 
 // import all reducers here
 // the root reducer will be fed to any generated store
@@ -23,5 +24,6 @@ export default (history) => combineReducers({
   user,
   editor,
   cache,
-  loader
+  loader,
+  search
 })

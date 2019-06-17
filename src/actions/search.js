@@ -7,7 +7,6 @@ import {
 } from '../authentication/loginToBlockstack'
 
 // ACTIONS
-export const SEARCH_SUBMIT = 'SEARCH_SUBMIT'
 export const SEARCH_SUBMIT_PENDING = 'SEARCH_SUBMIT_PENDING'
 export const SEARCH_SUBMIT_SUCCESS = 'SEARCH_SUBMIT_SUCCESS'
 export const SEARCH_SUBMIT_FAIL = 'SEARCH_SUBMIT_FAIL'
@@ -16,13 +15,6 @@ export const SEARCH_SUBMIT_FAIL = 'SEARCH_SUBMIT_FAIL'
 import Profile from '../models/Profile'
 
 // ACTION CREATORS
-export function searchSubmit(payload) {
-  return {
-    type: SEARCH_SUBMIT,
-    payload
-  }
-}
-
 export function searchSubmitSuccess(payload) {
   return {
     type: SEARCH_SUBMIT_SUCCESS,
@@ -45,7 +37,7 @@ export function searchSubmitFail(payload) {
 }
 
 // THUNKS
-export function search( payload ) {
+export function searchSubmit( payload ) {
   return async function( dispatch ) {
 
     dispatch(

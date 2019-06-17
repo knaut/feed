@@ -38,15 +38,12 @@ const Row = (props) => {
   } = props
   
   return (
-    <Box align="center" pad="medium">
+    <Box align="center">
       <Box
         pad='medium'
-        
         round
         style={{
           background: 'white',
-          width: '100%',
-          maxWidth: '800px'
         }}
         direction='row'
       >

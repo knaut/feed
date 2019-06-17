@@ -17,7 +17,6 @@ import isSignedIn from './authentication/isSignedIn';
 
 // SCREENS
 import Index from './screens/Index';
-import Feed from './screens/Feed';
 import ProfileScreen from './screens/Profile';
 import Permalinked from './screens/Permalinked';
 import Search from './screens/Search';
@@ -75,7 +74,6 @@ const App = () => {
         <Theme>
           <Switch>
             <Route path="/" exact component={ Index } />
-            {/*<Route path="/feed" exact component={ isSignedIn( Feed ) } />*/}
             <Route path="/search" exact component={ Search }/>
             <Route path="/permalink/:id?" exact component={ Permalinked }/>
             <Route path="/:username?" exact component={ ProfileScreen }/>
