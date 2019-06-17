@@ -10,23 +10,10 @@ import {
   FormField,
   TextInput
 } from 'grommet';
-
+// GLOBALS
+import GlobalLoader from '../GlobalLoader'
+// SEARCH
 import ProfileRow from './Row'
-
-import spoof from '../../../.storybook/user.json';
-
-// const Row = () => (
-//   <ProfileRow
-//     isLoading={false}
-//     isOnFeed={true}
-//     isOnBlockstack={true}
-//     isMe={false}
-//     name={spoof.user.name}
-//     username={spoof.user.username}
-//     image={spoof.user.image}
-//     description={spoof.user.description}
-//   />
-// )
 
 function mapStateToProps(state) {
   return state.search
@@ -43,8 +30,6 @@ class ProfileList extends Component {
     for (let key in matches) {
       const match = matches[key]
 
-      console.log(match)
-
       const {
         id, 
         Status
@@ -59,6 +44,7 @@ class ProfileList extends Component {
 
       list.push(
         <ProfileRow
+          key={key}
           isLoading={false}
           isOnFeed={true}
           isOnBlockstack={true}
@@ -75,7 +61,7 @@ class ProfileList extends Component {
 
     return (
       <React.Fragment>
-        { list }
+        { isFetching === true ? <GlobalLoader isLoading={true}/> : list }
       </React.Fragment>
     )
   }

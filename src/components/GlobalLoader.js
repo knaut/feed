@@ -53,40 +53,33 @@ class GlobalLoader extends Component {
     const { index } = this.state;
 
     return (
-      <Box 
+      <Box
+        animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
+        justify="center"
+        align="center"
         style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
+          position: 'relative'
         }}
       >
-        <Box
-          animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
-          justify="center"
-          align="center"
+        <Language color={styles.colors.primaries.purple}
+          size={'xlarge'}
           style={{
-            position: 'relative'
+            position: 'absolute',
+            top: '10px'
           }}
-        >
-          <Language color={styles.colors.primaries.purple}
-            size={'xlarge'}
-            style={{
-              position: 'absolute',
-              top: '10px'
-            }}
-          />
-          <HashLoader
-            color={styles.colors.pastels.purple}
-            loading={true}
-            size={115}
-            style={{
-              position: 'absolute',
-              top: 0
-            }}
-          />
-          <Text margin={'small'} color={styles.colors.neutrals.gray1}
-            size={'xlarge'}
-          >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
-        </Box>
+        />
+        <HashLoader
+          color={styles.colors.pastels.purple}
+          loading={true}
+          size={115}
+          style={{
+            position: 'absolute',
+            top: 0
+          }}
+        />
+        <Text margin={'small'} color={styles.colors.neutrals.gray1}
+          size={'xlarge'}
+        >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
       </Box>
     );
   }

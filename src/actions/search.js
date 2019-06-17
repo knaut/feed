@@ -75,9 +75,31 @@ export function searchSubmit( payload ) {
         dispatch(
           searchSubmitSuccess(result)
         )
+
       } else {
+
+        // if there is no entity, then we have no user with this name in the cache
+        // try to lookup their profile and provide blockstack profile information
+
+        const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
+        
+        const name = blockstackUser.name
+        const description = blockstackUser.description
+        const image = blockstackUser.image[0].contentUrl
+
+        const result = {
+          [username]: {
+            blockstack: {
+              name,
+              username,
+              description,
+              image
+            }
+          }
+        }
+
         dispatch(
-          searchSubmitFail(username)
+          searchSubmitSuccess(result)
         )
       }
 

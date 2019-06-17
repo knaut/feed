@@ -24,7 +24,16 @@ function mapStateToProps(state) {
 }
 
 const Provider = ({ isLoaded, children }) => {
-  return isLoaded ? children : <GlobalLoader/>
+  return isLoaded ? children : (
+    <Box 
+      style={{
+        background: styles.colors.darks.purple,
+        ...styles.app.container,
+      }}
+    >
+      <GlobalLoader/>
+    </Box>
+  )
 }
 
 export default connect(mapStateToProps, () => new Object())(Provider)

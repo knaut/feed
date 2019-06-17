@@ -50,8 +50,8 @@ class SearchInput extends Component {
 
     return (
       <Box
+        fill
         margin={{top: 'medium'}}
-        width='100%'
         alignContent='center'
         direction="row-responsive"
         justify="center"
