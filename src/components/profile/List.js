@@ -34,6 +34,8 @@ class ProfileList extends Component {
     for (let key in matches) {
       const match = matches[key]
 
+      console.log(match)
+
       const {
         name,
         username,
@@ -58,9 +60,9 @@ class ProfileList extends Component {
           isOnFeed={isOnFeed}
           isOnBlockstack={true}
           isMe={isMe}
-          name={name}
+          name={name ? name : 'No name provided.'}
           username={username}
-          description={description}
+          description={description ? description : 'No description available.'}
           image={image}
         />
       )

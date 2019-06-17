@@ -40,30 +40,32 @@ const Row = (props) => {
   return (
     <Box align="center">
       <Box
-        pad='medium'
         round
+        pad='medium'
         width='large'
-        style={{
-          background: 'white',
-        }}
-        direction='row'
+        background='white'
       >
-        <Box margin={{right: 'small'}}>
-        <PostAvatar
-          isLoading={isLoading}
-          isOnBlockstack={isOnBlockstack}
-          isMe={isMe}
-          username={username}
-          image={image}
-          name={name}
-        />
+        <Box direction='row'>
+          <Box margin={{right: 'small'}}>
+            <PostAvatar
+              showUsername={true}
+              isLoading={isLoading}
+              isOnBlockstack={isOnBlockstack}
+              isMe={isMe}
+              username={username}
+              image={image}
+              name={name}
+            />
+          </Box>
+          <Box flex={'shrink'} align='start' justify='center'>
+            <Text color='dark-3' margin={{left: 'small'}}>
+              { description }
+            </Text>
+          </Box>
         </Box>
-        <Box flex={'shrink'} align='start' justify='center'>
-          <Text color='dark-3' margin={{left: 'small'}}>
-            { description }
-          </Text>
+        <Box>
+          { isOnFeed === true ? <Feed { ...props }/> : null }
         </Box>
-        { isOnFeed === true ? <Feed { ...props }/> : null }
       </Box>
     </Box>
   )

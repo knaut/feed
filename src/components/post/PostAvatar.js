@@ -93,16 +93,21 @@ const IconLoaded = (props) => {
 
 const LabelLoaded = (props) => {
   const {
-    name
+    name,
+    username,
+    showUsername
   } = props;
 
   return (
-    <Text level={1} size={'medium'} style={{
-      letterSpacing: 0,
-      color: styles.colors.neutrals.dark
-    }}>
-      {name}
-    </Text>
+    <React.Fragment>
+      <Text level={1} size='medium' style={{
+        letterSpacing: 0,
+        color: styles.colors.neutrals.dark
+      }}>
+        {name}
+      </Text>
+      { showUsername ? <Text level={1} size='medium' color='dark-4'>{username}</Text> : null }
+    </React.Fragment>
   );
 }
 
@@ -126,13 +131,14 @@ class Label extends Component {
     const {
       isLoading,
       name,
-      username
+      username,
+      showUsername
     } = this.props;
 
     if (isLoading === true) {
       return <LabelLoading username={username}/>;
     } else {
-      return <LabelLoaded name={name}/>;
+      return <LabelLoaded name={name} username={username} showUsername={showUsername}/>;
     }
   }
 }
@@ -173,14 +179,6 @@ class PostAvatar extends Component {
       </Grid>
     );
   }
-}
-
-PostAvatar.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isMe: PropTypes.bool.isRequired,
-  username: PropTypes.string,
-  name: PropTypes.string,
-  image: PropTypes.any
 }
 
 export default PostAvatar;
