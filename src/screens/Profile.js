@@ -34,9 +34,11 @@ class Profile extends Component {
           </React.Fragment>
         }
       >
-        <ProfileLoader username={this.props.match.params.username}>
-          <ProfileCard/>
-        </ProfileLoader>
+        <Box pad={{top: 'large'}} animation={['slideDown', 'fadeIn']}>
+          <ProfileLoader username={this.props.match.params.username}>          
+            <ProfileCard/>
+          </ProfileLoader>
+        </Box>
       </Layout>
     );
   }

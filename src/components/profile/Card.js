@@ -36,7 +36,7 @@ class ProfileCard extends Component {
     } = this.props;
 
     return (
-      <Box align="center" pad="medium">
+      <Box align="center">
         <Box
           width='large'
           background='white'

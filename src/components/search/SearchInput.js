@@ -51,6 +51,7 @@ class SearchInput extends Component {
     return (
       <Box
         fill
+        animation={['slideDown', 'fadeIn']}
         margin={{top: 'medium'}}
         alignContent='center'
         direction="row-responsive"
