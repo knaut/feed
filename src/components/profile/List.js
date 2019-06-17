@@ -14,6 +14,7 @@ import {
 import GlobalLoader from '../GlobalLoader'
 // SEARCH
 import ProfileRow from './Row'
+import Card from './Card'
 
 function mapStateToProps(state) {
   return {
@@ -52,7 +53,7 @@ class ProfileList extends Component {
       }
 
       list.push(
-        <ProfileRow
+        <Card
           key={key}
           isLoading={false}
           isOnFeed={isOnFeed}

@@ -12,11 +12,11 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
-import GlobalLoaderProvider from '../components/GlobalLoaderProvider';
-import ProfileCard from '../components/ProfileCard';
 import Layout from '../Layout'
-
-import WrappedAddPost from '../components/button/WrappedAddPost'
+// PROFILE
+import ProfileLoader from '../components/profile/Loader';
+import ProfileCard from '../components/profile/Card';
+// BUTTONS
 import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
@@ -34,9 +34,9 @@ class Profile extends Component {
           </React.Fragment>
         }
       >
-        <GlobalLoaderProvider>
-          <ProfileCard username={this.props.match.params.username} />
-        </GlobalLoaderProvider>
+        <ProfileLoader username={this.props.match.params.username}>
+          <ProfileCard/>
+        </ProfileLoader>
       </Layout>
     );
   }

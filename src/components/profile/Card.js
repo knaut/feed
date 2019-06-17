@@ -38,14 +38,11 @@ class ProfileCard extends Component {
     return (
       <Box align="center" pad="medium">
         <Box
+          width='large'
+          background='white'
           pad='medium'
           gap='small'
           round
-          style={{
-            background: 'white',
-            width: '100%',
-            maxWidth: '800px'
-          }}
         >
           <header>
             <Avatar {...this.props} />
