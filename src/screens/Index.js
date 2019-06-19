@@ -8,17 +8,11 @@ import { Login } from "grommet-icons";
 import styles from '../styles';
 
 // COMPONENTS
+import Layout from '../Layout';
 import SignIn from '../components/SignIn';
 
-class Index extends Component {
-  render() {
-    return (
-      <Grommet theme={grommet} full>
-        <Box style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
-        }}>
-          <Box fill align="center" justify="center"
+/*
+  <Box fill align="center" justify="center"
             style={{
               alignItems: 'center',
               align: 'center',
@@ -26,10 +20,19 @@ class Index extends Component {
               textAlign:'center'
             }}
           >
-            <SignIn />
-          </Box>
+*/
+
+class Index extends Component {
+  render() {
+    return (
+      <Layout
+        left={null}
+        right={null}
+      >
+        <Box align='center'>
+          <SignIn />
         </Box>
-      </Grommet>
+      </Layout>
     );
   }
 }
