@@ -1,6 +1,5 @@
 // IMPORTS
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 // STYLES
 import css from '@emotion/css'

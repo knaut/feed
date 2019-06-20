@@ -7,7 +7,7 @@ import { Add } from 'grommet-icons';
 
 
 // STYLES
-import styles from '../../styles';
+import css from '@emotion/css'
 
 // ACTIONS
 // import * as EditorActions from '../actions/editor';
@@ -24,17 +24,17 @@ class AddPost extends Component {
       <Box align="center" pad="medium">
         <Button 
           icon={
-            <Add color={active ? styles.colors.darks.purple : styles.colors.neutrals.light} />
+            <Add color={active ? `purple` : `light`} />
           } 
           onClick={this.add}
-          primary 
-          style={{
-            background: active ? styles.colors.neutrals.light : styles.colors.darks.purple,
-            border: active ? `5px solid ${styles.colors.neutrals.dark}` : `5px solid ${styles.colors.primaries.purple}`,
-            borderRadius: '24px',
-            display: 'flex',
-            transition: '0.2s all ease-in-out'
-          }}
+          primary
+          css={css`
+            background: ${ active ? 'var(--light)' : 'var(--purpleDark)'};
+            border: ${ active ? '5px solid var(--dark)' : '5px solid var(--purple)'};
+            border-radius: 24px;
+            display: flex;
+            transition: 0.2s all ease-in-out;
+          `}
         />
       </Box>
     );

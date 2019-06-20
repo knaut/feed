@@ -8,28 +8,16 @@ import { linkTo } from '@storybook/addon-links'
 import StoryRouter from 'storybook-react-router';
 
 // COMPONENTS
-import { Grommet } from 'grommet'
-import { grommet, dark } from 'grommet/themes'
-import GlobalLoader from '../src/components/GlobalLoader';
-// import Counter from '../src/components/slate/Counter';
+import Layout from '../src/Layout';
 import Slate from '../src/components/slate/Slate';
-
-// STYLES
-import styles from '../src/styles';
 
 // CONFIG
 import { user } from '../.storybook/user.json';
 
 storiesOf('Slate', module)
   .add('active', () => (
-    <Grommet theme={grommet}>
-      <div 
-        style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
-          justifyContent: 'start'
-        }}
-      >
+    <Theme>
+      <Layout>
         <Slate 
           user={user}
           active={true}
@@ -37,19 +25,14 @@ storiesOf('Slate', module)
             submit: function(payload) {
               console.log({payload});
             }
-          }}/>
-      </div>
-    </Grommet>
+          }}
+        />
+      </Layout>
+    </Theme>
   ))
   .add('inactive', () => (
-    <Grommet theme={grommet}>
-      <div 
-        style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
-          justifyContent: 'start'
-        }}
-      >
+    <Theme>
+      <Layout>
         <Slate 
           user={user}
           active={false}
@@ -58,7 +41,7 @@ storiesOf('Slate', module)
               console.log({payload});
             }
           }}/>
-      </div>
-    </Grommet>
+      </Layout>
+    </Theme>
   ))
 ;

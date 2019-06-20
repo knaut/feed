@@ -4,10 +4,10 @@ import {
   Grommet
 } from 'grommet'
 import { grommet } from 'grommet/themes'
-import merge from 'deepmerge'
+import { deepMerge } from 'grommet/utils'
 
 
-const feed = merge(grommet, {
+const feed = deepMerge(grommet, {
   global: {
     colors: {
       // primaries
