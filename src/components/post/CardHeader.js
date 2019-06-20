@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import Moment from 'moment';
 
 // STYLES
-import styles from '../../../src/styles';
-/** @jsx jsx */ import { jsx, Global } from '@emotion/core'
 import css from '@emotion/css'
-import styled from '@emotion/styled'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid } from 'grommet';
+import {
+  Grommet,
+  Box,
+  Button,
+  Grid,
+  Text
+} from 'grommet';
 import PostAvatar from './PostAvatar.js';
 
 export default (props) => {
@@ -41,10 +44,13 @@ export default (props) => {
         />
       </Box>
       <Box gridArea='date' css={css`text-align:right;`}>
-        <span style={{
-          ...styles.typography.card_date,
-          color: styles.colors.neutrals.gray2
-        }}>{ Moment(timestamp).format('llll') }</span>
+        <Text 
+          color='gray2'
+          css={css`
+            font-family: Andale Mono, Monaco, Courier New;
+            font-size: .8em;
+          `}
+        >{ Moment(timestamp).format('llll') }</Text>
       </Box>
     </Grid>
   );

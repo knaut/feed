@@ -3,14 +3,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 // STYLES
-import styles from '../../styles';
-/** @jsx jsx */ import { jsx, Global } from '@emotion/core'
 import css from '@emotion/css'
-import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
@@ -21,7 +17,7 @@ const IconImage = (props) => {
     );
   } else {
     return (
-      <User color={styles.colors.pastels.purple} size='large'/>
+      <User color='purple' size='large'/>
     );
   }
 }
@@ -30,7 +26,7 @@ const IconLoading = () => {
   return (
     <IconFrame>
       <HashLoader
-        color={styles.colors.pastels.purple}
+        color='purple'
         loading={true}
         size={35}
       />
@@ -42,9 +38,7 @@ const IconLoading = () => {
 const LabelLoading = (props) => {
   return (
     <Box justify="center" align="center" pad={'small'}>
-      <Text level={1} size={'small'} style={{
-        color: styles.colors.neutrals.gray1
-      }}>
+      <Text level={1} size='small' color='gray1'>
         {`Fetching "${props.username}"…`}
       </Text>
     </Box>
@@ -56,21 +50,18 @@ const IconFrame = (props) => {
   return (
     <Box justify="center" align="center">
       <Box
-        background={styles.colors.primaries.purple}
+        background='purple'
         round='full'
         justify='center'
         align='center'
         css={css`
-          border: 2px solid ${styles.colors.neutrals.gray1};
+          border: 2px solid var(--gray1);
           width: 60px;
           height: 60px;
           overflow: hidden;
         `}>
         <Box>
-          <Box style={{
-            width: '100%',
-            height: '100%'
-          }}>
+          <Box fill>
             { children }
           </Box>
         </Box>
@@ -100,10 +91,10 @@ const LabelLoaded = (props) => {
 
   return (
     <React.Fragment>
-      <Text level={1} size='medium' style={{
-        letterSpacing: 0,
-        color: styles.colors.neutrals.dark
-      }}>
+      <Text level={1} size='medium' css={css`
+        letter-spacing: 0;
+        color: var(--dark);
+      `}>
         {name}
       </Text>
       { showUsername ? <Text level={1} size='medium' color='dark-4'>{username}</Text> : null }

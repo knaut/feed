@@ -41,6 +41,7 @@ const feed = merge(grommet, {
 const Theme = ({ children }) => (
   <Grommet
     full
+    cssVars
     theme={feed}
   >
     { children }

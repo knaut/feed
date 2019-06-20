@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 // STYLES
-import styles from './styles'
+import css from '@emotion/css'
 
 // COMPONENTS
 import { 
@@ -23,12 +23,14 @@ export default class GlobalLayout extends Component {
     } = this.props
 
     return (
-       <div 
-        style={{
-          background: styles.colors.darks.purple,
-          ...styles.app.container,
-          justifyContent: 'start'
-        }}
+      <div 
+        css={css`
+          background: var(--purpleDark);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        `}
       >
         <Box fill align="center" justify="center"
           style={{
