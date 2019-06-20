@@ -7,7 +7,7 @@ import css from '@emotion/css'
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
+import { HashLoader } from 'react-spinners';
 
 const IconImage = (props) => {
   if (props.image) {
@@ -90,9 +90,8 @@ const LabelLoaded = (props) => {
 
   return (
     <React.Fragment>
-      <Text level={1} size='medium' css={css`
+      <Text level={1} size='medium' color='dark' css={css`
         letter-spacing: 0;
-        color: var(--dark);
       `}>
         {name}
       </Text>

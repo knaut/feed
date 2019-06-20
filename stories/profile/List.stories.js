@@ -12,9 +12,6 @@ import ProfileList from '../../src/components/profile/List'
 // SPOOF
 import spoof from '../../.storybook/user.json';
 
-// STYLES
-import styles from '../../src/styles';
-
 storiesOf('ProfileList', module)
   .addDecorator(StoryRouter())
   .add('default', () => (

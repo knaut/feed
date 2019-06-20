@@ -6,201 +6,146 @@ import Avatar from '../../src/components/profile/Avatar';
 
 import spoof from '../../.storybook/user.json';
 
-// STYLES
-import styles from '../../src/styles';
+// COMPONENTS
+import Theme from '../../src/Theme'
 
 storiesOf('Avatar', module)
   .add('no id found', () => (
-    <Grommet theme={grommet}>
-      <div 
+    <Theme>
+      <Box
+        pad='xlarge'
+        gap='small'
+        round
         style={{
-          background: styles.colors.neutrals.dark,
-          ...styles.app.container,
-          justifyContent: 'start',
-          padding: '30px'
+          background: 'white',
+          width: '100%',
+          cursor: 'pointer',
+          zIndex: 1
         }}
       >
-        <Box
-          pad='xlarge'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            cursor: 'pointer',
-            zIndex: 1
-          }}
-        >
-          <Avatar
-            isLoading={false}
-            isOnBlockstack={false}
-            isMe={false}
-            username={spoof.user.username}
-            image={null}
-          />
-        </Box>
-      </div>
-    </Grommet>
+        <Avatar
+          isLoading={false}
+          isOnBlockstack={false}
+          isMe={false}
+          username={spoof.user.username}
+          image={null}
+        />
+      </Box>
+    </Theme>
   ))
   .add('is loading', () => (
-    <Grommet theme={grommet}>
-      <div 
+    <Theme>
+      <Box
+        pad='xlarge'
+        gap='small'
+        round
         style={{
-          background: styles.colors.neutrals.dark,
-          ...styles.app.container,
-          justifyContent: 'start',
-          padding: '30px'
+          background: 'white',
+          width: '100%',
+          cursor: 'pointer',
+          zIndex: 1
         }}
       >
-        <Box
-          pad='xlarge'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            cursor: 'pointer',
-            zIndex: 1
-          }}
-        >
-          <Avatar
-            isLoading={true}
-            isOnBlockstack={null}
-            isMe={null}
-            username={spoof.user.username}
-            image={null}
-          />
-        </Box>
-      </div>
-    </Grommet>
+        <Avatar
+          isLoading={true}
+          isOnBlockstack={null}
+          isMe={null}
+          username={spoof.user.username}
+          image={null}
+        />
+      </Box>
+    </Theme>
   ))
   .add('is loaded', () => (
-    <Grommet theme={grommet}>
-      <div 
+    <Theme>
+      <Box
+        pad='xlarge'
+        gap='small'
+        round
         style={{
-          background: styles.colors.neutrals.dark,
-          ...styles.app.container,
-          justifyContent: 'start',
-          padding: '30px'
+          background: 'white',
+          width: '100%',
+          cursor: 'pointer',
+          zIndex: 1
         }}
       >
-        <Box
-          pad='xlarge'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            cursor: 'pointer',
-            zIndex: 1
-          }}
-        >
-          <Avatar
-            isLoading={false}
-            isOnBlockstack={true}
-            isMe={null}
-            username={spoof.user.username}
-            image={spoof.user.image}
-          />
-        </Box>
-      </div>
-    </Grommet>
+        <Avatar
+          isLoading={false}
+          isOnBlockstack={true}
+          isMe={null}
+          username={spoof.user.username}
+          image={spoof.user.image}
+        />
+      </Box>
+    </Theme>
   ))
   .add('is loaded & you', () => (
-    <Grommet theme={grommet}>
-      <div 
+    <Theme>
+      <Box
+        pad='xlarge'
+        gap='small'
+        round
         style={{
-          background: styles.colors.neutrals.dark,
-          ...styles.app.container,
-          justifyContent: 'start',
-          padding: '30px'
+          background: 'white',
+          width: '100%',
+          cursor: 'pointer',
+          zIndex: 1
         }}
       >
-        <Box
-          pad='xlarge'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            cursor: 'pointer',
-            zIndex: 1
-          }}
-        >
-          <Avatar
-            isLoading={false}
-            isOnBlockstack={true}
-            isMe={true}
-            username={spoof.user.username}
-            image={spoof.user.image}
-          />
-        </Box>
-      </div>
-    </Grommet>
+        <Avatar
+          isLoading={false}
+          isOnBlockstack={true}
+          isMe={true}
+          username={spoof.user.username}
+          image={spoof.user.image}
+        />
+      </Box>
+    </Theme>
   ))
   .add('is loaded & no avatar', () => (
-    <Grommet theme={grommet}>
-      <div 
+    <Theme>
+      <Box
+        pad='xlarge'
+        gap='small'
+        round
         style={{
-          background: styles.colors.neutrals.dark,
-          ...styles.app.container,
-          justifyContent: 'start',
-          padding: '30px'
+          background: 'white',
+          width: '100%',
+          cursor: 'pointer',
+          zIndex: 1
         }}
       >
-        <Box
-          pad='xlarge'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            cursor: 'pointer',
-            zIndex: 1
-          }}
-        >
-          <Avatar
-            isLoading={false}
-            isOnBlockstack={true}
-            isMe={false}
-            username={spoof.user.username}
-            image={null}
-          />
-        </Box>
-      </div>
-    </Grommet>
+        <Avatar
+          isLoading={false}
+          isOnBlockstack={true}
+          isMe={false}
+          username={spoof.user.username}
+          image={null}
+        />
+      </Box>
+    </Theme>
   ))
   .add('mini: is loaded', () => (
-    <Grommet theme={grommet}>
-      <div 
+    <Theme>
+      <Box
+        pad='xlarge'
+        gap='small'
+        round
         style={{
-          background: styles.colors.neutrals.dark,
-          ...styles.app.container,
-          justifyContent: 'start',
-          padding: '30px'
+          background: 'white',
+          width: '100%',
+          cursor: 'pointer',
+          zIndex: 1
         }}
       >
-        <Box
-          pad='xlarge'
-          gap='small'
-          round
-          style={{
-            background: 'white',
-            width: '100%',
-            cursor: 'pointer',
-            zIndex: 1
-          }}
-        >
-          <Avatar
-            isLoading={false}
-            isOnBlockstack={true}
-            isMe={null}
-            username={spoof.user.username}
-            image={spoof.user.image}
-            mini={true}
-          />
+        <Avatar
+          isLoading={false}
+          isOnBlockstack={true}
+          isMe={null}
+          username={spoof.user.username}
+          image={spoof.user.image}
+          mini={true}
+        />
         </Box>
-      </div>
-    </Grommet>
+    </Theme>
   ))
-;

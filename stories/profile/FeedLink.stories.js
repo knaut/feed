@@ -7,10 +7,13 @@ import FeedLink from '../../src/components/profile/FeedLink';
 
 import spoof from '../../.storybook/user.json';
 
+// COMPONENTS
+import Theme from '../../src/Theme'
+
 storiesOf('FeedLink', module)
   .addDecorator(StoryRouter())
   .add('no id', () => (
-    <Grommet theme={grommet}>
+    <Theme>
       <FeedLink
         username={spoof.user.username}
         isOnBlockstack={false}
@@ -18,10 +21,10 @@ storiesOf('FeedLink', module)
         isMe={false}
         name={spoof.user.name}
       />
-    </Grommet>
+    </Theme>
   ))
   .add('has id, no feed', () => (
-    <Grommet theme={grommet}>
+    <Theme>
       <FeedLink
         username={spoof.user.username}
         isOnBlockstack={true}
@@ -29,10 +32,10 @@ storiesOf('FeedLink', module)
         isMe={false}
         name={spoof.user.name}
       />
-    </Grommet>
+    </Theme>
   ))
   .add('has feed', () => (
-    <Grommet theme={grommet}>
+    <Theme>
       <FeedLink
         username={spoof.user.username}
         isOnBlockstack={true}
@@ -40,10 +43,10 @@ storiesOf('FeedLink', module)
         isMe={false}
         name={spoof.user.name}
       />
-    </Grommet>
+    </Theme>
   ))
   .add('is your feed', () => (
-    <Grommet theme={grommet}>
+    <Theme>
       <FeedLink
         username={spoof.user.username}
         isOnBlockstack={true}
@@ -51,6 +54,6 @@ storiesOf('FeedLink', module)
         isMe={true}
         name={spoof.user.name}
       />
-    </Grommet>
+    </Theme>
   ))
 ;

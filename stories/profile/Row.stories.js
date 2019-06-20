@@ -7,9 +7,6 @@ import ProfileCard from '../../src/components/profile/Card';
 
 import spoof from '../../.storybook/user.json';
 
-// STYLES
-import styles from '../../src/styles';
-
 // COMPONENTS
 import Layout from '../../src/Layout'
 import Theme from '../../src/Theme'

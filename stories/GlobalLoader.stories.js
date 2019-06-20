@@ -8,19 +8,18 @@ import { linkTo } from '@storybook/addon-links'
 import StoryRouter from 'storybook-react-router';
 
 // COMPONENTS
-import { Grommet } from 'grommet'
-import { grommet, dark } from 'grommet/themes'
+import Theme from '../src/Theme'
 import GlobalLoader from '../src/components/GlobalLoader';
 
 storiesOf('GlobalLoader', module)
   .addDecorator(StoryRouter())
   .add('loading', () => (
-    <Grommet theme={grommet}>
+    <Theme>
       <GlobalLoader isLoading={true}/>
-    </Grommet>
+    </Theme>
   ))
   .add('loaded', () => (
-    <Grommet theme={grommet}>
+    <Theme>
       <GlobalLoader isLoading={false}/>
-    </Grommet>
+    </Theme>
   ))
