@@ -37,7 +37,7 @@ class Counter extends Component {
             data={[{ value: 1, key: 1, color: (
               warn ? ( 
                 block ? 'red' : 'orange'
-              ) : '#636870'
+              ) : 'gray'
             )}]}
             reveal={ ( count >= limit ) ? 100 : reveal }
             lineWidth={10}
