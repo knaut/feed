@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 // STYLES
-import styles from '../styles';
+import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
@@ -57,28 +57,29 @@ class GlobalLoader extends Component {
         animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
         justify="center"
         align="center"
-        style={{
-          position: 'relative'
-        }}
+        css={css`position: relative;`}
       >
-        <Language color={styles.colors.primaries.purple}
-          size={'xlarge'}
-          style={{
-            position: 'absolute',
-            top: '10px'
-          }}
+        <Language 
+          color='purple'
+          size='xlarge'
+          css={css`
+            position: absolute;
+            top: 10px;
+          `}
         />
         <HashLoader
-          color={styles.colors.pastels.purple}
+          color='purplePastel'
           loading={true}
           size={115}
-          style={{
-            position: 'absolute',
-            top: 0
-          }}
+          css={css`
+            position: absolute;
+            top: 0;
+          `}
         />
-        <Text margin={'small'} color={styles.colors.neutrals.gray1}
-          size={'xlarge'}
+        <Text 
+          margin='small' 
+          color='gray1'
+          size='xlarge'
         >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
       </Box>
     );

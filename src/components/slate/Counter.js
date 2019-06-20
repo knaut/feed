@@ -37,7 +37,7 @@ class Counter extends Component {
             data={[{ value: 1, key: 1, color: (
               warn ? ( 
                 block ? 'red' : 'orange'
-              ) : 'gray'
+              ) : 'gray2'
             )}]}
             reveal={ ( count >= limit ) ? 100 : reveal }
             lineWidth={10}
@@ -50,7 +50,7 @@ class Counter extends Component {
           />
           <Box css={css`position: absolute;`}>
             <PieChart
-              data={[{ value: 1, key: 1, color: 'light' }]}
+              data={[{ value: 1, key: 1, color: 'gray2' }]}
               reveal={100}
               lineWidth={10}
               css={css`
@@ -67,7 +67,7 @@ class Counter extends Component {
                 left: 23.5%;
                 top: 23.5%;
                 transform: ${block ? 'rotateZ(45deg)' : 'none'};
-                transition: '0.2s all ease-in-out';
+                transition: 0.2s all ease-in-out;
               `}
             />
           </Box>

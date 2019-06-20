@@ -22,10 +22,6 @@ import MyFeed from '../components/button/MyFeed'
 import SearchInput from '../components/search/SearchInput'
 import ProfileList from '../components/profile/List'
 
-// STYLES
-import styles from '../styles'
-import css from '@emotion/css'
-
 const SearchScreen = () => (
   <Layout
     left={

@@ -9,7 +9,7 @@ import { Add } from 'grommet-icons';
 import Counter from './Counter';
 
 // STYLES
-import styles from '../../styles';
+import css from '@emotion/css'
 
 class Slate extends Component {
   state = {
@@ -96,13 +96,13 @@ class Slate extends Component {
         <Box
           pad='medium'
           gap='small'
-          style={{
-            background: 'white',
-            width: '100%',
-            maxWidth: '800px',
-            borderRadius: '12px 18px 32px 12px',
-            border: `5px solid ${styles.colors.neutrals.light}`
-          }}
+          background='white'
+          css={css`
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px 18px 32px 12px;
+            border: 5px solid vars(--light);
+          `}
         >
           <div 
             onClick={this.focusEditor}

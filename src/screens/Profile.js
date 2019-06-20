@@ -8,9 +8,6 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Login } from "grommet-icons";
 
-// STYLES
-import styles from '../styles';
-
 // COMPONENTS
 import Layout from '../Layout'
 // PROFILE

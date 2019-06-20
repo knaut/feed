@@ -12,7 +12,7 @@ import { Login, LinkNext } from "grommet-icons";
 import { Link } from 'react-router-dom';
 
 // STYLES
-import styles from '../styles';
+import css from '@emotion/css'
 
 // ACTIONS
 import * as UserActions from '../actions/user';
@@ -59,31 +59,25 @@ class SignIn extends Component {
     if (this.props.user.isAuthenticated && this.props.hasFeed) {
       return (
         <Box align="center" pad="small" gap="small">
-          <Paragraph style={{
-            color: styles.colors.pastels.cyan
-          }}>Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
+          <Paragraph color='cyanPastel'>
+            Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
           </Paragraph>
           <Link to={feedPath}>
-            <Button icon={<LinkNext />} label="go to your feed" primary style={{
-              background: 'transparent'
-            }}/>
+            <Button icon={<LinkNext />} label="go to your feed" primary/>
           </Link>
         </Box>
       )
     } else if (this.props.user.isAuthenticated && !this.props.hasFeed) {
       return (
         <Box align="center" pad="small" gap="small">
-          <Paragraph margin={{bottom: 'none'}} style={{
-            color: styles.colors.pastels.cyan
-          }}>Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
+          <Paragraph margin={{bottom: 'none'}} color='cyanPastel'>
+            Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
           </Paragraph>
-          <Paragraph margin={{top: 'none'}} style={{
-            color: styles.colors.pastels.cyan
-          }}>Sign in for the first time to get started!</Paragraph>
+          <Paragraph margin={{top: 'none'}} color='cyanPastel'>
+            Sign in for the first time to get started!
+          </Paragraph>
           <Link to={feedPath} onClick={this.initialSignIn}>
-            <Button icon={<LinkNext />} label="go to your feed" primary style={{
-              background: 'transparent'
-            }}/>
+            <Button icon={<LinkNext />} label="go to your feed" primary/>
           </Link>
         </Box>
       )
@@ -106,11 +100,9 @@ class SignIn extends Component {
                 color: styles.colors.pastels.purple
               }}
             >
-              welcome to <strong style={{
-                color: styles.colors.primaries.purple
-              }}>feed</strong> 🌱.
+              welcome to <strong color='purple'>feed</strong> 🌱.
             </h1>
-            <p style={{color: styles.colors.pastels.purple}}>feed is a decentralized social network powered by blockchain technology.</p>
+            <Text color='purple'>feed is a decentralized social network powered by blockchain technology.</Text>
             {this.renderEntry()}
           </header>
         </Box>

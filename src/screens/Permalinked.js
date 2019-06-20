@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-// STYLES
-import styles from '../styles';
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';

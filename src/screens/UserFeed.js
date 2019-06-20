@@ -17,8 +17,6 @@ import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
 
-// STYLES
-import styles from '../styles'
 
 function mapStateToProps (state) {
   const username = state.user.username

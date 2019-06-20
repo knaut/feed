@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 // STYLES
-import styles from '../styles';
+import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
@@ -26,10 +26,13 @@ function mapStateToProps(state) {
 const Provider = ({ isLoaded, children }) => {
   return isLoaded ? children : (
     <Box 
-      style={{
-        background: styles.colors.darks.purple,
-        ...styles.app.container,
-      }}
+      background='purpleDark'
+      css={css`
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      `}
     >
       <GlobalLoader/>
     </Box>

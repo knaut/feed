@@ -6,7 +6,6 @@ import { Grommet, Box, Button, Grid } from 'grommet';
 
 // STYLES
 import css from '@emotion/css'
-import styles from '../../../src/styles';
 
 // ICONS
 import { SubtractCircle } from 'grommet-icons';
