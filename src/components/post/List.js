@@ -4,7 +4,6 @@ import Moment from 'moment';
 import { LoremIpsum } from 'lorem-ipsum';
 
 // STYLES
-import styles from '../../styles';
 import css from '@emotion/css'
 
 // COMPONENTS
@@ -34,7 +33,7 @@ class PostList extends Component {
     }
 
     return (
-      <Box align="center" style={{ width: '100%' }} pad='medium'>
+      <Box align="center" css={css`width: 100%;`} pad='medium'>
         { cards }
       </Box>
     );

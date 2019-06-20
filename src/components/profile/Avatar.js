@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // STYLES
-import styles from '../../styles';
+import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
@@ -20,15 +20,13 @@ const Avatar = (props) => {
     mini
   } = props;
 
-  const noAvatar = (<User color={styles.colors.pastels.purple} size='xlarge'/>);
+  const noAvatar = (<User color='purplePastel' size='xlarge'/>);
   const avatar = (<Image src={image} fit="cover" />);
   const isMeTag = (
     <Box justify="center" align="center">
       <Button margin='small'>
         <Box
-          style={{
-            background: styles.colors.primaries.cyan
-          }}
+          background='cyan'
           round={'xlarge'}
           pad={{
             top: 'xxsmall',
@@ -37,11 +35,13 @@ const Avatar = (props) => {
             bottom: 'xxsmall'
           }}
         >
-          <Text size={'small'} style={{
-            color: styles.colors.neutrals.light,
-            fontStyle: 'italic',
-            fontWeight: 'bold'
-          }}>This is you!</Text>
+          <Text 
+            size='small' 
+            color='light'
+            css={css`
+              font-style: italic;
+              font-weight: bold;
+            `}>This is you!</Text>
         </Box>
       </Button>
     </Box>
@@ -50,22 +50,33 @@ const Avatar = (props) => {
   const loading = (
     <React.Fragment>
       <Box justify="center" align="center">
-        <Box background={styles.colors.primaries.purple} round={'full'} 
-          justify="center" align="center"
-          style={ styles.avatar }>
+        <Box 
+          background='purple' 
+          round='full'
+          justify="center"
+          align="center"
+          css={css`
+            border: '5px solid var(--gray1);
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+          `}
+        >
           <Box>
             <HashLoader
-              color={styles.colors.pastels.purple}
+              color='purplePastel'
               loading={true}
               size={75}
             />
           </Box>
         </Box>
       </Box>
-      <Box justify="center" align="center" pad={'small'}>
-        <Text level={1} size={'medium'} style={{
-          color: styles.colors.neutrals.gray1
-        }}>
+      <Box
+        justify="center"
+        align="center"
+        pad='small'
+      >
+        <Text level={1} size='medium' color='gray1'>
           {`Looking up "${username}"…`}
         </Text>
       </Box>
@@ -75,22 +86,34 @@ const Avatar = (props) => {
   const loaded = (
     <React.Fragment>
       <Box justify="center" align="center">
-        <Box background={styles.colors.primaries.purple} round={'full'} 
-          justify="center" align="center"
-          style={ styles.avatar }>
-          <Box style={image ? {
-            width: '100%',
-            height: '100%'
-          } : {}}>
+        <Box 
+          background='purple' 
+          round='full' 
+          justify="center" 
+          align="center"
+          css={css`
+            border: '5px solid var(--gray1);
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+          `}
+        >
+          <Box css={css`${ image ? 'width: 100%; height: 100%;' : null}`}>
             {image ? avatar : noAvatar}
           </Box>
         </Box>
       </Box>
-      <Box justify="center" align="center" pad={{top: 'small'}}>
-        <Text level={1} size={'medium'} style={{
-          letterSpacing: '2px',
-          color: styles.colors.neutrals.gray1
-        }}>
+      <Box
+        justify="center"
+        align="center"
+        pad={{top: 'small'}}
+      >
+        <Text
+          level={1}
+          size={'medium'}
+          color='gray1'
+          css={css`letter-spacing: 2px;`}
+        >
           {username}
         </Text>
       </Box>
@@ -101,18 +124,25 @@ const Avatar = (props) => {
   const notOnBlockstack = (
     <React.Fragment>
       <Box justify="center" align="center">
-        <Box background={styles.colors.primaries.purple} round={'full'} 
-          justify="center" align="center"
-          style={ styles.avatar }>
+        <Box
+          background='purple'
+          round='full' 
+          justify="center"
+          align="center"
+          css={css`
+            border: '5px solid var(--gray1);
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+          `}
+        >
           <Box>
-            <Help color={styles.colors.pastels.red} size='xlarge'/>
+            <Help color='redPastel' size='xlarge'/>
           </Box>
         </Box>
       </Box>
       <Box justify="center" align="center" pad={{top: 'small'}}>
-        <Text level={1} size={'medium'} style={{
-          color: styles.colors.neutrals.gray1
-        }}>
+        <Text level={1} size='medium' color='gray1'>
           {`"${username}" was not found.`}
         </Text>
       </Box>

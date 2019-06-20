@@ -7,7 +7,7 @@ import PieChart from 'react-minimal-pie-chart';
 import { Add } from 'grommet-icons';
 
 // STYLES
-import styles from '../../styles';
+import css from '@emotion/css'
 
 class Counter extends Component {
   onClick = () => {
@@ -32,47 +32,43 @@ class Counter extends Component {
 
     return (
       <Button onClick={this.onClick}>
-        <Box style={{
-          width: '45px'
-        }}>
+        <Box css={css`width: 45px;`}>
           <PieChart
             data={[{ value: 1, key: 1, color: (
               warn ? ( 
-                block ? styles.colors.primaries.red : styles.colors.primaries.orange 
-              ) : styles.colors.neutrals.gray2
+                block ? 'red' : 'orange'
+              ) : '#636870'
             )}]}
             reveal={ ( count >= limit ) ? 100 : reveal }
             lineWidth={10}
             animate
-            style={{
-              position: 'relative',
-              zIndex: 22,
-              opacity
-            }}
+            css={css`
+              position: relative;
+              z-index: 22;
+              opacity: ${opacity};
+            `}
           />
-          <Box style={{
-            position: 'absolute'
-          }}>
+          <Box css={css`position: absolute;`}>
             <PieChart
-              data={[{ value: 1, key: 1, color: styles.colors.neutrals.light }]}
+              data={[{ value: 1, key: 1, color: 'light' }]}
               reveal={100}
               lineWidth={10}
-              style={{
-                position: 'relative',
-                zIndex: 21,
-                opacity: 1
-              }}
+              css={css`
+                position: relative;
+                z-index: 21;
+                opacity: 1;
+              `}
             />
             <Add 
-              color={block ? styles.colors.primaries.red : styles.colors.neutrals.gray3}
-              style={{
-                position: 'absolute',
-                zIndex: 28,
-                left: '23.5%',
-                top: '23.5%',
-                transform: block ? 'rotateZ(45deg)' : 'none',
-                transition: '0.2s all ease-in-out'
-              }}
+              color={block ? 'red' : 'gray3'}
+              css={css`
+                position: absolute;
+                z-index: 28;
+                left: 23.5%;
+                top: 23.5%;
+                transform: ${block ? 'rotateZ(45deg)' : 'none'};
+                transition: '0.2s all ease-in-out';
+              `}
             />
           </Box>
         </Box>

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // STYLES
-import styles from '../../../src/styles';
+import css from '@emotion/css'
 
 // COMPONENTS
 import {
@@ -46,15 +46,13 @@ class ProfileCard extends Component {
         >
           <header>
             <Avatar {...this.props} />
-            <Heading level={1} size={'small'} style={{
-              textAlign: 'center'
-            }}>
+            <Heading level={1} size={'small'} css={css`text-align: center;`}>
               {this.props.name}
             </Heading>
-            <Text level={1} size={'medium'} margin={{bottom: 'small'}} style={{
-              display: 'block',
-              textAlign: 'center'
-            }}>
+            <Text level={1} size={'medium'} margin={{bottom: 'small'}} css={css`
+              display: block;
+              text-align: center;
+            `}>
               {this.props.description}
             </Text>
           </header>

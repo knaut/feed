@@ -1,13 +1,9 @@
 // IMPORTS
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'moment';
 
 // STYLES
-import styles from '../../../src/styles';
-/** @jsx jsx */ import { jsx, Global } from '@emotion/core'
 import css from '@emotion/css'
-import styled from '@emotion/styled'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
@@ -48,7 +44,7 @@ class Card extends Component {
     return (
       <Box 
         align="center" 
-        style={{ width: '100%', maxWidth: '800px' }} 
+        css={css`width: 100%; max-width: 800px`} 
         margin={{ bottom: 'small' }}
         animation={['fadeIn', 'zoomIn']}
         onMouseEnter={this.onEnter}
@@ -58,11 +54,11 @@ class Card extends Component {
           pad='medium'
           gap='small'
           round
-          style={{
-            background: 'white',
-            width: '100%',
-            zIndex: 1
-          }}
+          background='white'
+          css={css`
+            width: 100%;
+            z-index: 1;
+          `}
         >
           <CardHeader 
             username={username}
