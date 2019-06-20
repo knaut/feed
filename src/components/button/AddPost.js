@@ -5,12 +5,8 @@ import React, { Component } from 'react';
 import { Grommet, Box, Button } from 'grommet';
 import { Add } from 'grommet-icons';
 
-
 // STYLES
 import css from '@emotion/css'
-
-// ACTIONS
-// import * as EditorActions from '../actions/editor';
 
 class AddPost extends Component {
   add = () => {
@@ -24,7 +20,7 @@ class AddPost extends Component {
       <Box align="center" pad="medium">
         <Button 
           icon={
-            <Add color={active ? `purple` : `light`} />
+            <Add color={active ? `purpleDark` : `light`} />
           } 
           onClick={this.add}
           primary

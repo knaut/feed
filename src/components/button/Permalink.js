@@ -9,8 +9,6 @@ import * as Router from 'react-router-dom';
 // STYLES
 import css from '@emotion/css'
 
-import styles from '../../../src/styles';
-
 class Permalink extends Component {
   state = {
     onHover: false
@@ -42,11 +40,11 @@ class Permalink extends Component {
         <Box gridArea='permalink' align='start' pad='small'
           onMouseEnter={this.onEnter}
           onMouseLeave={this.onLeave}
-          style={{cursor: 'pointer'}}
+          css={css`cursor: pointer;`}
         >
           <Link
             size='medium' 
-            color={onHover ? styles.colors.pastels.yellow : styles.colors.neutrals.gray2}
+            color={onHover ? 'yellow' : 'gray2'}
             css={css`
               transition: all 0.2s ease-in-out;
             `}

@@ -38,11 +38,11 @@ class Remove extends Component {
         onMouseEnter={this.onEnter}
         onMouseLeave={this.onLeave}
         onClick={this.onDelete}
-        style={{cursor: 'pointer'}}
+        css={css`cursor: pointer;`}
       >
         <SubtractCircle
           size='medium' 
-          color={onHover ? styles.colors.primaries.red : styles.colors.neutrals.gray2}
+          color={onHover ? 'red' : 'gray2'}
           css={css`
             transition: all 0.2s ease-in-out;
           `}
