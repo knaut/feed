@@ -80,43 +80,37 @@ class Slate extends Component {
 
     return (
       <Box 
-        align="center"
         pad="medium"
         onClick={this.focusEditor}
         animation={['slideDown', 'fadeIn']}
         ref='container'
-        style={ active ? ({
-          marginTop: 0,
-          transition: '0.3s all ease-in-out'
-        }) : ({
-          marginTop: -height,
-          transition: '0.2s all ease-in-out'
-        }) }
+        css={ active ? (
+            css`margin-top: 0; transition: 0.3s all ease-in-out;`
+          ) : (
+            css`margin-top: ${-height}px; transition: 0.2s all ease-in-out;`
+          )
+        }
       >
         <Box
           pad='medium'
           gap='small'
           background='white'
           css={css`
-            width: 100%;
-            max-width: 800px;
             border-radius: 12px 18px 32px 12px;
-            border: 5px solid vars(--light);
+            border: 5px solid var(--light);
           `}
         >
-          <div 
-            onClick={this.focusEditor}
-            style={{
-              border: 0
-            }}
-          >
+          <div onClick={this.focusEditor}>
             <Editor
               ref={this.setEditor}
               editorState={this.state.editorState}
               onChange={this.onChange}
             />
           </div>
-          <Box align='end' style={{position: 'relative', zIndex: 30}}>
+          <Box
+            align='end'
+            css={css`position: relative; z-index: 30;`}
+          >
             <Counter handler={this.onPostSubmit} count={this.state.count} limit={500}/>
           </Box>
         </Box>

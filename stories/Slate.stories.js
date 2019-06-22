@@ -8,6 +8,7 @@ import { linkTo } from '@storybook/addon-links'
 import StoryRouter from 'storybook-react-router';
 
 // COMPONENTS
+import Theme from '../src/Theme'
 import Layout from '../src/Layout';
 import Slate from '../src/components/slate/Slate';
 
@@ -15,33 +16,33 @@ import Slate from '../src/components/slate/Slate';
 import { user } from '../.storybook/user.json';
 
 storiesOf('Slate', module)
-  .add('active', () => (
+  .addDecorator(getStory => (
     <Theme>
-      <Layout>
-        <Slate 
-          user={user}
-          active={true}
-          actions={{
-            submit: function(payload) {
-              console.log({payload});
-            }
-          }}
-        />
+      <Layout columns={false}>
+        { getStory() }
       </Layout>
     </Theme>
   ))
+  .add('active', () => (
+    <Slate 
+      user={user}
+      active={true}
+      actions={{
+        submit: function(payload) {
+          console.log({payload});
+        }
+      }}
+    />
+  ))
   .add('inactive', () => (
-    <Theme>
-      <Layout>
-        <Slate 
-          user={user}
-          active={false}
-          actions={{
-            submit: function(payload) {
-              console.log({payload});
-            }
-          }}/>
-      </Layout>
-    </Theme>
+    <Slate 
+      user={user}
+      active={false}
+      actions={{
+        submit: function(payload) {
+          console.log({payload});
+        }
+      }}
+    />
   ))
 ;

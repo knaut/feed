@@ -24,19 +24,7 @@ function mapStateToProps(state) {
 }
 
 const Provider = ({ isLoaded, children }) => {
-  return isLoaded ? children : (
-    <Box 
-      background='purpleDark'
-      css={css`
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      `}
-    >
-      <GlobalLoader/>
-    </Box>
-  )
+  return isLoaded ? children : <GlobalLoader/>
 }
 
 export default connect(mapStateToProps, () => new Object())(Provider)
