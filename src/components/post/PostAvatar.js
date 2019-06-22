@@ -2,12 +2,11 @@
 import React, { Component } from 'react';
 
 // STYLES
-import css from '@emotion/css'
+import css from '@emotion/css';
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
-import { HashLoader } from 'react-spinners';
 
 const IconImage = (props) => {
   if (props.image) {
@@ -24,11 +23,7 @@ const IconImage = (props) => {
 const IconLoading = () => {
   return (
     <IconFrame>
-      <HashLoader
-        color='purple'
-        loading={true}
-        size={35}
-      />
+     
     </IconFrame>
   );
 }
@@ -37,7 +32,7 @@ const IconLoading = () => {
 const LabelLoading = (props) => {
   return (
     <Box justify="center" align="center" pad={'small'}>
-      <Text level={1} size='small' color='gray1'>
+      <Text level={1} size='small'>
         {`Fetching "${props.username}"…`}
       </Text>
     </Box>
@@ -53,12 +48,7 @@ const IconFrame = (props) => {
         round='full'
         justify='center'
         align='center'
-        css={css`
-          border: 2px solid var(--gray1);
-          width: 60px;
-          height: 60px;
-          overflow: hidden;
-        `}>
+        >
         <Box>
           <Box fill>
             { children }

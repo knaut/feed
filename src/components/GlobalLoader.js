@@ -68,7 +68,7 @@ class GlobalLoader extends Component {
           `}
         />
         <HashLoader
-          color='purplePastel'
+          color='#D3BBE8' // theme doesn't pass down :(
           loading={true}
           size={115}
           css={css`

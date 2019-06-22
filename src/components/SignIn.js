@@ -6,8 +6,15 @@ import { connect } from 'react-redux';
 import * as blockstack from 'blockstack';
 
 // COMPONENTS
-import { Grommet, Box, Button, Paragraph, Anchor, Text } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
+import {
+  Grommet,
+  Box,
+  Button,
+  Paragraph,
+  Anchor,
+  Text,
+  Heading
+} from 'grommet';
 import { Login, LinkNext } from "grommet-icons";
 import { Link } from 'react-router-dom';
 
@@ -95,13 +102,9 @@ class SignIn extends Component {
       <Box pad={{ horizontal: 'xlarge', vertical: 'large' }}>
         <Box>
           <header>
-            <h1
-              style={{
-                color: styles.colors.pastels.purple
-              }}
-            >
+            <Heading level={1}>
               welcome to <strong color='purple'>feed</strong> 🌱.
-            </h1>
+            </Heading>
             <Text color='purple'>feed is a decentralized social network powered by blockchain technology.</Text>
             {this.renderEntry()}
           </header>

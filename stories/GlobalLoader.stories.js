@@ -10,16 +10,20 @@ import StoryRouter from 'storybook-react-router';
 // COMPONENTS
 import Theme from '../src/Theme'
 import GlobalLoader from '../src/components/GlobalLoader';
+import Layout from '../src/Layout';
 
 storiesOf('GlobalLoader', module)
   .addDecorator(StoryRouter())
-  .add('loading', () => (
+  .addDecorator(getStory => (
     <Theme>
-      <GlobalLoader isLoading={true}/>
+      <Layout columns={false}>
+        { getStory() }
+      </Layout>
     </Theme>
   ))
+  .add('loading', () => (
+    <GlobalLoader isLoading={true}/>
+  ))
   .add('loaded', () => (
-    <Theme>
-      <GlobalLoader isLoading={false}/>
-    </Theme>
+    <GlobalLoader isLoading={false}/>
   ))
