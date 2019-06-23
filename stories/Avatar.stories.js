@@ -74,7 +74,7 @@ storiesOf('Avatar - Small', module)
       </Layout>
     </Theme>
   ))
-  .add('small: is loaded', () => (
+  .add('is loaded', () => (
     <Avatar
       size={'small'}
       isLoading={false}
@@ -85,7 +85,7 @@ storiesOf('Avatar - Small', module)
       image={spoof.user.image}
     />
   ))
-  .add('small: is loading', () => (
+  .add('is loading', () => (
     <Avatar
       size={'small'}
       isLoading={true}
@@ -94,5 +94,16 @@ storiesOf('Avatar - Small', module)
       username={spoof.user.username}
       name={spoof.user.name}
       image={spoof.user.image}
+    />
+  ))
+  .add('is loaded & no avatar', () => (
+    <Avatar
+      size={'small'}
+      isLoading={false}
+      isOnBlockstack={true}
+      isMe={false}
+      username={spoof.user.username}
+      image={null}
+      name={spoof.user.name}
     />
   ))

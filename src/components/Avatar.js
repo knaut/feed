@@ -197,7 +197,7 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
                   image ? (
                     <Image src={image} fit='contain' />
                   ) : (
-                    <User color='purplePastel' size='xlarge'/>
+                    <User color='purplePastel' size='large'/>
                   )
                 }
               </Box>
