@@ -29,11 +29,10 @@ class PostList extends Component {
           />
         )
       }
-
     }
 
     return (
-      <Box align="center" css={css`width: 100%;`} pad='medium'>
+      <Box>
         { cards }
       </Box>
     );

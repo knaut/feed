@@ -21,10 +21,8 @@ storiesOf('Post List', module)
     </Theme>
   ))
   .add('default', () => (
-    <Box align='center' pad='medium'>
-      <PostListProvider>
-        <PostList/>
-      </PostListProvider>
-    </Box>
+    <PostListProvider>
+      <PostList/>
+    </PostListProvider>
   ))
 ;

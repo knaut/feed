@@ -84,11 +84,11 @@ class Slate extends Component {
 
     return (
       <Box 
-        pad="medium"
         onClick={this.focusEditor}
         animation={['slideDown', 'fadeIn']}
         ref='container'
-        css={ active ? (
+        css={ 
+          active ? (
             css`margin-top: 0; transition: 0.3s all ease-in-out;`
           ) : (
             css`margin-top: ${-height}px; transition: 0.2s all ease-in-out;`
