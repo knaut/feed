@@ -56,7 +56,7 @@ const Avatar = (props) => {
           justify="center"
           align="center"
           css={css`
-            border: '5px solid var(--gray1);
+            border: 5px solid var(--gray1);
             width: 150px;
             height: 150px;
             overflow: hidden;

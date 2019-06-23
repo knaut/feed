@@ -6,12 +6,16 @@ import { connect } from 'react-redux'
 import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Language } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader, BounceLoader } from 'react-spinners';
+import {
+  Box,
+  Text,
+} from 'grommet';
+import { Language } from 'grommet-icons';
+import { HashLoader } from 'react-spinners';
+
+// THEME
 import { feed } from '../Theme'
 
-console.log(feed)
 
 class GlobalLoader extends Component {
   quotes = [
