@@ -75,46 +75,107 @@ const AvatarLoading = ({ username }) => (
   </React.Fragment>
 )
 
-const AvatarLoaded = ({ size, image, username, isMe }) => (
-  <React.Fragment>
-    <Box justify="center" align="center">
-      <Box 
-        background='purple' 
-        round='full' 
-        justify='center'
-        align='center'
-        width='small'
-        height='small'
-        css={css`border: 5px solid var(--gray1);`}
-      >
-        <Box css={ image ? css`width: 100%; height: 100%;` : null }>
-          { 
-            image ? (
-              <Image src={image} fit="cover" />
-            ) : (
-              <User color='purplePastel' size='xlarge'/>
-            )
-          }
-        </Box>
-      </Box>
-    </Box>
-    <Box
-      justify="center"
-      align="center"
-      pad={{top: 'small'}}
-    >
-      <Text
-        level={1}
-        size={'medium'}
-        color='gray1'
-        css={css`letter-spacing: 2px;`}
-      >
-        { username }
-      </Text>
-    </Box>
-    { isMe ? <IsMeTag/> : null }
-  </React.Fragment>
-)
+const AvatarLoaded = ({ size, image, username, name, isMe }) => {
+  switch(size) {
+    default: {
+      return (
+        <React.Fragment>
+          <Box justify="center" align="center">
+            <Box 
+              background='purple' 
+              round='full' 
+              justify='center'
+              align='center'
+              width='small'
+              height='small'
+              css={css`
+                border: 5px solid var(--gray1);
+                overflow: hidden;
+              `}
+            >
+              <Box 
+                justify='center'
+                align='center'
+                css={ image ? css`width: 100%; height: 100%;` : null }
+              >
+                { 
+                  image ? (
+                    <Image src={image} fit="cover" />
+                  ) : (
+                    <User color='purplePastel' size='xlarge'/>
+                  )
+                }
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            justify="center"
+            align="center"
+            pad={{top: 'small'}}
+          >
+            <Text
+              level={1}
+              size={'medium'}
+              color='gray1'
+              css={css`letter-spacing: 2px;`}
+            >
+              { name }
+            </Text>
+          </Box>
+          { isMe ? <IsMeTag/> : null }
+        </React.Fragment>
+      )
+    }
+    case 'small': {
+      return (
+        <React.Fragment>
+          <Box direction='row'>
+            <Box 
+              background='purple' 
+              round='full' 
+              justify='center'
+              align='center'
+              width='xsmall'
+              height='xsmall'
+              css={css`
+                border: 5px solid var(--gray1);
+                overflow: hidden;
+              `}
+            >
+              <Box 
+                justify='center'
+                align='center'
+                css={ image ? css`width: 100%; height: 100%;` : null }
+              >
+                { 
+                  image ? (
+                    <Image src={image} fit="cover" />
+                  ) : (
+                    <User color='purplePastel' size='xlarge'/>
+                  )
+                }
+              </Box>
+            </Box>
+            <Box
+              justify='center'
+              align='center'
+              margin={{left: 'medium'}}
+            >
+              <Text
+                level={1}
+                size={'medium'}
+                color='gray1'
+                css={css`letter-spacing: 2px;`}
+              >
+                { name }
+              </Text>
+            </Box>
+          </Box>
+        </React.Fragment>
+      )
+    }
+  }
+}
 
 const NotOnBlockstack = ({ username }) => (
   <React.Fragment>
@@ -199,6 +260,7 @@ class Avatar extends Component {
               size='small'
               image={image}
               username={username}
+              name={name}
               isMe={false}
             />
           )
