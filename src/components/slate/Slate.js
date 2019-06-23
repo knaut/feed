@@ -55,8 +55,10 @@ class Slate extends Component {
         Profile: id,
         text
       }, (error) => {
+
         console.log('aftereffect', {error}, this);
         if (!error) {
+
           const editorState = EditorState.push(
             this.state.editorState, ContentState.createFromText('')
           );
@@ -65,7 +67,9 @@ class Slate extends Component {
             editorState
           });
           console.log(this.state)
+          
         }
+
       });
       
     } else {

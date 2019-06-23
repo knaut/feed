@@ -9,6 +9,9 @@ import { Add } from 'grommet-icons';
 // STYLES
 import css from '@emotion/css'
 
+// THEME
+import { feed } from '../../Theme'
+
 class Counter extends Component {
   onClick = () => {
     const { count, limit } = this.props;
@@ -36,8 +39,8 @@ class Counter extends Component {
           <PieChart
             data={[{ value: 1, key: 1, color: (
               warn ? ( 
-                block ? 'red' : 'orange'
-              ) : 'gray2'
+                block ? feed.global.colors.red : feed.global.colors.orange
+              ) : feed.global.colors.gray2
             )}]}
             reveal={ ( count >= limit ) ? 100 : reveal }
             lineWidth={10}
@@ -50,7 +53,7 @@ class Counter extends Component {
           />
           <Box css={css`position: absolute;`}>
             <PieChart
-              data={[{ value: 1, key: 1, color: 'gray2' }]}
+              data={[{ value: 1, key: 1, color: feed.global.colors.gray2 }]}
               reveal={100}
               lineWidth={10}
               css={css`
@@ -60,7 +63,7 @@ class Counter extends Component {
               `}
             />
             <Add 
-              color={block ? 'red' : 'gray3'}
+              color={block ? feed.global.colors.red : feed.global.colors.gray3}
               css={css`
                 position: absolute;
                 z-index: 28;

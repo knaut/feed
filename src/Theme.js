@@ -7,7 +7,7 @@ import { grommet } from 'grommet/themes'
 import { deepMerge } from 'grommet/utils'
 
 
-const feed = deepMerge(grommet, {
+export const feed = deepMerge(grommet, {
   global: {
     colors: {
       // primaries

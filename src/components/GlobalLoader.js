@@ -7,9 +7,11 @@ import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Language } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader, BounceLoader } from 'react-spinners';
+import { feed } from '../Theme'
+
+console.log(feed)
 
 class GlobalLoader extends Component {
   quotes = [
@@ -60,7 +62,7 @@ class GlobalLoader extends Component {
         css={css`position: relative;`}
       >
         <Language 
-          color='purple'
+          color={feed.global.colors.purple}
           size='xlarge'
           css={css`
             position: absolute;
@@ -68,7 +70,7 @@ class GlobalLoader extends Component {
           `}
         />
         <HashLoader
-          color='#D3BBE8' // theme doesn't pass down :(
+          color={feed.global.colors.purplePastel}
           loading={true}
           size={115}
           css={css`
