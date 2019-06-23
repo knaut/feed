@@ -19,7 +19,7 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
-import Avatar from './Avatar';
+import Avatar from '../Avatar';
 import FeedLink from './FeedLink';
 
 class ProfileCard extends Component {
@@ -32,7 +32,8 @@ class ProfileCard extends Component {
       image,
       name,
       username,
-      description
+      description,
+      size
     } = this.props;
 
     return (
@@ -45,7 +46,7 @@ class ProfileCard extends Component {
           round
         >
           <header>
-            <Avatar {...this.props} />
+            <Avatar {...this.props} size={size}/>
             <Heading level={1} size={'small'} css={css`text-align: center;`}>
               {this.props.name}
             </Heading>

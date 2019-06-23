@@ -14,7 +14,7 @@ import {
   Text
 } from 'grommet';
 // import Avatar from './PostAvatar.js';
-import Avatar from '../profile/Avatar.js';
+import Avatar from '../Avatar.js';
 
 export default class CardHeader extends Component {
   render() {
@@ -24,7 +24,8 @@ export default class CardHeader extends Component {
       username,
       name,
       image,
-      timestamp
+      timestamp,
+      size
     } = this.props;
 
     return (
@@ -46,6 +47,7 @@ export default class CardHeader extends Component {
             username={username}
             name={name}
             image={image}
+            size={size}
           />
         </Box>
         <Box gridArea='date' css={css`text-align:right;`}>

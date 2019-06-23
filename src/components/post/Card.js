@@ -27,7 +27,8 @@ class Card extends Component {
   render() {
     const {
       post,
-      author
+      author,
+      size
     } = this.props;
 
     const {
@@ -67,6 +68,7 @@ class Card extends Component {
             image={image}
             name={name}
             timestamp={timestamp}
+            size={size}
           />
           <CardText text={text} />
         </Box>

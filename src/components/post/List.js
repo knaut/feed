@@ -26,6 +26,7 @@ class PostList extends Component {
             post={post}
             author={author}
             user={user}
+            size='small'
           />
         )
       }
