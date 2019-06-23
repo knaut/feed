@@ -10,6 +10,9 @@ import { grommet, dark } from 'grommet/themes';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
 
+// THEME
+import { feed } from '../../Theme'
+
 const Avatar = (props) => {
   const {
     isLoading,
@@ -64,7 +67,7 @@ const Avatar = (props) => {
         >
           <Box>
             <HashLoader
-              color='purplePastel'
+              color={feed.global.colors.purplePastel}
               loading={true}
               size={75}
             />
@@ -130,7 +133,7 @@ const Avatar = (props) => {
           justify="center"
           align="center"
           css={css`
-            border: '5px solid var(--gray1);
+            border: 5px solid var(--gray1);
             width: 150px;
             height: 150px;
             overflow: hidden;
