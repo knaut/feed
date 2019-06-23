@@ -6,19 +6,25 @@ import StoryRouter from 'storybook-react-router';
 
 // COMPONENTS
 import Theme from '../../src/Theme'
+import Layout from '../../src/Layout';
 import PostList from '../../src/components/post/List';
 import PostListProvider from './providers/PostListProvider';
 
 
 storiesOf('Post List', module)
   .addDecorator(StoryRouter())
-  .add('default', () => (
+  .addDecorator(getStory => (
     <Theme>
-      <Box align="center" style={{ width: '100%' }} pad='medium'>
-        <PostListProvider>
-          <PostList/>
-        </PostListProvider>
-      </Box>
+      <Layout columns={false}>
+        { getStory() }
+      </Layout>
     </Theme>
+  ))
+  .add('default', () => (
+    <Box align='center' pad='medium'>
+      <PostListProvider>
+        <PostList/>
+      </PostListProvider>
+    </Box>
   ))
 ;
