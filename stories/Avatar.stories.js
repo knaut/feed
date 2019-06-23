@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Grommet, Box, Button, Grid } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
-import Avatar from '../src/components/profile/Avatar';
+import Avatar from '../src/components/Avatar';
 
 import spoof from '../.storybook/user.json';
 
@@ -10,7 +10,7 @@ import spoof from '../.storybook/user.json';
 import Theme from '../src/Theme'
 import Layout from '../src/Layout'
 
-storiesOf('Avatar', module)
+storiesOf('Avatar - Large', module)
   .addDecorator(getStory => (
     <Theme>
       <Layout columns={false}>
@@ -60,6 +60,26 @@ storiesOf('Avatar', module)
       isOnBlockstack={true}
       isMe={false}
       username={spoof.user.username}
+      image={null}
+    />
+  ))
+  
+storiesOf('Avatar - Small', module)
+  .addDecorator(getStory => (
+    <Theme>
+      <Layout columns={false}>
+        { getStory() }
+      </Layout>
+    </Theme>
+  ))
+  .add('small: is loaded', () => (
+    <Avatar
+      size={'small'}
+      isLoading={false}
+      isOnBlockstack={true}
+      isMe={false}
+      username={spoof.user.username}
+      name={spoof.user.name}
       image={null}
     />
   ))
