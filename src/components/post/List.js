@@ -19,7 +19,7 @@ class PostList extends Component {
 
       for (let p = 0; posts.length > p; ++p) {
         const post = posts[p]
-
+        console.log(post)
         cards.push(
           <Card
             key={p}

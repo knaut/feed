@@ -8,6 +8,9 @@ import css from '@emotion/css';
 import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
 
+// THEME
+import { feed } from '../../Theme'
+
 const IconImage = (props) => {
   if (props.image) {
     return (
@@ -23,7 +26,11 @@ const IconImage = (props) => {
 const IconLoading = () => {
   return (
     <IconFrame>
-     
+      <HashLoader
+        color={feed.global.colors.purplePastel}
+        loading={true}
+        size={35}
+      />
     </IconFrame>
   );
 }
@@ -48,7 +55,7 @@ const IconFrame = (props) => {
         round='full'
         justify='center'
         align='center'
-        >
+      >
         <Box>
           <Box fill>
             { children }

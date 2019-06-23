@@ -41,6 +41,8 @@ class Card extends Component {
       text
     } = post;
 
+    console.log(this)
+
     return (
       <Box 
         align="center" 

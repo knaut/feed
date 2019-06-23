@@ -17,8 +17,10 @@ class PostListProvider extends Component {
 
     for (let p = 0; ids.length > p; ++p) {
       // filter out the statuses that match our ids
-      if ( entities[ ids[p] ] ) {
-        const { timestamp, text } = entities[ ids[p] ]
+      const entity = entities[ ids[p] ]
+      console.log(entity)
+      if ( entity ) {
+        const { timestamp, text } = entity
         const statusObj = {
           timestamp,
           text,
@@ -49,6 +51,7 @@ class PostListProvider extends Component {
       author.username = username
       author.image = user.image
       author.name = user.name
+      author.isOnBlockstack = true
 
       // slice out the ids of our statuses
       postIds = Profile.entities[username].Status
@@ -75,6 +78,7 @@ class PostListProvider extends Component {
       author.username = username
       author.image = Profile.entities[username].image
       author.name = Profile.entities[username].name
+      author.isOnBlockstack = true
 
       // slice out the ids of our statuses
       postIds = Profile.entities[username].Status
