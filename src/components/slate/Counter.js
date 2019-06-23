@@ -33,6 +33,14 @@ class Counter extends Component {
     const warn = reveal > 92;
     const block = count >= limit;
 
+    console.log({
+      count,
+      reveal,
+      opacity,
+      warn,
+      block
+    })
+
     return (
       <Button onClick={this.onClick}>
         <Box css={css`width: 45px;`}>
@@ -53,7 +61,7 @@ class Counter extends Component {
           />
           <Box css={css`position: absolute;`}>
             <PieChart
-              data={[{ value: 1, key: 1, color: feed.global.colors.gray2 }]}
+              data={[{ value: 1, key: 1, color: feed.global.colors.light }]}
               reveal={100}
               lineWidth={10}
               css={css`
