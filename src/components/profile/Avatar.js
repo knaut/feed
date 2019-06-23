@@ -19,8 +19,7 @@ const Avatar = (props) => {
     isOnBlockstack,
     isMe,
     username,
-    image,
-    mini
+    image
   } = props;
 
   const noAvatar = (<User color='purplePastel' size='xlarge'/>);
@@ -95,13 +94,13 @@ const Avatar = (props) => {
           justify="center" 
           align="center"
           css={css`
-            border: '5px solid var(--gray1);
+            border: 5px solid var(--gray1);
             width: 150px;
             height: 150px;
             overflow: hidden;
           `}
         >
-          <Box css={css`${ image ? 'width: 100%; height: 100%;' : null}`}>
+          <Box css={ image ? css`width: 100%; height: 100%;` : null }>
             {image ? avatar : noAvatar}
           </Box>
         </Box>

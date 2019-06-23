@@ -63,13 +63,3 @@ storiesOf('Avatar', module)
       image={null}
     />
   ))
-  .add('mini: is loaded', () => (
-    <Avatar
-      isLoading={false}
-      isOnBlockstack={true}
-      isMe={null}
-      username={spoof.user.username}
-      image={spoof.user.image}
-      mini={true}
-    />
-  ))

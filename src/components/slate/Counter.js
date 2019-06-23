@@ -33,14 +33,6 @@ class Counter extends Component {
     const warn = reveal > 92;
     const block = count >= limit;
 
-    console.log({
-      count,
-      reveal,
-      opacity,
-      warn,
-      block
-    })
-
     return (
       <Button onClick={this.onClick}>
         <Box css={css`width: 45px;`}>
