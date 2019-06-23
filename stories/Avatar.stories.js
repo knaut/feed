@@ -68,7 +68,9 @@ storiesOf('Avatar - Small', module)
   .addDecorator(getStory => (
     <Theme>
       <Layout columns={false}>
-        { getStory() }
+        <Box align='center' justify='center'>
+          { getStory() }
+        </Box>
       </Layout>
     </Theme>
   ))
@@ -80,6 +82,6 @@ storiesOf('Avatar - Small', module)
       isMe={false}
       username={spoof.user.username}
       name={spoof.user.name}
-      image={null}
+      image={spoof.user.image}
     />
   ))

@@ -149,7 +149,7 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
               >
                 { 
                   image ? (
-                    <Image src={image} fit="cover" />
+                    <Image src={image} fit='contain' />
                   ) : (
                     <User color='purplePastel' size='xlarge'/>
                   )
@@ -255,15 +255,20 @@ class Avatar extends Component {
             />
           )
         } else {
-          return (
-            <AvatarLoaded 
-              size='small'
-              image={image}
-              username={username}
-              name={name}
-              isMe={false}
-            />
-          )
+          // switch based on whether the user is on blockstack
+          if (isOnBlockstack === true) {
+            return (
+              <AvatarLoaded 
+                size='small'
+                image={image}
+                username={username}
+                name={name}
+                isMe={false}
+              />
+            )
+          } else {
+            return <NotOnBlockstack username={username}/>
+          }
         }
 
       }
