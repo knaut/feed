@@ -85,3 +85,14 @@ storiesOf('Avatar - Small', module)
       image={spoof.user.image}
     />
   ))
+  .add('small: is loading', () => (
+    <Avatar
+      size={'small'}
+      isLoading={true}
+      isOnBlockstack={true}
+      isMe={false}
+      username={spoof.user.username}
+      name={spoof.user.name}
+      image={spoof.user.image}
+    />
+  ))

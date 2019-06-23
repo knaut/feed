@@ -39,41 +39,87 @@ const IsMeTag = () => (
   </Box>
 )
 
-const AvatarLoading = ({ username }) => (
-  <React.Fragment>
-    <Box justify="center" align="center">
-      <Box 
-        background='purple' 
-        round='full'
-        justify="center"
-        align="center"
-        css={css`
-          border: 5px solid var(--gray1);
-          width: 150px;
-          height: 150px;
-          overflow: hidden;
-        `}
-      >
-        <Box>
-          <HashLoader
-            color={feed.global.colors.purplePastel}
-            loading={true}
-            size={75}
-          />
-        </Box>
-      </Box>
-    </Box>
-    <Box
-      justify="center"
-      align="center"
-      pad='small'
-    >
-      <Text level={1} size='medium' color='gray1'>
-        {`Looking up "${username}"…`}
-      </Text>
-    </Box>
-  </React.Fragment>
-)
+const AvatarLoading = ({ size, username }) => {
+  switch(size) {
+    default: {
+      return (
+        <React.Fragment>
+          <Box justify="center" align="center">
+            <Box 
+              background='purple' 
+              round='full'
+              justify="center"
+              align="center"
+              css={css`
+                border: 5px solid var(--gray1);
+                width: 150px;
+                height: 150px;
+                overflow: hidden;
+              `}
+            >
+              <Box>
+                <HashLoader
+                  color={feed.global.colors.purplePastel}
+                  loading={true}
+                  size={75}
+                />
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            justify="center"
+            align="center"
+            pad='small'
+          >
+            <Text level={1} size='medium' color='gray1'>
+              {`Looking up "${username}"…`}
+            </Text>
+          </Box>
+        </React.Fragment>
+      )
+    }
+    case 'small': {
+      return (
+        <React.Fragment>
+          <Box direction='row'>
+            <Box 
+              background='purple' 
+              round='full' 
+              justify='center'
+              align='center'
+              width='xsmall'
+              height='xsmall'
+              css={css`
+                border: 5px solid var(--gray1);
+                overflow: hidden;
+              `}
+            >
+              <Box>
+                <HashLoader
+                  color={feed.global.colors.purplePastel}
+                  loading={true}
+                  size={50}
+                />
+              </Box>
+            </Box>
+            <Box
+              justify="center"
+              align="center"
+              pad='small'
+            >
+              <Text level={1} size='medium' color='gray1' margin={{left: 'xsmall'}}>
+                {`Fetching "${username}"…`}
+              </Text>
+            </Box>
+          </Box>
+        </React.Fragment>
+      )
+    }
+
+  }
+  
+  
+}
 
 const AvatarLoaded = ({ size, image, username, name, isMe }) => {
   switch(size) {
@@ -100,7 +146,7 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
               >
                 { 
                   image ? (
-                    <Image src={image} fit="cover" />
+                    <Image src={image} fit='contain' />
                   ) : (
                     <User color='purplePastel' size='xlarge'/>
                   )
@@ -263,7 +309,6 @@ class Avatar extends Component {
                 image={image}
                 username={username}
                 name={name}
-                isMe={false}
               />
             )
           } else {
