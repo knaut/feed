@@ -63,35 +63,26 @@ export default class GlobalLayout extends Component {
     } = this.props
 
     return (
-      <div 
+      <Box
+        fill 
+        align='center' 
         css={css`
           background: var(--purpleDark);
           min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
         `}
       >
-        <Box fill align="center" justify="center"
-          style={{
-            alignItems: 'center',
-            align: 'center',
-            justify: 'center',
-          }}
-        >
-          { columns === false ? 
-            (
-              <FullGrid> 
-                { this.props.children }
-              </FullGrid>
-            ) : (
-              <ColumnedGrid left={left} right={right}>
-                { this.props.children }
-              </ColumnedGrid>
-            )
-          }
-        </Box>
-      </div>
+        { columns === false ? 
+          (
+            <FullGrid> 
+              { this.props.children }
+            </FullGrid>
+          ) : (
+            <ColumnedGrid left={left} right={right}>
+              { this.props.children }
+            </ColumnedGrid>
+          )
+        }
+      </Box>
     )
   }
 }
