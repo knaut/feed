@@ -50,10 +50,10 @@ const AvatarLoading = ({ size, username }) => {
               round='full'
               justify="center"
               align="center"
+              width='small'
+              height='small'
               css={css`
                 border: 5px solid var(--gray1);
-                width: 150px;
-                height: 150px;
                 overflow: hidden;
               `}
             >
@@ -143,7 +143,7 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
               >
                 { 
                   image ? (
-                    <Image src={image} fit='contain' />
+                    <Image src={image} fit='cover' css={css`width: inherit;`} />
                   ) : (
                     <User color='purplePastel' size='xlarge'/>
                   )

@@ -15,7 +15,11 @@ class Index extends Component {
         left={null}
         right={null}
       >
-        <Box fill align='center' justify='center'>
+        <Box
+          fill
+          align='center'
+          justify='center'
+        >
           <SignIn />
         </Box>
       </Layout>

@@ -42,7 +42,6 @@ class ProfileCard extends Component {
           width='large'
           background='white'
           pad='medium'
-          gap='small'
           round
         >
           <header>
