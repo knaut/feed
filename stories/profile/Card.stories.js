@@ -7,12 +7,19 @@ import ProfileCard from '../../src/components/profile/Card';
 import spoof from '../../.storybook/user.json';
 
 // COMPONENTS
+import Layout from '../../src/Layout'
 import Theme from '../../src/Theme'
 
 storiesOf('Profile Card', module)
   .addDecorator(StoryRouter())
-  .add('loading', () => (
+  .addDecorator(getStory => (
     <Theme>
+      <Layout columns={false}>
+        { getStory() }
+      </Layout>
+    </Theme>
+  ))
+  .add('loading', () => (
         <ProfileCard
           isLoading={true}
           isOnBlockstack={null}
@@ -20,10 +27,8 @@ storiesOf('Profile Card', module)
           username={spoof.user.username}
           image={null}
         />
-    </Theme>
   ))
   .add('id found, is on feed', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={true}
@@ -34,10 +39,8 @@ storiesOf('Profile Card', module)
           name={spoof.user.name}
           description={spoof.user.description}
         />
-    </Theme>
   ))
   .add('id found, is on feed, is me', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={true}
@@ -48,10 +51,8 @@ storiesOf('Profile Card', module)
           name={spoof.user.name}
           description={spoof.user.description}
         />
-    </Theme>
   ))
   .add('id found, is not on feed', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={true}
@@ -62,10 +63,8 @@ storiesOf('Profile Card', module)
           name={spoof.user.name}
           description={spoof.user.description}
         />
-    </Theme>
   ))
   .add('id found, is not on feed, is me', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={true}
@@ -76,10 +75,8 @@ storiesOf('Profile Card', module)
           name={spoof.user.name}
           description={spoof.user.description}
         />
-    </Theme>
   ))
   .add('id found, is not on feed, is me, no avatar', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={true}
@@ -90,10 +87,8 @@ storiesOf('Profile Card', module)
           name={spoof.user.name}
           description={spoof.user.description}
         />
-    </Theme>
   ))
   .add('id found, is not on feed, is not me, no avatar', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={true}
@@ -104,10 +99,8 @@ storiesOf('Profile Card', module)
           name={spoof.user.name}
           description={spoof.user.description}
         />
-    </Theme>
   ))
   .add('not found', () => (
-    <Theme>
         <ProfileCard
           isLoading={false}
           isOnBlockstack={false}
@@ -115,7 +108,6 @@ storiesOf('Profile Card', module)
           username={spoof.user.username}
           image={null}
         />
-    </Theme>
   ))
   
 ;

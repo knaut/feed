@@ -13,13 +13,11 @@ import {
   Grid,
   Text
 } from 'grommet';
-// import Avatar from './PostAvatar.js';
+
 import Avatar from '../Avatar.js';
 
 export default class CardHeader extends Component {
   render() {
-    console.log(this)
-
     const { 
       username,
       name,

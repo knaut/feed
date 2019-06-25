@@ -115,10 +115,7 @@ const AvatarLoading = ({ size, username }) => {
         </React.Fragment>
       )
     }
-
   }
-  
-  
 }
 
 const AvatarLoaded = ({ size, image, username, name, isMe }) => {
@@ -265,8 +262,6 @@ class Avatar extends Component {
       // determines layout and styles
       size
     } = this.props;
-
-    console.log(this)
 
     switch(size) {
       default: {

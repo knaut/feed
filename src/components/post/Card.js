@@ -42,8 +42,6 @@ class Card extends Component {
       text
     } = post;
 
-    console.log(this)
-
     return (
       <Box 
         align="center" 
@@ -68,7 +66,7 @@ class Card extends Component {
             image={image}
             name={name}
             timestamp={timestamp}
-            size={size}
+            size='small'
           />
           <CardText text={text} />
         </Box>

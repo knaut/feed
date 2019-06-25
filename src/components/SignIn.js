@@ -65,32 +65,40 @@ class SignIn extends Component {
 
     if (this.props.user.isAuthenticated && this.props.hasFeed) {
       return (
-        <Box align="center" pad="small" gap="small">
-          <Paragraph color='cyanPastel'>
-            Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
-          </Paragraph>
-          <Link to={feedPath}>
-            <Button icon={<LinkNext />} label="go to your feed" primary/>
-          </Link>
+        <Box>
+          <Box pad='small'>
+            <Text color='cyanPastel'>
+              Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
+            </Text>
+          </Box>
+          <Box pad='small'>
+            <Link to={feedPath}>
+              <Button icon={<LinkNext />} label="go to your feed" primary/>
+            </Link>
+          </Box>
         </Box>
       )
     } else if (this.props.user.isAuthenticated && !this.props.hasFeed) {
       return (
-        <Box align="center" pad="small" gap="small">
-          <Paragraph margin={{bottom: 'none'}} color='cyanPastel'>
-            Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
-          </Paragraph>
-          <Paragraph margin={{top: 'none'}} color='cyanPastel'>
-            Sign in for the first time to get started!
-          </Paragraph>
-          <Link to={feedPath} onClick={this.initialSignIn}>
-            <Button icon={<LinkNext />} label="go to your feed" primary/>
-          </Link>
+        <Box>
+          <Box pad='small'>
+            <Text color='cyanPastel'>
+              Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
+            </Text>
+            <Text color='cyanPastel'>
+              Sign in for the first time to get started!
+            </Text>
+          </Box>
+          <Box pad='small'>
+            <Link to={feedPath} onClick={this.initialSignIn}>
+              <Button icon={<LinkNext />} label="go to your feed" primary/>
+            </Link>
+          </Box>
         </Box>
       )
     } else {
       return (
-        <Box align="center" pad="large" gap="small">
+        <Box>
           <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
         </Box>
       )
@@ -99,16 +107,12 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Box pad={{ horizontal: 'xlarge', vertical: 'large' }}>
-        <Box>
-          <header>
-            <Heading level={1}>
-              welcome to <strong color='purple'>feed</strong> 🌱.
-            </Heading>
-            <Text color='purple'>feed is a decentralized social network powered by blockchain technology.</Text>
-            {this.renderEntry()}
-          </header>
-        </Box>
+      <Box align='center'>
+        <Heading level={1}>
+          <span css={css`color: var(--purplePastel);`}>welcome to</span> <strong css={css`color: var(--purple);`}>feed</strong> 🌱<span css={css`color: var(--purplePastel);`}>.</span>
+        </Heading>
+        <Text color='light' textAlign='center' size='medium'>feed is a decentralized social network powered by blockchain technology.</Text>
+        {this.renderEntry()}
       </Box>
     );
   }
