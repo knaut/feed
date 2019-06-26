@@ -1,5 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet';
@@ -9,6 +11,18 @@ import css from '@emotion/css'
 
 // ICONS
 import { SubtractCircle } from 'grommet-icons';
+
+// ACTIONS
+import * as StatusThunks from '../../thunks/status'
+console.log(StatusThunks)
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      deleteStatus: StatusThunks.deleteStatus
+    }, dispatch)
+  }
+}
 
 class Remove extends Component {
   state = {
@@ -25,6 +39,11 @@ class Remove extends Component {
     this.setState({
       onHover: false
     });
+  }
+
+  onDelete = () => {
+    const { id } = this.props
+    this.props.actions.deleteStatus({ id })
   }
 
   render() {
@@ -51,4 +70,5 @@ class Remove extends Component {
   }
 }
 
-export default Remove
+export default connect( () => new Object(), mapDispatchToProps)(Remove)
+

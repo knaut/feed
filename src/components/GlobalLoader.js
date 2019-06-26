@@ -60,33 +60,39 @@ class GlobalLoader extends Component {
 
     return (
       <Box
+        fill
+        align='center'
+        justify='center'
         animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
-        justify="center"
-        align="center"
-        css={css`position: relative;`}
       >
-        <Language 
-          color={feed.global.colors.purple}
-          size='xlarge'
-          css={css`
-            position: absolute;
-            top: 10px;
-          `}
-        />
-        <HashLoader
-          color={feed.global.colors.purplePastel}
-          loading={true}
-          size={115}
-          css={css`
-            position: absolute;
-            top: 0;
-          `}
-        />
-        <Text 
-          margin='small' 
-          color='gray1'
-          size='xlarge'
-        >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
+        <Box
+          justify="center"
+          align="center"
+          css={css`position: relative;`}
+        >
+          <Language 
+            color={feed.global.colors.purple}
+            size='xlarge'
+            css={css`
+              position: absolute;
+              top: 10px;
+            `}
+          />
+          <HashLoader
+            color={feed.global.colors.purplePastel}
+            loading={true}
+            size={115}
+            css={css`
+              position: absolute;
+              top: 0;
+            `}
+          />
+          <Text 
+            margin='small' 
+            color='gray1'
+            size='xlarge'
+          >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
+        </Box>
       </Box>
     );
   }

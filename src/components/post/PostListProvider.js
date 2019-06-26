@@ -18,7 +18,7 @@ class PostListProvider extends Component {
     for (let p = 0; ids.length > p; ++p) {
       // filter out the statuses that match our ids
       const entity = entities[ ids[p] ]
-      console.log(entity)
+      
       if ( entity ) {
         const { timestamp, text } = entity
         const statusObj = {

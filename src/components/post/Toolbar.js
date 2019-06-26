@@ -1,6 +1,8 @@
 // IMPORTS
 import React, { Component } from 'react';
 import Moment from 'moment';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 // STYLES
 import css from '@emotion/css'
@@ -12,6 +14,8 @@ import CardText from './CardText';
 import Permalink from '../button/Permalink'
 import Remove from '../button/Remove'
 
+// ACTIONS
+import * as PostThunks from '../../thunks/post'
 
 class Toolbar extends Component {
   render() {
@@ -41,7 +45,7 @@ class Toolbar extends Component {
         <Box gridArea='flex'>
 
         </Box>
-        <Remove/>
+        <Remove id={post.id}/>
       </Grid>
     )
   }
