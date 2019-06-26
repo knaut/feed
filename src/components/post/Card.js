@@ -49,16 +49,14 @@ class Card extends Component {
         animation={['fadeIn', 'zoomIn']}
         onMouseEnter={this.onEnter}
         onMouseLeave={this.onLeave}
+        css={css`width: 100%;`}
       >
         <Box
           pad='medium'
-          gap='small'
           round
           background='white'
-          css={css`
-            width: 100%;
-            z-index: 1;
-          `}
+          width='100%'
+          css={css`width: 100%; position: relative; z-index: 2;`}
         >
           <CardHeader 
             username={username}
@@ -67,7 +65,9 @@ class Card extends Component {
             timestamp={timestamp}
             size='small'
           />
-          <CardText text={text} />
+          <Box pad={{top: 'small'}}>
+            <CardText text={text}/>
+          </Box>
         </Box>
         <Toolbar 
           post={post} 
