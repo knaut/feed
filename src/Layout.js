@@ -45,8 +45,10 @@ const ColumnedGrid = ({ left, children, right }) => (
     <Box gridArea='left'>
       { left }
     </Box>
-    <Box gridArea='main'>
-      { children }
+    <Box gridArea='main' align='center'>
+      <Box width='large'>
+        { children }
+      </Box>
     </Box>
     <Box gridArea='right'>
       { right }
@@ -65,7 +67,8 @@ export default class GlobalLayout extends Component {
     return (
       <Box
         fill 
-        align='center' 
+        align='center'
+        justify='center'
         css={css`
           background: var(--purpleDark);
           min-height: 100vh;

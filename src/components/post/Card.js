@@ -45,7 +45,6 @@ class Card extends Component {
     return (
       <Box 
         align="center" 
-        css={css`width: 100%; max-width: 800px`} 
         margin={{ bottom: 'small' }}
         animation={['fadeIn', 'zoomIn']}
         onMouseEnter={this.onEnter}
