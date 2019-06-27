@@ -52,21 +52,21 @@ const App = () => {
       payload: profileData
     });
 
-    Profile.getCache().then(file => {
-      store.dispatch({
-        type: 'GET_CACHE_SUCCESS',
-        payload: file
-      });
-    }).catch(error => {
-      store.dispatch({
-        type: 'GET_CACHE_ERROR',
-        payload: error
-      });
-    });
-
   } else {
     console.log('You are not signed in to Blockstack.');
-  }          
+  }
+
+  Profile.getCache().then(file => {
+    store.dispatch({
+      type: 'GET_CACHE_SUCCESS',
+      payload: file
+    });
+  }).catch(error => {
+    store.dispatch({
+      type: 'GET_CACHE_ERROR',
+      payload: error
+    });
+  });
 
   return (
     <Provider store={ store }>

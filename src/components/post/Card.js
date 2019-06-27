@@ -25,6 +25,8 @@ class Card extends Component {
   }
 
   render() {
+    console.log(this.props)
+    
     const {
       post,
       author,

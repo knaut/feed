@@ -12,6 +12,10 @@ function mapStateToProps(state) {
 }
 
 class PermalinkProvider extends Component {
+  componentDidMount() {
+    console.log(this)
+  }
+
   render() {
     const {
       Status, 
@@ -39,7 +43,7 @@ class PermalinkProvider extends Component {
         ...child.props,
         post,
         author,
-        username
+        user
       })
     })
 

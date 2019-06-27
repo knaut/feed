@@ -15,7 +15,7 @@ import Profile from '../../models/Profile'
 
 function mapStateToProps(state) {
   return {
-    me: state.user.username
+    username: state.user.username
   }
 }
 
