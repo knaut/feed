@@ -24,7 +24,7 @@ const FullGrid = ({children}) => (
     rows={['flex']}
     gap='small'
   >
-    <Box gridArea='main'>
+    <Box gridArea='main' justify='center' height='100vh'>
       { children }
     </Box>
   </Grid>
@@ -68,10 +68,9 @@ export default class GlobalLayout extends Component {
       <Box
         fill 
         align='center'
-        justify='center'
+        justify='center' height='100vh'
         css={css`
           background: var(--purpleDark);
-          min-height: 100vh;
         `}
       >
         { columns === false ? 

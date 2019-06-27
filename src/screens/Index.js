@@ -14,6 +14,7 @@ class Index extends Component {
       <Layout
         left={null}
         right={null}
+        columns={false}
       >
         <Box
           fill
