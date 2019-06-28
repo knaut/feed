@@ -44,7 +44,10 @@ class UserFeed extends Component {
         <GlobalLoaderProvider>
           <WrappedSlate />
           <Box margin={{top: 'medium'}}>
-            <PostListProvider username={this.props.match.params.username}>
+            <PostListProvider 
+              author={this.props.match.params.username}
+              username={this.props.username}
+            >
               <PostList/>
             </PostListProvider>
           </Box>

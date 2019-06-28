@@ -20,7 +20,7 @@ import MyFeed from '../components/button/MyFeed'
 
 class Permalinked extends Component {
   render() {
-    const id = this.props.match.params.id
+    const postId = this.props.match.params.id
 
     return (
       <Layout
@@ -35,7 +35,7 @@ class Permalinked extends Component {
       >
         <GlobalLoaderProvider>
           <Box align='center' margin={{top: 'medium'}}>
-            <PermalinkProvider id={id}>
+            <PermalinkProvider postId={postId}>
               <Card />
             </PermalinkProvider>
           </Box>

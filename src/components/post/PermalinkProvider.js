@@ -18,7 +18,17 @@ import Profile from '../../models/Profile'
 
 
 function mapStateToProps(state) {
-  return state
+  const {
+    Status,
+    Profile,
+    user
+  } = state
+  
+  return {
+    Status,
+    Profile,
+    username: user.username
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -35,17 +45,14 @@ class PermalinkProvider extends Component {
     image: null
   }
 
-
   async componentDidMount() {
     console.log(this)
 
-    const { Status, id } = this.props
-    const username = Status.entities[id].Profile
-
-    this.setState({ username })
+    const { postId, Status } = this.props
+    const postAuthor = Status.entities[postId].Profile
 
     try {
-      const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
+      const blockstackUser = await blockstack.lookupProfile(`${postAuthor}.id.blockstack`)
       const name = blockstackUser.name
       const image = blockstackUser.image[0].contentUrl
 
@@ -65,21 +72,29 @@ class PermalinkProvider extends Component {
       Status, 
       Profile, 
       username,
-      user,
-      id
+
+      postId
     } = this.props
 
-    const author = this.state
+    const {
+      name,
+      image
+    } = this.state
 
-    const post = Status.entities[ id ]
-    author.username = post.Profile
+    const post = Status.entities[ postId ]
+
+    const author = {
+      username: post.Profile,
+      name,
+      image
+    }
 
     const children = React.Children.map( this.props.children, child => {
       return React.cloneElement(child, {
         ...child.props,
         post,
         author,
-        user
+        username
       })
     })
 
