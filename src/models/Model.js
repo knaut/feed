@@ -56,7 +56,6 @@ class Model {
     console.log('Attempting to fetch cache.');
     console.log(process.env.STORAGE)
     return new Promise((resolve, reject) => {
-      console.log(process.env.STORAGE)
       switch(process.env.STORAGE) {
         case 'LOCAL': {
           fetch('/api/cache', {

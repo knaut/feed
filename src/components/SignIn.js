@@ -25,14 +25,22 @@ import css from '@emotion/css'
 import * as UserActions from '../actions/user';
 
 function mapStateToProps(state) {
-  const id = state.user.username.split('.')[0];
-  const hasFeed = state.Profile.entities.hasOwnProperty(id);
-  
-  return {
-    user: state.user,
-    hasFeed,
-    id
-  };
+  if (state.user.username === null) {
+    return {
+      user: false,
+      hasFeed: false,
+      id: false
+    }
+  } else {
+    const id = state.user.username.split('.')[0];
+    const hasFeed = state.Profile.entities.hasOwnProperty(id);
+    
+    return {
+      user: state.user,
+      hasFeed,
+      id
+    }
+  }
 }
 
 function mapDispatchToProps(dispatch) {
