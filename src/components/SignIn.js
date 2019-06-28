@@ -106,7 +106,7 @@ class SignIn extends Component {
       )
     } else {
       return (
-        <Box>
+        <Box pad='medium'>
           <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
         </Box>
       )
