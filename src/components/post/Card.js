@@ -33,14 +33,8 @@ class Card extends Component {
     const {
       post,
       author,
-      user
+      username
     } = this.props;
-
-    const {
-      username,
-      name,
-      image
-    } = author;
 
     const {
       timestamp,
@@ -64,9 +58,9 @@ class Card extends Component {
           css={css`width: 100%; position: relative; z-index: 2;`}
         >
           <CardHeader 
-            username={username}
-            image={image}
-            name={name}
+            username={author.username}
+            image={author.image}
+            name={author.name}
             timestamp={timestamp}
             size='small'
           />
@@ -77,7 +71,7 @@ class Card extends Component {
         <Toolbar 
           post={post} 
           onHover={onHover}
-          user={user.username}
+          username={username}
           author={author.username}
         />
       </Box>
@@ -87,7 +81,8 @@ class Card extends Component {
 
 Card.propTypes = {
   author: PropTypes.object,
-  post: PropTypes.object
+  post: PropTypes.object,
+  username: PropTypes.string
 }
 
 export default Card
