@@ -20,8 +20,12 @@ class Toolbar extends Component {
   render() {
     const {
       onHover,
-      post
+      post,
+      author,
+      user
     } = this.props
+
+    console.log(this.props)
 
     return (
       <Grid
@@ -44,7 +48,7 @@ class Toolbar extends Component {
         <Box gridArea='flex'>
 
         </Box>
-        <Remove id={post.id}/>
+        { author === user ? <Remove id={post.id}/> : null }
       </Grid>
     )
   }

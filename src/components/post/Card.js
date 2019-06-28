@@ -26,11 +26,14 @@ class Card extends Component {
 
   render() {
     console.log(this.props)
+    const {
+      onHover
+    } = this.state
     
     const {
       post,
       author,
-      size
+      user
     } = this.props;
 
     const {
@@ -73,7 +76,9 @@ class Card extends Component {
         </Box>
         <Toolbar 
           post={post} 
-          {...this.state} 
+          onHover={onHover}
+          user={user.username}
+          author={author.username}
         />
       </Box>
     );
