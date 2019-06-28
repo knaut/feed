@@ -23,7 +23,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       loadUser: UserActions.loadUser
-    })
+    }, dispatch)
   }
 }
 

@@ -1,19 +1,63 @@
 // IMPORTS
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as blockstack from 'blockstack'
+
 
 // COMPONENTS
 import {
   Card
 } from 'reactstrap';
 
+// ACTIONS
+import { loadUser } from '../../actions/user'
+
+// MODELS
+import Profile from '../../models/Profile'
+
+
 function mapStateToProps(state) {
   return state
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({
+      loadUser
+    }, dispatch)
+  }
+}
+
 class PermalinkProvider extends Component {
-  componentDidMount() {
+  state = {
+    name: null,
+    image: null
+  }
+
+
+  async componentDidMount() {
     console.log(this)
+
+    const { Status, id } = this.props
+    const username = Status.entities[id].Profile
+
+    this.setState({ username })
+
+    try {
+      const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
+      const name = blockstackUser.name
+      const image = blockstackUser.image[0].contentUrl
+
+      this.setState({
+        name,
+        image
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 
   render() {
@@ -25,18 +69,10 @@ class PermalinkProvider extends Component {
       id
     } = this.props
 
-    const author = {
-      image: false,
-      name: user.name
-    }
+    const author = this.state
 
     const post = Status.entities[ id ]
     author.username = post.Profile
-
-    // optimistically checking the logged in user's cached image
-    if (author.username = user.username) {
-      author.image = user.image
-    }
 
     const children = React.Children.map( this.props.children, child => {
       return React.cloneElement(child, {
@@ -47,12 +83,8 @@ class PermalinkProvider extends Component {
       })
     })
 
-    return (
-      <React.Fragment>
-        { children }
-      </React.Fragment>
-    )
+    return children
   }
 }
 
-export default connect(mapStateToProps, () => new Object())(PermalinkProvider)
+export default connect(mapStateToProps, mapDispatchToProps)(PermalinkProvider)
