@@ -117,7 +117,7 @@ class SignIn extends Component {
     return (
       <Box align='center'>
         <Heading level={1}>
-          <span css={css`color: var(--purplePastel);`}>welcome to</span> <strong css={css`color: var(--purple);`}>feed</strong> <Grow color='accent-1' size='large'/><span css={css`color: var(--purplePastel);`}>.</span>
+          <span css={css`color: var(--purplePastel);`}>welcome to</span> <strong css={css`color: var(--purple);`}>feed</strong> <Grow color='accent-1' size='large'/>
         </Heading>
         <Text color='light' textAlign='center' size='medium'>feed is a decentralized social network powered by blockchain technology.</Text>
         {this.renderEntry()}

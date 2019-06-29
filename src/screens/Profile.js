@@ -18,18 +18,14 @@ import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
 
+import UserToolbar from '../components/UserToolbar'
+
 class Profile extends Component {
   render() {
     return (
       <Layout
         left={null}
-        right={
-          <React.Fragment>
-            <MyFeed/>
-            <MyProfile/>
-            <Search/>
-          </React.Fragment>
-        }
+        right={<UserToolbar/>}
       >
         <Box pad={{top: 'medium'}} animation={['slideDown', 'fadeIn']}>
           <ProfileLoader username={this.props.match.params.username}>          

@@ -22,18 +22,14 @@ import MyFeed from '../components/button/MyFeed'
 import SearchInput from '../components/search/SearchInput'
 import ProfileList from '../components/profile/List'
 
+import UserToolbar from '../components/UserToolbar'
+
 const SearchScreen = () => (
   <Layout
     left={
       null
     }
-    right={
-      <React.Fragment>
-        <MyFeed/>
-        <MyProfile/>
-        <Search/>
-      </React.Fragment>
-    }
+    right={<UserToolbar/>}
   >
     <Box pad={{bottom: 'large'}}>
       <SearchInput/>

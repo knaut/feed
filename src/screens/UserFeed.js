@@ -17,6 +17,7 @@ import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
 
+import UserToolbar from '../components/UserToolbar'
 
 function mapStateToProps (state) {
   const username = state.user.username
@@ -30,16 +31,8 @@ class UserFeed extends Component {
   render() {
     return (
       <Layout
-        left={
-          <WrappedAddPost/>
-        }
-        right={
-          <React.Fragment>
-            <MyFeed/>
-            <MyProfile/>
-            <Search/>
-          </React.Fragment>
-        }
+        left={<WrappedAddPost/>}
+        right={<UserToolbar/>}
       >
         <GlobalLoaderProvider>
           <WrappedSlate />

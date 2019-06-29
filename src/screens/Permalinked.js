@@ -18,6 +18,8 @@ import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
 
+import UserToolbar from '../components/UserToolbar'
+
 class Permalinked extends Component {
   render() {
     const postId = this.props.match.params.id
@@ -25,13 +27,7 @@ class Permalinked extends Component {
     return (
       <Layout
         left={null}
-        right={
-          <React.Fragment>
-            <MyFeed/>
-            <MyProfile/>
-            <Search/>
-          </React.Fragment>
-        }
+        right={<UserToolbar/>}
       >
         <GlobalLoaderProvider>
           <Box align='center' margin={{top: 'medium'}}>
