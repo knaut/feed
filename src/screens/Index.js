@@ -5,11 +5,13 @@ import {
   Box,
   Button,
   Heading,
-  Text
+  Text,
+  Anchor
 } from 'grommet';
 import { 
   UserNew,
-  Info
+  Info,
+  Grow
 } from "grommet-icons";
 
 // COMPONENTS
@@ -95,6 +97,27 @@ class Index extends Component {
           </StartStep>
           <CreateID/>
           <LearnMore large />
+        </Box>
+        <Box
+          fill='horizontal'
+          align='center'
+          background='neutral-2'
+          pad='xlarge'
+        >
+          <Box
+            align='center'
+            pad={{bottom: 'small'}}
+            direction='row'
+          >
+            <Text color='purplePastel'>
+              <span css={css`font-weight: bold;`}>feed.</span> grow something good. <Grow color='accent-1'/>
+            </Text>
+          </Box>
+          <Text color='purplePastel'>
+            built with <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
+              small invisible machines
+            </Anchor>
+          </Text>
         </Box>
       </React.Fragment>
     );
