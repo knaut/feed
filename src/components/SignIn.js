@@ -13,7 +13,8 @@ import {
   Paragraph,
   Anchor,
   Text,
-  Heading
+  Heading,
+  Image
 } from 'grommet';
 import { Login, LinkNext, Grow } from "grommet-icons";
 import { Link } from 'react-router-dom';
@@ -23,6 +24,9 @@ import css from '@emotion/css'
 
 // ACTIONS
 import * as UserActions from '../actions/user';
+
+// ASSETS
+import fleafImage from '../../assets/Feed_Fleaf_100h.png'
 
 function mapStateToProps(state) {
   if (state.user.username === null) {
@@ -116,8 +120,9 @@ class SignIn extends Component {
   render() {
     return (
       <Box align='center'>
+        <Image src={fleafImage}/>
         <Heading level={1}>
-          <span css={css`color: var(--purplePastel);`}>welcome to</span> <strong css={css`color: var(--purple);`}>feed</strong> <Grow color='accent-1' size='large'/>
+          <span css={css`color: var(--purplePastel);`}>welcome to</span> <strong css={css`color: var(--purple);`}>feed</strong>
         </Heading>
         <Text color='light' textAlign='center' size='medium'><span css={css`font-weight: bold;`}>feed</span> is a microblogging and social networking utility powered by blockchain.</Text>
         {this.renderEntry()}
