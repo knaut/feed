@@ -6,6 +6,7 @@ const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -45,7 +46,22 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     // wrap our .env file into globals we can use in webpack-built code
-    new Dotenv()
+    new Dotenv(),
+    new WebappWebpackPlugin({
+      logo: './assets/Feed_Fleaf_500h.png',
+      favicons: {
+        appName: 'Feed',
+        appDescription: 'A blockchain-based social networking tool',
+        developerName: 'small invisible machines',
+        developerURL: null, // prevent retrieving from the nearest package.json
+        background: '#1E1624',
+        theme_color: '#6FFFB0',
+        icons: {
+          coast: false,
+          yandex: false
+        }
+      }
+    })
   ],
   devtool: 'source-map',
   target: 'web',
