@@ -32,22 +32,24 @@ class ProfileLoader extends Component {
     isLoading: true,
     isOnBlockstack: null,
     isOnFeed: null,
-    isMe: this.props.me === this.props.username,
+    isMe: false,
 
-    username: this.props.username,  // prop provided from the router
+    username: this.props.blockstackId,  // prop provided from the router
     image: null,
     name: null,
     description: null,
   }
 
   async componentDidMount() {
+    console.log(this)
     const {
-      username
+      username,
+      blockstackId
     } = this.props
 
     try {
       // load blockstack profile
-      const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
+      const blockstackUser = await blockstack.lookupProfile(`${blockstackId}.id.blockstack`)
 
       const name = blockstackUser.name
       const description = blockstackUser.description
@@ -57,7 +59,7 @@ class ProfileLoader extends Component {
       let isOnFeed = false
 
       const profile = new Profile({
-        username
+        username: blockstackId
       });
 
       const entity = await profile.load()
@@ -66,10 +68,16 @@ class ProfileLoader extends Component {
         isOnFeed = true
       }
 
+      let isMe = false
+      if (blockstackId === username) {
+        isMe = true
+      }
+
       this.setState({
         isLoading: false,
         isOnBlockstack: true,
         isOnFeed,
+        isMe,
         image,
         name,
         description
@@ -81,7 +89,7 @@ class ProfileLoader extends Component {
       this.setState({
         isLoading: false,
         isOnBlockstack: false,
-        isOnFeed: false,
+        isOnFeed: false
       })
     }
     

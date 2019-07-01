@@ -28,7 +28,7 @@ class Profile extends Component {
         right={<UserToolbar/>}
       >
         <Box pad={{top: 'medium'}} animation={['slideDown', 'fadeIn']}>
-          <ProfileLoader username={this.props.match.params.username}>          
+          <ProfileLoader blockstackId={this.props.match.params.username}>          
             <ProfileCard/>
           </ProfileLoader>
         </Box>
