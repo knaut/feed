@@ -11,7 +11,8 @@ import {
 import { 
   UserNew,
   Info,
-  Grow
+  Grow,
+  Favorite
 } from "grommet-icons";
 
 // COMPONENTS
@@ -116,7 +117,7 @@ class Index extends Component {
             </Text>
           </Box>
           <Text color='purplePastel'>
-            built with <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
+            built with <Favorite color='status-critical' css={css`margin-bottom: -6px;`}/> <span css={css`font-weight: bold;`}>&</span> <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
               small invisible machines
             </Anchor>
           </Text>
