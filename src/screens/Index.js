@@ -27,8 +27,9 @@ import css from '@emotion/css'
 
 const StartStep = ({ color, number, children }) => (
   <Box
+    css={css`align-items: center;`}
     pad={{left: 'large', right: 'large', bottom: 'medium'}}
-    direction='row'
+    direction='row-responsive'
     justify='center'
   >
     <Box
@@ -63,6 +64,7 @@ class Index extends Component {
             fill
             align='center'
             justify='center'
+            pad='small'
           >
             <SignIn />
           </Box>
