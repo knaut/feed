@@ -19,26 +19,35 @@ import MyFeed from '../components/button/MyFeed'
 
 import UserToolbar from '../components/UserToolbar'
 
-function mapStateToProps (state) {
+function mapStateToProps (state, ownProps) {
   const username = state.user.username
+  const author = ownProps.match.params.author
 
   return {
-    username
+    username,
+    author
   }
 }
 
 class UserFeed extends Component {
   render() {
+    const {
+      author,
+      username
+    } = this.props
+
+    const userIsAuthor = author === username ? true : false
+
     return (
       <Layout
-        left={<WrappedAddPost/>}
+        left={ userIsAuthor === true ? <WrappedAddPost/> : null }
         right={<UserToolbar/>}
       >
         <GlobalLoaderProvider>
-          <WrappedSlate />
+          { userIsAuthor === true ? <WrappedSlate /> : null }
           <Box margin={{top: 'medium'}}>
             <PostListProvider 
-              author={this.props.match.params.username}
+              author={author}
               username={this.props.username}
             >
               <PostList/>

@@ -77,7 +77,13 @@ const App = () => {
             <Route path="/search" exact component={ Search }/>
             <Route path="/permalink/:id?" exact component={ Permalinked }/>
             <Route path="/:username?" exact component={ ProfileScreen }/>
-            <Route path="/:username?/feed" exact component={ isSignedIn( UserFeed ) }/>
+            {/*
+              an "author" is the presenting user for a given feed. it is an author's
+              posts we are viewing on feed.
+              we use the author param to determing whether the logged in user has access
+              to post on the given feed
+            */}
+            <Route path="/:author?/feed" exact component={ isSignedIn( UserFeed ) }/>
           </Switch>
         </Theme>
       </ConnectedRouter>
