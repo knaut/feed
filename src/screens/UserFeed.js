@@ -40,8 +40,17 @@ class UserFeed extends Component {
 
     return (
       <Layout
-        left={ userIsAuthor === true ? <WrappedAddPost/> : null }
-        right={<UserToolbar/>}
+        left={ 
+          /*
+            block the add post button from displaying
+            if the logged in user isn't the author of this feed
+          */
+          userIsAuthor === true ? <WrappedAddPost/> : null 
+        }
+        right={
+          // pass author in for later
+          <UserToolbar author={author}/>
+        }
       >
         <GlobalLoaderProvider>
           { userIsAuthor === true ? <WrappedSlate /> : null }

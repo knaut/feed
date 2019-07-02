@@ -12,7 +12,7 @@ import * as EditorActions from '../../actions/editor';
 // THUNKS
 import * as StatusThunks from '../../thunks/status';
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   const {
     editor,
     user
@@ -35,13 +35,17 @@ function mapDispatchToProps(dispatch) {
 
 class Wrapped extends Component {
   render() {
-    
+    const {
+      editor,
+      user,
+      actions
+    } = this.props
 
     return (
       <Slate
-        active={this.props.editor.active} 
-        user={this.props.user}
-        actions={this.props.actions}
+        active={editor.active} 
+        user={user}
+        actions={actions}
       />
     );
   }

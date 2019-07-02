@@ -8,17 +8,26 @@ import MyProfile from '../components/button/MyProfile'
 import Search from '../components/button/Search'
 import MyFeed from '../components/button/MyFeed'
 
-function mapStateToProps(state) {
-  const { isAuthenticated } = state.user
-  return {
+function mapStateToProps(state, ownProps) {
+  const { 
     isAuthenticated
+  } = state.user
+  
+  const {
+    userIsAuthor
+  } = ownProps
+
+  return {
+    isAuthenticated,
+    userIsAuthor
   }
 }
 
 class UserToolbar extends Component {
   render() {
     const {
-      isAuthenticated
+      isAuthenticated,
+      userIsAuthor
     } = this.props
 
     return (
