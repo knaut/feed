@@ -4,11 +4,32 @@ import { connect } from 'react-redux'
 
 // COMPONENTS
 import {
-  Card
-} from 'reactstrap';
+  Box,
+  Heading
+} from 'grommet';
 
-function mapStateToProps(state) {
-  return state
+function mapStateToProps(state, ownProps) {
+  const {
+    Status,
+    Profile,
+    user
+  } = state
+
+  const username = user.username
+
+  const {
+    postAuthor,
+    userIsAuthor
+  } = ownProps
+
+  return {
+    Status,
+    Profile,
+    username,
+    user,
+    userIsAuthor,
+    postAuthor
+  }
 }
 
 class PostListProvider extends Component {
@@ -38,7 +59,17 @@ class PostListProvider extends Component {
   }
 
   render() {
-    const { Status, Profile, username, user } = this.props
+    const {
+      Status,
+      Profile,
+      username,
+      user,
+      userIsAuthor,
+      postAuthor
+    } = this.props
+
+
+    console.log(this)
 
     const author = {}
 
@@ -46,7 +77,7 @@ class PostListProvider extends Component {
     let posts = []
 
     // optimistically check if it is us
-    if ( username === user.username ) {
+    if ( userIsAuthor === true ) {
 
       author.username = username
       author.image = user.image
@@ -73,7 +104,8 @@ class PostListProvider extends Component {
         </React.Fragment>
       );
 
-    } else if ( Profile.entities[username] ) {
+    // if not, check if it's a user who is on feed
+    } else if ( Profile.entities[author] ) {
 
       author.username = username
       author.image = Profile.entities[username].image
@@ -100,10 +132,19 @@ class PostListProvider extends Component {
         </React.Fragment>
       );
     
+    // if not, it's someone who has never logged into feed, or possibly blockstack
     } else {
 
-      return <h1>No posts for someone with the blockstack id of "{username}"</h1>
-    
+      return (
+        <Box
+          align='center'
+          justify='center'
+        >
+          <Heading level={4} color='purplePastel' textAlign='center'>
+            {`No posts for someone with the blockstack id of "${ postAuthor }"`}
+          </Heading>
+        </Box>
+      )
     }
 
     

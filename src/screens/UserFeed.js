@@ -48,16 +48,24 @@ class UserFeed extends Component {
           userIsAuthor === true ? <WrappedAddPost/> : null 
         }
         right={
-          // pass author in for later
-          <UserToolbar author={author}/>
+          /* 
+            this toolbar is global, specific to the logged in user
+          */
+          <UserToolbar/>
         }
       >
         <GlobalLoaderProvider>
-          { userIsAuthor === true ? <WrappedSlate /> : null }
+          { 
+            /*
+              we only show the slate for the logged in user
+            */
+            userIsAuthor === true ? <WrappedSlate /> : null 
+          }
           <Box margin={{top: 'medium'}}>
             <PostListProvider 
-              author={author}
-              username={this.props.username}
+              postAuthor={author}
+              userIsAuthor={userIsAuthor}
+              username={username}
             >
               <PostList/>
             </PostListProvider>
