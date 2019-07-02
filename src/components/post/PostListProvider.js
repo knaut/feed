@@ -105,15 +105,15 @@ class PostListProvider extends Component {
       );
 
     // if not, check if it's a user who is on feed
-    } else if ( Profile.entities[author] ) {
+    } else if ( Profile.entities[postAuthor] ) {
 
-      author.username = username
-      author.image = Profile.entities[username].image
-      author.name = Profile.entities[username].name
+      author.username = postAuthor
+      author.image = Profile.entities[postAuthor].image
+      author.name = Profile.entities[postAuthor].name
       author.isOnBlockstack = true
 
       // slice out the ids of our statuses
-      postIds = Profile.entities[username].Status
+      postIds = Profile.entities[postAuthor].Status
 
       posts = this.getPosts(postIds, Status.entities, user)
 
@@ -122,7 +122,7 @@ class PostListProvider extends Component {
           ...child.props,
           posts,
           author,
-          username
+          username: postAuthor
         })
       });
 
