@@ -68,9 +68,6 @@ class PostListProvider extends Component {
       postAuthor
     } = this.props
 
-
-    console.log(this)
-
     const author = {}
 
     let postIds = []

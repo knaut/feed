@@ -25,7 +25,6 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.props)
     const {
       onHover
     } = this.state

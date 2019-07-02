@@ -25,8 +25,6 @@ class Toolbar extends Component {
       username
     } = this.props
 
-    console.log(this.props)
-
     return (
       <Grid
         fill

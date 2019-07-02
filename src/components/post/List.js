@@ -43,7 +43,6 @@ class PostList extends Component {
 
   render() {
     const { posts, author, username } = this.props
-    console.log(this.props)
     const cards = []
 
     if (posts) {

@@ -271,19 +271,17 @@ class Avatar extends Component {
         // any size other than 'small' for now
         if (isLoading === true) {
           return <AvatarLoading username={username}/>
-        } else {
+        } else if (isOnBlockstack === true) {
           // switch based on whether the user is on blockstack
-          if (isOnBlockstack === true) {
-            return (
-              <AvatarLoaded
-                isMe={isMe}
-                username={username}
-                image={image}
-              />
-            )  
-          } else {
-            return <NotOnBlockstack username={username}/>
-          }
+          return (
+            <AvatarLoaded
+              isMe={isMe}
+              username={username}
+              image={image}
+            />
+          )  
+        } else {
+          return <NotOnBlockstack username={username}/>
         }
 
       }
