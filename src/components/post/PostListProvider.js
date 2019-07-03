@@ -77,7 +77,6 @@ class PostListProvider extends Component {
     if ( userIsAuthor === true ) {
 
       author.username = username
-      author.image = user.image
       author.name = user.name
       author.isOnBlockstack = true
 
@@ -105,7 +104,6 @@ class PostListProvider extends Component {
     } else if ( Profile.entities[postAuthor] ) {
 
       author.username = postAuthor
-      author.image = Profile.entities[postAuthor].image
       author.name = Profile.entities[postAuthor].name
       author.isOnBlockstack = true
 
