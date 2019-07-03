@@ -32,7 +32,8 @@ class Card extends Component {
     const {
       post,
       author,
-      username
+      username,
+      isPermalinked
     } = this.props;
 
     const {
@@ -72,16 +73,11 @@ class Card extends Component {
           onHover={onHover}
           username={username}
           author={author.username}
+          isPermalinked={isPermalinked}
         />
       </Box>
     );
   }
-}
-
-Card.propTypes = {
-  author: PropTypes.object,
-  post: PropTypes.object,
-  username: PropTypes.string
 }
 
 export default Card

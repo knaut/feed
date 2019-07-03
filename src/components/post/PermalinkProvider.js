@@ -94,7 +94,8 @@ class PermalinkProvider extends Component {
         ...child.props,
         post,
         author,
-        username
+        username,
+        isPermalinked: true
       })
     })
 
