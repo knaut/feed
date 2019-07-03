@@ -1,6 +1,7 @@
 // IMPORTS
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import * as blockstack from 'blockstack'
 
 // COMPONENTS
 import {
@@ -33,6 +34,44 @@ function mapStateToProps(state, ownProps) {
 }
 
 class PostListProvider extends Component {
+  /*
+    this component only delivers one user's feed
+    as a list of posts available for anyone to view
+  */
+  state = {
+    name: null,
+    image: null
+  }
+
+  async componentDidMount() {
+    const {
+      // cache props
+      Status,
+      Profile,
+      user,
+
+      // auth props
+      userIsAuthor, // whether logged in user is author of post
+      postAuthor    // username of the post list author
+    } = this.props
+
+    // need to fetch the user's avatar src
+    try {
+      const blockstackUser = await blockstack.lookupProfile(`${postAuthor}.id.blockstack`)
+      const name = blockstackUser.name
+      const image = blockstackUser.image[0].contentUrl
+
+      this.setState({
+        name,
+        image
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
+
   getPosts = (ids, entities, author) => {
     const posts = []
 
@@ -68,6 +107,11 @@ class PostListProvider extends Component {
       postAuthor
     } = this.props
 
+    const {
+      name,
+      image
+    } = this.state
+
     const author = {}
 
     let postIds = []
@@ -78,6 +122,7 @@ class PostListProvider extends Component {
 
       author.username = username
       author.name = user.name
+      author.image = image
       author.isOnBlockstack = true
 
       // slice out the ids of our statuses
@@ -104,7 +149,8 @@ class PostListProvider extends Component {
     } else if ( Profile.entities[postAuthor] ) {
 
       author.username = postAuthor
-      author.name = Profile.entities[postAuthor].name
+      author.name = name
+      author.image = image
       author.isOnBlockstack = true
 
       // slice out the ids of our statuses
