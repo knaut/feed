@@ -14,7 +14,6 @@ import { SubtractCircle } from 'grommet-icons';
 
 // ACTIONS
 import * as StatusThunks from '../../thunks/status'
-console.log(StatusThunks)
 
 function mapDispatchToProps(dispatch) {
   return {

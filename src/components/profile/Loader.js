@@ -41,7 +41,6 @@ class ProfileLoader extends Component {
   }
 
   async componentDidMount() {
-    console.log(this)
     const {
       username,
       blockstackId

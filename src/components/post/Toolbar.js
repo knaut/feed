@@ -26,7 +26,6 @@ class Toolbar extends Component {
       isPermalinked
     } = this.props
 
-    console.log(this)
     return (
       <Grid
         fill

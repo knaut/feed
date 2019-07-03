@@ -263,8 +263,6 @@ class Avatar extends Component {
       size
     } = this.props;
 
-    console.log(this)
-
     switch(size) {
       default: {
 

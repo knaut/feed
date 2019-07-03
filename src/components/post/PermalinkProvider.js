@@ -46,8 +46,6 @@ class PermalinkProvider extends Component {
   }
 
   async componentDidMount() {
-    console.log(this)
-
     const { postId, Status } = this.props
     const postAuthor = Status.entities[postId].Profile
 

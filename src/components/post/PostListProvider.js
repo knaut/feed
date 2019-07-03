@@ -98,7 +98,6 @@ class PostListProvider extends Component {
   }
 
   render() {
-    console.log(this)
     const {
       Status,
       Profile,

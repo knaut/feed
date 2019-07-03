@@ -24,7 +24,6 @@ import FeedLink from './FeedLink';
 
 class ProfileCard extends Component {
   render() {
-    console.log(this)
     const {
       isLoading,
       isOnBlockstack,
