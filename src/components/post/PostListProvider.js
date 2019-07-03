@@ -16,7 +16,7 @@ function mapStateToProps(state, ownProps) {
     user
   } = state
 
-  const username = user.username
+  const username = ownProps.username
 
   const {
     postAuthor,
@@ -98,6 +98,7 @@ class PostListProvider extends Component {
   }
 
   render() {
+    console.log(this)
     const {
       Status,
       Profile,
@@ -163,7 +164,7 @@ class PostListProvider extends Component {
           ...child.props,
           posts,
           author,
-          username: postAuthor
+          username
         })
       });
 
