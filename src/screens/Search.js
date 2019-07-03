@@ -56,7 +56,7 @@ const SearchScreen = ({ matches, isFetching }) => (
     </Box>
     { 
       isFetching === true ? (
-        <GlobalLoader isFetching={true}/>
+        <GlobalLoader isLoading={true}/>
       ) : (
         Object.keys(matches).length ? <ProfileList/> : (
           <NoProfiles/>
