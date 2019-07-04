@@ -4,8 +4,78 @@
     <meta charset="utf-8"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body style="margin: 0; padding: 0;">
-    <div id="root">
+  <style>
+    .lds-grid {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .lds-grid div {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #6fffb0;
+      animation: lds-grid 1.2s linear infinite;
+    }
+    .lds-grid div:nth-child(1) {
+      top: 6px;
+      left: 6px;
+      animation-delay: 0s;
+    }
+    .lds-grid div:nth-child(2) {
+      top: 6px;
+      left: 26px;
+      animation-delay: -0.4s;
+    }
+    .lds-grid div:nth-child(3) {
+      top: 6px;
+      left: 45px;
+      animation-delay: -0.8s;
+    }
+    .lds-grid div:nth-child(4) {
+      top: 26px;
+      left: 6px;
+      animation-delay: -0.4s;
+    }
+    .lds-grid div:nth-child(5) {
+      top: 26px;
+      left: 26px;
+      animation-delay: -0.8s;
+    }
+    .lds-grid div:nth-child(6) {
+      top: 26px;
+      left: 45px;
+      animation-delay: -1.2s;
+    }
+    .lds-grid div:nth-child(7) {
+      top: 45px;
+      left: 6px;
+      animation-delay: -0.8s;
+    }
+    .lds-grid div:nth-child(8) {
+      top: 45px;
+      left: 26px;
+      animation-delay: -1.2s;
+    }
+    .lds-grid div:nth-child(9) {
+      top: 45px;
+      left: 45px;
+      animation-delay: -1.6s;
+    }
+    @keyframes lds-grid {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.1;
+      }
+    }
+  </style>
+  <body style="margin: 0; padding: 0; min-height: -webkit-fill-available;">
+    <div id="root" style="min-height: -webkit-fill-available; background: #1E1624; position: relative;">
+      <div class="lds-grid" style="background: #1E1624; position: absolute; top: 50%; left: 50%; margin-left: -32px; margin-top: -32px;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
   </body>
 </html>
