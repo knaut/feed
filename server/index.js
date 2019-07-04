@@ -27,7 +27,7 @@ const app = new Koa()
 // ATTACH MIDDLEWARE
 app.use(errors())
 app.use(logger())
-app.use(assets('../build'))
+app.use(assets('./build'))
 
 const PORT = process.env.PORT ? process.env.PORT : 3000
 

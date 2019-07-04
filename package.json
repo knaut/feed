@@ -69,10 +69,10 @@
     "webpack-merge": "^4.2.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "build-babel": "babel -d ./server_build ./server -s",
-    "server": "webpack --config webpack.server.prod.js && node ./server/build/server.bundle.js",
+    "server": "node ./server_build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "graph": "madge -i madge_graph.svg ./src/App.js"

@@ -32,7 +32,7 @@ var app = new _koa["default"](); // ATTACH MIDDLEWARE
 
 app.use((0, _errors["default"])());
 app.use((0, _koaLogger["default"])());
-app.use((0, _koaStatic["default"])('../build'));
+app.use((0, _koaStatic["default"])('./build'));
 var PORT = process.env.PORT ? process.env.PORT : 3000; // START
 
 app.listen(PORT);
