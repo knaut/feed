@@ -17,17 +17,17 @@ import logger from 'koa-logger'
 import assets from 'koa-static'
 
 // MIDDLEWARE
-import errors from '../middleware/errors.js'
+import errors from './middleware/errors.js'
 
 // UTILS
-import welcome from '../utils/welcome'
+import welcome from './utils/welcome'
 
 const app = new Koa()
 
 // ATTACH MIDDLEWARE
 app.use(errors())
 app.use(logger())
-app.use(assets('../../assets'))
+app.use(assets('../build'))
 
 const PORT = process.env.PORT ? process.env.PORT : 3000
 
