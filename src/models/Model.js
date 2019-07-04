@@ -5,6 +5,9 @@ import * as blockstack from 'blockstack';
 // UTILS
 import toType from '../utils/toType';
 
+// ENV
+const DEBUG = process.env.DEBUG
+
 class Model {
   /*
     our model is a base class that our data entities inherit from
@@ -53,7 +56,9 @@ class Model {
   }
 
   static getCache() {
-    console.log('Attempting to fetch cache.');
+    if (DEBUG) { 
+      console.log('Attempting to fetch cache.');
+    }
     
     return new Promise((resolve, reject) => {
       switch(process.env.STORAGE) {
@@ -63,11 +68,15 @@ class Model {
           })
           .then(res => res.json())
           .then(json => {
-            console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
+            if (DEBUG) {
+              console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
+            }
             resolve(json);
           })
           .catch(error => {
-            console.error(`${this.constructor.name} called getCache to LOCAL, but it failed.`)
+            if (DEBUG) {
+              console.error(`${this.constructor.name} called getCache to LOCAL, but it failed.`)
+            }
             reject(error);
           });
         }
@@ -79,7 +88,9 @@ class Model {
           ).then(content => {
             resolve(JSON.parse(content));
           }).catch(error => {
-            console.error(`${this.constructor.name} called getCache to GAIA, but it failed.`)
+            if (DEBUG) {
+              console.error(`${this.constructor.name} called getCache to GAIA, but it failed.`)
+            }
             reject(error);
           });
 
@@ -90,7 +101,9 @@ class Model {
   }
 
   static putCache( cache ) {
-    console.log('Attempting to put cache.', cache);
+    if (DEBUG) { 
+      console.log('Attempting to put cache.', cache);
+    }
 
     const string = JSON.stringify(cache);
 
@@ -101,9 +114,13 @@ class Model {
             method: 'POST',
             body: string
           })
-          .then(res => console.log(`${this.constructor.name} successfully POSTed cache to LOCAL.`))
+          .then(res => {
+            console.log(`${this.constructor.name} successfully POSTed cache to LOCAL.`)
+          })
           .catch(error => {
-            console.error(`${this.constructor.name} POSTed to LOCAL, but it failed.`)
+            if (DEBUG) {
+              console.error(`${this.constructor.name} POSTed to LOCAL, but it failed.`)
+            }
             reject(error);
           });
         }
@@ -113,9 +130,13 @@ class Model {
             `cache.json`,
             string,
             { decrypt: false }
-          ).then(res => console.log('Gaia responded:', res))
+          ).then(res => {
+            console.log('Gaia responded:', res)
+          })
           .catch(error => {
-            console.error(error)
+            if (DEBUG) {
+              console.error(error)
+            }
             reject(error);
           });
         }

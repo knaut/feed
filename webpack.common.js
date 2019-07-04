@@ -9,7 +9,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 module.exports = {
-  target: 'web',
   entry: {
     app: './src/App'
   },
@@ -28,7 +27,7 @@ module.exports = {
     // wrap our .env file into globals we can use in webpack-built code
     new Dotenv(),
     new WebappWebpackPlugin({
-      logo: './assets/Feed_Fleaf_500h.png',
+      logo: './assets/Fleaf.png',
       favicons: {
         appName: 'Feed',
         appDescription: 'A blockchain-based social networking tool',

@@ -6,19 +6,21 @@ import promise from 'redux-promise-middleware';
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
 
-// REDUCERS
-// import rootReducer from '../../src/reducers/root';
+// UTILS
 import generateRootReducer from './generateRootReducer'
+
+// ENV
+const DEBUG = process.env.DEBUG
 
 export const history = createBrowserHistory()
 
 export default function generateStore(state) {
   const initialState = state ? state : {};
 
-  const store = createStore(
-    generateRootReducer(history),
-    initialState,
-    compose(
+  let middleware = false
+
+  if (DEBUG === 'TRUE') {
+    middleware = compose(
       applyMiddleware(
         routerMiddleware(history),
         promise,
@@ -26,6 +28,20 @@ export default function generateStore(state) {
         createLogger()
       )
     )
+  } else {
+    middleware = compose(
+      applyMiddleware(
+        routerMiddleware(history),
+        promise,
+        thunk
+      )
+    )
+  }
+
+  const store = createStore(
+    generateRootReducer(history),
+    initialState,
+    middleware
   );
 
   return store;
