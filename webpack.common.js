@@ -2,42 +2,22 @@
 
 require('dotenv').config();
 
-const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 
 module.exports = {
-  devServer: {
-    contentBase: path.join(__dirname, 'build'),
-    compress: true,
-    port: 3000,
-    hot: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*',
-    },
-    historyApiFallback: true,
-    proxy: {
-      '/api/cache': {
-        target: 'http://0.0.0.0:5000',
-        secure: false
-      }
-    }
-  },
-  mode: 'development',
+  target: 'web',
   entry: {
-    app: './src/App.js'
+    app: './src/App'
   },
   output: {
     path: path.resolve( __dirname, 'build' ),
     filename: '[name].bundle.js',
     publicPath: '/'
   },
-  // performance: {
-  //   hints: 'warning'
-  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Feed 🌱 your decentralized social networking tool',
@@ -63,8 +43,6 @@ module.exports = {
       }
     })
   ],
-  devtool: 'source-map',
-  target: 'web',
   module: {
     rules: [
       {
@@ -89,4 +67,4 @@ module.exports = {
       }
     ]
   }
-};
+}
