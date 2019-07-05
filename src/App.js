@@ -37,72 +37,106 @@ import {
   signInPending
 } from './authentication/loginToBlockstack'
 
-const App = () => {
+const store = generateStore();
+const history = createBrowserHistory();
 
-  const store = generateStore();
-  const history = createBrowserHistory();
+class App extends Component {
+  render() {
 
-  if (blockstack.isUserSignedIn()) {
-    const user = blockstack.loadUserData();
-    const { username } = user;    
-    const profileData = getProfileData(user);
+    if (blockstack.isUserSignedIn()) {
+      const user = blockstack.loadUserData();
+      const { username } = user;    
+      const profileData = getProfileData(user);
 
-    store.dispatch({
-      type: 'IS_SIGNED_IN',
-      payload: profileData
-    });
+      store.dispatch({
+        type: 'IS_SIGNED_IN',
+        payload: profileData
+      });
 
-  } else {
-    console.log('You are not signed in to Blockstack.');
-  }
+      const userSession = new blockstack.UserSession()
+      userSession.listFiles(file => {
+        if (file) {
+          return file
+        }
+      }).then(files => {
+        if (files === 0) {
+          
+          console.log('There are no user cache files!')
+          
+          Profile.startCache().then(file => {
+            console.log(file)
+          }).catch(error => {
+            console.log(file)
+          })
 
-  Profile.getCache().then(file => {
-    store.dispatch({
-      type: 'GET_CACHE_SUCCESS',
-      payload: file
-    });
-  }).catch(error => {
-    store.dispatch({
-      type: 'GET_CACHE_ERROR',
-      payload: error
-    });
-  });
-
-  const userSession = new blockstack.UserSession()
-  userSession.listFiles(file => {
-    console.log(file)
-    if (file) return true
-    /*if (file) {
-      userSession.deleteFile(file).then(res => {
-        console.log(res)
-        return true
+        } else {
+          Profile.getCache().then(file => {
+            console.log(file)
+            // store.dispatch({
+            //   type: 'GET_CACHE_SUCCESS',
+            //   payload: file
+            // });
+          }).catch(error => {
+            console.log('error', error)
+            // store.dispatch({
+            //   type: 'GET_CACHE_ERROR',
+            //   payload: error
+            // });
+          });
+        }
       })
-    }*/
-  }).then(files => {
-    console.log(files)
-  })
 
-  return (
-    <Provider store={ store }>
-      <ConnectedRouter history={ history }>
-        <Theme>
-          <Switch>
-            <Route path="/" exact component={ Index } />
-            <Route path="/search" exact component={ Search }/>
-            <Route path="/permalink/:id?" exact component={ Permalinked }/>
-            <Route path="/:username?" exact component={ ProfileScreen }/>
-            {/*
-              an "author" is the presenting user for a given feed. it is an author's
-              posts we are viewing on feed.
-              we use the author param to determing whether the logged in user has access
-              to post on the given feed
-            */}
-            <Route path="/:author?/feed" exact component={ UserFeed }/>
-          </Switch>
-        </Theme>
-      </ConnectedRouter>
-    </Provider>
-  );
-};
+
+      
+      
+      
+
+    } else {
+      console.log('You are not signed in to Blockstack.');
+    }
+
+    /*
+
+    
+
+    const userSession = new blockstack.UserSession()
+    userSession.listFiles(file => {
+      console.log(file)
+      if (file) return true
+      if (file) {
+        userSession.deleteFile(file).then(res => {
+          console.log(res)
+          return true
+        })
+      }
+    }).then(files => {
+      console.log(files)
+    })
+
+    */
+
+    return (
+      <Provider store={ store }>
+        <ConnectedRouter history={ history }>
+          <Theme>
+            <Switch>
+              <Route path="/" exact component={ Index } />
+              <Route path="/search" exact component={ Search }/>
+              <Route path="/permalink/:id?" exact component={ Permalinked }/>
+              <Route path="/:username?" exact component={ ProfileScreen }/>
+              {/*
+                an "author" is the presenting user for a given feed. it is an author's
+                posts we are viewing on feed.
+                we use the author param to determing whether the logged in user has access
+                to post on the given feed
+              */}
+              <Route path="/:author?/feed" exact component={ UserFeed }/>
+            </Switch>
+          </Theme>
+        </ConnectedRouter>
+      </Provider>
+    );
+  }
+}
 
 ReactDOM.render(<App/>, document.getElementById('root'));

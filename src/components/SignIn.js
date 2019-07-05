@@ -93,15 +93,15 @@ class SignIn extends Component {
     } else if (this.props.user.isAuthenticated && !this.props.hasFeed) {
       return (
         <Box>
-          <Box pad='small'>
-            <Text color='cyanPastel'>
+          <Box pad='small' align='center'>
+            <Text color='cyanPastel' textAlign='center'>
               Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
             </Text>
-            <Text color='cyanPastel'>
+            <Text color='cyanPastel' textAlign='center'>
               Sign in for the first time to get started!
             </Text>
           </Box>
-          <Box pad='small'>
+          <Box pad='small' align='center'>
             <Link to={feedPath} onClick={this.initialSignIn}>
               <Button icon={<LinkNext />} label="go to your feed" primary/>
             </Link>

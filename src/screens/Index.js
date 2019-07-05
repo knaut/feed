@@ -81,7 +81,7 @@ class Index extends Component {
           </Heading>
           <Box>
             <Text size='xlarge'>
-              In <Text size='xlarge' color='brand' css={css`font-weight: bold;`}>feed</Text>, your social media data is saved and encrypted on the blockchain. <span css={css`font-weight: bold;`}>You</span> own your data. There are <span css={css`font-weight: bold;`}>no ads</span>. There is just you, your content, and the people you connect with.
+              In <Text size='xlarge' color='brand' css={css`font-weight: bold;`}>feed</Text>, your social media data is authenticated through the blockchain. <span css={css`font-weight: bold;`}>You</span> own your identity. <span css={css`font-weight: bold;`}>You</span> own your data. There are <span css={css`font-weight: bold;`}>no ads</span>. There is just you, your content, and the people you connect with.
             </Text>
           </Box>
           <Box>
