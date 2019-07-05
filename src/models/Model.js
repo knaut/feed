@@ -82,7 +82,11 @@ class Model {
         }
         break;
         case 'GAIA': {
-          blockstack.getFile(
+
+
+          const userSession = new blockstack.UserSession()
+
+          userSession.getFile(
             `cache.json`,
             { decrypt: false }
           ).then(content => {
@@ -93,6 +97,7 @@ class Model {
             }
             reject(error);
           });
+          
 
         }
         break;
@@ -126,7 +131,9 @@ class Model {
         }
         break;
         case 'GAIA': {
-          blockstack.putFile(
+          const userSession = new blockstack.UserSession()
+
+          userSession.getFile(
             `cache.json`,
             string,
             { decrypt: false }

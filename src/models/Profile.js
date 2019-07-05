@@ -24,7 +24,7 @@ class Profile extends Model {
     }
   }
 
-  /*
+  
   async save() {
     const { id } = this;
 
@@ -53,7 +53,7 @@ class Profile extends Model {
     }
 
   }
-  */
+  
 
   async load() {
     const { id } = this;

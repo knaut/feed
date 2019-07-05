@@ -68,6 +68,20 @@ const App = () => {
     });
   });
 
+  const userSession = new blockstack.UserSession()
+  userSession.listFiles(file => {
+    console.log(file)
+    if (file) return true
+    /*if (file) {
+      userSession.deleteFile(file).then(res => {
+        console.log(res)
+        return true
+      })
+    }*/
+  }).then(files => {
+    console.log(files)
+  })
+
   return (
     <Provider store={ store }>
       <ConnectedRouter history={ history }>

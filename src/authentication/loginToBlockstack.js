@@ -34,6 +34,10 @@ export default function loginToBlockstack () {
 
     signInPending( userSession )
 
+
+    userSession.listFiles().then(files => {
+      console.log(files)
+    })
     // userSession.handlePendingSignIn().then(function(userData) {
 
     //   console.log(userData)
