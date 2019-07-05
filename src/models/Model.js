@@ -55,6 +55,47 @@ class Model {
     });
   }
 
+  static startCache() {
+    if (DEBUG) { 
+      console.log('Attempting to start user cache.');
+    }
+
+    return new Promise((resolve, reject) => {
+      switch(process.env.STORAGE) {
+        case 'LOCAL': {
+          console.error('Method unimplemented!')
+        }
+        case 'GAIA': {
+
+          const userSession = new blockstack.UserSession()
+
+          const blankCache = JSON.stringify({
+            Profile: {
+              entities: {},
+              ids: []
+            },
+            Status: {
+              entities: {},
+              ids: []
+            }
+          })
+
+          userSession.putFile(
+            `cache.json`,
+            blankCache,
+            { decrypt: false }
+          ).catch(error => {
+            if (DEBUG) {
+              console.error(`${this.constructor.name} called startCache to GAIA, but it failed.`)
+            }
+            reject(error)
+          })
+
+        }
+      }
+    })
+  }
+
   static getCache() {
     if (DEBUG) { 
       console.log('Attempting to fetch cache.');

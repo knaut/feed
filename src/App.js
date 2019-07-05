@@ -59,6 +59,7 @@ class App extends Component {
           return file
         }
       }).then(files => {
+        console.log(files)
         if (files === 0) {
           
           console.log('There are no user cache files!')
@@ -70,6 +71,14 @@ class App extends Component {
           })
 
         } else {
+
+          Profile.startCache().then(file => {
+            console.log(file)
+          }).catch(error => {
+            console.log(file)
+          })
+          
+          /*
           Profile.getCache().then(file => {
             console.log(file)
             // store.dispatch({
@@ -83,6 +92,8 @@ class App extends Component {
             //   payload: error
             // });
           });
+          */
+
         }
       })
 
