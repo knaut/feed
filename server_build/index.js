@@ -28,8 +28,9 @@ var app = new _koa["default"]();
 var router = new _koaRouter["default"](); // ROUTES
 
 var oneDayMs = 1000 * 60 * 60 * 24;
-var oneYearMs = oneDayMs * 365;
-var base = (0, _findRoot["default"])(__dirname);
+var oneYearMs = oneDayMs * 365; // const base = findRoot(__dirname)
+
+var base = "".concat(__dirname);
 console.log("Directory base:", base);
 
 var staticHandler =

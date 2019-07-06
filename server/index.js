@@ -32,7 +32,8 @@ const router = new Router()
 const oneDayMs = 1000 * 60 * 60 * 24;
 const oneYearMs = oneDayMs * 365;
 
-const base = findRoot(__dirname)
+// const base = findRoot(__dirname)
+const base = `${__dirname}`
 console.log(`Directory base:`, base)
 
 const staticHandler = async ctx => koaSend(ctx, `${base}/build/index.html`)
