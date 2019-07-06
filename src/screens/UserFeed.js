@@ -13,7 +13,7 @@ import PostList from '../components/post/List'
 import PostListProvider from '../components/post/PostListProvider'
 import WrappedSlate from '../components/slate/WrappedSlate'
 
-import GlobalLoaderProvider from '../components/GlobalLoaderProvider'
+import GlobalLoader from '../components/GlobalLoaderProvider'
 
 import WrappedAddPost from '../components/button/WrappedAddPost'
 import MyProfile from '../components/button/MyProfile'
@@ -57,7 +57,7 @@ class UserFeed extends Component {
           <UserToolbar/>
         }
       >
-        <GlobalLoaderProvider>
+        <GlobalLoader>
           { 
             /*
               we only show the slate for the logged in user
@@ -75,7 +75,7 @@ class UserFeed extends Component {
               <PostList/>
             </PostListProvider>
           </Box>
-        </GlobalLoaderProvider>
+        </GlobalLoader>
       </Layout>
     )
   }

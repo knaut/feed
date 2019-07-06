@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 }
 
 const Provider = ({ isLoaded, children }) => {
-  return isLoaded ? children : <GlobalLoader/>
+  return isLoaded ? children : <GlobalLoader isLoading={true}/>
 }
 
 export default connect(mapStateToProps, () => new Object())(Provider)
