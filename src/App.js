@@ -37,7 +37,7 @@ const history = createBrowserHistory()
 const DEBUG = process.env.DEBUG
 
 const loginUser = (userSession, loadedUserData) => {
-  const userData = loadUserData ? userSession.loadUserData() : loadedUserData
+  const userData = loadedUserData ? userSession.loadUserData() : loadedUserData
   const username = userData.username.split('.')[0]
   const { name, description } = userData.profile
   const image = userData.profile.image[0].contentUrl
