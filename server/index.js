@@ -36,7 +36,7 @@ const oneYearMs = oneDayMs * 365;
 const base = `${__dirname}`
 console.log(`Directory base:`, base)
 
-const staticHandler = async ctx => koaSend(ctx, `${base}/../build/index.html`)
+const staticHandler = async ctx => koaSend(ctx, `${base}/../../build/index.html`)
 
 router.get('/', staticHandler)
 router.get('/(.*)', staticHandler)
@@ -45,7 +45,7 @@ router.get('/(.*)/feed', staticHandler)
 // ATTACH MIDDLEWARE
 app.use(errors())
 app.use(logger())
-app.use(assets(`${base}/../build`))
+app.use(assets(`${base}/../../build`))
 app.use(router.routes())
 
 const PORT = process.env.PORT ? process.env.PORT : 3000
