@@ -96,7 +96,7 @@ class Index extends Component {
             <Text size='large'>Sign into <Text size='large' weight='bold' color='brand'>feed</Text> for the first time.</Text>
           </StartStep>
           <StartStep color='status-ok' number={3}>
-            <Text size='large'>Create your first post. Posts can be <Text size='large' weight='bold'>500 characters</Text> long. Every post has a <Text size='large' weight='bold'>permalink</Text> that can be easily shared.</Text>
+            <Text size='large'>Create your first post. Posts can be <Text size='large' weight='bold'>500 characters</Text> long.</Text>
           </StartStep>
           <CreateID />
           <LearnMore large />
