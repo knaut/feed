@@ -28,10 +28,9 @@ var app = new _koa["default"]();
 var router = new _koaRouter["default"](); // ROUTES
 
 var oneDayMs = 1000 * 60 * 60 * 24;
-var oneYearMs = oneDayMs * 365; // const base = findRoot(__dirname)
-
-var base = "".concat(__dirname);
-console.log("Directory base:", base);
+var oneYearMs = oneDayMs * 365;
+var base = (0, _findRoot["default"])(__dirname);
+console.log(base);
 
 var staticHandler =
 /*#__PURE__*/
@@ -56,15 +55,19 @@ function () {
   return function staticHandler(_x) {
     return _ref.apply(this, arguments);
   };
-}();
+}(); // ATTACH MIDDLEWARE
 
-router.get('/', staticHandler);
-router.get('/(.*)', staticHandler);
-router.get('/(.*)/feed', staticHandler); // ATTACH MIDDLEWARE
 
 app.use((0, _errors["default"])());
 app.use((0, _koaLogger["default"])());
-app.use((0, _koaStatic["default"])("/build"));
+app.use((0, _koaStatic["default"])('./build')); // keep static assets at the top for routing priority
+// SPA PAGE ROUTES
+
+/* these are for one a user refreshes on a given SPA route */
+
+router.get('/', staticHandler);
+router.get('/(.*)', staticHandler);
+router.get('/(.*)/feed', staticHandler);
 app.use(router.routes());
 var PORT = process.env.PORT ? process.env.PORT : 3000; // START
 

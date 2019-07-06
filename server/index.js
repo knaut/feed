@@ -32,17 +32,24 @@ const router = new Router()
 const oneDayMs = 1000 * 60 * 60 * 24;
 const oneYearMs = oneDayMs * 365;
 
-const staticHandler = async ctx => koaSend(ctx, `/build/index.html`)
+const base = findRoot(__dirname)
+console.log(base)
 
-router.get('/', staticHandler)
-router.get('/(.*)', staticHandler)
-router.get('/(.*)/feed', staticHandler)
+const staticHandler = async ctx => koaSend(ctx, `/build/index.html`)
 
 // ATTACH MIDDLEWARE
 app.use(errors())
 app.use(logger())
-app.use(assets('./build'))
+app.use(assets('./build'))  // keep static assets at the top for routing priority
+
+// SPA PAGE ROUTES
+/* these are for one a user refreshes on a given SPA route */
+router.get('/', staticHandler)
+router.get('/(.*)', staticHandler)
+router.get('/(.*)/feed', staticHandler)
+
 app.use(router.routes())
+
 
 const PORT = process.env.PORT ? process.env.PORT : 3000
 
