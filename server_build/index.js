@@ -43,7 +43,7 @@ function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            return _context.abrupt("return", (0, _koaSend["default"])(ctx, "".concat(base, "/../../build/index.html")));
+            return _context.abrupt("return", (0, _koaSend["default"])(ctx, "/build/index.html"));
 
           case 1:
           case "end":
@@ -64,7 +64,7 @@ router.get('/(.*)/feed', staticHandler); // ATTACH MIDDLEWARE
 
 app.use((0, _errors["default"])());
 app.use((0, _koaLogger["default"])());
-app.use((0, _koaStatic["default"])("".concat(base, "/../../build")));
+app.use((0, _koaStatic["default"])("/build"));
 app.use(router.routes());
 var PORT = process.env.PORT ? process.env.PORT : 3000; // START
 
