@@ -83,7 +83,7 @@ class Model {
           userSession.putFile(
             `cache.json`,
             blankCache,
-            { decrypt: false }
+            { encrypt: false }
           ).catch(error => {
             if (DEBUG) {
               console.error(`${this.constructor.name} called startCache to GAIA, but it failed.`)
