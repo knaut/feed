@@ -6,10 +6,8 @@ import {
 import { grommet } from 'grommet/themes'
 import { deepMerge } from 'grommet/utils'
 
-
 // STYLES
 import css from '@emotion/css'
-
 
 export const feed = deepMerge(grommet, {
   global: {

@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux'
 import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid } from 'grommet';
-import CardHeader from './CardHeader';
-import CardText from './CardText';
+import { Grommet, Box, Button, Grid } from 'grommet'
+import CardHeader from './CardHeader'
+import CardText from './CardText'
 import Permalink from '../button/Permalink'
 import Remove from '../button/Remove'
 
@@ -17,7 +17,7 @@ import Remove from '../button/Remove'
 import * as PostThunks from '../../thunks/post'
 
 class Toolbar extends Component {
-  render() {
+  render () {
     const {
       onHover,
       post,
@@ -46,12 +46,10 @@ class Toolbar extends Component {
         {/*
         <Permalink link={`/permalink/${post.id}`} />
         */}
-        <Box gridArea='flex'>
-
-        </Box>
-        { 
+        <Box gridArea='flex' />
+        {
           author === username ? (
-            isPermalinked !== true ? <Remove id={post.id}/> : null
+            isPermalinked !== true ? <Remove id={post.id} /> : null
           ) : null }
       </Grid>
     )

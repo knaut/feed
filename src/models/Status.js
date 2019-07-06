@@ -1,132 +1,116 @@
-import Moment from 'moment';
-import * as blockstack from 'blockstack';
+import Moment from 'moment'
+import * as blockstack from 'blockstack'
 
-import Model from './Model';
+import Model from './Model'
 
 // UTILS
-import generateId from '../utils/generateId';
-import toType from '../utils/toType';
+import generateId from '../utils/generateId'
+import toType from '../utils/toType'
 
 class Status extends Model {
   /*
     a status is a textual post limited to 500 characters.
   */
-  constructor(props, fetched) {
-    super(props, fetched);
+  constructor (props, fetched) {
+    super(props, fetched)
 
     // isValid is our determination whether it's "really" a status.
-    let isValid = null;
+    let isValid = null
 
     if (props.text) {
-      const { text } = props;
-      const textLimit = 500;
-      let timestamp = null;
+      const { text } = props
+      const textLimit = 500
+      let timestamp = null
 
-      const textType = toType(text);
+      const textType = toType(text)
 
       if (textType !== 'string') {
-        console.error(`Status constructor was given text that wasn't a string.`, text);
-        isValid = false;
-        
+        console.error(`Status constructor was given text that wasn't a string.`, text)
+        isValid = false
       } else {
-
         if (text.length > textLimit) {
-          console.error(`Status constructor was given text that was too long.`);
-          isValid = false;
-
+          console.error(`Status constructor was given text that was too long.`)
+          isValid = false
         } else if (text.length === 0) {
-          console.error(`Status constructor was given blank text.`);
-          isValid = false;
-          
+          console.error(`Status constructor was given blank text.`)
+          isValid = false
         } else {
-          console.log(`Constructed valid Status.`);
-          isValid = true;
-
+          console.log(`Constructed valid Status.`)
+          isValid = true
         }
-
       }
 
-      timestamp = Moment().toISOString();
-      
+      timestamp = Moment().toISOString()
+
       this.props = {
         text: props.text,
         timestamp,
 
         Profile: props.Profile
-      };
+      }
 
-      this.isValid = isValid;
-
+      this.isValid = isValid
     } else {
-
-      console.error(`Status constructor expected object with key "text", was given:`, props);
-      
+      console.error(`Status constructor expected object with key "text", was given:`, props)
     }
-
   }
 
-  async save() {
-
-    const { id, isValid } = this;
+  async save () {
+    const { id, isValid } = this
 
     if (isValid === true) {
       try {
-        
-        const cache = await Model.getCache();
-        const options = { encrypt: false };
+        const cache = await Model.getCache()
+        const options = { encrypt: false }
 
-        this.isSaved = true;
-        
-        const model = this.getProps();
+        this.isSaved = true
 
-        cache.Status.entities[ model.id ] = model;
-        cache.Status.ids.push( model.id );
+        const model = this.getProps()
+
+        cache.Status.entities[ model.id ] = model
+        cache.Status.ids.push(model.id)
 
         // add this status id to our profile
-        cache.Profile.entities[ model.Profile ].Status.splice(0, 0, model.id);
+        cache.Profile.entities[ model.Profile ].Status.splice(0, 0, model.id)
 
-        const res = await Model.putCache( cache );
-        return this;
-
+        const res = await Model.putCache(cache)
+        return this
       } catch (error) {
-        
-        this.isSaved = false;
-        console.error(error, this);
-        return this;
+        this.isSaved = false
+        console.error(error, this)
+        return this
       }
     } else {
-      console.error('Could not save Status; model is invalid.', id);
+      console.error('Could not save Status; model is invalid.', id)
     }
   }
 
-  async delete() {
-    const { id } = this;
-    
+  async delete () {
+    const { id } = this
+
     try {
-      const cache = await Model.getCache();
-      const options = { encrypt: false };
+      const cache = await Model.getCache()
+      const options = { encrypt: false }
 
-      const model = this.getProps();
+      const model = this.getProps()
 
-      delete cache.Status.entities[ model.id ];
-      
-      const index = cache.Status.ids.indexOf( model.id );
-      cache.Status.ids.splice(index, 1);
+      delete cache.Status.entities[ model.id ]
+
+      const index = cache.Status.ids.indexOf(model.id)
+      cache.Status.ids.splice(index, 1)
 
       // remove this dangling id from our profile
-      const profile = cache.Profile.entities[ model.Profile ];
-      const statusIndex = profile.Status.indexOf( model.id );
-      profile.Status.splice(statusIndex, 1);
-      
-      const res = await Model.putCache( cache );
-      return this;
+      const profile = cache.Profile.entities[ model.Profile ]
+      const statusIndex = profile.Status.indexOf(model.id)
+      profile.Status.splice(statusIndex, 1)
 
+      const res = await Model.putCache(cache)
+      return this
     } catch (error) {
-      console.error(error, this);
-      return this;
+      console.error(error, this)
+      return this
     }
-
   }
 }
 
-export default Status;
+export default Status

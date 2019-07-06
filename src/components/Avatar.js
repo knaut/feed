@@ -1,20 +1,20 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 // STYLES
 import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
+import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet'
+import { grommet, dark } from 'grommet/themes'
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons'
+import { FadeLoader, BarLoader, HashLoader } from 'react-spinners'
 
 // THEME
 import { feed } from '../Theme'
 
 const IsMeTag = () => (
-  <Box justify="center" align="center">
+  <Box justify='center' align='center'>
     <Box
       background='cyan'
       round={'xlarge'}
@@ -25,8 +25,8 @@ const IsMeTag = () => (
         bottom: 'xxsmall'
       }}
     >
-      <Text 
-        size='small' 
+      <Text
+        size='small'
         color='light'
         css={css`
           font-style: italic;
@@ -40,16 +40,16 @@ const IsMeTag = () => (
 )
 
 const AvatarLoading = ({ size, username }) => {
-  switch(size) {
+  switch (size) {
     default: {
       return (
         <React.Fragment>
-          <Box justify="center" align="center">
-            <Box 
-              background='purple' 
+          <Box justify='center' align='center'>
+            <Box
+              background='purple'
               round='full'
-              justify="center"
-              align="center"
+              justify='center'
+              align='center'
               width='small'
               height='small'
               css={css`
@@ -60,15 +60,15 @@ const AvatarLoading = ({ size, username }) => {
               <Box>
                 <HashLoader
                   color={feed.global.colors.purplePastel}
-                  loading={true}
+                  loading
                   size={75}
                 />
               </Box>
             </Box>
           </Box>
           <Box
-            justify="center"
-            align="center"
+            justify='center'
+            align='center'
             pad='small'
           >
             <Text level={1} size='medium' color='gray1'>
@@ -82,9 +82,9 @@ const AvatarLoading = ({ size, username }) => {
       return (
         <React.Fragment>
           <Box direction='row'>
-            <Box 
-              background='purple' 
-              round='full' 
+            <Box
+              background='purple'
+              round='full'
               justify='center'
               align='center'
               width='xsmall'
@@ -97,17 +97,17 @@ const AvatarLoading = ({ size, username }) => {
               <Box>
                 <HashLoader
                   color={feed.global.colors.purplePastel}
-                  loading={true}
+                  loading
                   size={50}
                 />
               </Box>
             </Box>
             <Box
-              justify="center"
-              align="center"
+              justify='center'
+              align='center'
               pad='small'
             >
-              <Text level={1} size='medium' color='gray1' margin={{left: 'xsmall'}}>
+              <Text level={1} size='medium' color='gray1' margin={{ left: 'xsmall' }}>
                 {`Fetching "${username}"…`}
               </Text>
             </Box>
@@ -119,14 +119,14 @@ const AvatarLoading = ({ size, username }) => {
 }
 
 const AvatarLoaded = ({ size, image, username, name, isMe }) => {
-  switch(size) {
+  switch (size) {
     default: {
       return (
         <React.Fragment>
-          <Box justify="center" align="center">
-            <Box 
-              background='purple' 
-              round='full' 
+          <Box justify='center' align='center'>
+            <Box
+              background='purple'
+              round='full'
               justify='center'
               align='center'
               width='small'
@@ -136,25 +136,25 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
                 overflow: hidden;
               `}
             >
-              <Box 
+              <Box
                 justify='center'
                 align='center'
-                css={ image ? css`width: 100%; height: 100%;` : null }
+                css={image ? css`width: 100%; height: 100%;` : null}
               >
-                { 
+                {
                   image ? (
                     <Image src={image} fit='cover' css={css`width: inherit;`} />
                   ) : (
-                    <User color='purplePastel' size='xlarge'/>
+                    <User color='purplePastel' size='xlarge' />
                   )
                 }
               </Box>
             </Box>
           </Box>
           <Box
-            justify="center"
-            align="center"
-            pad={{top: 'small'}}
+            justify='center'
+            align='center'
+            pad={{ top: 'small' }}
           >
             <Text
               level={1}
@@ -165,7 +165,7 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
               { name }
             </Text>
           </Box>
-          { isMe ? <IsMeTag/> : null }
+          { isMe ? <IsMeTag /> : null }
         </React.Fragment>
       )
     }
@@ -173,9 +173,9 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
       return (
         <React.Fragment>
           <Box direction='row'>
-            <Box 
-              background='purple' 
-              round='full' 
+            <Box
+              background='purple'
+              round='full'
               justify='center'
               align='center'
               width='xsmall'
@@ -185,16 +185,16 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
                 overflow: hidden;
               `}
             >
-              <Box 
+              <Box
                 justify='center'
                 align='center'
-                css={ image ? css`width: 100%; height: 100%;` : null }
+                css={image ? css`width: 100%; height: 100%;` : null}
               >
-                { 
+                {
                   image ? (
                     <Image src={image} fit='contain' />
                   ) : (
-                    <User color='purplePastel' size='large'/>
+                    <User color='purplePastel' size='large' />
                   )
                 }
               </Box>
@@ -202,7 +202,7 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
             <Box
               justify='center'
               align='center'
-              margin={{left: 'medium'}}
+              margin={{ left: 'medium' }}
             >
               <Text
                 level={1}
@@ -222,12 +222,12 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
 
 const NotOnBlockstack = ({ username }) => (
   <React.Fragment>
-    <Box justify="center" align="center">
+    <Box justify='center' align='center'>
       <Box
         background='purple'
-        round='full' 
-        justify="center"
-        align="center"
+        round='full'
+        justify='center'
+        align='center'
         css={css`
           border: 5px solid var(--gray1);
           width: 150px;
@@ -236,11 +236,11 @@ const NotOnBlockstack = ({ username }) => (
         `}
       >
         <Box>
-          <Help color='redPastel' size='xlarge'/>
+          <Help color='redPastel' size='xlarge' />
         </Box>
       </Box>
     </Box>
-    <Box justify="center" align="center" pad={{top: 'small'}}>
+    <Box justify='center' align='center' pad={{ top: 'small' }}>
       <Text level={1} size='medium' color='gray1'>
         {`"${username}" was not found.`}
       </Text>
@@ -249,7 +249,7 @@ const NotOnBlockstack = ({ username }) => (
 )
 
 class Avatar extends Component {
-  render() {
+  render () {
     const {
       // status of user variables
       isLoading,
@@ -261,14 +261,13 @@ class Avatar extends Component {
       image,
       // determines layout and styles
       size
-    } = this.props;
+    } = this.props
 
-    switch(size) {
+    switch (size) {
       default: {
-
         // any size other than 'small' for now
         if (isLoading === true) {
-          return <AvatarLoading username={username}/>
+          return <AvatarLoading username={username} />
         } else if (isOnBlockstack === true) {
           // switch based on whether the user is on blockstack
           return (
@@ -277,18 +276,16 @@ class Avatar extends Component {
               username={username}
               image={image}
             />
-          )  
+          )
         } else {
-          return <NotOnBlockstack username={username}/>
+          return <NotOnBlockstack username={username} />
         }
-
       }
       case 'small': {
-        
         // return 'Small'
         if (isLoading === true) {
           return (
-            <AvatarLoading 
+            <AvatarLoading
               size='small'
               username={username}
             />
@@ -297,7 +294,7 @@ class Avatar extends Component {
           // switch based on whether the user is on blockstack
           if (isOnBlockstack === true) {
             return (
-              <AvatarLoaded 
+              <AvatarLoaded
                 size='small'
                 image={image}
                 username={username}
@@ -305,14 +302,12 @@ class Avatar extends Component {
               />
             )
           } else {
-            return <NotOnBlockstack username={username}/>
+            return <NotOnBlockstack username={username} />
           }
         }
-
       }
     }
-
   }
 }
 
-export default Avatar;
+export default Avatar

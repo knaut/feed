@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 // COMPONENTS
@@ -11,16 +11,16 @@ import {
   Heading,
   Text,
   Image
-} from 'grommet';
+} from 'grommet'
 
 import {
   LinkNext,
   Grow,
   Alert
-} from 'grommet-icons';
+} from 'grommet-icons'
 
 import PostAvatar from '../post/PostAvatar'
-import FeedLink from './FeedLink';
+import FeedLink from './FeedLink'
 
 const FeedButton = (props) => {
   const {
@@ -31,7 +31,7 @@ const FeedButton = (props) => {
 
   return isOnFeed ? (
     <Box justify='center'>
-      <Link to={ `/${username}/feed` }>
+      <Link to={`/${username}/feed`}>
         <Button
           icon={<LinkNext />}
           label={`visit ${name}'s feed`}
@@ -39,14 +39,14 @@ const FeedButton = (props) => {
       </Link>
     </Box>
   ) : (
-    <Box round pad='small' justify='center' direction="row" align='center' border={{ color: 'light-6', size: 'small', style: 'solid', side: 'all' }}>
+    <Box round pad='small' justify='center' direction='row' align='center' border={{ color: 'light-6', size: 'small', style: 'solid', side: 'all' }}>
       <Box margin='small'>
-        <Alert color='dark-3' size='medium'/>
+        <Alert color='dark-3' size='medium' />
       </Box>
       <Text color='dark-3'>{`${name} is on Blockstack, but has not signed into Feed.`}</Text>
     </Box>
   )
-};
+}
 
 const Row = (props) => {
   const {
@@ -59,9 +59,9 @@ const Row = (props) => {
     description,
     name
   } = props
-  
+
   return (
-    <Box align="center">
+    <Box align='center'>
       <Box
         round
         pad='medium'
@@ -69,9 +69,9 @@ const Row = (props) => {
         background='white'
       >
         <Box direction='row'>
-          <Box margin={{right: 'small'}}>
+          <Box margin={{ right: 'small' }}>
             <PostAvatar
-              showUsername={true}
+              showUsername
               isLoading={isLoading}
               isOnBlockstack={isOnBlockstack}
               isMe={isMe}
@@ -81,15 +81,15 @@ const Row = (props) => {
             />
           </Box>
           <Box flex={'shrink'} align='start' justify='center'>
-            <Box margin={{left: 'small'}}>
+            <Box margin={{ left: 'small' }}>
               <Text color='dark-3'>
                 { description }
               </Text>
             </Box>
           </Box>
         </Box>
-        <Box align="center" pad={{top: 'small'}}>
-          <FeedButton { ...props }/>
+        <Box align='center' pad={{ top: 'small' }}>
+          <FeedButton {...props} />
         </Box>
       </Box>
     </Box>

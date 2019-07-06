@@ -9,8 +9,7 @@ export default function search (
   },
   action
 ) {
-
-  switch(action.type) {
+  switch (action.type) {
     default: {
       return state
     }
@@ -41,5 +40,4 @@ export default function search (
       return newState
     }
   }
-
 }

@@ -9,14 +9,14 @@ import {
   Button,
   FormField,
   TextInput
-} from 'grommet';
+} from 'grommet'
 // GLOBALS
 import GlobalLoader from '../GlobalLoader'
 // SEARCH
 import ProfileRow from './Row'
 import Card from './Card'
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     ...state.search,
     loggedInUser: state.user.username
@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 }
 
 class ProfileList extends Component {
-  render() {
+  render () {
     const {
       isFetching,
       matches,
@@ -57,11 +57,11 @@ class ProfileList extends Component {
           key={key}
           isLoading={false}
           isOnFeed={isOnFeed}
-          isOnBlockstack={true}
+          isOnBlockstack
           isMe={isMe}
-          name={name ? name : 'No name provided.'}
+          name={name || 'No name provided.'}
           username={username}
-          description={description ? description : 'No description available.'}
+          description={description || 'No description available.'}
           image={image}
         />
       )
@@ -69,10 +69,10 @@ class ProfileList extends Component {
 
     return (
       <React.Fragment>
-        { isFetching === true ? <GlobalLoader isLoading={true}/> : list }
+        { isFetching === true ? <GlobalLoader isLoading /> : list }
       </React.Fragment>
     )
   }
 }
 
-export default connect(mapStateToProps, () => new Object() )(ProfileList)
+export default connect(mapStateToProps, () => new Object())(ProfileList)

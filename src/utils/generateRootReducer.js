@@ -4,15 +4,15 @@ import { connectRouter } from 'connected-react-router'
 
 // REDUCERS
 // CACHE STATE
-import Profile from '../reducers/api/Profile.js';
-import Status from '../reducers/api/Status.js';
+import Profile from '../reducers/api/Profile.js'
+import Status from '../reducers/api/Status.js'
 
 // CLIENT STATE
-import user from '../reducers/user.js';
-import editor from '../reducers/editor.js';
-import cache from '../reducers/cache.js';
-import loader from '../reducers/loader.js';
-import search from '../reducers/search.js';
+import user from '../reducers/user.js'
+import editor from '../reducers/editor.js'
+import cache from '../reducers/cache.js'
+import loader from '../reducers/loader.js'
+import search from '../reducers/search.js'
 
 // import all reducers here
 // the root reducer will be fed to any generated store

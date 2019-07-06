@@ -1,18 +1,18 @@
-'use strict';
+'use strict'
 
-require('dotenv').config();
+require('dotenv').config()
 
-const webpack = require('webpack');
-const path = require('path');
-const Dotenv = require('dotenv-webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const path = require('path')
+const Dotenv = require('dotenv-webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
     app: './src/App'
   },
   output: {
-    path: path.resolve( __dirname, 'build' ),
+    path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
     publicPath: '/'
   },
@@ -23,7 +23,7 @@ module.exports = {
       title: 'Feed 🌱 your decentralized social networking tool',
       inject: true,
       template: './webpack.template.html'
-    }),
+    })
   ],
   module: {
     rules: [
@@ -31,7 +31,7 @@ module.exports = {
         test: /\.jsx$|.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {

@@ -1,4 +1,4 @@
-export default function errors() {
+export default function errors () {
   return async (ctx, next) => {
     try {
       await next()

@@ -75,6 +75,8 @@
     "server": "node ./server_build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "graph": "madge -i madge_graph.svg ./src/App.js"
+    "graph": "madge -i madge_graph.svg ./src/App.js",
+    "standard": "standard",
+    "standardize": "standard --fix"
   }
 }

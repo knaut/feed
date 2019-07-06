@@ -10,8 +10,8 @@ import {
   FormField,
   TextInput,
   Heading
-} from 'grommet';
-import { Search as SearchIcon } from 'grommet-icons';
+} from 'grommet'
+import { Search as SearchIcon } from 'grommet-icons'
 // GLOBALS
 import Layout from '../Layout'
 import GlobalLoader from '../components/GlobalLoader'
@@ -25,7 +25,7 @@ import ProfileList from '../components/profile/List'
 
 import UserToolbar from '../components/UserToolbar'
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps (state, ownProps) {
   const matches = state.search.matches
   const isFetching = state.search.isFetching
 
@@ -49,22 +49,21 @@ const SearchScreen = ({ matches, isFetching }) => (
     left={
       null
     }
-    right={<UserToolbar/>}
+    right={<UserToolbar />}
   >
-    <Box pad={{bottom: 'large'}}>
-      <SearchInput/>
+    <Box pad={{ bottom: 'large' }}>
+      <SearchInput />
     </Box>
-    { 
+    {
       isFetching === true ? (
-        <GlobalLoader isLoading={true}/>
+        <GlobalLoader isLoading />
       ) : (
-        Object.keys(matches).length ? <ProfileList/> : (
-          <NoProfiles/>
+        Object.keys(matches).length ? <ProfileList /> : (
+          <NoProfiles />
         )
       )
     }
   </Layout>
 )
 
-
-export default connect(mapStateToProps, () => new Object() )(SearchScreen)
+export default connect(mapStateToProps, () => new Object())(SearchScreen)

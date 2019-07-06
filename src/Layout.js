@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import css from '@emotion/css'
 
 // COMPONENTS
-import { 
+import {
   Box,
   Grid
 } from 'grommet'
@@ -16,11 +16,11 @@ import MyFeed from './components/button/MyFeed'
 
 import GlobalLoaderProvider from './components/GlobalLoaderProvider'
 
-const FullGrid = ({children}) => (
+const FullGrid = ({ children }) => (
   <Grid
     fill
     areas={[
-      { name: 'main', start: [0, 0], end: [0, 0] },
+      { name: 'main', start: [0, 0], end: [0, 0] }
     ]}
     columns={['flex']}
     rows={['flex']}
@@ -48,9 +48,9 @@ const ColumnedGrid = ({ left, children, right }) => (
       { left }
     </Box>
     <Box gridArea='main' align='center'>
-        <Box width='large'>
-          { children }
-        </Box>
+      <Box width='large'>
+        { children }
+      </Box>
     </Box>
     <Box gridArea='right' css={
       css`
@@ -65,7 +65,7 @@ const ColumnedGrid = ({ left, children, right }) => (
 )
 
 export default class GlobalLayout extends Component {
-  render() {
+  render () {
     const {
       left,
       right,
@@ -77,9 +77,9 @@ export default class GlobalLayout extends Component {
         align='center'
         justify='center'
       >
-        { columns === false ? 
-          (
-            <FullGrid> 
+        { columns === false
+          ? (
+            <FullGrid>
               { this.props.children }
             </FullGrid>
           ) : (

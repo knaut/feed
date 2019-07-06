@@ -1,8 +1,8 @@
-import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
-import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
-import { routerActions } from 'react-router-redux';
+import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect'
+import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper'
+import { routerActions } from 'react-router-redux'
 
-const locationHelper = locationHelperBuilder({});
+const locationHelper = locationHelperBuilder({})
 
 export default connectedRouterRedirect({
   // path we want to redirect to
@@ -11,4 +11,4 @@ export default connectedRouterRedirect({
   authenticatedSelector: state => state.user.isAuthenticated === true,
   wrapperDisplayName: 'IsSignedIn',
   redirectAction: routerActions.replace
-});
+})

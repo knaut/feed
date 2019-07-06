@@ -5,12 +5,12 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import StoryRouter from 'storybook-react-router';
+import StoryRouter from 'storybook-react-router'
 
 // COMPONENTS
 import Theme from '../src/Theme'
-import GlobalLoader from '../src/components/GlobalLoader';
-import Layout from '../src/Layout';
+import GlobalLoader from '../src/components/GlobalLoader'
+import Layout from '../src/Layout'
 
 storiesOf('GlobalLoader', module)
   .addDecorator(StoryRouter())
@@ -22,8 +22,8 @@ storiesOf('GlobalLoader', module)
     </Theme>
   ))
   .add('loading', () => (
-    <GlobalLoader isLoading={true}/>
+    <GlobalLoader isLoading />
   ))
   .add('loaded', () => (
-    <GlobalLoader isLoading={false}/>
+    <GlobalLoader isLoading={false} />
   ))

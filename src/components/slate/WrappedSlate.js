@@ -1,18 +1,18 @@
 // IMPORTS
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // COMPONENTS
-import Slate from './Slate';
+import Slate from './Slate'
 
 // ACTIONS
-import * as EditorActions from '../../actions/editor';
+import * as EditorActions from '../../actions/editor'
 
 // THUNKS
-import * as StatusThunks from '../../thunks/status';
+import * as StatusThunks from '../../thunks/status'
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   const {
     editor,
     user
@@ -24,17 +24,17 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return { 
+function mapDispatchToProps (dispatch) {
+  return {
     actions: bindActionCreators({
       submit: StatusThunks.postStatus,
       change: EditorActions.change
-    }, dispatch) 
-  };
+    }, dispatch)
+  }
 }
 
 class Wrapped extends Component {
-  render() {
+  render () {
     const {
       editor,
       user,
@@ -43,12 +43,12 @@ class Wrapped extends Component {
 
     return (
       <Slate
-        active={editor.active} 
+        active={editor.active}
         user={user}
         actions={actions}
       />
-    );
+    )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wrapped);
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapped)

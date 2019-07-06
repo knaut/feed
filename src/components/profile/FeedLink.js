@@ -1,14 +1,14 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 // STYLES
 import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Login, LinkNext, Home } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
-import { Link } from 'react-router-dom';
+import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet'
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User, Login, LinkNext, Home } from 'grommet-icons'
+import { FadeLoader, BarLoader, HashLoader } from 'react-spinners'
+import { Link } from 'react-router-dom'
 
 const FeedLink = (props) => {
   const {
@@ -18,7 +18,7 @@ const FeedLink = (props) => {
     isOnFeed,
     isMe,
     name
-  } = props;
+  } = props
 
   const noId = (
     <Box
@@ -30,12 +30,12 @@ const FeedLink = (props) => {
         border: 1px solid var(--gray2);
         border-radius: 10px;
       `}
-      >
+    >
       <Text level={3}>
         <span>{`We couldn't find anyone on Blockstack with the id of "${username}".`}</span>
       </Text>
     </Box>
-  );
+  )
 
   const noFeed = (
     <Box
@@ -54,16 +54,16 @@ const FeedLink = (props) => {
         <span>{` yet.`}</span>
       </Text>
     </Box>
-  );
+  )
 
   const feed = (
     <Box align='center' pad='medium'>
-      <Link to={ `/${username}/feed` }>
-        <Button icon={<Home />} label={ isMe === true ? `go to your feed` : `go to ${name}'s feed` } primary style={{
-        }}/>
+      <Link to={`/${username}/feed`}>
+        <Button icon={<Home />} label={isMe === true ? `go to your feed` : `go to ${name}'s feed`} primary style={{
+        }} />
       </Link>
     </Box>
-  );
+  )
 
   const dontShow = (
     <Box
@@ -83,24 +83,20 @@ const FeedLink = (props) => {
   )
 
   if (isLoading) {
-    return null;
+    return null
   } else {
     if (isOnBlockstack) {
-    
       if (isOnFeed === true) {
-        return feed;
+        return feed
       } else if (isOnFeed === false) {
-        return noFeed;
+        return noFeed
       } else {
-        return null;
+        return null
       }
-
     } else {
-      return noId;
+      return noId
     }
-
   }
-  
 }
 
-export default FeedLink;
+export default FeedLink

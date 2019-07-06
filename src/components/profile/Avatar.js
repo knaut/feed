@@ -1,14 +1,14 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 // STYLES
 import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
+import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet'
+import { grommet, dark } from 'grommet/themes'
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons'
+import { FadeLoader, BarLoader, HashLoader } from 'react-spinners'
 
 // THEME
 import { feed } from '../../Theme'
@@ -20,12 +20,12 @@ const Avatar = (props) => {
     isMe,
     username,
     image
-  } = props;
+  } = props
 
-  const noAvatar = (<User color='purplePastel' size='xlarge'/>);
-  const avatar = (<Image src={image} fit="cover" />);
+  const noAvatar = (<User color='purplePastel' size='xlarge' />)
+  const avatar = (<Image src={image} fit='cover' />)
   const isMeTag = (
-    <Box justify="center" align="center">
+    <Box justify='center' align='center'>
       <Button margin='small'>
         <Box
           background='cyan'
@@ -37,8 +37,8 @@ const Avatar = (props) => {
             bottom: 'xxsmall'
           }}
         >
-          <Text 
-            size='small' 
+          <Text
+            size='small'
             color='light'
             css={css`
               font-style: italic;
@@ -47,16 +47,16 @@ const Avatar = (props) => {
         </Box>
       </Button>
     </Box>
-  );
+  )
 
   const loading = (
     <React.Fragment>
-      <Box justify="center" align="center">
-        <Box 
-          background='purple' 
+      <Box justify='center' align='center'>
+        <Box
+          background='purple'
           round='full'
-          justify="center"
-          align="center"
+          justify='center'
+          align='center'
           css={css`
             border: 5px solid var(--gray1);
             width: 150px;
@@ -67,15 +67,15 @@ const Avatar = (props) => {
           <Box>
             <HashLoader
               color={feed.global.colors.purplePastel}
-              loading={true}
+              loading
               size={75}
             />
           </Box>
         </Box>
       </Box>
       <Box
-        justify="center"
-        align="center"
+        justify='center'
+        align='center'
         pad='small'
       >
         <Text level={1} size='medium' color='gray1'>
@@ -83,16 +83,16 @@ const Avatar = (props) => {
         </Text>
       </Box>
     </React.Fragment>
-  );
+  )
 
   const loaded = (
     <React.Fragment>
-      <Box justify="center" align="center">
-        <Box 
-          background='purple' 
-          round='full' 
-          justify="center" 
-          align="center"
+      <Box justify='center' align='center'>
+        <Box
+          background='purple'
+          round='full'
+          justify='center'
+          align='center'
           css={css`
             border: 5px solid var(--gray1);
             width: 150px;
@@ -100,15 +100,15 @@ const Avatar = (props) => {
             overflow: hidden;
           `}
         >
-          <Box css={ image ? css`width: 100%; height: 100%;` : null }>
+          <Box css={image ? css`width: 100%; height: 100%;` : null}>
             {image ? avatar : noAvatar}
           </Box>
         </Box>
       </Box>
       <Box
-        justify="center"
-        align="center"
-        pad={{top: 'small'}}
+        justify='center'
+        align='center'
+        pad={{ top: 'small' }}
       >
         <Text
           level={1}
@@ -121,16 +121,16 @@ const Avatar = (props) => {
       </Box>
       { isMe ? isMeTag : null }
     </React.Fragment>
-  );
+  )
 
   const notOnBlockstack = (
     <React.Fragment>
-      <Box justify="center" align="center">
+      <Box justify='center' align='center'>
         <Box
           background='purple'
-          round='full' 
-          justify="center"
-          align="center"
+          round='full'
+          justify='center'
+          align='center'
           css={css`
             border: 5px solid var(--gray1);
             width: 150px;
@@ -139,30 +139,27 @@ const Avatar = (props) => {
           `}
         >
           <Box>
-            <Help color='redPastel' size='xlarge'/>
+            <Help color='redPastel' size='xlarge' />
           </Box>
         </Box>
       </Box>
-      <Box justify="center" align="center" pad={{top: 'small'}}>
+      <Box justify='center' align='center' pad={{ top: 'small' }}>
         <Text level={1} size='medium' color='gray1'>
           {`"${username}" was not found.`}
         </Text>
       </Box>
     </React.Fragment>
-  );
+  )
 
   if (isLoading === true) {
-    return loading;
+    return loading
   } else {
-
     if (isOnBlockstack === true) {
-      return loaded;
+      return loaded
     } else {
-      return notOnBlockstack;
+      return notOnBlockstack
     }
-
   }
-  
 }
 
-export default Avatar;
+export default Avatar

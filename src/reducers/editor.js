@@ -1,14 +1,14 @@
 // ACTION TYPES
-import * as EditorActions from '../actions/editor';
+import * as EditorActions from '../actions/editor'
 
 // THUNKS
-import * as StatusThunks from '../thunks/status';
+import * as StatusThunks from '../thunks/status'
 
 // POST TYPES
-const STATUS = 'STATUS';
+const STATUS = 'STATUS'
 
 // MAIN REDUCER
-export default function editor(
+export default function editor (
   /*
     the editor is our main interaction with posting content to feed.
     as such, it will have to handle many kinds of content and edge cases.
@@ -30,30 +30,29 @@ export default function editor(
 ) {
   let newState = {
     ...state
-  };
+  }
 
-  switch(action.type) {
+  switch (action.type) {
     default: {
-      return newState;
+      return newState
     }
     case EditorActions.EDITOR_CHANGE: {
-      newState.input = true;
-      newState.type = STATUS;
-      return newState;
+      newState.input = true
+      newState.type = STATUS
+      return newState
     }
     case EditorActions.EDITOR_SUBMIT_SUCCESS: {
       /*
         we clear our editor's contents
       */
-      newState.active = false;
-      newState.input = false;
-      newState.type = null;
-      return newState;
+      newState.active = false
+      newState.input = false
+      newState.type = null
+      return newState
     }
     case EditorActions.EDITOR_ACTIVE: {
-      newState.active = newState.active ? false : true;
-      return newState;
+      newState.active = !newState.active
+      return newState
     }
   }
-
 }

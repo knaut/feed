@@ -1,6 +1,6 @@
 // IMPORTS
-import React, { Component } from 'react';
-import Moment from 'moment';
+import React, { Component } from 'react'
+import Moment from 'moment'
 
 // STYLES
 import css from '@emotion/css'
@@ -8,7 +8,7 @@ import css from '@emotion/css'
 export default (props) => {
   const {
     text
-  } = props;
+  } = props
 
   return (
     <div css={css`
@@ -17,5 +17,5 @@ export default (props) => {
     `}>
       {text}
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Grommet,
   Box,
@@ -7,19 +7,19 @@ import {
   Heading,
   Text,
   Anchor
-} from 'grommet';
-import { 
+} from 'grommet'
+import {
   UserNew,
   Info,
   Grow,
   Favorite
-} from "grommet-icons";
+} from 'grommet-icons'
 
 // COMPONENTS
 import { Link } from 'react-router-dom'
 
-import Layout from '../Layout';
-import SignIn from '../components/SignIn';
+import Layout from '../Layout'
+import SignIn from '../components/SignIn'
 import CreateID from '../components/button/CreateID'
 import LearnMore from '../components/button/LearnMore'
 
@@ -29,7 +29,7 @@ import css from '@emotion/css'
 const StartStep = ({ color, number, children }) => (
   <Box
     css={css`align-items: center;`}
-    pad={{left: 'large', right: 'large', bottom: 'medium'}}
+    pad={{ left: 'large', right: 'large', bottom: 'medium' }}
     direction='row-responsive'
     justify='center'
   >
@@ -53,7 +53,7 @@ const StartStep = ({ color, number, children }) => (
 )
 
 class Index extends Component {
-  render() {
+  render () {
     return (
       <React.Fragment>
         <Layout
@@ -98,7 +98,7 @@ class Index extends Component {
           <StartStep color='status-ok' number={3}>
             <Text size='large'>Create your first post. Posts can be <Text size='large' weight='bold'>500 characters</Text> long. Every post has a <Text size='large' weight='bold'>permalink</Text> that can be easily shared.</Text>
           </StartStep>
-          <CreateID/>
+          <CreateID />
           <LearnMore large />
         </Box>
         <Box
@@ -109,22 +109,22 @@ class Index extends Component {
         >
           <Box
             align='center'
-            pad={{bottom: 'small'}}
+            pad={{ bottom: 'small' }}
             direction='row'
           >
             <Text color='purplePastel'>
-              <span css={css`font-weight: bold;`}>feed.</span> grow something good. <Grow color='accent-1'/>
+              <span css={css`font-weight: bold;`}>feed.</span> grow something good. <Grow color='accent-1' />
             </Text>
           </Box>
           <Text color='purplePastel'>
-            built with <Favorite color='status-critical' css={css`margin-bottom: -6px;`}/> <span css={css`font-weight: bold;`}>&</span> <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
+            built with <Favorite color='status-critical' css={css`margin-bottom: -6px;`} /> <span css={css`font-weight: bold;`}>&</span> <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
               small invisible machines
             </Anchor>
           </Text>
         </Box>
       </React.Fragment>
-    );
+    )
   }
 }
 
-export default Index;
+export default Index

@@ -1,8 +1,8 @@
 // ACTION TYPES
-import * as UserActions from '../actions/user';
+import * as UserActions from '../actions/user'
 
 // MAIN REDUCER
-export default function user(
+export default function user (
   state = {
     username: null,
     name: null,
@@ -15,21 +15,20 @@ export default function user(
 ) {
   let newState = {
     ...state
-  };
+  }
 
   switch (action.type) {
     default: {
-      return newState;
+      return newState
     }
     case UserActions.IS_SIGNED_IN: {
-      newState.username = action.payload.username;
-      newState.isAuthenticated = true;
-      newState.name = action.payload.name;
-      newState.description = action.payload.description;
-      newState.image = action.payload.image;
+      newState.username = action.payload.username
+      newState.isAuthenticated = true
+      newState.name = action.payload.name
+      newState.description = action.payload.description
+      newState.image = action.payload.image
 
-      return newState;
+      return newState
     }
-
   }
 }

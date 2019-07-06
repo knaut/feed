@@ -3,10 +3,10 @@ import { Provider } from 'react-dom'
 
 import generateStore from '../../src/utils/generateStore'
 
-const store = generateStore();
+const store = generateStore()
 
 class ReduxProvider extends Component {
-  render() {
+  render () {
     return (
       <Provider store={store}>
         {this.props.children}

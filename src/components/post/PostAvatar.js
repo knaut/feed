@@ -1,12 +1,12 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 // STYLES
-import css from '@emotion/css';
+import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
+import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet'
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons'
 
 // THEME
 import { feed } from '../../Theme'
@@ -15,11 +15,11 @@ const IconImage = (props) => {
   if (props.image) {
     return (
       <Image src={props.image} fit='cover' />
-    );
+    )
   } else {
     return (
-      <User color='purple' size='large'/>
-    );
+      <User color='purple' size='large' />
+    )
   }
 }
 
@@ -28,28 +28,27 @@ const IconLoading = () => {
     <IconFrame>
       <HashLoader
         color={feed.global.colors.purplePastel}
-        loading={true}
+        loading
         size={35}
       />
     </IconFrame>
-  );
+  )
 }
-
 
 const LabelLoading = (props) => {
   return (
-    <Box justify="center" align="center" pad={'small'}>
+    <Box justify='center' align='center' pad={'small'}>
       <Text level={1} size='small'>
         {`Fetching "${props.username}"…`}
       </Text>
     </Box>
-  );
+  )
 }
 
 const IconFrame = (props) => {
-  const { children } = props;
+  const { children } = props
   return (
-    <Box justify="center" align="center">
+    <Box justify='center' align='center'>
       <Box
         background='purple'
         round='full'
@@ -63,19 +62,19 @@ const IconFrame = (props) => {
         </Box>
       </Box>
     </Box>
-  );
+  )
 }
 
 const IconLoaded = (props) => {
   const {
     image
-  } = props;
+  } = props
 
   return (
     <IconFrame>
-      <IconImage image={image}/>
+      <IconImage image={image} />
     </IconFrame>
-  );
+  )
 }
 
 const LabelLoaded = (props) => {
@@ -83,7 +82,7 @@ const LabelLoaded = (props) => {
     name,
     username,
     showUsername
-  } = props;
+  } = props
 
   return (
     <React.Fragment>
@@ -94,48 +93,48 @@ const LabelLoaded = (props) => {
       </Text>
       { showUsername ? <Text level={1} size='medium' color='dark-4'>{username}</Text> : null }
     </React.Fragment>
-  );
+  )
 }
 
 class Icon extends Component {
-  render() {
+  render () {
     const {
       isLoading,
       image
-    } = this.props;
+    } = this.props
 
     if (isLoading === true) {
-      return <IconLoading/>;
+      return <IconLoading />
     } else {
-      return <IconLoaded image={image}/>;
+      return <IconLoaded image={image} />
     }
   }
 }
 
 class Label extends Component {
-  render() {
+  render () {
     const {
       isLoading,
       name,
       username,
       showUsername
-    } = this.props;
+    } = this.props
 
     if (isLoading === true) {
-      return <LabelLoading username={username}/>;
+      return <LabelLoading username={username} />
     } else {
-      return <LabelLoaded name={name} username={username} showUsername={showUsername}/>;
+      return <LabelLoaded name={name} username={username} showUsername={showUsername} />
     }
   }
 }
 
 class PostAvatar extends Component {
-  render() {
+  render () {
     const {
       isLoading,
       name,
       image
-    } = this.props;
+    } = this.props
 
     return (
       <Grid
@@ -146,7 +145,7 @@ class PostAvatar extends Component {
         columns={['auto', 'auto']}
         rows={['flex']}
         gap='small'
-        style={{display: 'auto'}}
+        style={{ display: 'auto' }}
       >
         <Box
           gridArea='left'
@@ -158,14 +157,13 @@ class PostAvatar extends Component {
           gridArea='right'
           justify='center'
           align='start'
-          style={{paddingLeft: '15px'}}
+          style={{ paddingLeft: '15px' }}
         >
           <Label {...this.props} />
         </Box>
       </Grid>
-    );
+    )
   }
 }
 
-export default PostAvatar;
-
+export default PostAvatar

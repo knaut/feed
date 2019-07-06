@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 // STYLES
 import css from '@emotion/css'
@@ -14,16 +14,16 @@ import {
   Heading,
   Text,
   Image
-} from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons';
-import { FadeLoader, BarLoader, HashLoader } from 'react-spinners';
+} from 'grommet'
+import { grommet, dark } from 'grommet/themes'
+import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons'
+import { FadeLoader, BarLoader, HashLoader } from 'react-spinners'
 
-import Avatar from '../Avatar';
-import FeedLink from './FeedLink';
+import Avatar from '../Avatar'
+import FeedLink from './FeedLink'
 
 class ProfileCard extends Component {
-  render() {
+  render () {
     const {
       isLoading,
       isOnBlockstack,
@@ -34,10 +34,10 @@ class ProfileCard extends Component {
       username,
       description,
       size
-    } = this.props;
+    } = this.props
 
     return (
-      <Box align="center">
+      <Box align='center'>
         <Box
           width='large'
           background='white'
@@ -45,11 +45,11 @@ class ProfileCard extends Component {
           round
         >
           <header>
-            <Avatar {...this.props} size={size}/>
+            <Avatar {...this.props} size={size} />
             <Heading level={1} size={'small'} css={css`text-align: center;`}>
               {this.props.name}
             </Heading>
-            <Text level={1} size={'medium'} margin={{bottom: 'small'}} css={css`
+            <Text level={1} size={'medium'} margin={{ bottom: 'small' }} css={css`
               display: block;
               text-align: center;
             `}>
@@ -59,8 +59,8 @@ class ProfileCard extends Component {
           <FeedLink {...this.props} />
         </Box>
       </Box>
-    );
+    )
   }
 }
 
-export default ProfileCard;
+export default ProfileCard

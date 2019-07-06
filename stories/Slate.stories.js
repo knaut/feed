@@ -5,15 +5,15 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
-import StoryRouter from 'storybook-react-router';
+import StoryRouter from 'storybook-react-router'
 
 // COMPONENTS
 import Theme from '../src/Theme'
-import Layout from '../src/Layout';
-import Slate from '../src/components/slate/Slate';
+import Layout from '../src/Layout'
+import Slate from '../src/components/slate/Slate'
 
 // CONFIG
-import { user } from '../.storybook/user.json';
+import { user } from '../.storybook/user.json'
 
 storiesOf('Slate', module)
   .addDecorator(getStory => (
@@ -24,25 +24,24 @@ storiesOf('Slate', module)
     </Theme>
   ))
   .add('active', () => (
-    <Slate 
+    <Slate
       user={user}
-      active={true}
+      active
       actions={{
-        submit: function(payload) {
-          console.log({payload});
+        submit: function (payload) {
+          console.log({ payload })
         }
       }}
     />
   ))
   .add('inactive', () => (
-    <Slate 
+    <Slate
       user={user}
       active={false}
       actions={{
-        submit: function(payload) {
-          console.log({payload});
+        submit: function (payload) {
+          console.log({ payload })
         }
       }}
     />
   ))
-;

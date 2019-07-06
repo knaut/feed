@@ -1,5 +1,5 @@
 // IMPORTS
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -7,16 +7,16 @@ import { bindActionCreators } from 'redux'
 import css from '@emotion/css'
 
 // COMPONENTS
-import { 
+import {
   Box,
   Heading
-} from 'grommet';
+} from 'grommet'
 import Card from './Card'
 
 // ACTIONS
-import { activateEditor } from '../../actions/editor';
+import { activateEditor } from '../../actions/editor'
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators({
       activateEditor
@@ -34,19 +34,18 @@ const NoPosts = () => (
 )
 
 class PostList extends Component {
-  componentDidMount() {
+  componentDidMount () {
     const { posts } = this.props
     if (!posts.length) {
       this.props.actions.activateEditor(null)
     }
   }
 
-  render() {
+  render () {
     const { posts, author, username } = this.props
     const cards = []
 
     if (posts) {
-
       for (let p = 0; posts.length > p; ++p) {
         const post = posts[p]
         cards.push(
@@ -62,11 +61,10 @@ class PostList extends Component {
 
     return (
       <Box>
-        { cards.length ? cards : <NoPosts/> }
+        { cards.length ? cards : <NoPosts /> }
       </Box>
-    );
+    )
   }
 }
 
-export default connect( () => new Object(), mapDispatchToProps )(PostList)
-
+export default connect(() => new Object(), mapDispatchToProps)(PostList)

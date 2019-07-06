@@ -1,10 +1,10 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { Grommet, Box, Button, Grid } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import Avatar from '../src/components/Avatar';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { Grommet, Box, Button, Grid } from 'grommet'
+import { grommet, dark } from 'grommet/themes'
+import Avatar from '../src/components/Avatar'
 
-import spoof from '../.storybook/user.json';
+import spoof from '../.storybook/user.json'
 
 // COMPONENTS
 import Theme from '../src/Theme'
@@ -29,7 +29,7 @@ storiesOf('Avatar - Large', module)
   ))
   .add('is loading', () => (
     <Avatar
-      isLoading={true}
+      isLoading
       isOnBlockstack={null}
       isMe={null}
       username={spoof.user.username}
@@ -39,7 +39,7 @@ storiesOf('Avatar - Large', module)
   .add('is loaded', () => (
     <Avatar
       isLoading={false}
-      isOnBlockstack={true}
+      isOnBlockstack
       isMe={null}
       username={spoof.user.username}
       image={spoof.user.image}
@@ -48,8 +48,8 @@ storiesOf('Avatar - Large', module)
   .add('is loaded & you', () => (
     <Avatar
       isLoading={false}
-      isOnBlockstack={true}
-      isMe={true}
+      isOnBlockstack
+      isMe
       username={spoof.user.username}
       image={spoof.user.image}
     />
@@ -57,13 +57,13 @@ storiesOf('Avatar - Large', module)
   .add('is loaded & no avatar', () => (
     <Avatar
       isLoading={false}
-      isOnBlockstack={true}
+      isOnBlockstack
       isMe={false}
       username={spoof.user.username}
       image={null}
     />
   ))
-  
+
 storiesOf('Avatar - Small', module)
   .addDecorator(getStory => (
     <Theme>
@@ -78,7 +78,7 @@ storiesOf('Avatar - Small', module)
     <Avatar
       size={'small'}
       isLoading={false}
-      isOnBlockstack={true}
+      isOnBlockstack
       isMe={false}
       username={spoof.user.username}
       name={spoof.user.name}
@@ -88,8 +88,8 @@ storiesOf('Avatar - Small', module)
   .add('is loading', () => (
     <Avatar
       size={'small'}
-      isLoading={true}
-      isOnBlockstack={true}
+      isLoading
+      isOnBlockstack
       isMe={false}
       username={spoof.user.username}
       name={spoof.user.name}
@@ -100,7 +100,7 @@ storiesOf('Avatar - Small', module)
     <Avatar
       size={'small'}
       isLoading={false}
-      isOnBlockstack={true}
+      isOnBlockstack
       isMe={false}
       username={spoof.user.username}
       image={null}

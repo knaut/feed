@@ -1,6 +1,6 @@
 // IMPORTS
-import React, { Component } from 'react';
-import Moment from 'moment';
+import React, { Component } from 'react'
+import Moment from 'moment'
 
 // STYLES
 import css from '@emotion/css'
@@ -12,19 +12,19 @@ import {
   Button,
   Grid,
   Text
-} from 'grommet';
+} from 'grommet'
 
-import Avatar from '../Avatar.js';
+import Avatar from '../Avatar.js'
 
 export default class CardHeader extends Component {
-  render() {
-    const { 
+  render () {
+    const {
       username,
       name,
       image,
       timestamp,
       size
-    } = this.props;
+    } = this.props
 
     return (
       <Grid
@@ -39,8 +39,8 @@ export default class CardHeader extends Component {
       >
         <Box gridArea='user'>
           <Avatar
-            isLoading={image ? false : true}
-            isOnBlockstack={true}
+            isLoading={!image}
+            isOnBlockstack
             isMe={false}
             username={username}
             name={name}
@@ -49,7 +49,7 @@ export default class CardHeader extends Component {
           />
         </Box>
         <Box gridArea='date' css={css`text-align:right;`}>
-          <Text 
+          <Text
             color='gray2'
             css={css`
               font-family: Andale Mono, Monaco, Courier New;
@@ -58,6 +58,6 @@ export default class CardHeader extends Component {
           >{ Moment(timestamp).format('llll') }</Text>
         </Box>
       </Grid>
-    );
+    )
   }
 }

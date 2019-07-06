@@ -1,11 +1,11 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { Grommet, Box, Button, Grid } from 'grommet';
-import { grommet, dark } from 'grommet/themes';
-import StoryRouter from 'storybook-react-router';
-import FeedLink from '../../src/components/profile/FeedLink';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { Grommet, Box, Button, Grid } from 'grommet'
+import { grommet, dark } from 'grommet/themes'
+import StoryRouter from 'storybook-react-router'
+import FeedLink from '../../src/components/profile/FeedLink'
 
-import spoof from '../../.storybook/user.json';
+import spoof from '../../.storybook/user.json'
 
 // COMPONENTS
 import Theme from '../../src/Theme'
@@ -27,7 +27,7 @@ storiesOf('FeedLink', module)
     <Theme>
       <FeedLink
         username={spoof.user.username}
-        isOnBlockstack={true}
+        isOnBlockstack
         isOnFeed={false}
         isMe={false}
         name={spoof.user.name}
@@ -38,8 +38,8 @@ storiesOf('FeedLink', module)
     <Theme>
       <FeedLink
         username={spoof.user.username}
-        isOnBlockstack={true}
-        isOnFeed={true}
+        isOnBlockstack
+        isOnFeed
         isMe={false}
         name={spoof.user.name}
       />
@@ -49,11 +49,10 @@ storiesOf('FeedLink', module)
     <Theme>
       <FeedLink
         username={spoof.user.username}
-        isOnBlockstack={true}
-        isOnFeed={true}
-        isMe={true}
+        isOnBlockstack
+        isOnFeed
+        isMe
         name={spoof.user.name}
       />
     </Theme>
   ))
-;

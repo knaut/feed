@@ -1,7 +1,7 @@
 // ACTION TYPES
 
 // MAIN REDUCER
-export default function cache(
+export default function cache (
   state = {
     isLoaded: false
   },
@@ -9,26 +9,26 @@ export default function cache(
 ) {
   let newState = {
     ...state
-  };
+  }
 
   switch (action.type) {
     default: {
-      return newState;
+      return newState
     }
     case 'GET_CACHE_FAIL': {
-      newState.isLoaded = false;
+      newState.isLoaded = false
 
-      return newState;
+      return newState
     }
     case 'GET_CACHE_PENDING': {
-      newState.isLoaded = false;
+      newState.isLoaded = false
 
-      return newState;
+      return newState
     }
     case 'GET_CACHE_SUCCESS': {
-      newState.isLoaded = true;
+      newState.isLoaded = true
 
-      return newState;
+      return newState
     }
   }
 }

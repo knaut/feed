@@ -1,8 +1,8 @@
 // REDUX
-import { applyMiddleware, compose, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
+import { applyMiddleware, compose, createStore } from 'redux'
+import { createLogger } from 'redux-logger'
+import thunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
 
@@ -14,8 +14,8 @@ const DEBUG = process.env.DEBUG
 
 export const history = createBrowserHistory()
 
-export default function generateStore(state) {
-  const initialState = state ? state : {};
+export default function generateStore (state) {
+  const initialState = state || {}
 
   let middleware = false
 
@@ -42,7 +42,7 @@ export default function generateStore(state) {
     generateRootReducer(history),
     initialState,
     middleware
-  );
+  )
 
-  return store;
+  return store
 }

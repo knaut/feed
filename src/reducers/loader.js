@@ -16,5 +16,4 @@ export default function loader (
       isLoading: false
     }
   }
-
 }
