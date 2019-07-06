@@ -71,7 +71,11 @@ class Model {
 
           const blankCache = JSON.stringify({
             Profile: {
-              entities: { ...profile },
+              entities: { 
+                [ profile.id ]: {
+                  Status: profile.Status
+                }
+              },
               ids: [ profile.id ]
             },
             Status: {
@@ -174,7 +178,7 @@ class Model {
         case 'GAIA': {
           const userSession = new blockstack.UserSession()
 
-          userSession.getFile(
+          userSession.putFile(
             `cache.json`,
             string,
             { encrypt: false }
