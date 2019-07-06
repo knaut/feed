@@ -50,7 +50,13 @@ const ColumnedGrid = ({ left, children, right }) => (
         { children }
       </Box>
     </Box>
-    <Box gridArea='right'>
+    <Box gridArea='right' css={
+      css`
+        position: fixed;
+        right: 0;
+        top: 0;
+      `
+    }>
       { right }
     </Box>
   </Grid>
