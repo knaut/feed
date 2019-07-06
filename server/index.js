@@ -35,7 +35,7 @@ const oneYearMs = oneDayMs * 365;
 const base = findRoot(__dirname)
 console.log(base)
 
-const staticHandler = async ctx => koaSend(ctx, `/build/index.html`)
+const staticHandler = async ctx => koaSend(ctx, `./build/index.html`)
 
 router.get('/', staticHandler)
 router.get('/(.*)', staticHandler)
