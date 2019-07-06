@@ -45,9 +45,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^4.2.0"
-  },
-  "devDependencies": {
+    "styled-components": "^4.2.0",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
