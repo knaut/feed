@@ -40,13 +40,10 @@ class App extends Component {
     const userSession = new blockstack.UserSession()
     const isSignedIntoBlockstack = userSession.isUserSignedIn()
 
-    // console.log({userSession, isSignedIntoBlockstack, userData})
-
     if (isSignedIntoBlockstack) {
       
       const userData = userSession.loadUserData()
       const username = userData.username.split('.')[0]
-      console.log(userData, username)
       const { name, description } = userData.profile
       const image = userData.profile.image[0].contentUrl
     

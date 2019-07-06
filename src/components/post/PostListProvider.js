@@ -98,7 +98,6 @@ class PostListProvider extends Component {
   }
 
   render() {
-    console.log(this)
     const {
       Status,
       Profile,
@@ -107,8 +106,6 @@ class PostListProvider extends Component {
       userIsAuthor,
       postAuthor
     } = this.props
-
-    // const username = user.username
 
     const {
       name,

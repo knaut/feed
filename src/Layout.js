@@ -14,6 +14,8 @@ import WrappedAddPost from './components/button/WrappedAddPost'
 import Search from './components/button/Search'
 import MyFeed from './components/button/MyFeed'
 
+import GlobalLoaderProvider from './components/GlobalLoaderProvider'
+
 const FullGrid = ({children}) => (
   <Grid
     fill
@@ -39,16 +41,20 @@ const ColumnedGrid = ({ left, children, right }) => (
       { name: 'right', start: [2, 0], end: [2, 0] }
     ]}
     columns={['xsmall', 'flex', 'xsmall']}
-    rows={['flex']}
+    rows={['full']}
     gap='small'
   >
     <Box gridArea='left'>
       { left }
     </Box>
     <Box gridArea='main' align='center'>
-      <Box width='large'>
-        { children }
-      </Box>
+      <GlobalLoaderProvider>
+      
+        <Box width='large'>
+          { children }
+        </Box>
+
+      </GlobalLoaderProvider>
     </Box>
     <Box gridArea='right' css={
       css`

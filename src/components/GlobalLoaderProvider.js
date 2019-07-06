@@ -24,7 +24,11 @@ function mapStateToProps(state) {
 }
 
 const Provider = ({ isLoaded, children }) => {
-  return isLoaded ? children : <GlobalLoader isLoading={true}/>
+  return isLoaded ? children : <Box css={css`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  `}><GlobalLoader isLoading={true}/></Box>
 }
 
 export default connect(mapStateToProps, () => new Object())(Provider)

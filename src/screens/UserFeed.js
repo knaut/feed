@@ -57,7 +57,6 @@ class UserFeed extends Component {
           <UserToolbar/>
         }
       >
-        <GlobalLoader>
           { 
             /*
               we only show the slate for the logged in user
@@ -75,7 +74,7 @@ class UserFeed extends Component {
               <PostList/>
             </PostListProvider>
           </Box>
-        </GlobalLoader>
+
       </Layout>
     )
   }
