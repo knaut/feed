@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Feed 🌱 your decentralized social networking tool</title>
+  <link rel="shortcut icon" href="/assets/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="manifest" href="/assets/manifest.json"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#6FFFB0"><meta name="application-name" content="Feed"><link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="167x167" href="/assets/apple-touch-icon-167x167.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180x180.png"><link rel="apple-touch-icon" sizes="1024x1024" href="/assets/apple-touch-icon-1024x1024.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Feed"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/assets/apple-touch-startup-image-320x460.png"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/assets/apple-touch-startup-image-640x920.png"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/assets/apple-touch-startup-image-640x1096.png"><link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/assets/apple-touch-startup-image-750x1294.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" href="/assets/apple-touch-startup-image-1182x2208.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" href="/assets/apple-touch-startup-image-1242x2148.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/assets/apple-touch-startup-image-748x1024.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/assets/apple-touch-startup-image-768x1004.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/assets/apple-touch-startup-image-1496x2048.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/assets/apple-touch-startup-image-1536x2008.png"><meta name="msapplication-TileColor" content="#1E1624"><meta name="msapplication-TileImage" content="/assets/mstile-144x144.png"><meta name="msapplication-config" content="/assets/browserconfig.xml"></head>
+  <style>
+    .lds-grid {
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .lds-grid div {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #7A2EE8;
+      animation: lds-grid 1.2s linear infinite;
+    }
+    .lds-grid div:nth-child(1) {
+      top: 6px;
+      left: 6px;
+      animation-delay: 0s;
+    }
+    .lds-grid div:nth-child(2) {
+      top: 6px;
+      left: 26px;
+      animation-delay: -0.4s;
+    }
+    .lds-grid div:nth-child(3) {
+      top: 6px;
+      left: 45px;
+      animation-delay: -0.8s;
+    }
+    .lds-grid div:nth-child(4) {
+      top: 26px;
+      left: 6px;
+      animation-delay: -0.4s;
+    }
+    .lds-grid div:nth-child(5) {
+      top: 26px;
+      left: 26px;
+      animation-delay: -0.8s;
+    }
+    .lds-grid div:nth-child(6) {
+      top: 26px;
+      left: 45px;
+      animation-delay: -1.2s;
+    }
+    .lds-grid div:nth-child(7) {
+      top: 45px;
+      left: 6px;
+      animation-delay: -0.8s;
+    }
+    .lds-grid div:nth-child(8) {
+      top: 45px;
+      left: 26px;
+      animation-delay: -1.2s;
+    }
+    .lds-grid div:nth-child(9) {
+      top: 45px;
+      left: 45px;
+      animation-delay: -1.6s;
+    }
+    @keyframes lds-grid {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.1;
+      }
+    }
+  </style>
+  <body style="margin: 0; padding: 0; min-height: -webkit-fill-available;">
+    <div id="root" style="min-height: -webkit-fill-available; background: #1E1624; position: relative;">
+      <div class="lds-grid" style="background: #1E1624; position: absolute; top: 50%; left: 50%; margin-left: -32px; margin-top: -32px;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+  <script type="text/javascript" src="/app.bundle.js"></script></body>
+</html>
