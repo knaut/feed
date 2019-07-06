@@ -48,13 +48,9 @@ const ColumnedGrid = ({ left, children, right }) => (
       { left }
     </Box>
     <Box gridArea='main' align='center'>
-      <GlobalLoaderProvider>
-      
         <Box width='large'>
           { children }
         </Box>
-
-      </GlobalLoaderProvider>
     </Box>
     <Box gridArea='right' css={
       css`
