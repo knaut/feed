@@ -14,6 +14,8 @@ var _koaRouter = _interopRequireDefault(require("koa-router"));
 
 var _koaSend = _interopRequireDefault(require("koa-send"));
 
+var _koaCors = _interopRequireDefault(require("koa-cors"));
+
 var _errors = _interopRequireDefault(require("./middleware/errors.js"));
 
 var _welcome = _interopRequireDefault(require("./utils/welcome"));
@@ -60,6 +62,10 @@ function () {
 
 app.use((0, _errors["default"])());
 app.use((0, _koaLogger["default"])());
+app.use((0, _koaCors["default"])({
+  origin: 'https://browser.blockstack.org',
+  credentials: true
+}));
 app.use((0, _koaStatic["default"])('./build')); // keep static assets at the top for routing priority
 // SPA PAGE ROUTES
 

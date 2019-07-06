@@ -18,6 +18,7 @@ import logger from 'koa-logger'
 import assets from 'koa-static'
 import Router from 'koa-router'
 import koaSend from 'koa-send'
+import cors from 'koa-cors'
 
 // MIDDLEWARE
 import errors from './middleware/errors.js'
@@ -40,6 +41,10 @@ const staticHandler = async ctx => koaSend(ctx, `/build/index.html`)
 // ATTACH MIDDLEWARE
 app.use(errors())
 app.use(logger())
+app.use(cors({
+  origin: 'https://browser.blockstack.org',
+  credentials: true
+}))
 app.use(assets('./build'))  // keep static assets at the top for routing priority
 
 // SPA PAGE ROUTES
