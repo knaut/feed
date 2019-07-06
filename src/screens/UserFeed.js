@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+// STYLES
+import css from '@emotion/css'
+
 // COMPONENTS
 import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import Layout from '../Layout'
@@ -61,7 +64,9 @@ class UserFeed extends Component {
             */
             userIsAuthor === true ? <WrappedSlate /> : null 
           }
-          <Box margin={{top: 'medium'}}>
+          <Box margin={{top: 'medium'}} css={
+          css`background: none;`
+        }>
             <PostListProvider 
               postAuthor={author}
               userIsAuthor={userIsAuthor}

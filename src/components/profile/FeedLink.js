@@ -65,6 +65,23 @@ const FeedLink = (props) => {
     </Box>
   );
 
+  const dontShow = (
+    <Box
+      background='light'
+      align='center'
+      pad='medium'
+      css={css`
+        text-align: center;
+        border: 1px solid var(--gray2);
+        border-radius: 10px;
+      `}
+    >
+      <Text level={3}>
+        <span><strong>{username}</strong> has a Blockstack ID, but you need to log into Blockstack to see any posts.</span>
+      </Text>
+    </Box>
+  )
+
   if (isLoading) {
     return null;
   } else {

@@ -66,12 +66,8 @@ export default class GlobalLayout extends Component {
 
     return (
       <Box
-        fill 
         align='center'
-        justify='center' height='100vh'
-        css={css`
-          background: var(--purpleDark);
-        `}
+        justify='center'
       >
         { columns === false ? 
           (
