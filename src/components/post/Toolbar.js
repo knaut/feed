@@ -43,7 +43,9 @@ class Toolbar extends Component {
           transition: 'all 0.2s ease-in-out'
         }}
       >
+        {/*
         <Permalink link={`/permalink/${post.id}`} />
+        */}
         <Box gridArea='flex'>
 
         </Box>

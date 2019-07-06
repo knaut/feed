@@ -38,11 +38,11 @@ class App extends Component {
   render() {
 
     const userSession = new blockstack.UserSession()
-    const isSignedIn = userSession.isUserSignedIn()
+    const isSignedIntoBlockstack = userSession.isUserSignedIn()
 
-    // console.log({userSession, isSignedIn, userData})
+    // console.log({userSession, isSignedIntoBlockstack, userData})
 
-    if (isSignedIn) {
+    if (isSignedIntoBlockstack) {
       
       const userData = userSession.loadUserData()
       const username = userData.username.split('.')[0]
@@ -167,7 +167,9 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={ Index } />
               <Route path="/search" exact component={ Search }/>
-              <Route path="/permalink/:id?" exact component={ Permalinked }/>
+              {/*
+              <Route path="/permalink/:id?" exact component={ isSignedIn( Permalinked ) }/>
+              */}
               <Route path="/:username?" exact component={ ProfileScreen }/>
               {/*
                 an "author" is the presenting user for a given feed. it is an author's
@@ -175,7 +177,7 @@ class App extends Component {
                 we use the author param to determing whether the logged in user has access
                 to post on the given feed
               */}
-              <Route path="/:author?/feed" exact component={ UserFeed }/>
+              <Route path="/:author?/feed" exact component={ isSignedIn( UserFeed ) }/>
             </Switch>
           </Theme>
         </ConnectedRouter>
