@@ -34,6 +34,8 @@ import generateStore from './utils/generateStore';
 const store = generateStore();
 const history = createBrowserHistory();
 
+const DEBUG = process.env.DEBUG
+
 class App extends Component {
   render() {
 
@@ -60,39 +62,36 @@ class App extends Component {
       });
 
       userSession.listFiles(file => {
-        console.log(file)
+        if (DEBUG) console.log(`Found file for user:`, file)
+
         if (file) {
-          // if (file !== 'cache.json') {
-            // userSession.deleteFile(file).then(() => console.log(`Deleted unrecognized file: ${file}`))
-          // }
           return file
         }
       }).then(files => {
-        console.log(files)
+        if (DEBUG) console.log(`Number of files:`, files)
+
         if (files === 0) {
           
-          console.log('There are no user cache files!')
+          if (DEBUG) console.log('There are no user cache files!')
 
           const profile = new Profile({
             username
           })
 
-          console.log({ profile })
           const props = profile.getProps()
-
-          console.log(props)
-          
           
           Profile.startCache(
             props
           ).then(res => {
             console.log(res)
 
-            Profile.getCache().then(res2 => {
-              console.log(res2)
+            Profile.getCache().then(res => {
+              
+              if (DEBUG) console.log(`getCache method response:`, res)
+
               store.dispatch({
                 type: 'GET_CACHE_SUCCESS',
-                payload: res2
+                payload: res
               });
             }).catch(error => {
               console.log('error', error)
@@ -109,12 +108,13 @@ class App extends Component {
 
         } else {
           
-          
-          Profile.getCache().then(res2 => {
-            console.log(res2)
+          Profile.getCache().then(res => {
+            
+            if (DEBUG) console.log(`getCache method response:`, res)
+
             store.dispatch({
               type: 'GET_CACHE_SUCCESS',
-              payload: res2
+              payload: res
             });
           }).catch(error => {
             console.log('error', error)
@@ -124,38 +124,12 @@ class App extends Component {
             });
           });
           
-
         }
       })
-
-
-      
-      
-      
 
     } else {
       console.log('You are not signed in to Blockstack.');
     }
-
-    /*
-
-    
-
-    const userSession = new blockstack.UserSession()
-    userSession.listFiles(file => {
-      console.log(file)
-      if (file) return true
-      if (file) {
-        userSession.deleteFile(file).then(res => {
-          console.log(res)
-          return true
-        })
-      }
-    }).then(files => {
-      console.log(files)
-    })
-
-    */
 
     return (
       <Provider store={ store }>
