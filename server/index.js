@@ -18,7 +18,7 @@ import logger from 'koa-logger'
 import assets from 'koa-static'
 import Router from 'koa-router'
 import koaSend from 'koa-send'
-import cors from 'koa-cors'
+import cors from '@koa/cors'
 
 // MIDDLEWARE
 import errors from './middleware/errors.js'
