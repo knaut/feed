@@ -58,7 +58,10 @@ function mapDispatchToProps(dispatch) {
 class SignIn extends Component {
   onClick = () => {
     const origin = window.location.origin;
-    blockstack.redirectToSignIn(
+
+    const userSession = new blockstack.UserSession()
+
+    userSession.redirectToSignIn(
       origin,
       origin + '/manifest.json',
       ['store_write', 'publish_data']

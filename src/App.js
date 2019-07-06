@@ -36,85 +36,88 @@ const history = createBrowserHistory()
 
 const DEBUG = process.env.DEBUG
 
+const loginUser = (userSession, loadedUserData) => {
+  const userData = loadUserData ? userSession.loadUserData() : loadedUserData
+  const username = userData.username.split('.')[0]
+  const { name, description } = userData.profile
+  const image = userData.profile.image[0].contentUrl
+  store.dispatch({
+    type: 'IS_SIGNED_IN',
+    payload: {
+      username,
+      name,
+      description,
+      image,
+      isAuthenticated: true
+    }
+  })
+  userSession.listFiles(file => {
+    if (DEBUG) console.log(`Found file for user:`, file)
+    if (file) {
+      return file
+    }
+  }).then(files => {
+    if (DEBUG) console.log(`Number of files:`, files)
+    if (files === 0) {
+      if (DEBUG) console.log('There are no user cache files!')
+      const profile = new Profile({
+        username
+      })
+      const props = profile.getProps()
+      Profile.startCache(
+        props
+      ).then(res => {
+        console.log(res)
+        Profile.getCache().then(res => {
+          if (DEBUG) console.log(`getCache method response:`, res)
+          store.dispatch({
+            type: 'GET_CACHE_SUCCESS',
+            payload: res
+          })
+        }).catch(error => {
+          console.log('error', error)
+          store.dispatch({
+            type: 'GET_CACHE_ERROR',
+            payload: error
+          })
+        })
+      }).catch(error => {
+        console.log(error)
+      })
+    } else {
+      Profile.getCache().then(res => {
+        if (DEBUG) console.log(`getCache method response:`, res)
+        store.dispatch({
+          type: 'GET_CACHE_SUCCESS',
+          payload: res
+        })
+      }).catch(error => {
+        console.log('error', error)
+        store.dispatch({
+          type: 'GET_CACHE_ERROR',
+          payload: error
+        })
+      })
+    }
+  })
+}
+
 class App extends Component {
   render () {
+    // const appConfig = new blockstack.AppConfig()
+
     const userSession = new blockstack.UserSession()
+
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(userData => {
+        loginUser(userSession, userData)
+      })
+    }
+
     const isSignedIntoBlockstack = userSession.isUserSignedIn()
 
     if (isSignedIntoBlockstack) {
-      const userData = userSession.loadUserData()
-      const username = userData.username.split('.')[0]
-      const { name, description } = userData.profile
-      const image = userData.profile.image[0].contentUrl
-
-      store.dispatch({
-        type: 'IS_SIGNED_IN',
-        payload: {
-          username,
-          name,
-          description,
-          image,
-          isAuthenticated: true
-        }
-      })
-
-      userSession.listFiles(file => {
-        if (DEBUG) console.log(`Found file for user:`, file)
-
-        if (file) {
-          return file
-        }
-      }).then(files => {
-        if (DEBUG) console.log(`Number of files:`, files)
-
-        if (files === 0) {
-          if (DEBUG) console.log('There are no user cache files!')
-
-          const profile = new Profile({
-            username
-          })
-
-          const props = profile.getProps()
-
-          Profile.startCache(
-            props
-          ).then(res => {
-            console.log(res)
-
-            Profile.getCache().then(res => {
-              if (DEBUG) console.log(`getCache method response:`, res)
-
-              store.dispatch({
-                type: 'GET_CACHE_SUCCESS',
-                payload: res
-              })
-            }).catch(error => {
-              console.log('error', error)
-              store.dispatch({
-                type: 'GET_CACHE_ERROR',
-                payload: error
-              })
-            })
-          }).catch(error => {
-            console.log(error)
-          })
-        } else {
-          Profile.getCache().then(res => {
-            if (DEBUG) console.log(`getCache method response:`, res)
-
-            store.dispatch({
-              type: 'GET_CACHE_SUCCESS',
-              payload: res
-            })
-          }).catch(error => {
-            console.log('error', error)
-            store.dispatch({
-              type: 'GET_CACHE_ERROR',
-              payload: error
-            })
-          })
-        }
-      })
+      loginUser(userSession)
     } else {
       console.log('You are not signed in to Blockstack.')
     }
