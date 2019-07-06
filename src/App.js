@@ -30,12 +30,6 @@ import Profile from './models/Profile';
 
 // UTILS
 import generateStore from './utils/generateStore';
-// BLOCKSTACK AUTH UTILS
-import {
-  loginToBlockstack,
-  getProfileData,
-  signInPending
-} from './authentication/loginToBlockstack'
 
 const store = generateStore();
 const history = createBrowserHistory();
@@ -43,19 +37,37 @@ const history = createBrowserHistory();
 class App extends Component {
   render() {
 
-    if (blockstack.isUserSignedIn()) {
-      const user = blockstack.loadUserData();
-      const { username } = user;    
-      const profileData = getProfileData(user);
+    const userSession = new blockstack.UserSession()
+    const isSignedIn = userSession.isUserSignedIn()
+
+    // console.log({userSession, isSignedIn, userData})
+
+    if (isSignedIn) {
+      
+      const userData = userSession.loadUserData()
+      const username = userData.username.split('.')[0]
+      console.log(userData, username)
+      const { name, description } = userData.profile
+      const image = userData.profile.image[0].contentUrl
+    
 
       store.dispatch({
         type: 'IS_SIGNED_IN',
-        payload: profileData
+        payload: {
+          username,
+          name,
+          description,
+          image,
+          isAuthenticated: true
+        }
       });
 
-      const userSession = new blockstack.UserSession()
       userSession.listFiles(file => {
+        console.log(file)
         if (file) {
+          // if (file !== 'cache.json') {
+            // userSession.deleteFile(file).then(() => console.log(`Deleted unrecognized file: ${file}`))
+          // }
           return file
         }
       }).then(files => {
@@ -63,36 +75,58 @@ class App extends Component {
         if (files === 0) {
           
           console.log('There are no user cache files!')
-          
-          Profile.startCache().then(file => {
-            console.log(file)
-          }).catch(error => {
-            console.log(file)
+
+          const profile = new Profile({
+            username
           })
+
+          console.log({ profile })
+          const props = profile.getProps()
+
+          console.log(props)
+          
+          
+          Profile.startCache(
+            props
+          ).then(res => {
+            console.log(res)
+
+            Profile.getCache().then(res2 => {
+              console.log(res2)
+              store.dispatch({
+                type: 'GET_CACHE_SUCCESS',
+                payload: res2
+              });
+            }).catch(error => {
+              console.log('error', error)
+              store.dispatch({
+                type: 'GET_CACHE_ERROR',
+                payload: error
+              });
+            });
+
+          }).catch(error => {
+            console.log(error)
+          })
+
 
         } else {
-
-          Profile.startCache().then(file => {
-            console.log(file)
-          }).catch(error => {
-            console.log(file)
-          })
           
-          /*
-          Profile.getCache().then(file => {
-            console.log(file)
-            // store.dispatch({
-            //   type: 'GET_CACHE_SUCCESS',
-            //   payload: file
-            // });
+          
+          Profile.getCache().then(res2 => {
+            console.log(res2)
+            store.dispatch({
+              type: 'GET_CACHE_SUCCESS',
+              payload: res2
+            });
           }).catch(error => {
             console.log('error', error)
-            // store.dispatch({
-            //   type: 'GET_CACHE_ERROR',
-            //   payload: error
-            // });
+            store.dispatch({
+              type: 'GET_CACHE_ERROR',
+              payload: error
+            });
           });
-          */
+          
 
         }
       })

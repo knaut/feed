@@ -55,7 +55,7 @@ class Model {
     });
   }
 
-  static startCache() {
+  static startCache( profile ) {
     if (DEBUG) { 
       console.log('Attempting to start user cache.');
     }
@@ -71,8 +71,8 @@ class Model {
 
           const blankCache = JSON.stringify({
             Profile: {
-              entities: {},
-              ids: []
+              entities: { ...profile },
+              ids: [ profile.id ]
             },
             Status: {
               entities: {},
@@ -177,7 +177,7 @@ class Model {
           userSession.getFile(
             `cache.json`,
             string,
-            { decrypt: false }
+            { encrypt: false }
           ).then(res => {
             console.log('Gaia responded:', res)
           })
