@@ -11,6 +11,7 @@
 
 # production
 /build
+manifest.prod.json
 
 # misc
 .DS_Store

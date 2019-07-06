@@ -4,6 +4,7 @@ const path = require('path')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -29,6 +30,9 @@ module.exports = merge(common, {
     }
   },
   plugins: [
+    new CopyPlugin([
+      { from: 'manifest.local.json', to: 'manifest.json' }
+    ]),
     new webpack.HotModuleReplacementPlugin()
   ]
 })

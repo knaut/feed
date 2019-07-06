@@ -3,10 +3,14 @@
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const WebappWebpackPlugin = require('webapp-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
   plugins: [
+    new CopyPlugin([
+      { from: 'manifest.prod.json', to: 'manifest.json' }
+    ]),
     new WebappWebpackPlugin({
       logo: './assets/Fleaf.png',
       favicons: {
