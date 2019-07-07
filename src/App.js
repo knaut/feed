@@ -96,7 +96,7 @@ class App extends Component {
 
         const username = userData.username.split('.')[0]
         const { name, description } = userData.profile
-        const image = userData.profile.image[0].contentUrl
+        const image = userData.profile.image ? userData.profile.image[0].contentUrl : false
 
         store.dispatch({
           type: 'IS_SIGNED_IN',
@@ -156,7 +156,7 @@ class App extends Component {
 
         const username = userData.username.split('.')[0]
         const { name, description } = userData.profile
-        const image = userData.profile.image[0].contentUrl
+        const image = userData.profile.image ? userData.profile.image[0].contentUrl : false
 
         store.dispatch({
           type: 'IS_SIGNED_IN',
