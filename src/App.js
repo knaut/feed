@@ -224,7 +224,7 @@ class App extends Component {
                 we use the author param to determing whether the logged in user has access
                 to post on the given feed
               */}
-              <Route path='/:author?/feed' exact component={isSignedIn(UserFeed)} />
+              <Route path='/:author?/feed' exact component={UserFeed} />
             </Switch>
           </Theme>
         </ConnectedRouter>
