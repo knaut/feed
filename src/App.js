@@ -114,11 +114,10 @@ class App extends Component {
         if (files === 0) {
           // user has no files, start a new cache
           const fresh = await startCache(username)
-          const fetchedCache = await fetchCache()
 
           store.dispatch({
             type: 'GET_CACHE_SUCCESS',
-            payload: fetchedCache
+            payload: fresh
           })
 
         } else {
