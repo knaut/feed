@@ -18,9 +18,12 @@ import {
 } from 'grommet';
 import { Login, LinkNext, Grow } from "grommet-icons";
 import { Link } from 'react-router-dom';
+import { HashLoader } from 'react-spinners'
 
 // STYLES
 import css from '@emotion/css'
+// THEME
+import { feed } from '../Theme'
 
 // ACTIONS
 import * as UserActions from '../actions/user';
@@ -29,21 +32,26 @@ import * as UserActions from '../actions/user';
 import fleafImage from '../../assets/Feed_Fleaf_100h.png'
 
 function mapStateToProps(state) {
-  if (!state.cache.isLoaded) {
-    return {
-      user: false,
-      hasFeed: false,
-      id: false
-    }
-  } else {
-    const id = state.user.username.split('.')[0];
-    const hasFeed = state.Profile.entities.hasOwnProperty(id);
-    
-    return {
-      user: state.user,
-      hasFeed,
-      id
-    }
+  const {
+    isAuthenticating,
+    isAuthenticated
+  } = state.user
+
+  const cacheIsLoaded = state.cache.isLoaded
+
+  const user = isAuthenticated && cacheIsLoaded ? state.user : false
+  const id = isAuthenticated && cacheIsLoaded ? state.user.username.split('.')[0] : false
+  const hasFeed = isAuthenticated && cacheIsLoaded ? state.Profile.entities.hasOwnProperty(id) : false
+
+  return {
+    cacheIsLoaded,
+
+    user,
+    hasFeed,
+    id,
+
+    isAuthenticated,
+    isAuthenticating
   }
 }
 
@@ -54,6 +62,49 @@ function mapDispatchToProps(dispatch) {
     }, dispatch)
   }
 }
+
+const GoToYourFeed = ({ username, feedPath }) => (
+  <Box>
+    <Box pad='small'>
+      <Text color='cyanPastel'>
+        Welcome back, <Anchor label={username} href="https://browser.blockstack.org/profiles" />.
+      </Text>
+    </Box>
+    <Box pad='small'>
+      <Link to={feedPath}>
+        <Button icon={<LinkNext />} label="go to your feed" primary/>
+      </Link>
+    </Box>
+  </Box>
+)
+
+const InitialSignIn = ({ username, feedPath, initialSignIn }) => (
+  <Box>
+    <Box pad='small' align='center'>
+      <Text color='cyanPastel' textAlign='center'>
+        Welcome, <Anchor label={username} href="https://browser.blockstack.org/profiles" />. New to feed?
+      </Text>
+      <Text color='cyanPastel' textAlign='center'>
+        Sign in for the first time to get started!
+      </Text>
+    </Box>
+    <Box pad='small' align='center'>
+      <Link to={feedPath} onClick={initialSignIn}>
+        <Button icon={<LinkNext />} label="go to your feed" primary/>
+      </Link>
+    </Box>
+  </Box>
+)
+
+const LoadingAuth = () => (
+  <Box margin='medium'>
+    <HashLoader
+      color={feed.global.colors.purple}
+      loading
+      size={35}
+    />
+  </Box>
+)
 
 class SignIn extends Component {
   onClick = () => {
@@ -76,40 +127,37 @@ class SignIn extends Component {
   }
 
   renderEntry = () => {
+    const {
+      isAuthenticated,
+      isAuthenticating,
+
+      user,
+      hasFeed,
+      id,
+
+      cacheIsLoaded
+    } = this.props
+
     const feedPath = `${this.props.user.username}/feed`;
 
-    if (this.props.user.isAuthenticated && this.props.hasFeed) {
+    if (!isAuthenticating && !cacheIsLoaded) {
+      return <LoadingAuth/>
+    }
+
+    if (isAuthenticated && hasFeed) {
       return (
-        <Box>
-          <Box pad='small'>
-            <Text color='cyanPastel'>
-              Welcome back, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />.
-            </Text>
-          </Box>
-          <Box pad='small'>
-            <Link to={feedPath}>
-              <Button icon={<LinkNext />} label="go to your feed" primary/>
-            </Link>
-          </Box>
-        </Box>
+        <GoToYourFeed
+          username={user.username}
+          feedPath={feedPath}
+        />
       )
-    } else if (this.props.user.isAuthenticated && !this.props.hasFeed) {
+    } else if (isAuthenticated && !hasFeed) {
       return (
-        <Box>
-          <Box pad='small' align='center'>
-            <Text color='cyanPastel' textAlign='center'>
-              Welcome, <Anchor label={this.props.user.username} href="https://browser.blockstack.org/profiles" />. New to feed?
-            </Text>
-            <Text color='cyanPastel' textAlign='center'>
-              Sign in for the first time to get started!
-            </Text>
-          </Box>
-          <Box pad='small' align='center'>
-            <Link to={feedPath} onClick={this.initialSignIn}>
-              <Button icon={<LinkNext />} label="go to your feed" primary/>
-            </Link>
-          </Box>
-        </Box>
+        <InitialSignIn
+          username={user.username}
+          feedPath={feedPath}
+          initialSignIn={this.initialSignIn}
+        />
       )
     } else {
       return (
