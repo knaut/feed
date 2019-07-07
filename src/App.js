@@ -92,6 +92,8 @@ class App extends Component {
 
         const userData = await userSession.handlePendingSignIn()
 
+        if (DEBUG) console.log(`userData`, userData)
+
         const username = userData.username.split('.')[0]
         const { name, description } = userData.profile
         const image = userData.profile.image[0].contentUrl
@@ -149,6 +151,9 @@ class App extends Component {
       if (isSignedIntoBlockstack) {
         
         const userData = userSession.loadUserData()
+
+        if (DEBUG) console.log(`userData`, userData)
+
         const username = userData.username.split('.')[0]
         const { name, description } = userData.profile
         const image = userData.profile.image[0].contentUrl
