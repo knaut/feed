@@ -15,28 +15,22 @@ import { Search as SearchIcon } from 'grommet-icons';
 // STYLES
 import css from '@emotion/css'
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: {}
-//   }
-// }
-
-// function mapStateToProps(state, ownProps) {
-//   return 
-// }
-
-const mapStateToProps = (state, ownProps) =>(
+const mapStateToProps = (state, ownProps) => {
   return {
     state,
     ownProps
   }
-)
+}
 
 const mapDispatchToProps = (dispatch) => ({
   actions: /*bindActionCreators({})*/ {}
 })
 
+const BlockstackProvider = (props) => {
+  console.log(props)
 
+  return props.children
+}
 
 export default connect(
   mapStateToProps, 
