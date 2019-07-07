@@ -25,6 +25,8 @@ import Search from './screens/Search'
 import Theme from './Theme'
 import UserFeed from './screens/UserFeed'
 
+import BlockstackProvider from './components/BlockstackProvider'
+
 // MODELS
 import Profile from './models/Profile'
 
@@ -217,6 +219,7 @@ class App extends Component {
               {/*
               <Route path="/permalink/:id?" exact component={ isSignedIn( Permalinked ) }/>
               */}
+              <Route path='/blockstack-test' exact component={BlockstackProvider} />
               <Route path='/:username?' exact component={ProfileScreen} />
               {/*
                 an "author" is the presenting user for a given feed. it is an author's

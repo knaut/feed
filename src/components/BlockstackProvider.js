@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import * as blockstack from 'blockstack'
+
 // COMPONENTS
 import {
   Box,
@@ -26,10 +28,29 @@ const mapDispatchToProps = (dispatch) => ({
   actions: /*bindActionCreators({})*/ {}
 })
 
-const BlockstackProvider = (props) => {
-  console.log(props)
+class BlockstackProvider extends Component {
+  async componentDidMount() {
+    console.log(this.props)
+    console.log(blockstack)
 
-  return props.children
+    const session = new blockstack.UserSession()
+    const isSignedIntoBlockstack = session.isUserSignedIn()
+    const isSignInPending = session.isSignInPending()
+
+    console.log({ session, isSignedIntoBlockstack, isSignInPending })
+    
+    try {
+      const url = await blockstack.getUserAppFileUrl('cache.json', 'daanderson.id.blockstack', 'https://www.feed-app.net')
+      console.log({url})
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  render() {
+
+    return this.props.children ? this.props.children : null
+  }  
 }
 
 export default connect(
