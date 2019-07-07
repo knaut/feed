@@ -9,7 +9,8 @@ export default function user (
     image: null,
     description: null,
 
-    isAuthenticated: false
+    isAuthenticated: false,
+    isAuthenticating: false
   },
   action
 ) {
@@ -21,12 +22,24 @@ export default function user (
     default: {
       return newState
     }
+    case UserActions.IS_SIGNED_IN_PENDING: {
+      newState.isAuthenticating = true
+
+      return newState
+    }
     case UserActions.IS_SIGNED_IN: {
       newState.username = action.payload.username
       newState.isAuthenticated = true
+      newState.isAuthenticating = false
       newState.name = action.payload.name
       newState.description = action.payload.description
       newState.image = action.payload.image
+
+      return newState
+    }
+    case UserActions.IS_NOT_SIGNED_IN: {
+      newState.isAuthenticated = false
+      newState.isAuthenticating = false
 
       return newState
     }

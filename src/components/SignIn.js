@@ -29,7 +29,7 @@ import * as UserActions from '../actions/user';
 import fleafImage from '../../assets/Feed_Fleaf_100h.png'
 
 function mapStateToProps(state) {
-  if (state.user.username === null) {
+  if (!state.cache.isLoaded) {
     return {
       user: false,
       hasFeed: false,

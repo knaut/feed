@@ -35,7 +35,7 @@ const store = generateStore()
 const history = createBrowserHistory()
 
 const DEBUG = process.env.DEBUG
-
+/*
 const loginUser = (userSession, loadedUserData) => {
   const userData = loadedUserData ? loadedUserData : userSession.loadUserData()
   const username = userData.username.split('.')[0]
@@ -101,27 +101,175 @@ const loginUser = (userSession, loadedUserData) => {
     }
   })
 }
+*/
+
+const listFiles = async (userSession) => {
+  const files = await userSession.listFiles(file => {
+    return file ? file : false
+  })
+
+  if (DEBUG) console.log(`listFiles:`, files)
+  return files
+}
+
+const startCache = async (username) => {
+  try {
+    const profile = new Profile({
+      username
+    })
+    const props = profile.getProps()
+
+    const response = await Profile.startCache(props)
+    console.log(`startCache:`, response)
+
+    return response
+
+  } catch (error) {
+    console.log(error)
+    return false
+  }
+}
+
+const fetchCache = async () => {
+  try {
+    const cache = await Profile.getCache()
+    if (DEBUG) console.log(`getCache method response:`, cache)
+    return cache
+  } catch (error) {
+    console.log('error', error)
+    return false
+  }
+}
 
 class App extends Component {
-  render () {
-    // const appConfig = new blockstack.AppConfig()
+  async componentDidMount() {
+    store.dispatch({
+      type: 'IS_SIGNED_IN_PENDING',
+      payload: {
+        isAuthenticating: true
+      }
+    })
 
     const userSession = new blockstack.UserSession()
+    const isSignInPending = userSession.isSignInPending()
 
-    if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then(userData => {
-        loginUser(userSession, userData)
-      })
-    }
+    if (isSignInPending) {
+      // the user is logging in for the first time
+      try {
 
-    const isSignedIntoBlockstack = userSession.isUserSignedIn()
+        const userData = await userSession.handlePendingSignIn()
 
-    if (isSignedIntoBlockstack) {
-      loginUser(userSession)
+        const username = userData.username.split('.')[0]
+        const { name, description } = userData.profile
+        const image = userData.profile.image[0].contentUrl
+
+        store.dispatch({
+          type: 'IS_SIGNED_IN',
+          payload: {
+            username,
+            name,
+            description,
+            image,
+            isAuthenticated: true
+          }
+        })
+
+        const files = await listFiles(userSession)
+
+        if (files === 0) {
+          // user has no files, start a new cache
+          const fresh = await startCache(username)
+          const fetchedCache = await fetchCache()
+
+          store.dispatch({
+            type: 'GET_CACHE_SUCCESS',
+            payload: fetchedCache
+          })
+
+        } else {
+          // user has files, fetch them and start
+          const fetchedCache = await fetchCache()
+
+          store.dispatch({
+            type: 'GET_CACHE_SUCCESS',
+            payload: fetchedCache
+          })
+
+        }
+
+      } catch (error) {
+        console.log(error)
+
+        store.dispatch({
+          type: 'IS_NOT_SIGNED_IN',
+          payload: {
+            isAuthenticating: false,
+            isAuthenticated: false
+          }
+        })
+
+      }
     } else {
-      console.log('You are not signed in to Blockstack.')
-    }
+      // we've logged in before, or never logged in ever
+      const isSignedIntoBlockstack = userSession.isUserSignedIn()
 
+      if (isSignedIntoBlockstack) {
+        
+        const userData = userSession.loadUserData()
+        const username = userData.username.split('.')[0]
+        const { name, description } = userData.profile
+        const image = userData.profile.image[0].contentUrl
+
+        store.dispatch({
+          type: 'IS_SIGNED_IN',
+          payload: {
+            username,
+            name,
+            description,
+            image,
+            isAuthenticated: true
+          }
+        })
+
+        try {
+          const files = await listFiles(userSession)
+
+          if (files === 0) {
+            // user has no files, start a new cache
+            const fresh = await startCache(username)
+            const fetchedCache = await fetchCache()
+
+            store.dispatch({
+              type: 'GET_CACHE_SUCCESS',
+              payload: fetchedCache
+            })
+
+          } else {
+            // user has files, fetch them and start
+            const fetchedCache = await fetchCache()
+
+            store.dispatch({
+              type: 'GET_CACHE_SUCCESS',
+              payload: fetchedCache
+            })
+
+          }
+        } catch (error) {
+          console.log('error', error)
+          store.dispatch({
+            type: 'GET_CACHE_ERROR',
+            payload: error
+          })
+        }
+
+      } else {
+        console.log('You are not signed in to Blockstack.')
+      }
+
+    }
+  }
+
+  render () {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
