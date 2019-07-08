@@ -16,6 +16,24 @@ import Card from '../Card'
 // ACTIONS
 import { activateEditor } from '../../../actions/editor'
 
+const mapStateToProps = (state, ownProps) => {
+  console.log(state, ownProps)
+
+  const {
+    cache,
+    fromUser
+  } = ownProps
+
+
+  const blockstackId = state.blockstack.id
+  return {
+    blockstackId,
+
+    posts: cache.Status,
+    fromUser
+  }
+}
+
 function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators({
@@ -34,26 +52,29 @@ const NoPosts = () => (
 )
 
 class PostList extends Component {
-  componentDidMount () {
-    const { posts } = this.props
-    if (!posts.length) {
-      this.props.actions.activateEditor(null)
-    }
-  }
+  // componentDidMount () {
+  //   const { posts } = this.props
+  //   if (!posts.length) {
+  //     this.props.actions.activateEditor(null)
+  //   }
+  // }
 
   render () {
-    const { posts, author, username } = this.props
+    console.log(this)
+    const { posts, author, blockstackId } = this.props
     const cards = []
 
     if (posts) {
-      for (let p = 0; posts.length > p; ++p) {
-        const post = posts[p]
+      for (let p = 0; posts.ids.length > p; ++p) {
+        const postId = posts.ids[p]
+        const post = posts.entities[ postId ]
+
         cards.push(
           <Card
             key={p}
             post={post}
             author={author}
-            username={username}
+            username={blockstackId}
           />
         )
       }
@@ -67,4 +88,4 @@ class PostList extends Component {
   }
 }
 
-export default connect(() => new Object(), mapDispatchToProps)(PostList)
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)

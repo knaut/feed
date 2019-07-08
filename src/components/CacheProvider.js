@@ -83,7 +83,6 @@ class CacheProvider extends Component {
       userToFetch
     } = this.props
 
-    // return this.props.children ? this.props.children : null
     const children = React.Children.map( this.props.children, child => {
       return React.cloneElement(child, {
         ...child.props,
@@ -93,7 +92,6 @@ class CacheProvider extends Component {
     });
 
     return children
-    
   }  
 }
 

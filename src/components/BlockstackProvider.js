@@ -71,13 +71,9 @@ class BlockstackProvider extends Component {
     const {
       isAuthenticating
     } = this.props
-    // return this.props.children ? this.props.children : null
-    return isAuthenticating ? <GlobalLoader isLoading/> : (
-      <React.Fragment>
-        <GlobalLoader/>
-        { this.props.children }
-      </React.Fragment>
-    )
+
+    return this.props.children ? this.props.children : null
+    
   }  
 }
 
