@@ -19,12 +19,14 @@ import {
 import { Link } from 'react-router-dom'
 
 import Layout from '../Layout'
-import Theme from '../Theme'
+import Theme from '../../Theme'
+
 import StartStep from './StartStep'
 import Welcome from './Welcome'
-// import SignIn from '../components/SignIn'
 import CreateID from './CreateID'
 import LearnMore from './LearnMore'
+
+import SignIn from '../../components/SignIn'
 
 // UTILS
 import css from '@emotion/css'
@@ -44,7 +46,8 @@ class Home extends Component {
             justify='center'
             pad='small'
           >
-            <Welcome/>
+            <Welcome />
+            <SignIn />
           </Box>
         </Layout>
         <Box
