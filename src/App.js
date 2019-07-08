@@ -31,8 +31,6 @@ import generateStore from './utils/generateStore'
 const store = generateStore()
 const history = createBrowserHistory()
 
-const DEBUG = process.env.DEBUG
-
 const App = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>

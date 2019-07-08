@@ -40,9 +40,9 @@ const DEBUG = process.env.DEBUG
 const mapStateToProps = (state, ownProps) => {
   console.log({state, ownProps})
 
-
+  const { author } = ownProps.match.params
   return {
-
+    author
   }
 }
 
@@ -57,6 +57,9 @@ class Feed extends Component {
 
   render () {
     if (DEBUG) console.log(this)
+    const {
+      author
+    } = this.props
 
     return (
       <Theme>
@@ -65,9 +68,7 @@ class Feed extends Component {
           right={null}
           columns={false}
         >
-          <BlockstackProvider/>
-          {/*<GlobalLoader isLoading/>*/}
-          
+          <BlockstackProvider id={author}/>          
         </Layout>
       </Theme>
     )

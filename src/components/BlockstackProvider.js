@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as blockstack from 'blockstack'
-
 // COMPONENTS
 import {
   Box,
@@ -18,24 +16,53 @@ import GlobalLoader from './GlobalLoader'
 // STYLES
 import css from '@emotion/css'
 
+// UTILS
+import getLocalBlockstackUser from '../utils/getLocalBlockstackUser'
+
+// ACTIONS
+import * as BlockstackActions from '../actions/blockstack'
+
 const mapStateToProps = (state, ownProps) => {
+  const {
+    isAuthenticating
+  } = state.blockstack
+
   return {
-    state,
-    ownProps
+    isAuthenticating
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: /*bindActionCreators({})*/ {}
+  actions: bindActionCreators({
+    isSignedIn: BlockstackActions.isSignedIn,
+    isSignInPending: BlockstackActions.isSignInPending,
+    isNotSignedIn: BlockstackActions.isNotSignedIn
+  }, dispatch)
 })
 
 class BlockstackProvider extends Component {
-  async componentDidMount() {
-    
-    const session = new blockstack.UserSession()
-    const isSignedIntoBlockstack = session.isUserSignedIn()
-    const isSignInPending = session.isSignInPending()
-    console.log({ session, isSignedIntoBlockstack, isSignInPending })
+  componentDidMount() {
+    const localUser = getLocalBlockstackUser()
+
+    const {
+      isSignedIntoBlockstack,
+      isSignInPending,
+      userData
+    } = localUser
+
+    if (isSignInPending) {
+      // branch based on whether the user was just signing in
+      this.props.actions.isSignInPending()
+    } else {
+      // we're not signing in, check if we're authed
+      if (isSignedIntoBlockstack) {
+        this.props.actions.isSignedIn(userData)
+      } else {
+        // we're not signed in
+        this.props.actions.isNotSignedIn()
+      }
+    }
+
     // try {
     //   const url = await blockstack.getUserAppFileUrl('cache.json', 'daanderson.id.blockstack', 'https://www.feed-app.net')
     //   console.log({url})
@@ -46,8 +73,13 @@ class BlockstackProvider extends Component {
 
   render() {
     console.log(this)
+    const {
+      isAuthenticating
+    } = this.props
     // return this.props.children ? this.props.children : null
-    return <GlobalLoader isLoading/>
+    return isAuthenticating ? <GlobalLoader isLoading/> : (
+      <GlobalLoader isLoading/>
+    )
   }  
 }
 

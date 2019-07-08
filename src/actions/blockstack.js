@@ -26,7 +26,7 @@ export function isNotSignedIn (payload) {
 
 export function isSignInPending (payload) {
   return {
-    type: IS_NOT_SIGNED_IN,
+    type: IS_SIGNED_IN_PENDING,
     payload
   }
 }
@@ -40,7 +40,7 @@ export function initialSignInSuccess (payload) {
 
 export function initialSignInFail (payload) {
   return {
-    type: INITIAL_SIGN_IN_SUCCESS,
+    type: INITIAL_SIGN_IN_FAIL,
     payload
   }
 }
