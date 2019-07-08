@@ -49,22 +49,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const MapCacheToPostList = (props) => {
-  /*
-    take cache state passed as props from CacheProvider,
-    then map it to the prop pattern our PostList expects
-  */
-  console.log(props)
-  const {
-    cache,
-    fromUser
-  } = props
-
-  const author = {}
-
-  return 
-}
-
 class Feed extends Component {
   componentDidMount() {
     /*
@@ -90,7 +74,7 @@ class Feed extends Component {
         >
           <BlockstackProvider id={author}>
             <CacheProvider id={author}>
-              <PostList author={author} />
+              <PostList/>
             </CacheProvider>
           </BlockstackProvider>
         </Layout>

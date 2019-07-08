@@ -87,7 +87,7 @@ class CacheProvider extends Component {
       return React.cloneElement(child, {
         ...child.props,
         cache,
-        fromUser: cache ? userToFetch : null
+        cacheUserId: cache ? userToFetch : null
       })
     });
 

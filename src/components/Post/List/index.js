@@ -11,7 +11,7 @@ import {
   Box,
   Heading
 } from 'grommet'
-import Card from '../Card'
+import List from './List'
 
 // ACTIONS
 import { activateEditor } from '../../../actions/editor'
@@ -20,17 +20,26 @@ const mapStateToProps = (state, ownProps) => {
   console.log(state, ownProps)
 
   const {
+    // passed in from CacheProvider
     cache,
-    fromUser
+    cacheUserId
   } = ownProps
 
+  const isMe = state.blockstack.id === cacheUserId ? true : false
+  
+  let author = {}
 
-  const blockstackId = state.blockstack.id
+  if (isMe) {
+    author.username = state.blockstack.username // legacy pattern
+    author.name = state.blockstack.name
+    author.description = state.blockstack.description
+    author.image = state.blockstack.image
+  }
+
   return {
-    blockstackId,
-
-    posts: cache.Status,
-    fromUser
+    isMe,
+    author,
+    posts: cache.Status
   }
 }
 
@@ -42,15 +51,6 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-const NoPosts = () => (
-  <Box
-    align='center'
-    justify='center'
-  >
-    <Heading level={4} color='purplePastel'>…no posts to show yet…</Heading>
-  </Box>
-)
-
 class PostList extends Component {
   // componentDidMount () {
   //   const { posts } = this.props
@@ -61,30 +61,19 @@ class PostList extends Component {
 
   render () {
     console.log(this)
-    const { posts, author, blockstackId } = this.props
-    const cards = []
+    const {
+      posts,
+      author,
+      username
+    } = this.props
 
-    if (posts) {
-      for (let p = 0; posts.ids.length > p; ++p) {
-        const postId = posts.ids[p]
-        const post = posts.entities[ postId ]
 
-        cards.push(
-          <Card
-            key={p}
-            post={post}
-            author={author}
-            username={blockstackId}
-          />
-        )
-      }
-    }
 
-    return (
-      <Box>
-        { cards.length ? cards : <NoPosts /> }
-      </Box>
-    )
+    return <List
+      posts={posts}
+      author={author}
+      username={username}
+    />
   }
 }
 
