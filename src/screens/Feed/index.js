@@ -24,9 +24,9 @@ import { Link } from 'react-router-dom'
 
 import Layout from '../Layout'
 import Theme from '../../Theme'
-import GlobalLoader from '../../components/GlobalLoader'
-import CacheProvider from '../../components/CacheProvider'
 
+import Slate from '../../components/Slate'
+import GlobalLoader from '../../components/GlobalLoader'
 import PostList from '../../components/Post/List'
 
 // UTILS
@@ -43,11 +43,12 @@ const DEBUG = process.env.DEBUG
 */
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log({state, ownProps})
-
   const { author } = ownProps.match.params
+  const blockstackUserIsAuthor = author === state.blockstack.id
+
   return {
-    author
+    author,
+    blockstackUserIsAuthor
   }
 }
 
@@ -76,7 +77,8 @@ class Feed extends Component {
     if (DEBUG) console.log(this)
 
     const {
-      author
+      author,
+      blockstackUserIsAuthor
     } = this.props
 
     return (
@@ -86,6 +88,13 @@ class Feed extends Component {
           right={null}
           columns={false}
         >
+          <GlobalLoader/>
+          {
+            /*
+              we only show the slate for the logged in user
+            */
+            blockstackUserIsAuthor === true ? <Slate /> : null
+          }
           <PostList author={author}/>
         </Layout>
       </Theme>

@@ -9,11 +9,12 @@ import { connectRouter } from 'connected-react-router'
 
 // CLIENT STATE
 import blockstack from '../reducers/blockstack.js'
-import cache from '../reducers/cache.js'
 import feed from '../reducers/feed.js'
 import loader from '../reducers/loader.js'
+import slate from '../reducers/slate.js'
+
 // import user from '../reducers/user.js'
-// import editor from '../reducers/editor.js'
+
 // import cache from '../reducers/cache.js'
 // import loader from '../reducers/loader.js'
 // import search from '../reducers/search.js'
@@ -24,9 +25,9 @@ export default (history) => combineReducers({
   router: connectRouter(history),
 
   blockstack,
-  cache,
   feed,
-  loader
+  loader,
+  slate
 
   // Profile,
   // Status,

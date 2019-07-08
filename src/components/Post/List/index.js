@@ -13,12 +13,7 @@ import {
 } from 'grommet'
 import List from './List'
 
-// ACTIONS
-import { activateEditor } from '../../../actions/editor'
-
 const mapStateToProps = (state, ownProps) => {
-  console.log({state, ownProps})
-
   const {
     author
   } = ownProps
@@ -32,51 +27,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    actions: bindActionCreators({
-      activateEditor
-    }, dispatch)
-  }
-}
-
 class PostList extends Component {
-  componentDidMount () {
-  // replace this in a different component
-  //   const { posts } = this.props
-  //   if (!posts.length) {
-  //     this.props.actions.activateEditor(null)
-  //   }
-  }
-
-  formatPosts = (ids, entities, author) => {
-    const posts = []
-
-    for (let p = 0; ids.length > p; ++p) {
-      // filter out the statuses that match our ids
-      const entity = entities[ ids[p] ]
-      
-      if ( entity ) {
-        const { timestamp, text } = entity
-        const statusObj = {
-          timestamp,
-          text,
-          author,
-          id: ids[p]
-        }
-
-        posts.push(
-          statusObj
-        )
-      }
-    }
-
-    return posts
-  }
-
   render () {
-    console.log(this)
-
     const {
       posts,
       author,
@@ -95,4 +47,4 @@ class PostList extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+export default connect(mapStateToProps, {})(PostList)

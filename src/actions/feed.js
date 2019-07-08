@@ -55,7 +55,6 @@ export function fetchFeed( payload ) {
       // we are fetching someone else's feed
       try {
         const profile = await blockstack.lookupProfile(`${author}.id.blockstack`)
-        console.log(profile)
 
         authorProfile.name = profile.name
         authorProfile.username = author

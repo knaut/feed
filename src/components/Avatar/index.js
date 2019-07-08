@@ -251,7 +251,6 @@ const NotOnBlockstack = ({ username }) => (
 
 class Avatar extends Component {
   render () {
-    console.log(this)
     const {
       // status of user variables
       isLoading,
@@ -284,7 +283,6 @@ class Avatar extends Component {
         }
       }
       case 'small': {
-        // return 'Small'
         if (isLoading === true) {
           return (
             <AvatarLoading
