@@ -24,6 +24,8 @@ import { Link } from 'react-router-dom'
 
 import Layout from '../Layout'
 import Theme from '../../Theme'
+import GlobalLoader from '../../components/GlobalLoader'
+import BlockstackProvider from '../../components/BlockstackProvider'
 
 // UTILS
 import css from '@emotion/css'
@@ -37,12 +39,22 @@ const DEBUG = process.env.DEBUG
 
 const mapStateToProps = (state, ownProps) => {
   console.log({state, ownProps})
+
+
   return {
 
   }
 }
 
 class Feed extends Component {
+  componentDidMount() {
+    /*
+      dispatch actions that get this author's blockstack profile,
+      if any, and fetch their feed cache, if any
+    */
+    // this.props.actions.getFeed()
+  }
+
   render () {
     if (DEBUG) console.log(this)
 
@@ -53,6 +65,8 @@ class Feed extends Component {
           right={null}
           columns={false}
         >
+          <BlockstackProvider/>
+          {/*<GlobalLoader isLoading/>*/}
           
         </Layout>
       </Theme>
