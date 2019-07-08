@@ -11,6 +11,7 @@ import { connectRouter } from 'connected-react-router'
 import blockstack from '../reducers/blockstack.js'
 import cache from '../reducers/cache.js'
 import feed from '../reducers/feed.js'
+import loader from '../reducers/loader.js'
 // import user from '../reducers/user.js'
 // import editor from '../reducers/editor.js'
 // import cache from '../reducers/cache.js'
@@ -24,7 +25,8 @@ export default (history) => combineReducers({
 
   blockstack,
   cache,
-  feed
+  feed,
+  loader
 
   // Profile,
   // Status,

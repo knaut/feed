@@ -17,31 +17,18 @@ import List from './List'
 import { activateEditor } from '../../../actions/editor'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state, ownProps)
+  console.log({state, ownProps})
 
   const {
-    // passed in from CacheProvider
-    cache,
-    cacheUserId
+    author
   } = ownProps
 
-  const isMe = state.blockstack.id === cacheUserId ? true : false
-  
-  const author = {}
-
-  if (isMe) {
-    author.username = state.blockstack.id // "username" is legacy pattern
-    author.name = state.blockstack.name
-    author.description = state.blockstack.description
-    author.image = state.blockstack.image
-  } else {
-    author.username = cacheUserId
-  }
+  const posts = state.feed
 
   return {
-    isMe,
     author,
-    posts: cache.Status
+    posts,
+    username: state.blockstack.id
   }
 }
 
@@ -60,30 +47,51 @@ class PostList extends Component {
   //   if (!posts.length) {
   //     this.props.actions.activateEditor(null)
   //   }
-    const {
-      author
-    } = this.props
+  }
 
-    if (Object.keys(author).length === 0 && !isMe) {
-      // we need to lookup this author's blockstack information
+  formatPosts = (ids, entities, author) => {
+    const posts = []
+
+    for (let p = 0; ids.length > p; ++p) {
+      // filter out the statuses that match our ids
+      const entity = entities[ ids[p] ]
+      
+      if ( entity ) {
+        const { timestamp, text } = entity
+        const statusObj = {
+          timestamp,
+          text,
+          author,
+          id: ids[p]
+        }
+
+        posts.push(
+          statusObj
+        )
+      }
     }
+
+    return posts
   }
 
   render () {
     console.log(this)
+
     const {
       posts,
       author,
       username
     } = this.props
 
+    const authorObject = {
+      username: author
+    }
 
-
-    return <List
+    return posts ? <List
       posts={posts}
       author={author}
       username={username}
-    />
+    /> : null
   }
 }
 

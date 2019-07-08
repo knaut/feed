@@ -32,6 +32,9 @@ import PostList from '../../components/Post/List'
 // UTILS
 import css from '@emotion/css'
 
+// ACTIONS
+import * as FeedActions from '../../actions/feed'
+
 const DEBUG = process.env.DEBUG
 
 /*
@@ -40,11 +43,19 @@ const DEBUG = process.env.DEBUG
 */
 
 const mapStateToProps = (state, ownProps) => {
-  console.log({state, ownProps})
+  // console.log({state, ownProps})
 
   const { author } = ownProps.match.params
   return {
     author
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+      fetchFeed: FeedActions.fetchFeed
+    }, dispatch)
   }
 }
 
@@ -54,7 +65,11 @@ class Feed extends Component {
       dispatch actions that get this author's blockstack profile,
       if any, and fetch their feed cache, if any
     */
-    // this.props.actions.getFeed()
+    const {
+      author
+    } = this.props
+
+    this.props.actions.fetchFeed({ author })
   }
 
   render () {
@@ -71,13 +86,11 @@ class Feed extends Component {
           right={null}
           columns={false}
         >
-          <CacheProvider id={author}>
-            <PostList/>
-          </CacheProvider>
+          <PostList author={author}/>
         </Layout>
       </Theme>
     )
   }
 }
 
-export default connect(mapStateToProps)(Feed)
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
