@@ -9,7 +9,7 @@ import {
   Box,
   Grid
 } from 'grommet'
-// import MyProfile from './components/button/MyProfile'
+import MyProfile from '../components/Buttons/MyProfile'
 // import WrappedAddPost from './components/button/WrappedAddPost'
 // import Search from './components/button/Search'
 // import MyFeed from './components/button/MyFeed'

@@ -22,7 +22,9 @@ import MyFeed from '../components/button/MyFeed'
 
 import UserToolbar from '../components/UserToolbar'
 
-function mapStateToProps (state, ownProps) {
+const DEBUG = process.env.DEBUG
+
+const mapStateToProps = (state, ownProps) => {
   const username = state.user.username
   const author = ownProps.match.params.author
 
@@ -34,6 +36,8 @@ function mapStateToProps (state, ownProps) {
 
 class UserFeed extends Component {
   render () {
+    if (DEBUG) console.log(this)
+
     const {
       author,
       username

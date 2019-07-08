@@ -8,6 +8,7 @@ import { connectRouter } from 'connected-react-router'
 // import Status from '../reducers/api/Status.js'
 
 // CLIENT STATE
+import blockstack from '../reducers/blockstack.js'
 // import user from '../reducers/user.js'
 // import editor from '../reducers/editor.js'
 // import cache from '../reducers/cache.js'
@@ -18,6 +19,9 @@ import { connectRouter } from 'connected-react-router'
 // the root reducer will be fed to any generated store
 export default (history) => combineReducers({
   router: connectRouter(history),
+
+  blockstack
+
   // Profile,
   // Status,
 

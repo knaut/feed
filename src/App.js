@@ -23,6 +23,7 @@ import { createBrowserHistory } from 'history'
 
 // SCREENS
 import Home from './screens/Home'
+import Feed from './screens/Feed'
 
 // UTILS
 import generateStore from './utils/generateStore'
@@ -37,6 +38,7 @@ const App = () => (
     <ConnectedRouter history={history}>
       <Switch>
         <Route path='/' exact component={ Home } />
+        <Route path='/:author' exact component={ Feed } />
       </Switch>
     </ConnectedRouter>
   </Provider>
