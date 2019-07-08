@@ -21,9 +21,10 @@ import { Link } from 'react-router-dom'
 import Layout from '../Layout'
 import Theme from '../Theme'
 import StartStep from './StartStep'
+import Welcome from './Welcome'
 // import SignIn from '../components/SignIn'
-// import CreateID from '../components/button/CreateID'
-// import LearnMore from '../components/button/LearnMore'
+import CreateID from './CreateID'
+import LearnMore from './LearnMore'
 
 // UTILS
 import css from '@emotion/css'
@@ -43,6 +44,7 @@ class Home extends Component {
             justify='center'
             pad='small'
           >
+            <Welcome/>
           </Box>
         </Layout>
         <Box
@@ -73,6 +75,8 @@ class Home extends Component {
           <StartStep color='status-ok' number={3}>
             <Text size='large'>Create your first post. Posts can be <Text size='large' weight='bold'>500 characters</Text> long.</Text>
           </StartStep>
+          <CreateID />
+          <LearnMore large/>
         </Box>
         <Box
           fill='horizontal'
