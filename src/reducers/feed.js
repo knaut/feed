@@ -7,6 +7,7 @@ export default function feed (
       displays a list of posts for a single user.
       the user could be us, it could be someone else.
     */
+    author: null,
     entities: {},
     ids: []
   },
@@ -18,7 +19,14 @@ export default function feed (
     }
     case FeedActions.FETCH_FEED_SUCCESS: {
       // pass through our Status cache as-is
-      return action.payload.Status
+      const newState = { ...state }
+
+      const { author, Status } = action.payload
+      newState.author = author
+      newState.entities = Status.entities
+      newState.ids = Status.ids
+
+      return newState
     }
 
     case FeedActions.FETCH_FEED_FAIL: {

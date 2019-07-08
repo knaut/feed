@@ -248,8 +248,10 @@ const NotOnBlockstack = ({ username }) => (
   </React.Fragment>
 )
 
+
 class Avatar extends Component {
   render () {
+    console.log(this)
     const {
       // status of user variables
       isLoading,

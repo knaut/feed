@@ -89,7 +89,7 @@ class PostList extends Component {
 
     return posts ? <List
       posts={posts}
-      author={author}
+      author={posts.author}
       username={username}
     /> : null
   }

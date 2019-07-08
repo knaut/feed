@@ -39,7 +39,7 @@ export default class CardHeader extends Component {
       >
         <Box gridArea='user'>
           <Avatar
-            isLoading={!image}
+            isLoading={image}
             isOnBlockstack
             isMe={false}
             username={username}
