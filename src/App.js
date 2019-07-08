@@ -26,21 +26,55 @@ import Home from './screens/Home'
 import Feed from './screens/Feed'
 
 // UTILS
+import getLocalBlockstackUser from './utils/getLocalBlockstackUser'
 import generateStore from './utils/generateStore'
+
+// ACTIONS
+import * as BlockstackActions from './actions/blockstack'
 
 const store = generateStore()
 const history = createBrowserHistory()
 
-const App = () => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Switch>
-        <Route path='/' exact component={ Home } />
-        <Route path='/:author' exact component={ Feed } />
-      </Switch>
-    </ConnectedRouter>
-  </Provider>
-)
+const App = () => {
+
+  const localUser = getLocalBlockstackUser()
+
+  const {
+    isSignedIntoBlockstack,
+    isSignInPending,
+    userData
+  } = localUser
+
+  if (isSignInPending) {
+    // branch based on whether the user was just signing in
+    store.dispatch(
+      BlockstackActions.isSignInPending()
+    )
+  } else {
+    // we're not signing in, check if we're authed
+    if (isSignedIntoBlockstack) {
+      store.dispatch(
+        BlockstackActions.isSignedIn(userData)
+      )
+    } else {
+      // we're not signed in
+      store.dispatch(
+        BlockstackActions.isNotSignedIn()
+      )
+    }
+  }
+
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          <Route path='/' exact component={ Home } />
+          <Route path='/:author' exact component={ Feed } />
+        </Switch>
+      </ConnectedRouter>
+    </Provider>
+  )
+}
 
 
 

@@ -25,7 +25,6 @@ import { Link } from 'react-router-dom'
 import Layout from '../Layout'
 import Theme from '../../Theme'
 import GlobalLoader from '../../components/GlobalLoader'
-import BlockstackProvider from '../../components/BlockstackProvider'
 import CacheProvider from '../../components/CacheProvider'
 
 import PostList from '../../components/Post/List'
@@ -72,11 +71,9 @@ class Feed extends Component {
           right={null}
           columns={false}
         >
-          <BlockstackProvider id={author}>
-            <CacheProvider id={author}>
-              <PostList/>
-            </CacheProvider>
-          </BlockstackProvider>
+          <CacheProvider id={author}>
+            <PostList/>
+          </CacheProvider>
         </Layout>
       </Theme>
     )
