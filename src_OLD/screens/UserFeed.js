@@ -60,6 +60,7 @@ class UserFeed extends Component {
           */
           <UserToolbar />
         }
+        columns
       >
         <GlobalLoader>
           {

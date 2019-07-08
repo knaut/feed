@@ -27,6 +27,7 @@ import Theme from '../../Theme'
 
 import Slate from '../../components/Slate'
 import GlobalLoader from '../../components/GlobalLoader'
+import GlobalToolbar from '../../components/GlobalToolbar'
 import PostList from '../../components/Post/List'
 
 // UTILS
@@ -84,9 +85,20 @@ class Feed extends Component {
     return (
       <Theme>
         <Layout
-          left={null}
-          right={null}
-          columns={false}
+          columns={true}
+          left={
+            /*
+              block the add post button from displaying
+              if the logged in user isn't the author of this feed
+            */
+            blockstackUserIsAuthor === true ? <Box /> : null
+          }
+          right={
+            /*
+              this toolbar is global, specific to the logged in user
+            */
+            <GlobalToolbar blockstackUserIsAuthor={blockstackUserIsAuthor}/>
+          }
         >
           <GlobalLoader/>
           {
