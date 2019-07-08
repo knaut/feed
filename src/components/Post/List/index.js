@@ -27,13 +27,15 @@ const mapStateToProps = (state, ownProps) => {
 
   const isMe = state.blockstack.id === cacheUserId ? true : false
   
-  let author = {}
+  const author = {}
 
   if (isMe) {
-    author.username = state.blockstack.username // legacy pattern
+    author.username = state.blockstack.id // "username" is legacy pattern
     author.name = state.blockstack.name
     author.description = state.blockstack.description
     author.image = state.blockstack.image
+  } else {
+    author.username = cacheUserId
   }
 
   return {
@@ -52,12 +54,20 @@ function mapDispatchToProps (dispatch) {
 }
 
 class PostList extends Component {
-  // componentDidMount () {
+  componentDidMount () {
+  // replace this in a different component
   //   const { posts } = this.props
   //   if (!posts.length) {
   //     this.props.actions.activateEditor(null)
   //   }
-  // }
+    const {
+      author
+    } = this.props
+
+    if (Object.keys(author).length === 0 && !isMe) {
+      // we need to lookup this author's blockstack information
+    }
+  }
 
   render () {
     console.log(this)
