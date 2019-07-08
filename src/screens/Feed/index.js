@@ -28,6 +28,8 @@ import GlobalLoader from '../../components/GlobalLoader'
 import BlockstackProvider from '../../components/BlockstackProvider'
 import CacheProvider from '../../components/CacheProvider'
 
+import PostList from '../../components/Post/List'
+
 // UTILS
 import css from '@emotion/css'
 
@@ -50,6 +52,17 @@ const mapStateToProps = (state, ownProps) => {
 const Test = (props) => {
   console.log(props)
   return <div>'Test'</div>
+}
+
+const MapCacheToPostList = ({cache, author}) => {
+  /*
+    take cache state passed as props from CacheProvider,
+    then map it to the prop pattern our PostList expects
+  */
+  return <PostList
+    posts={ cache.Status }
+    author={ author }
+  />
 }
 
 class Feed extends Component {

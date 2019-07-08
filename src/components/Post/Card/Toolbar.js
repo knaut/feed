@@ -8,13 +8,8 @@ import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet'
-import CardHeader from './CardHeader'
-import CardText from './CardText'
-import Permalink from '../button/Permalink'
-import Remove from '../button/Remove'
-
-// ACTIONS
-import * as PostThunks from '../../thunks/post'
+// import Permalink from '../button/Permalink'
+import Remove from './Remove'
 
 class Toolbar extends Component {
   render () {

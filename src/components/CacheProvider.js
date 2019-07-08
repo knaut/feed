@@ -38,7 +38,9 @@ const mapStateToProps = (state, ownProps) => {
     ownProps,
     
     userToFetch,
-    userIsMe
+    userIsMe,
+
+    cacheIsLoaded: isLoaded
   }
 }
 
@@ -76,11 +78,17 @@ class CacheProvider extends Component {
       cache
     } = this.state
 
+    const {
+      cacheIsLoaded,
+      userToFetch
+    } = this.props
+
     // return this.props.children ? this.props.children : null
     const children = React.Children.map( this.props.children, child => {
       return React.cloneElement(child, {
         ...child.props,
-        cache
+        cache,
+        fromUser: cache ? userToFetch : null
       })
     });
 

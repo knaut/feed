@@ -14,7 +14,7 @@ import {
   Text
 } from 'grommet'
 
-import Avatar from '../Avatar.js'
+import Avatar from '../../Avatar'
 
 export default class CardHeader extends Component {
   render () {
