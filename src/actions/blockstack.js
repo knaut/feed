@@ -44,21 +44,3 @@ export function initialSignInFail (payload) {
     payload
   }
 }
-
-// THUNKS
-export function authenticateBlockstack(payload) {
-  /*
-    when we authenticate a user with Blockstack,
-    we attempt to get their profile based on the id,
-    and, if successful, attempt to get their Feed cache
-  */
-  const {
-    isSignInPending,
-    isSignedIntoBlockstack
-  } = payload
-
-  return async function(dispatch, getState) {
-    
-  }
-}
-

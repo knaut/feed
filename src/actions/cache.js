@@ -1,3 +1,7 @@
+import * as blockstack from 'blockstack'
+
+const DOMAIN = process.env.DOMAIN
+
 // TYPES
 export const GET_MY_CACHE_FAIL = 'GET_MY_CACHE_FAIL'
 export const GET_MY_CACHE_PENDING = 'GET_MY_CACHE_PENDING'
@@ -50,17 +54,16 @@ export function getForeignCacheFail (error) {
   }
 }
 
-// THUNKS
-export function getMyCache() {
-  /*
-    fetch the logged in blockstack user's Feed cache from Gaia
-  */
-}
+// API CALLS
+export async function fetchCache( userToFetch, userIsMe ) {
+  try {
+    const url = await blockstack.getUserAppFileUrl('cache.json', `${userToFetch}.id.blockstack`, DOMAIN)      
+    const response = await fetch(url)
+    const json = await response.json()
+    return json
+  } catch (error) {
+    console.log(error)
+    return false
+  }
 
-export function getForeignCache( id ) {
-  /*
-    if the id belongs to a valid blockstack user,
-    attempt to fetch their Feed app cache from Gaia
-  */
 }
-

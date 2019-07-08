@@ -26,6 +26,7 @@ import Layout from '../Layout'
 import Theme from '../../Theme'
 import GlobalLoader from '../../components/GlobalLoader'
 import BlockstackProvider from '../../components/BlockstackProvider'
+import CacheProvider from '../../components/CacheProvider'
 
 // UTILS
 import css from '@emotion/css'
@@ -46,6 +47,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const Test = (props) => {
+  console.log(props)
+  return <div>'Test'</div>
+}
+
 class Feed extends Component {
   componentDidMount() {
     /*
@@ -57,6 +63,7 @@ class Feed extends Component {
 
   render () {
     if (DEBUG) console.log(this)
+
     const {
       author
     } = this.props
@@ -68,7 +75,11 @@ class Feed extends Component {
           right={null}
           columns={false}
         >
-          <BlockstackProvider id={author}/>          
+          <BlockstackProvider id={author}>
+            <CacheProvider id={author}>
+              <Test/>
+            </CacheProvider>
+          </BlockstackProvider>
         </Layout>
       </Theme>
     )

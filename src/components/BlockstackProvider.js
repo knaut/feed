@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import * as blockstack from 'blockstack'
+
 // COMPONENTS
 import {
   Box,
@@ -41,7 +43,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class BlockstackProvider extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     const localUser = getLocalBlockstackUser()
 
     const {
@@ -62,13 +64,6 @@ class BlockstackProvider extends Component {
         this.props.actions.isNotSignedIn()
       }
     }
-
-    // try {
-    //   const url = await blockstack.getUserAppFileUrl('cache.json', 'daanderson.id.blockstack', 'https://www.feed-app.net')
-    //   console.log({url})
-    // } catch (error) {
-    //   console.log(error)
-    // }
   }
 
   render() {
@@ -78,7 +73,10 @@ class BlockstackProvider extends Component {
     } = this.props
     // return this.props.children ? this.props.children : null
     return isAuthenticating ? <GlobalLoader isLoading/> : (
-      <GlobalLoader isLoading/>
+      <React.Fragment>
+        <GlobalLoader/>
+        { this.props.children }
+      </React.Fragment>
     )
   }  
 }
