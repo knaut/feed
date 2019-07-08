@@ -65,5 +65,4 @@ export async function fetchCache( userToFetch, userIsMe ) {
     console.log(error)
     return false
   }
-
 }
