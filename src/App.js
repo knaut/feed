@@ -1,3 +1,14 @@
+/*
+  _____                 .___
+_/ ____\____   ____   __| _/
+\   __\/ __ \_/ __ \ / __ | 
+ |  | \  ___/\  ___// /_/ | 
+ |__|  \___  >\___  >____ | 
+           \/     \/     \/ 
+
+  v1.0.0 "Cupcake"
+*/
+
 import 'babel-polyfill'
 
 // IMPORTS
@@ -11,10 +22,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 
 // SCREENS
-import Index from './screens/Index'
-
-// COMPONENTS
-import Theme from './Theme'
+import Home from './screens/Home'
 
 // UTILS
 import generateStore from './utils/generateStore'
@@ -27,11 +35,9 @@ const DEBUG = process.env.DEBUG
 const App = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Theme>
-        <Switch>
-          <Route path='/' exact component={Index} />
-        </Switch>
-      </Theme>
+      <Switch>
+        <Route path='/' exact component={ Home } />
+      </Switch>
     </ConnectedRouter>
   </Provider>
 )
