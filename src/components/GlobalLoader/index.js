@@ -1,5 +1,6 @@
 // IMPORTS
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
 // STYLES
@@ -16,6 +17,9 @@ import { HashLoader } from 'react-spinners';
 // THEME
 import { feed } from '../../Theme'
 
+const mapStateToProps = (state) => {
+  return state.loader
+}
 
 class GlobalLoader extends Component {
   quotes = [
@@ -29,8 +33,11 @@ class GlobalLoader extends Component {
   ];
 
   state = {
-    index: 0
-  };
+    index: 0,
+    isDone: false
+  }
+
+  ms = 3145
 
   componentDidMount() {
     const { isLoading } = this.props;
@@ -42,12 +49,19 @@ class GlobalLoader extends Component {
           index: Math.floor( Math.random() * Math.floor(this.quotes.length) )
         });
 
-      }, 3145);
-    } else {
+      }, this.ms);
 
+    } else {
       clearInterval(this.interval);
 
+      // setTimeout for ms
+      setTimeout(() => {
+        this.setState({
+          isDone: true
+        })
+      }, this.ms)
     }
+
   }
 
   componentWillUnmount() {
@@ -56,14 +70,19 @@ class GlobalLoader extends Component {
 
   render() {
     const { isLoading } = this.props;
-    const { index } = this.state;
+    const { index, isDone } = this.state;
 
     return (
       <Box
         fill
+        background='purpleDark'
         align='center'
         justify='center'
         animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
+        css={css`
+          position: absolute;
+          z-index: ${ isDone ? -1 : 105 };
+        `}
       >
         <Box
           justify="center"

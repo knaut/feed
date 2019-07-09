@@ -85,6 +85,7 @@ class Feed extends Component {
 
     return (
       <Theme>
+        <GlobalLoader/>
         <Layout
           columns={true}
           left={
@@ -101,7 +102,6 @@ class Feed extends Component {
             <GlobalToolbar blockstackUserIsAuthor={blockstackUserIsAuthor}/>
           }
         >
-          <GlobalLoader/>
           {
             /*
               we only show the slate for the logged in user
