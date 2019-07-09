@@ -33,8 +33,8 @@ import generateStore from './utils/generateStore'
 // ACTIONS
 import * as BlockstackActions from './actions/blockstack'
 
-const store = generateStore()
 const history = createBrowserHistory()
+const store = generateStore(history)
 
 const App = () => {
 

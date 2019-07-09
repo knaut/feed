@@ -12,9 +12,7 @@ import generateRootReducer from './generateRootReducer'
 // ENV
 const DEBUG = process.env.DEBUG
 
-export const history = createBrowserHistory()
-
-export default function generateStore (state) {
+export default function generateStore (history, state) {
   const initialState = state || {}
 
   let middleware = false

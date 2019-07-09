@@ -32,7 +32,7 @@ import ProfileCard from '../../components/Profile'
 import css from '@emotion/css'
 
 // ACTIONS
-// import * as FeedActions from '../../actions/feed'
+import * as ProfileActions from '../../actions/profile'
 
 const DEBUG = process.env.DEBUG
 
@@ -49,7 +49,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      // fetchFeed: FeedActions.fetchFeed
+      loadProfile: ProfileActions.loadProfile
     }, dispatch)
   }
 }
@@ -64,7 +64,7 @@ class Profile extends Component {
       author
     } = this.props
 
-    // this.props.actions.fetchProfile({ author })
+    this.props.actions.loadProfile({ author })
   }
 
   render () {

@@ -4,19 +4,23 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 // COMPONENTS
-import { Grommet, Box, Button } from 'grommet'
+import { Grommet, Box, Button, Anchor } from 'grommet'
 import { User } from 'grommet-icons'
 
 // ROUTER
 import { Link } from 'react-router-dom'
+import { push } from 'react-router-redux'
 
 // STYLES
 import css from '@emotion/css'
 
+// ACTIONS
+import * as ProfileActions from '../../actions/profile'
+
 function mapStateToProps (state) {
   const id = state.blockstack.id
-  let active = false
 
+  let active = false
   if (state.router.location.pathname === `/${id}/profile`) {
     active = true
   }
@@ -27,13 +31,33 @@ function mapStateToProps (state) {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators({
+      loadProfile: ProfileActions.loadProfile
+    }, dispatch)
+  }
+}
+
 class MyProfileButton extends Component {
+  onLink = (e) => {
+    e.preventDefault()
+
+    const {
+      id
+    } = this.props
+
+    this.props.actions.loadProfile({
+      author: id
+    }) // cheeky side effect to fix our URL
+  }
+
   render () {
     const { active, id } = this.props
-
+    
     return (
       <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
-        <Link to={`/${id}/profile`}>
+        <Anchor href={`/${id}/profile`} onClick={this.onLink}>
           <Button
             icon={
               <User color={active ? `purpleDark` : `light`} />
@@ -47,10 +71,10 @@ class MyProfileButton extends Component {
               transition: 0.2s all ease-in-out;
             `}
           />
-        </Link>
+        </Anchor>
       </Box>
     )
   }
 };
 
-export default connect(mapStateToProps)(MyProfileButton)
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfileButton)

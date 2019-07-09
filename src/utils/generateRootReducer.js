@@ -12,6 +12,7 @@ import blockstack from '../reducers/blockstack.js'
 import feed from '../reducers/feed.js'
 import loader from '../reducers/loader.js'
 import slate from '../reducers/slate.js'
+import profile from '../reducers/profile.js'
 
 // import user from '../reducers/user.js'
 
@@ -27,7 +28,8 @@ export default (history) => combineReducers({
   blockstack,
   feed,
   loader,
-  slate
+  slate,
+  profile
 
   // Profile,
   // Status,
