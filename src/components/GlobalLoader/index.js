@@ -78,7 +78,7 @@ class GlobalLoader extends Component {
         background='purpleDark'
         align='center'
         justify='center'
-        animation={ this.props.isLoading ? ['slideDown', 'fadeIn'] : ['zoomOut', 'fadeOut'] }
+        animation={ this.props.isLoading ? ['slideDown'] : ['zoomOut', 'fadeOut'] }
         css={css`
           position: absolute;
           z-index: ${ isDone ? -1 : 105 };
@@ -110,12 +110,12 @@ class GlobalLoader extends Component {
             margin='small' 
             color='gray1'
             size='xlarge'
-          >…{isLoading ? this.quotes[ index ] : 'polishing edges'}…</Text>
+          >…{ !isDone ? this.quotes[ index ] : 'polishing edges' }…</Text>
         </Box>
       </Box>
     );
   }
 }
 
-export default GlobalLoader;
+export default connect(mapStateToProps)(GlobalLoader);
 
