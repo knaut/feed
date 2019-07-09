@@ -26,6 +26,7 @@ import Layout from '../Layout'
 import Theme from '../../Theme'
 
 import Slate from '../../components/Slate'
+import SlateToggleButton from '../../components/Slate/Toggle'
 import GlobalLoader from '../../components/GlobalLoader'
 import GlobalToolbar from '../../components/GlobalToolbar'
 import PostList from '../../components/Post/List'
@@ -91,7 +92,7 @@ class Feed extends Component {
               block the add post button from displaying
               if the logged in user isn't the author of this feed
             */
-            blockstackUserIsAuthor === true ? <Box /> : null
+            blockstackUserIsAuthor === true ? <SlateToggleButton /> : null
           }
           right={
             /*
@@ -107,7 +108,9 @@ class Feed extends Component {
             */
             blockstackUserIsAuthor === true ? <Slate /> : null
           }
-          <PostList author={author}/>
+          <Box margin={{ top: 'medium' }}>
+            <PostList author={author}/>
+          </Box>
         </Layout>
       </Theme>
     )
