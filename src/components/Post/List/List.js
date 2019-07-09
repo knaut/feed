@@ -26,11 +26,8 @@ const List = ({ posts, author, username }) => {
   const cards = []
 
   if (posts) {
-    // from last to first
-    const postsReversed = posts.ids.reverse()
-
     for (let p = 0; posts.ids.length > p; ++p) {
-      const postId = postsReversed[p]
+      const postId = posts.ids[p]
       const post = posts.entities[ postId ]
       cards.push(
         <Card

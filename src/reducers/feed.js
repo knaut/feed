@@ -24,7 +24,7 @@ export default function feed (
       const { author, Status } = action.payload
       newState.author = author
       newState.entities = Status.entities
-      newState.ids = Status.ids
+      newState.ids = Status.ids.reverse() // first to last
 
       return newState
     }
