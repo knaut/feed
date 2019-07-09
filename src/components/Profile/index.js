@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import * as blockstack from 'blockstack';
 
 // COMPONENTS
@@ -15,11 +16,8 @@ import Card from './Card'
 
 const mapStateToProps = (state, ownProps) => {
   const { author, blockstackUserIsAuthor } = ownProps
-  const {
-    blockstack
-  } = state
   return {
-    blockstack,
+    blockstackUser: state.blockstack,
     author,
     blockstackUserIsAuthor
   }
@@ -40,7 +38,7 @@ class ProfileLoader extends Component {
     isOnFeed: null,
     isMe: false,
 
-    username: this.props.blockstackId,  // prop provided from the router
+    username: this.props.author,  // prop provided from the router
     image: null,
     name: null,
     description: null,
@@ -50,78 +48,82 @@ class ProfileLoader extends Component {
     const {
       author,
       blockstackUserIsAuthor,
-      blockstack
+      blockstackUser
     } = this.props
 
     if (blockstackUserIsAuthor) {
       // it's us! use our local store data
-      const { name, description, id, image } = blockstack
+      const { name, description, id, image } = blockstackUser
 
       this.setState({
         isLoading: false,
         isOnBlockstack: true,
-        isOnFeed: true, // change this later
+        isOnFeed: true, // change this later, dont assume the logged in user is on Feed
         isMe: true,
-        
+
         username: id, // legacy
         image,
         description,
         name
       })
-    }
 
-/*
-    try {
-      // load blockstack profile
-      const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
+    } else {
+      // it's someone else's profile. load it.
+      // optimistically fetch a cache url to check if they're on Feed
+      try {
+        // load author's blockstack profile
+        const authorObj = await blockstack.lookupProfile(`${author}.id.blockstack`)
 
-      const name = blockstackUser.name
-      const description = blockstackUser.description
-      const image = blockstackUser.image[0].contentUrl
+        const name = authorObj.name ? authorObj.name : author
+        const username = author
+        const description = authorObj.description
+        const image = authorObj.image ? authorObj.image[0].contentUrl : false
 
-      // load our cached user profile
-      let isOnFeed = false
+        let isOnFeed = false
+        try {
+          const response = await blockstack.getUserAppFileUrl('cache.json', `${author}.id.blockstack`, process.env.DOMAIN)
+          console.log(response)
+          if (response) {
+            isOnFeed = true
+          }
 
-      // const profile = new Profile({
-      //   username: blockstackId
-      // });
+          let isMe = blockstackUserIsAuthor
 
-      // const entity = await profile.load()
+          this.setState({
+            isLoading: false,
+            isOnBlockstack: true,
+            isOnFeed,
+            isMe,
+            image,
+            name,
+            description
+          })
 
-      if (entity) {
-        isOnFeed = true
+        } catch (error) {
+          console.error(error)
+
+          this.setState({
+            isLoading: false,
+            isOnBlockstack: false,
+            isOnFeed: false
+          })
+        }
+
+      } catch (error) {
+        console.error(error)
+
+        this.setState({
+          isLoading: false,
+          isOnBlockstack: false,
+          isOnFeed: false
+        })
       }
 
-      let isMe = false
-      if (blockstackId === username) {
-        isMe = true
-      }
-
-      this.setState({
-        isLoading: false,
-        isOnBlockstack: true,
-        isOnFeed,
-        isMe,
-        image,
-        name,
-        description
-      })
-
-    } catch (error) {
-      console.error(error)
-
-      this.setState({
-        isLoading: false,
-        isOnBlockstack: false,
-        isOnFeed: false
-      })
     }
-*/
+
   }
 
   render() {
-    console.log(this)
-
     return (
       <React.Fragment>
         <Card { ...this.state }/>

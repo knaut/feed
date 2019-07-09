@@ -89,7 +89,7 @@ class Profile extends Component {
           }
         >
           <Box margin={{ top: 'medium' }}>
-            <ProfileCard username={author} blockstackUserIsAuthor={blockstackUserIsAuthor}/>
+            <ProfileCard author={author} blockstackUserIsAuthor={blockstackUserIsAuthor}/>
           </Box>
         </Layout>
       </Theme>

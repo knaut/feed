@@ -58,7 +58,7 @@ const FeedLink = (props) => {
 
   const feed = (
     <Box align='center' pad='medium'>
-      <Link to={`/${username}/feed`}>
+      <Link to={`/${username}`}>
         <Button icon={<Home />} label={isMe === true ? `go to your feed` : `go to ${name}'s feed`} primary style={{
         }} />
       </Link>
