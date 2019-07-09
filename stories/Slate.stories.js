@@ -9,8 +9,8 @@ import StoryRouter from 'storybook-react-router'
 
 // COMPONENTS
 import Theme from '../src/Theme'
-import Layout from '../src/Layout'
-import Slate from '../src/components/slate/Slate'
+import Layout from '../src/screens/Layout'
+import Slate from '../src/components/Slate'
 
 // CONFIG
 import { user } from '../.storybook/user.json'

@@ -10,7 +10,7 @@ import StoryRouter from 'storybook-react-router'
 // COMPONENTS
 import Theme from '../src/Theme'
 import GlobalLoader from '../src/components/GlobalLoader'
-import Layout from '../src/Layout'
+import Layout from '../src/screens/Layout'
 
 storiesOf('GlobalLoader', module)
   .addDecorator(StoryRouter())
