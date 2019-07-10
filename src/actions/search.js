@@ -16,7 +16,7 @@ export function searchSubmitSuccess (payload) {
 export function searchSubmitPending (payload) {
   return {
     type: SEARCH_SUBMIT_PENDING,
-    payload: true
+    payload
   }
 }
 
@@ -30,21 +30,22 @@ export function searchSubmitFail (payload) {
 // THUNKS
 export function searchSubmit (payload) {
   return async function (dispatch) {
+    const { username } = payload
+
     dispatch(
-      searchSubmitPending()
+      searchSubmitPending( username )
     )
 
-    const { username } = payload
-    const author = username
-
     try {
-      const profile = await blockstack.lookupProfile(`${author}.id.blockstack`)
-      authorProfile.name = profile.name
-      authorProfile.username = author
-      authorProfile.image = profile.image ? profile.image[0].contentUrl : false
+      const profile = await blockstack.lookupProfile(`${username}.id.blockstack`)
+      
+      const name = profile.name ? profile.name : false
+      const description = profile.description ? profile.description : false
+      const image = profile.image ? profile.image[0].contentUrl : false
+
       const result = {
         [username]: {
-          profile: entity,
+          profile,
           blockstack: {
             name,
             username,

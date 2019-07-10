@@ -19,13 +19,19 @@ import Theme from '../../Theme'
 import GlobalLoader from '../../components/GlobalLoader'
 import GlobalToolbar from '../../components/GlobalToolbar'
 
+import ProfileResult from './ProfileResult'
 import SearchInput from './SearchInput'
+import Loader from './Loader'
+
+import ProfileCard from '../../components/Profile/Card'
 
 function mapStateToProps (state, ownProps) {
   const matches = state.search.matches
   const isFetching = state.search.isFetching
 
+
   return {
+    id: state.blockstack.id,
     matches,
     isFetching
   }
@@ -40,29 +46,53 @@ const NoProfiles = () => (
   </Box>
 )
 
-const SearchScreen = ({ matches, isFetching }) => (
-  <Theme>
-    <GlobalLoader/>
-    <Layout
-      left={
-        null
-      }
-      right={<GlobalToolbar />}
-    >
-      <Box pad={{ bottom: 'large' }}>
-        <SearchInput />
-      </Box>
-      {
-        isFetching === true ? (
-          <GlobalLoader isLoading />
-        ) : (
-          Object.keys(matches).length ? <Box /> : (
-            <NoProfiles />
-          )
-        )
-      }
-    </Layout>
-  </Theme>
-)
+class Search extends Component {
+  render() {
+    console.log(this)
 
-export default connect(mapStateToProps, () => new Object())(SearchScreen)
+    const {
+      isFetching,
+      matches
+    } = this.props
+
+    const authorId = Object.keys(matches)[0]
+
+    const blockstackUserIsResult = this.props.id === authorId ? true : false
+
+    return (
+      <Theme>
+        <GlobalLoader/>
+        <Layout
+          left={
+            null
+          }
+          right={<GlobalToolbar />}
+        >
+          <Box pad={{ bottom: 'large' }}>
+            <SearchInput />
+          </Box>
+          {
+            isFetching === true ? (
+              <Loader isLoading={true}/>
+            ) : (
+              Object.keys(matches).length ? <ProfileCard
+                isLoading={false}
+                isOnBlockstack={true}
+                isMe={ blockstackUserIsResult }
+                isOnFeed={ null }
+                image={ matches[ authorId ].blockstack.image }
+                name={ matches[ authorId ].blockstack.name }
+                username={ matches[ authorId ].blockstack.username }
+                description={ matches[ authorId ].blockstack.description }
+              /> : (
+                <NoProfiles />
+              )
+            )
+          }
+        </Layout>
+      </Theme>
+    )
+  }
+}
+
+export default connect(mapStateToProps, {})(Search)
