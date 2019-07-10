@@ -49,7 +49,7 @@ class MyProfileButton extends Component {
 
     this.props.actions.loadProfile({
       author: id
-    }) // cheeky side effect to fix our URL
+    })
   }
 
   render () {

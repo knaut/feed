@@ -59,7 +59,7 @@ class GlobalLoader extends Component {
         this.setState({
           isDone: true
         })
-      }, this.ms)
+      }, 1000)
     }
 
   }
