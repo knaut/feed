@@ -25,6 +25,7 @@ import { createBrowserHistory } from 'history'
 import Home from './screens/Home'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
+import Search from './screens/Search'
 
 // UTILS
 import getLocalBlockstackUser from './utils/getLocalBlockstackUser'
@@ -37,7 +38,6 @@ const history = createBrowserHistory()
 const store = generateStore(history)
 
 const App = () => {
-
   const localUser = getLocalBlockstackUser()
 
   const {
@@ -70,6 +70,7 @@ const App = () => {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path='/' exact component={ Home } />
+          <Route path='/search' exact component={ Search } />
           <Route path='/:author' exact component={ Feed } />
           <Route path='/:author/profile' exact component={ Profile } />
         </Switch>
