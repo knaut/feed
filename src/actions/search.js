@@ -43,20 +43,38 @@ export function searchSubmit (payload) {
       const description = profile.description ? profile.description : false
       const image = profile.image ? profile.image[0].contentUrl : false
 
-      const result = {
-        [username]: {
-          profile,
-          blockstack: {
-            name,
-            username,
-            description,
-            image
+      let isOnFeed = false
+      try {
+        const response = await blockstack.getUserAppFileUrl('cache.json', `${username}.id.blockstack`, process.env.DOMAIN)
+        if (response) {
+          isOnFeed = true
+        }
+
+        const result = {
+          [username]: {
+            profile,
+            blockstack: {
+              name,
+              username,
+              description,
+              image,
+              isOnFeed,
+              isOnBlockstack: true
+            }
           }
         }
+
+        dispatch(
+          searchSubmitSuccess(result)
+        )
+        
+      } catch (error) {
+        console.error(error)
+        dispatch(
+          searchSubmitFail(error)
+        )
       }
-      dispatch(
-        searchSubmitSuccess(result)
-      )
+
     } catch (error) {
       console.error(error)
       dispatch(

@@ -30,7 +30,6 @@ export function profileLoadFail(error) {
 
 // THUNKS
 export function loadProfile(payload, route) {
-  console.log(payload)
   return async function(dispatch, getState) {
     const {
       author,
@@ -89,7 +88,7 @@ export function loadProfile(payload, route) {
         let isOnFeed = false
         try {
           const response = await blockstack.getUserAppFileUrl('cache.json', `${author}.id.blockstack`, process.env.DOMAIN)
-          console.log(response)
+
           if (response) {
             isOnFeed = true
           }

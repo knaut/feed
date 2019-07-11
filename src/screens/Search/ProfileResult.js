@@ -25,6 +25,7 @@ function mapStateToProps (state) {
 
 class SearchResultProfile extends Component {
   render () {
+    console.log(this)
     const {
       isFetching,
       matches,
@@ -39,13 +40,10 @@ class SearchResultProfile extends Component {
         name,
         username,
         image,
-        description
+        description,
+        isOnFeed,
+        isOnBlockstack
       } = match.blockstack
-
-      let isOnFeed = false
-      if (match.profile) {
-        isOnFeed = true
-      }
 
       let isMe = false
       if (loggedInUser === username) {
@@ -57,9 +55,9 @@ class SearchResultProfile extends Component {
           key={key}
           isLoading={false}
           isOnFeed={isOnFeed}
-          isOnBlockstack
+          isOnBlockstack={isOnBlockstack}
           isMe={isMe}
-          name={name || 'No name provided.'}
+          name={name || username}
           username={username}
           description={description || 'No description available.'}
           image={image}

@@ -39,10 +39,17 @@ class GlobalLoader extends Component {
 
   ms = 3145
 
+  fadeOut = null
+  interval = null
+
   componentDidMount() {
     const { isLoading } = this.props;
 
     if (isLoading === true) {
+      if (this.fadeOut) {
+        clearTimeout(this.fadeOut)
+      }
+
       this.interval = setInterval(() => {
         
         this.setState({
@@ -52,10 +59,14 @@ class GlobalLoader extends Component {
       }, this.ms);
 
     } else {
-      clearInterval(this.interval);
+      clearInterval(this.interval)
+
+      if (this.fadeOut) {
+        clearTimeout(this.fadeOut)
+      }
 
       // setTimeout for ms
-      setTimeout(() => {
+      this.fadeOut = setTimeout(() => {
         this.setState({
           isDone: true
         })

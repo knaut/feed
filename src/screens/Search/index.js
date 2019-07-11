@@ -75,7 +75,7 @@ class Search extends Component {
             isFetching === true ? (
               <Loader isLoading={true}/>
             ) : (
-              Object.keys(matches).length ? <ProfileCard
+              Object.keys(matches).length ? <ProfileResult
                 isLoading={false}
                 isOnBlockstack={true}
                 isMe={ blockstackUserIsResult }
