@@ -33,50 +33,53 @@ import generateStore from './utils/generateStore'
 
 // ACTIONS
 import * as BlockstackActions from './actions/blockstack'
+import * as CacheActions from './actions/cache'
 
 const history = createBrowserHistory()
 const store = generateStore(history)
 
-const App = () => {
-  const localUser = getLocalBlockstackUser()
+// BLOCKSTACK AUTH
+const localUser = getLocalBlockstackUser()
+const {
+  isSignedIntoBlockstack,
+  isSignInPending,
+  userData
+} = localUser
 
-  const {
-    isSignedIntoBlockstack,
-    isSignInPending,
-    userData
-  } = localUser
-
-  if (isSignInPending) {
-    // branch based on whether the user was just signing in
+if (isSignInPending) {
+  // branch based on whether the user was just signing in
+  store.dispatch(
+    BlockstackActions.isSignInPending()
+  )
+} else {
+  // we're not signing in, check if we're authed
+  if (isSignedIntoBlockstack) {
     store.dispatch(
-      BlockstackActions.isSignInPending()
+      BlockstackActions.isSignedIn(userData)
     )
   } else {
-    // we're not signing in, check if we're authed
-    if (isSignedIntoBlockstack) {
-      store.dispatch(
-        BlockstackActions.isSignedIn(userData)
-      )
-    } else {
-      // we're not signed in
-      store.dispatch(
-        BlockstackActions.isNotSignedIn()
-      )
-    }
+    // we're not signed in
+    store.dispatch(
+      BlockstackActions.isNotSignedIn()
+    )
   }
+}
 
-  return (
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Switch>
-          <Route path='/' exact component={ Home } />
-          <Route path='/search' exact component={ Search } />
-          <Route path='/:author' exact component={ Feed } />
-          <Route path='/:author/profile' exact component={ Profile } />
-        </Switch>
-      </ConnectedRouter>
-    </Provider>
-  )
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <Switch>
+            <Route path='/' exact component={ Home } />
+            <Route path='/search' exact component={ Search } />
+            <Route path='/:author' exact component={ Feed } />
+            <Route path='/:author/profile' exact component={ Profile } />
+          </Switch>
+        </ConnectedRouter>
+      </Provider>
+    )
+  }
 }
 
 

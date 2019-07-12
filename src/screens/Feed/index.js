@@ -36,6 +36,7 @@ import css from '@emotion/css'
 
 // ACTIONS
 import * as FeedActions from '../../actions/feed'
+import * as CacheActions from '../../actions/cache'
 
 const DEBUG = process.env.DEBUG
 
@@ -57,7 +58,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-      fetchFeed: FeedActions.fetchFeed
+      fetchFeed: FeedActions.fetchFeed,
+      fetchCache: CacheActions.fetchCacheThunk
     }, dispatch)
   }
 }
@@ -73,6 +75,7 @@ class Feed extends Component {
     } = this.props
 
     this.props.actions.fetchFeed({ author })
+    this.props.actions.fetchCache()
   }
 
   render () {
