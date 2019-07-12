@@ -4,10 +4,9 @@ import * as SlateActions from '../../actions/slate'
 import * as PostActions from '../../actions/post'
 
 // MAIN REDUCER
-export default function Status (
+export default function Cache (
   state = {
-    entities: {},
-    ids: []
+    v: null
   },
   action
 ) {

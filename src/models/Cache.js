@@ -28,33 +28,6 @@ class Cache {
     this.isLoaded = isLoaded
   }
 
-  generateId () {
-    const idChars = `123456789abcdefhijklmnopqrstuvwxyz`
-    const idLimit = 32
-
-    return generate(idChars, idLimit)
-  }
-
-  getProps () {
-    /*
-      delivers this model's entity props
-      which should be expected to save to the cache
-    */
-    return {
-      id: this.id,
-      ...this.props
-    }
-  }
-
-  static loadById (id, substate) {
-    return new Promise(async (resolve, reject) => {
-      const cache = await this.getCache()
-      const entity = substate.entities[ id ]
-
-      return resolve(new this(entity, true))
-    })
-  }
-
   static startCache (profile) {
     if (DEBUG) {
       console.log('Attempting to start user cache.')
@@ -69,6 +42,9 @@ class Cache {
           const userSession = new blockstack.UserSession()
 
           const blankCache = JSON.stringify({
+            Cache: {
+              v: process.env.VERSION,   // our release or API version number
+            },
             Status: {
               entities: {},
               ids: []
@@ -115,7 +91,7 @@ class Cache {
               reject(error)
             })
         }
-          break
+        break
         case 'GAIA': {
           const userSession = new blockstack.UserSession()
 
@@ -131,7 +107,7 @@ class Cache {
             reject(error)
           })
         }
-          break
+        break
       }
     })
   }
@@ -150,17 +126,17 @@ class Cache {
             method: 'POST',
             body: string
           })
-            .then(res => {
-              console.log(`${this.constructor.name} successfully POSTed cache to LOCAL.`)
-            })
-            .catch(error => {
-              if (DEBUG) {
-                console.error(`${this.constructor.name} POSTed to LOCAL, but it failed.`)
-              }
-              reject(error)
-            })
+          .then(res => {
+            console.log(`${this.constructor.name} successfully POSTed cache to LOCAL.`)
+          })
+          .catch(error => {
+            if (DEBUG) {
+              console.error(`${this.constructor.name} POSTed to LOCAL, but it failed.`)
+            }
+            reject(error)
+          })
         }
-          break
+        break
         case 'GAIA': {
           const userSession = new blockstack.UserSession()
 
@@ -171,17 +147,46 @@ class Cache {
           ).then(res => {
             console.log('Gaia responded:', res)
           })
-            .catch(error => {
-              if (DEBUG) {
-                console.error(error)
-              }
-              reject(error)
-            })
+          .catch(error => {
+            if (DEBUG) {
+              console.error(error)
+            }
+            reject(error)
+          })
         }
-          break
+        break
       }
     })
   }
+
+  generateId () {
+    const idChars = `123456789abcdefhijklmnopqrstuvwxyz`
+    const idLimit = 32
+
+    return generate(idChars, idLimit)
+  }
+
+  getProps () {
+    /*
+      delivers this model's entity props
+      which should be expected to save to the cache
+    */
+    return {
+      id: this.id,
+      ...this.props
+    }
+  }
+
+  static loadById (id, substate) {
+    return new Promise(async (resolve, reject) => {
+      const cache = await this.getCache()
+      const entity = substate.entities[ id ]
+
+      return resolve(new this(entity, true))
+    })
+  }
+
+  
 }
 
-export default Model
+export default Cache
