@@ -1,5 +1,8 @@
+// ACTION BUNDLES
+import * as SlateActions from '../actions/slate'
 import * as FeedActions from '../actions/feed'
 
+// MAIN REDUCER
 export default function feed (
   state = {
     /*
@@ -28,9 +31,17 @@ export default function feed (
 
       return newState
     }
+    case SlateActions.SLATE_SUBMIT_SUCCESS: {
+      const newState = { ...state }
+      
+      const status = action.payload
+      const props = status.getProps()
 
-    case FeedActions.FETCH_FEED_FAIL: {
-      return state
+      console.log(status, props)
+      newState.entities[ props.id ] = props
+      newState.ids.splice(0, 0, props.id)
+
+      return newState
     }
   }
 }

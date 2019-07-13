@@ -47,7 +47,7 @@ class Slate extends Component {
   }  
 
   onPostSubmit = () => {
-    const id = this.props.user.username.split('.')[0];
+    const id = this.props.id;
     const text = this.state.editorState.getCurrentContent().getPlainText();
     if (text.length) {
       

@@ -15,19 +15,19 @@ import * as SlateActions from '../../actions/slate'
 function mapStateToProps (state) {
   const {
     slate,
-    user
+    blockstack
   } = state
 
   return {
     slate,
-    user
+    blockstack
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
     actions: bindActionCreators({
-      // submit: StatusThunks.postStatus,
+      submit: SlateActions.postStatus,
       change: SlateActions.change
     }, dispatch)
   }
@@ -37,14 +37,14 @@ class Wrapped extends Component {
   render () {
     const {
       slate,
-      user,
+      blockstack,
       actions
     } = this.props
 
     return (
       <Slate
         active={slate.active}
-        user={user}
+        id={blockstack.id}
         actions={actions}
       />
     )

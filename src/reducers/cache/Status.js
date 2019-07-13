@@ -11,13 +11,10 @@ export default function Status (
   },
   action
 ) {
-  let newState = {
-    ...state
-  }
 
   switch (action.type) {
     default: {
-      return newState
+      return state
     }
     
     case CacheActions.GET_CACHE_SUCCESS: {
@@ -30,15 +27,21 @@ export default function Status (
       return newState
     }
 
-    /*
+    
     case SlateActions.SLATE_SUBMIT_SUCCESS: {
+      const newState = { ...state }
+
       const status = action.payload
       const props = status.getProps()
+
+      console.log(status, props)
       newState.entities[ props.id ] = props
       newState.ids.splice(0, 0, props.id)
 
       return newState
     }
+
+    /*
     case PostActions.POST_DELETE_SUCCESS: {
       const { id } = action.payload
 
