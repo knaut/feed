@@ -8,7 +8,7 @@ import css from '@emotion/css'
 
 // COMPONENTS
 import { Grommet, Box, Button, Grid } from 'grommet'
-// import Permalink from '../button/Permalink'
+import Permalink from './Permalink'
 import Remove from './Remove'
 
 class Toolbar extends Component {
@@ -38,9 +38,7 @@ class Toolbar extends Component {
           transition: 'all 0.2s ease-in-out'
         }}
       >
-        {/*
-        <Permalink link={`/permalink/${post.id}`} />
-        */}
+        <Permalink link={`${author}/permalink/${post.id}`} />
         <Box gridArea='flex' />
         {
           author === username ? (

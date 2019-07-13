@@ -45,6 +45,10 @@ const mapDispatchToProps = (dispatch) => {
 
 class Permalink extends Component {
   render() {
+    const {
+      blockstackUserIsAuthor
+    } = this.props
+    
     return (
       <Theme>
         <GlobalLoader/>
