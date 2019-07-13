@@ -15,7 +15,8 @@ import List from './List'
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    author
+    author,
+    blockstackUserIsAuthor
   } = ownProps
 
   const posts = state.feed

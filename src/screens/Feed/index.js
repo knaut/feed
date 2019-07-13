@@ -59,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
       fetchFeed: FeedActions.fetchFeed,
-      fetchCache: CacheActions.fetchCacheThunk
+      fetchCache: CacheActions.fetchCacheThunk,
+      setFeedAsAuthor: FeedActions.setFeedAsAuthor
     }, dispatch)
   }
 }
@@ -71,7 +72,8 @@ class Feed extends Component {
       if any, and fetch their feed cache, if any
     */
     const {
-      author
+      author,
+      blockstackUserIsAuthor
     } = this.props
 
     this.props.actions.fetchFeed({ author })
@@ -111,7 +113,7 @@ class Feed extends Component {
             blockstackUserIsAuthor === true ? <Slate /> : null
           }
           <Box margin={{ top: 'medium' }}>
-            <PostList author={author}/>
+            <PostList author={author} blockstackUserIsAuthor={blockstackUserIsAuthor}/>
           </Box>
         </Layout>
       </Theme>
