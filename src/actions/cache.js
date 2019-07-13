@@ -76,7 +76,6 @@ export const fetchCache = async () => {
 // THUNKS
 export function fetchCacheThunk( payload ) {
   return async function( dispatch, getState ) {
-    dispatch( LoaderActions.loaderOn() )
 
     const cache = await fetchCache()
 
@@ -84,12 +83,10 @@ export function fetchCacheThunk( payload ) {
       dispatch(
         getCacheSuccess( cache )
       )
-      dispatch( LoaderActions.loaderOff() )
     } else {
       dispatch(
         getCacheFail()
       )
-      dispatch( LoaderActions.loaderOff() )
     }
 
   }

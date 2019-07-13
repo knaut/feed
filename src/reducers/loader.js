@@ -20,13 +20,6 @@ export default function loader (
         isDone: false
       }
     }
-    case LoaderActions.LOADER_FADEOUT: {
-      return {
-        isLoading: false,
-        isFading: true,
-        isDone: false
-      }
-    }
     case LoaderActions.LOADER_OFF: {
       return {
         isLoading: false,

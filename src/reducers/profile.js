@@ -1,4 +1,4 @@
-import * as ProfileActions from '../actions/Profile'
+import * as ProfileActions from '../actions/profile'
 
 export default function profile (
   state = {

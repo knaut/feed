@@ -1,4 +1,5 @@
 import * as BlockstackActions from '../actions/blockstack'
+import * as CacheActions from '../actions/cache'
 
 export default function blockstack (
   state = {
@@ -11,13 +12,22 @@ export default function blockstack (
     description: null,
 
     isAuthenticated: false,
-    isAuthenticating: false
+    isAuthenticating: false,
+    isOnFeed: null
   },
   action
 ) {
   switch(action.type) {
     default: {
       return state
+    }
+    case CacheActions.GET_CACHE_SUCCESS: {
+      let newState = { ...state }
+
+      // since we got cache, assume the user has a feed
+      newState.isOnFeed = true
+
+      return newState
     }
     case BlockstackActions.IS_SIGNED_IN: {
       let newState = { ...state }
@@ -36,7 +46,9 @@ export default function blockstack (
         description,
 
         isAuthenticated: true,
-        isAuthenticating: false
+        isAuthenticating: false,
+
+        isOnFeed: newState.isOnFeed
       }
     }
   }

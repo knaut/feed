@@ -75,7 +75,6 @@ class Feed extends Component {
     } = this.props
 
     this.props.actions.fetchFeed({ author })
-    this.props.actions.fetchCache()
   }
 
   render () {

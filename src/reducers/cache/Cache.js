@@ -1,12 +1,15 @@
-// ACTION TYPES
-import * as UserActions from '../../actions/blockstack'
+// ACTION BUNDLES
 import * as SlateActions from '../../actions/slate'
 import * as PostActions from '../../actions/post'
+import * as CacheActions from '../../actions/cache'
+
+const VERSION = process.env.VERSION
 
 // MAIN REDUCER
 export default function Cache (
   state = {
-    v: null
+    v: null,    // version number to compare our cache with latest utility release
+    alerts: []  // any alert objects based on API version mismatch
   },
   action
 ) {
@@ -18,32 +21,18 @@ export default function Cache (
     default: {
       return newState
     }
-    /*
-    case 'GET_CACHE_SUCCESS': {
-      const { entities, ids } = action.payload.Status
+    case CacheActions.GET_CACHE_SUCCESS: {
+      const newState = { ...state }
+      const { Cache } = action.payload
 
-      newState.entities = entities
-      newState.ids = ids
-
+      if (Cache) {
+        const { v } = Cache
+        newState.v = v
+      } else {
+        // old cache, no version
+        newState.v = VERSION
+      }
       return newState
     }
-    case SlateActions.SLATE_SUBMIT_SUCCESS: {
-      const status = action.payload
-      const props = status.getProps()
-      newState.entities[ props.id ] = props
-      newState.ids.splice(0, 0, props.id)
-
-      return newState
-    }
-    case PostActions.POST_DELETE_SUCCESS: {
-      const { id } = action.payload
-
-      delete newState.entities[ id ]
-      const index = newState.ids.indexOf(id)
-      newState.ids.splice(index, 1)
-
-      return newState
-    }
-    */
   }
 }

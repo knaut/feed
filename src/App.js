@@ -66,6 +66,13 @@ if (isSignInPending) {
 }
 
 class App extends Component {
+  async componentDidMount() {
+    /*
+      on App load, we optimistically get our user cache
+    */
+    const thunk = CacheActions.fetchCacheThunk()
+    await thunk(store.dispatch, store)
+  }
   render() {
     return (
       <Provider store={store}>
