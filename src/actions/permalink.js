@@ -13,11 +13,20 @@ export function fetchPermalinkSuccess(payload) {
   }
 }
 
+export function fetchPermalinkFail(payload) {
+  return {
+    type: PERMALINK_FETCH_FAIL,
+    payload
+  }
+}
+
 // THUNKS
 export function fetchPermalink(payload) {
   return async function(dispatch, getState) {
     dispatch(
       LoaderActions.loaderOn()
+
+      
     )
   }
 }

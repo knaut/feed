@@ -64,6 +64,7 @@ class Permalink extends Component {
   render() {
     const {
       author,
+      link,
       blockstackUserIsAuthor
     } = this.props
 
@@ -81,7 +82,7 @@ class Permalink extends Component {
           }
         >
           <Box margin={{ top: 'medium' }}>
-            <Card author={author} blockstackUserIsAuthor={blockstackUserIsAuthor}/>
+            <Card author={author} blockstackUserIsAuthor={blockstackUserIsAuthor} link={link}/>
           </Box>
         </Layout>
       </Theme>

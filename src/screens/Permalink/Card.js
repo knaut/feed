@@ -13,15 +13,31 @@ import {
   Anchor
 } from 'grommet'
 
+import Card from '../../components/Post/Card'
+
 const mapStateToProps = (state) => {
   const { permalink } = state
-  return permalink
+  return {
+    permalink
+  }
 }
 
 class PermalinkCard extends Component {
   render() {
+    const {
+      permalink
+    } = this.props
+
     console.log(this)
-    return null
+    
+    return permalink.post ? <Card
+      {...this.props.permalink}
+    /> : <Box
+      align='center'
+      justify='center'
+    >
+      <Heading level={4} color='purplePastel'>…nothing to show yet for this permalink…</Heading>
+    </Box>
   }
 }
 
