@@ -13,12 +13,12 @@ import css from '@emotion/css'
 import { SubtractCircle } from 'grommet-icons';
 
 // ACTIONS
-// import * as StatusThunks from '../../thunks/status'
+import * as PostActions from '../../../actions/post'
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
-      // deleteStatus: StatusThunks.deleteStatus
+      deleteStatus: PostActions.deleteStatus
     }, dispatch)
   }
 }
