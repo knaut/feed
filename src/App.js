@@ -26,6 +26,7 @@ import Home from './screens/Home'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
 import Search from './screens/Search'
+import Permalink from './screens/Permalink'
 
 // UTILS
 import getLocalBlockstackUser from './utils/getLocalBlockstackUser'
@@ -82,6 +83,7 @@ class App extends Component {
             <Route path='/search' exact component={ Search } />
             <Route path='/:author' exact component={ Feed } />
             <Route path='/:author/profile' exact component={ Profile } />
+            <Route path='/:author/permalink/:link' exact component={ Permalink } />
           </Switch>
         </ConnectedRouter>
       </Provider>
