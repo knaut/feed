@@ -18,9 +18,12 @@ import { Link } from 'react-router-dom'
 
 import Layout from '../Layout'
 import Theme from '../../Theme'
-
 import GlobalLoader from '../../components/GlobalLoader'
 import GlobalToolbar from '../../components/GlobalToolbar'
+import Card from './Card'
+
+// ACTIONS
+import * as PermalinkActions from '../../actions/permalink'
 
 const DEBUG = process.env.DEBUG
 
@@ -38,17 +41,33 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators({
-
+      fetchPermalink: PermalinkActions.fetchPermalink
     }, dispatch)
   }
 }
 
 class Permalink extends Component {
-  render() {
+  componentDidMount() {
     const {
+      author,
+      link,
       blockstackUserIsAuthor
     } = this.props
-    
+
+    this.props.actions.fetchPermalink({
+      author,
+      link,
+      blockstackUserIsAuthor
+    })
+  }
+
+  render() {
+    const {
+      author,
+      blockstackUserIsAuthor
+    } = this.props
+
+
     return (
       <Theme>
         <GlobalLoader/>
@@ -62,7 +81,7 @@ class Permalink extends Component {
           }
         >
           <Box margin={{ top: 'medium' }}>
-            {/*<PostList author={author} blockstackUserIsAuthor={blockstackUserIsAuthor}/>*/}
+            <Card author={author} blockstackUserIsAuthor={blockstackUserIsAuthor}/>
           </Box>
         </Layout>
       </Theme>

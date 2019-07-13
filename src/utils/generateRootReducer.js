@@ -13,6 +13,7 @@ import loader from '../reducers/loader.js'
 import slate from '../reducers/slate.js'
 import profile from '../reducers/profile.js'
 import search from '../reducers/search.js'
+import permalink from '../reducers/permalink.js'
 
 // import all reducers here
 // the root reducer will be fed to any generated store
@@ -27,5 +28,6 @@ export default (history) => combineReducers({
   loader,
   slate,
   profile,
-  search
+  search,
+  permalink
 })
