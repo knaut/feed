@@ -76,16 +76,14 @@ class App extends Component {
         // check if we have files
         if (DEBUG) console.log('cache files:', files)
 
-        if (files) {
-          const fetchThunk = CacheActions.fetchCacheThunk()
-          await fetchThunk(store.dispatch, store)
-        
-        } else {
+        if (!files) {
           // start a new user cache
           const startThunk = CacheActions.startCacheThunk()
           await startThunk(store.dispatch, store)
+        } 
 
-        }
+        const fetchThunk = CacheActions.fetchCacheThunk()
+        await fetchThunk(store.dispatch, store)
 
       } catch (error) {
         console.error(error)
@@ -103,15 +101,10 @@ class App extends Component {
 
         if (DEBUG) console.log('cache files:', files)
 
-        if (files) {
-          const fetchThunk = CacheActions.fetchCacheThunk()
-          await fetchThunk(store.dispatch, store)
-        
-        } else {
+        if (!files) {
           // start a new user cache
           const startThunk = CacheActions.startCacheThunk()
           await startThunk(store.dispatch, store)
-
         }
 
         const fetchThunk = CacheActions.fetchCacheThunk()
