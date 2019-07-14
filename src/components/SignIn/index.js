@@ -68,7 +68,6 @@ class SignIn extends Component {
   }
 
   render() {
-    console.log(this)
     const {
       id,
 

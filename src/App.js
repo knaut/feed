@@ -118,12 +118,6 @@ class App extends Component {
         // don't fetch anything
       }
     }
-
-    /*
-      on App load, we optimistically get our user cache
-    */
-    // const fetchThunk = CacheActions.fetchCacheThunk()
-    // await thunk(store.dispatch, store)
   }
   render() {
     return (
