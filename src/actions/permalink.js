@@ -1,3 +1,5 @@
+import * as blockstack from 'blockstack'
+
 // ACTION BUNDLES
 import * as LoaderActions from '../actions/loader'
 import * as CacheActions from '../actions/cache'
@@ -40,17 +42,15 @@ export function fetchPermalink(payload) {
     
     if (blockstackUserIsAuthor === true) {
 
-      const {
-        blockstack
-      } = state
+      const blockstackUser = state.blockstack
 
       const cache = await CacheActions.fetchCache()
 
       const post = cache.Status.entities[ link ]
       const authorObj = {
-        image: blockstack.image,
-        name: blockstack.name,
-        username: blockstack.id
+        image: blockstackUser.image,
+        name: blockstackUser.name,
+        username: blockstackUser.id
       }
       
       dispatch(
@@ -70,8 +70,16 @@ export function fetchPermalink(payload) {
         const image = authorObj.image ? authorObj.image[0].contentUrl : false
 
         try {
-          const cache = await blockstack.getUserAppFileUrl('cache.json', `${author}.id.blockstack`, process.env.DOMAIN)
-          const post = cache.Status.entities[link]
+          const url = await blockstack.getUserAppFileUrl(
+            'cache.json', 
+            `${author}.id.blockstack`, 
+            process.env.DOMAIN
+          )      
+          
+          const response = await fetch(url)
+          const json = await response.json()
+          
+          const post = json.Status.entities[link]
 
           dispatch(
             fetchPermalinkSuccess({
