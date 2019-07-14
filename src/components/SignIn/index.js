@@ -68,6 +68,7 @@ class SignIn extends Component {
   }
 
   render() {
+    console.log(this)
     const {
       id,
 
@@ -79,32 +80,41 @@ class SignIn extends Component {
       cacheIsLoading
     } = this.props
 
-    if ( isAuthenticating || !cacheIsLoaded || cacheIsLoading ) {
-      return <LoadingAuth/>
-    }    
 
-    if (isAuthenticated && hasFeed) {
-      return (
-        <GoToYourFeed
-          username={id}
-          feedPath={`/${id}`}
-        />
-      )
-    } else if (isAuthenticated && !hasFeed) {
-      return (
-        <InitialSignIn
-          username={id}
-          feedPath={`/${id}`}
-          initialSignIn={this.initialSignIn}
-        />
-      )
+    if ( ( isAuthenticating || cacheIsLoading ) && !cacheIsLoaded ) {
+      return <LoadingAuth/>
+      
+    } else if (isAuthenticated && !cacheIsLoaded) {
+      return <LoadingAuth/>
+      
     } else {
-      return (
-        <Box pad='medium'>
-          <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
-        </Box>
-      )
+
+      if (isAuthenticated && hasFeed) {
+        return (
+          <GoToYourFeed
+            username={id}
+            feedPath={`/${id}`}
+          />
+        )
+      } else if (isAuthenticated && !hasFeed) {
+        return (
+          <InitialSignIn
+            username={id}
+            feedPath={`/${id}`}
+            initialSignIn={this.initialSignIn}
+          />
+        )
+      } else {
+        return (
+          <Box pad='medium'>
+            <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
+          </Box>
+        )
+      }
+
     }
+
+    
   }
 };
 
