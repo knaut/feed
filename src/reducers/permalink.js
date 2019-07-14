@@ -13,7 +13,12 @@ export default function permalink (
       return state
     }
     case PermalinkActions.PERMALINK_FETCH_SUCCESS: {
-      return state
+      let newState = { ...state }
+      
+      newState.author = action.payload.author
+      newState.post = action.payload.post
+
+      return newState
     }
     
   }

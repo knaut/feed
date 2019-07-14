@@ -38,13 +38,15 @@ export function fetchPermalink(payload) {
       blockstackUserIsAuthor
     } = payload
     
-    const {
-      Status,
-      blockstack
-    } = state
-
     if (blockstackUserIsAuthor === true) {
-      const post = Status[ link ]
+
+      const {
+        blockstack
+      } = state
+
+      const cache = await CacheActions.fetchCache()
+
+      const post = cache.Status.entities[ link ]
       const authorObj = {
         image: blockstack.image,
         name: blockstack.name,
@@ -57,6 +59,52 @@ export function fetchPermalink(payload) {
           author: authorObj
         })
       )
+    } else {
+
+      try {
+        // load author's blockstack profile
+        const authorObj = await blockstack.lookupProfile(`${author}.id.blockstack`)
+
+        const name = authorObj.name ? authorObj.name : author
+        const username = author
+        const image = authorObj.image ? authorObj.image[0].contentUrl : false
+
+        try {
+          const cache = await blockstack.getUserAppFileUrl('cache.json', `${author}.id.blockstack`, process.env.DOMAIN)
+          const post = cache.Status.entities[link]
+
+          dispatch(
+            fetchPermalinkSuccess({
+              post,
+              author: {
+                name,
+                username,
+                image
+              }
+            })
+          )
+
+        } catch (error) {
+          console.error(error)
+
+          dispatch(
+            fetchPermalinkFail(error)
+          )
+        }
+
+      } catch (error) {
+        console.error(error)
+
+        dispatch(
+          fetchPermalinkFail(error)
+        )
+      }
+
     }
   }
 }
+
+
+
+
+
