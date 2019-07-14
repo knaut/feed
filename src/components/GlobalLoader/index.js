@@ -28,10 +28,19 @@ class GlobalLoader extends Component {
     const { isLoading } = this.props;
 
     return (
-      <Loader isLoading={isLoading} />
+      <Box
+        fill
+        background='purpleDark'
+        css={css`
+          position: absolute;
+          z-index: ${ isLoading ? 105 : -1 };
+        `}
+      >
+        <Loader isLoading={isLoading} />
+      </Box>
     );
   }
 }
 
-export default connect(mapStateToProps)(GlobalLoader);
+export default connect(mapStateToProps, {})(GlobalLoader);
 

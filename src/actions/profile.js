@@ -1,6 +1,9 @@
 import { push } from 'react-router-redux'
 import * as blockstack from 'blockstack'
 
+// ACTION BUNDLES
+import * as LoaderActions from './loader'
+
 // TYPES
 export const PROFILE_LOAD_SUCCESS = 'PROFILE_LOAD_SUCCESS'
 export const PROFILE_LOAD_FAIL = 'PROFILE_LOAD_FAIL'
@@ -35,6 +38,10 @@ export function loadProfile(payload, route) {
       author,
       blockstackUser
     } = payload
+
+    dispatch(
+      LoaderActions.loaderOn()
+    )
 
     dispatch(
       profileLoadPending({
@@ -72,6 +79,10 @@ export function loadProfile(payload, route) {
       if (state.router.location.pathname !== `/${id}/profile`) {
         dispatch(push(`/${id}/profile`))
       }
+
+      dispatch(
+        LoaderActions.loaderOff()
+      )
 
     } else {
       // it's someone else's profile. load it.
@@ -114,11 +125,19 @@ export function loadProfile(payload, route) {
             dispatch(push(`/${author}/profile`))
           }
 
+          dispatch(
+            LoaderActions.loaderOff()
+          )
+
         } catch (error) {
           console.error(error)
 
           dispatch(
             profileLoadFail(error)
+          )
+
+          dispatch(
+            LoaderActions.loaderOff()
           )
         }
 
@@ -127,6 +146,10 @@ export function loadProfile(payload, route) {
 
         dispatch(
           profileLoadFail(error)
+        )
+
+        dispatch(
+          LoaderActions.loaderOff()
         )
 
       }

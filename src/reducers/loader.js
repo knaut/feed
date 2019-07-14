@@ -3,9 +3,9 @@ import * as LoaderActions from '../actions/loader'
 // MAIN REDUCER
 export default function loader (
   state = {
-    isLoading: false,
+    isLoading: true,
     isFading: false,
-    isDone: true
+    isDone: false
   },
   action
 ) {

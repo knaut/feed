@@ -32,8 +32,6 @@ export function fetchPermalink(payload) {
 
     const state = getState()
 
-    console.log({payload, state})
-
     const {
       author,
       link,
@@ -59,6 +57,8 @@ export function fetchPermalink(payload) {
           author: authorObj
         })
       )
+
+      dispatch( LoaderActions.loaderOff() )
     } else {
 
       try {
