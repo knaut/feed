@@ -80,8 +80,6 @@ class Feed extends Component {
   }
 
   render () {
-    if (DEBUG) console.log(this)
-
     const {
       author,
       blockstackUserIsAuthor
