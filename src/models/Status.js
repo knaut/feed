@@ -35,7 +35,7 @@ class Status extends Cache {
           console.error(`Status constructor was given blank text.`)
           isValid = false
         } else {
-          console.log(`Constructed valid Status.`)
+          if (process.env.DEBUG) console.log(`Constructed valid Status.`)
           isValid = true
         }
       }

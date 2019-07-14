@@ -31,9 +31,7 @@ class Cache {
   
 
   static startCache (profile) {
-    if (DEBUG) {
-      console.log('Attempting to start user cache.')
-    }
+    if (DEBUG) console.log('Attempting to start user cache.')
 
     return new Promise((resolve, reject) => {
       switch (process.env.STORAGE) {
@@ -69,9 +67,7 @@ class Cache {
   }
 
   static getCache () {
-    if (DEBUG) {
-      console.log('Attempting to fetch cache.')
-    }
+    if (DEBUG) console.log('Attempting to fetch cache.')
 
     return new Promise((resolve, reject) => {
       switch (process.env.STORAGE) {
@@ -82,7 +78,7 @@ class Cache {
             .then(res => res.json())
             .then(json => {
               if (DEBUG) {
-                console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
+                if (DEBUG) console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
               }
               resolve(json)
             })
@@ -115,9 +111,7 @@ class Cache {
   }
 
   static putCache (cache) {
-    if (DEBUG) {
-      console.log('Attempting to put cache.', cache)
-    }
+    if (DEBUG) console.log('Attempting to put cache.', cache)
 
     const string = JSON.stringify(cache)
 
@@ -129,7 +123,7 @@ class Cache {
             body: string
           })
           .then(res => {
-            console.log(`${this.constructor.name} successfully POSTed cache to LOCAL.`)
+            if (DEBUG) console.log(`${this.constructor.name} successfully POSTed cache to LOCAL.`)
           })
           .catch(error => {
             if (DEBUG) {
@@ -147,7 +141,7 @@ class Cache {
             string,
             { encrypt: false }
           ).then(res => {
-            console.log('Gaia responded:', res)
+            if (DEBUG) console.log('Gaia responded:', res)
           })
           .catch(error => {
             if (DEBUG) {

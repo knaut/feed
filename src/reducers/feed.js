@@ -38,7 +38,6 @@ export default function feed (
       const status = action.payload
       const props = status.getProps()
 
-      console.log(status, props)
       newState.entities[ props.id ] = props
       newState.ids.splice(0, 0, props.id)
 
