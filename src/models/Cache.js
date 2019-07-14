@@ -55,7 +55,9 @@ class Cache {
             `cache.json`,
             blankCache,
             { encrypt: false }
-          ).catch(error => {
+          ).then(content => {
+            resolve(JSON.parse(content))
+          }).catch(error => {
             if (DEBUG) {
               console.error(`${this.constructor.name} called startCache to GAIA, but it failed.`)
             }

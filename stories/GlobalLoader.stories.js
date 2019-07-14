@@ -21,9 +21,7 @@ storiesOf('GlobalLoader', module)
     <Theme>
       { getStory() }
       <Layout columns={true}>
-        
-          
-          <Box fill justify='center' align='center' background='accent-2'>Some Stuff behind you!</Box>
+        <Box fill justify='center' align='center' background='accent-2'>Some Stuff behind you!</Box>
       </Layout>
     </Theme>
   ))

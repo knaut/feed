@@ -20,7 +20,7 @@ import {
 import GoToYourFeed from './GoToYourFeed'
 import InitialSignIn from './InitialSignIn'
 import LoadingAuth from './LoadingAuth'
-
+import StateSwitcher from './StateSwitcher'
 /*
   This should be a drop-in global Sign In component
   that works on any screen or component it goes in.
@@ -79,39 +79,9 @@ class SignIn extends Component {
       cacheIsLoading
     } = this.props
 
-
-    if ( ( isAuthenticating || cacheIsLoading ) && !cacheIsLoaded ) {
-      return <LoadingAuth/>
-      
-    } else if (isAuthenticated && !cacheIsLoaded) {
-      return <LoadingAuth/>
-      
-    } else {
-
-      if (isAuthenticated && hasFeed) {
-        return (
-          <GoToYourFeed
-            username={id}
-            feedPath={`/${id}`}
-          />
-        )
-      } else if (isAuthenticated && !hasFeed) {
-        return (
-          <InitialSignIn
-            username={id}
-            feedPath={`/${id}`}
-            initialSignIn={this.initialSignIn}
-          />
-        )
-      } else {
-        return (
-          <Box pad='medium'>
-            <Button icon={<Login />} label="Sign in with your Blockstack ID" onClick={this.onClick} primary />
-          </Box>
-        )
-      }
-
-    }
+    return <StateSwitcher {...this.props} onClick={this.onClick} />
+    
+    
 
     
   }

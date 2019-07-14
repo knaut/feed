@@ -22,7 +22,7 @@ import {
 // UTILS
 import css from '@emotion/css'
 
-const InitialSignIn = ({ username, feedPath, initialSignIn }) => (
+const InitialSignIn = ({ username, feedPath }) => (
   <Box>
     <Box pad='small' align='center'>
       <Text color='cyanPastel' textAlign='center'>
@@ -33,7 +33,7 @@ const InitialSignIn = ({ username, feedPath, initialSignIn }) => (
       </Text>
     </Box>
     <Box pad='small' align='center'>
-      <Link to={feedPath} onClick={initialSignIn}>
+      <Link to={feedPath}>
         <Button icon={<LinkNext />} label="go to your feed" primary/>
       </Link>
     </Box>
