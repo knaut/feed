@@ -80,10 +80,10 @@ class App extends Component {
           // start a new user cache
           const startThunk = CacheActions.startCacheThunk()
           await startThunk(store.dispatch, store)
-        } 
-
-        const fetchThunk = CacheActions.fetchCacheThunk()
-        await fetchThunk(store.dispatch, store)
+        } else {
+          const fetchThunk = CacheActions.fetchCacheThunk()
+          await fetchThunk(store.dispatch, store)
+        }
 
       } catch (error) {
         console.error(error)
@@ -105,10 +105,10 @@ class App extends Component {
           // start a new user cache
           const startThunk = CacheActions.startCacheThunk()
           await startThunk(store.dispatch, store)
+        } else {
+          const fetchThunk = CacheActions.fetchCacheThunk()
+          await fetchThunk(store.dispatch, store)
         }
-
-        const fetchThunk = CacheActions.fetchCacheThunk()
-        await fetchThunk(store.dispatch, store)
 
       } else {
         // we're not signed in

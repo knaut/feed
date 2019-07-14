@@ -112,7 +112,7 @@ export function fetchCacheThunk( payload ) {
     dispatch(
       getCachePending()
     )
-    const cache = await fetchCache()
+    const cache = await Cache.getCache()
 
     if (cache) {
       dispatch(
