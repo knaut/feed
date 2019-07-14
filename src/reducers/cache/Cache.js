@@ -23,6 +23,13 @@ export default function Cache (
     default: {
       return newState
     }
+    case CacheActions.GET_CACHE_PENDING: {
+      const newState = { ...state }
+
+      newState.isLoading = true
+
+      return newState
+    }
     case CacheActions.GET_CACHE_SUCCESS: {
       const newState = { ...state }
       const { Cache } = action.payload
@@ -34,6 +41,10 @@ export default function Cache (
         // old cache, no version
         newState.v = VERSION
       }
+
+      newState.isLoaded = true
+      newState.isLoading = false
+
       return newState
     }
   }

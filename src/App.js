@@ -74,6 +74,19 @@ class App extends Component {
         const files = await CacheActions.listFiles(session)
 
         console.log(files)
+        if (files) {
+          const fetchThunk = CacheActions.fetchCacheThunk()
+          await fetchThunk(store.dispatch, store)
+        
+        } else {
+          // start a new user cache
+          const startThunk = CacheActions.startCacheThunk()
+          await startCacheThunk(store.dispatch, store)
+
+          // now fetch it
+          const fetchThunk = CacheActions.fetchCacheThunk()
+          await fetchThunk(store.dispatch, store)
+        }
 
       } catch (error) {
         console.error(error)
@@ -85,19 +98,23 @@ class App extends Component {
         store.dispatch(
           BlockstackActions.isSignedIn(userData)
         )
+
+        const fetchThunk = CacheActions.fetchCacheThunk()
+        await fetchThunk(store.dispatch, store)
       } else {
         // we're not signed in
         store.dispatch(
           BlockstackActions.isNotSignedIn()
         )
+        // don't fetch anything
       }
     }
 
     /*
       on App load, we optimistically get our user cache
     */
-    const thunk = CacheActions.fetchCacheThunk()
-    await thunk(store.dispatch, store)
+    // const fetchThunk = CacheActions.fetchCacheThunk()
+    // await thunk(store.dispatch, store)
   }
   render() {
     return (

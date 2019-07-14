@@ -8,27 +8,6 @@ import toType from '../utils/toType'
 // ENV
 const DEBUG = process.env.DEBUG
 
-
-const listFiles = async (userSession) => {
-    try {
-      const files = await userSession.listFiles(file => {
-        return file ? file : false
-      })
-
-      if (DEBUG) console.log(`listFiles:`, files)
-      
-      return files  
-
-    } catch (error) {
-      if (DEBUG) console.error(error)
-
-      return false
-    }
-    
-  }
-
-
-
 class Cache {
   /*
     our model is a base class that our data entities inherit from

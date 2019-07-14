@@ -7,7 +7,12 @@ const DEBUG = process.env.DEBUG
 
 // TYPES
 export const GET_CACHE_SUCCESS = 'GET_CACHE_SUCCESS'
+export const GET_CACHE_PENDING = 'GET_CACHE_PENDING'
 export const GET_CACHE_FAIL = 'GET_CACHE_FAIL'
+
+export const START_CACHE_SUCCESS = 'START_CACHE_SUCCESS'
+export const START_CACHE_PENDING = 'START_CACHE_PENDING'
+export const START_CACHE_FAIL = 'START_CACHE_FAIL'
 
 // CREATORS
 export function getCacheSuccess( payload ) {
@@ -17,9 +22,37 @@ export function getCacheSuccess( payload ) {
   }
 }
 
+export function getCachePending( payload ) {
+  return {
+    type: GET_CACHE_PENDING,
+    payload
+  }
+}
+
 export function getCacheFail( payload ) {
   return {
     type: GET_CACHE_FAIL,
+    payload
+  }
+}
+
+export function startCacheSuccess( payload ) {
+  return {
+    type: START_CACHE_SUCCESS,
+    payload
+  }
+}
+
+export function startCachePending( payload ) {
+  return {
+    type: START_CACHE_PENDING,
+    payload
+  }
+}
+
+export function startCacheFail( payload ) {
+  return {
+    type: START_CACHE_FAIL,
     payload
   }
 }
@@ -76,7 +109,9 @@ export const fetchCache = async () => {
 // THUNKS
 export function fetchCacheThunk( payload ) {
   return async function( dispatch, getState ) {
-
+    dispatch(
+      getCachePending()
+    )
     const cache = await fetchCache()
 
     if (cache) {
@@ -86,6 +121,26 @@ export function fetchCacheThunk( payload ) {
     } else {
       dispatch(
         getCacheFail()
+      )
+    }
+
+  }
+}
+
+export function startCacheThunk( payload ) {
+  return async function( dispatch, getState ) {
+    dispatch(
+      startCachePending()
+    )
+    const cache = await startCache()
+
+    if (cache) {
+      dispatch(
+        startCacheSuccess( cache )
+      )
+    } else {
+      dispatch(
+        startCacheFail()
       )
     }
 
