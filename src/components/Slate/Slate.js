@@ -56,17 +56,17 @@ class Slate extends Component {
         text
       }, (error) => {
 
-        console.log('aftereffect', {error}, this);
+        if (process.env.DEBUG) console.log('aftereffect', {error}, this);
         if (!error) {
 
           const editorState = EditorState.push(
             this.state.editorState, ContentState.createFromText('')
           );
-          console.log({editorState});
+          if (process.env.DEBUG) console.log({editorState});
           this.setState({
             editorState
           });
-          console.log(this.state)
+          if (process.env.DEBUG) console.log(this.state)
           
         }
 
