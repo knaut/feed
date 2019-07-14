@@ -1,9 +1,9 @@
 {
-  "name": "Feed (Development)",
-  "start_url": "https://joli-chocolatine-35019.herokuapp.com/",
+  "name": "Feed",
+  "start_url": "https://www.feed-app.net",
   "description": "Feed, a blockchain social networking app",
   "icons": [{
-    "src": "https://joli-chocolatine-35019.herokuapp.com/assets/android-chrome-192x192.png",
+    "src": "https://www.feed-app.net/assets/android-chrome-192x192.png",
     "sizes": "192x192",
     "type": "image/png"
   }]
