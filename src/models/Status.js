@@ -70,9 +70,6 @@ class Status extends Cache {
         cache.Status.entities[ model.id ] = model
         cache.Status.ids.push(model.id)
 
-        // add this status id to our profile
-        cache.Profile.entities[ model.Profile ].Status.splice(0, 0, model.id)
-
         const res = await Cache.putCache(cache)
         return this
       } catch (error) {
@@ -98,11 +95,6 @@ class Status extends Cache {
 
       const index = cache.Status.ids.indexOf(model.id)
       cache.Status.ids.splice(index, 1)
-
-      // remove this dangling id from our profile
-      const profile = cache.Profile.entities[ model.Profile ]
-      const statusIndex = profile.Status.indexOf(model.id)
-      profile.Status.splice(statusIndex, 1)
 
       const res = await Cache.putCache(cache)
       return this
