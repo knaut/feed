@@ -25,3 +25,5 @@ yarn-error.log*
 
 # graphs
 madge_*
+
+manifest.dev.json
