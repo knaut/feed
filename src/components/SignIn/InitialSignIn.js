@@ -15,7 +15,8 @@ import {
   UserNew,
   Info,
   Grow,
-  Favorite
+  Favorite,
+  LinkNext
 } from 'grommet-icons'
 
 // UTILS

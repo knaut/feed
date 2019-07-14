@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as blockstack from 'blockstack'
 
 // COMPONENTS
 import {
@@ -27,22 +28,13 @@ import LoadingAuth from './LoadingAuth'
 
 const mapStateToProps = (state) => {  
   return {
-    ...state.blockstack,
-    hasFeed: state.Status.length ? true : true
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators({
-      // initialSignIn: UserActions.initialSignIn
-    }, dispatch)
+    ...state.blockstack
   }
 }
 
 class SignIn extends Component {
   onClick = () => {
-    /*
+    
     const origin = window.location.origin;
 
     const userSession = new blockstack.UserSession()
@@ -52,22 +44,12 @@ class SignIn extends Component {
       origin + '/manifest.json',
       ['store_write', 'publish_data']
     );
-    */
-  }
-
-  initialSignIn = () => {
-    /*
-    const { id } = this.props;
-    this.props.actions.initialSignIn({
-      username: id
-    });
-    */
+    
   }
 
   render() {
     const {
       id,
-      hasFeed,
 
       isAuthenticated,
       isAuthenticating,
@@ -77,19 +59,11 @@ class SignIn extends Component {
       return <LoadingAuth/>
     }
 
-    if (isAuthenticated && hasFeed) {
+    if (isAuthenticated) {
       return (
         <GoToYourFeed
           username={id}
           feedPath={`/${id}`}
-        />
-      )
-    } else if (isAuthenticated && !hasFeed) {
-      return (
-        <InitialSignIn
-          username={id}
-          feedPath={`/${id}`}
-          initialSignIn={this.initialSignIn}
         />
       )
     } else {
@@ -102,4 +76,4 @@ class SignIn extends Component {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, {})(SignIn);
