@@ -71,8 +71,8 @@ class App extends Component {
     /*
       on App load, we optimistically get our user cache
     */
-    const thunk = CacheActions.fetchCacheThunk()
-    await thunk(store.dispatch, store)
+    // const thunk = CacheActions.fetchCacheThunk()
+    // await thunk(store.dispatch, store)
   }
   render() {
     return (
