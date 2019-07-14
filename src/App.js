@@ -83,7 +83,7 @@ class App extends Component {
         } else {
           // start a new user cache
           const startThunk = CacheActions.startCacheThunk()
-          await startCacheThunk(store.dispatch, store)
+          await startThunk(store.dispatch, store)
 
           // now fetch it
           const fetchThunk = CacheActions.fetchCacheThunk()
@@ -113,7 +113,7 @@ class App extends Component {
         } else {
           // start a new user cache
           const startThunk = CacheActions.startCacheThunk()
-          await startCacheThunk(store.dispatch, store)
+          await startThunk(store.dispatch, store)
 
           // now fetch it
           const fetchThunk = CacheActions.fetchCacheThunk()
