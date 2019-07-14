@@ -36,7 +36,7 @@ class Cache {
     return new Promise((resolve, reject) => {
       switch (process.env.STORAGE) {
         case 'LOCAL': {
-          console.error('Method unimplemented!')
+          if (DEBUG) console.error('Method unimplemented!')
         }
         case 'GAIA': {
           const userSession = new blockstack.UserSession()

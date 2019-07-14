@@ -27,8 +27,6 @@ class PermalinkCard extends Component {
     const {
       permalink
     } = this.props
-
-    console.log(this)
     
     return permalink.post ? <Card
       {...this.props.permalink}
