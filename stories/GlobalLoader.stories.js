@@ -12,7 +12,7 @@ import {
   Box
 } from 'grommet'
 import Theme from '../src/Theme'
-import GlobalLoader from '../src/components/GlobalLoader'
+import GlobalLoader from '../src/components/GlobalLoader/Loader'
 import Layout from '../src/screens/Layout'
 
 storiesOf('GlobalLoader', module)
