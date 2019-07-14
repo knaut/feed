@@ -26,9 +26,25 @@ import LoadingAuth from './LoadingAuth'
   that works on any screen or component it goes in.
 */
 
-const mapStateToProps = (state) => {  
+const mapStateToProps = (state) => {
+  /*
+  const {
+    isAuthenticating,
+    isAuthenticated
+  } = state.user
+
+  const cacheIsLoaded = state.cache.isLoaded
+
+  const user = isAuthenticated && cacheIsLoaded ? state.user : false
+  const id = isAuthenticated && cacheIsLoaded ? state.user.username.split('.')[0] : false
+  const hasFeed = isAuthenticated && cacheIsLoaded ? state.Profile.entities.hasOwnProperty(id) : false
+  */
+
+  const hasFeed = state.blockstack.isAuthenticated && /*cacheIsLoaded*/ state.Status.ids.length ? true : false
+
   return {
-    ...state.blockstack
+    ...state.blockstack,
+    hasFeed
   }
 }
 
@@ -53,17 +69,31 @@ class SignIn extends Component {
 
       isAuthenticated,
       isAuthenticating,
+
+      hasFeed,
+      
     } = this.props
 
-    if (isAuthenticating) {
+
+    /*
+    if (!isAuthenticating && !cacheIsLoaded) {
       return <LoadingAuth/>
     }
+    */
 
-    if (isAuthenticated) {
+    if (isAuthenticated && hasFeed) {
       return (
         <GoToYourFeed
           username={id}
           feedPath={`/${id}`}
+        />
+      )
+    } else if (isAuthenticated && !hasFeed) {
+      return (
+        <InitialSignIn
+          username={id}
+          feedPath={`/${id}`}
+          initialSignIn={this.initialSignIn}
         />
       )
     } else {
