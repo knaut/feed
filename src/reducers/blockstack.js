@@ -32,24 +32,17 @@ export default function blockstack (
     case BlockstackActions.IS_SIGNED_IN: {
       let newState = { ...state }
 
-      const id = action.payload.username.split('.')[0]
-      const name = action.payload.profile.name
-      const description = action.payload.profile.description
-      const image = action.payload.profile.image ? (
+      newState.id = action.payload.username.split('.')[0]
+      newState.name = action.payload.profile.name
+      newState.description = action.payload.profile.description
+      newState.image = action.payload.profile.image ? (
           action.payload.profile.image[0].contentUrl
         ) : null
 
-      return {
-        id,
-        name,
-        image,
-        description,
+      newState.isAuthenticated = true
+      newState.isAuthenticating = false
 
-        isAuthenticated: true,
-        isAuthenticating: false,
-
-        isOnFeed: newState.isOnFeed
-      }
+      return newState
     }
   }
 }

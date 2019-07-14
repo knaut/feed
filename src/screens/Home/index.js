@@ -31,8 +31,19 @@ import SignIn from '../../components/SignIn'
 // UTILS
 import css from '@emotion/css'
 
+const mapStateToProps = (state) => {
+  return {
+    ...state.blockstack,
+  }
+}
+
 class Home extends Component {
   render () {
+    const {
+      id,
+      name,
+    } = this.props
+    
     return (
       <Theme>
         <Layout

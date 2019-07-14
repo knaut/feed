@@ -9,7 +9,9 @@ const VERSION = process.env.VERSION
 export default function Cache (
   state = {
     v: null,    // version number to compare our cache with latest utility release
-    alerts: []  // any alert objects based on API version mismatch
+    alerts: [],  // any alert objects based on API version mismatch
+    isLoading: false,
+    isLoaded: false
   },
   action
 ) {

@@ -4,6 +4,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 // COMPONENTS
+import {
+  Box,
+  Button,
+  Image,
+  Heading,
+  Text,
+  Anchor
+} from 'grommet'
+import {
+  Login
+} from 'grommet-icons'
+
 import GoToYourFeed from './GoToYourFeed'
 import InitialSignIn from './InitialSignIn'
 import LoadingAuth from './LoadingAuth'
@@ -13,30 +25,10 @@ import LoadingAuth from './LoadingAuth'
   that works on any screen or component it goes in.
 */
 
-const mapStateToProps = (state) => {
-  /*
-  const {
-    isAuthenticating,
-    isAuthenticated
-  } = state.user
-
-  const cacheIsLoaded = state.cache.isLoaded
-
-  const user = isAuthenticated && cacheIsLoaded ? state.user : false
-  const id = isAuthenticated && cacheIsLoaded ? state.user.username.split('.')[0] : false
-  const hasFeed = isAuthenticated && cacheIsLoaded ? state.Profile.entities.hasOwnProperty(id) : false
-  */
+const mapStateToProps = (state) => {  
   return {
-    /*
-    cacheIsLoaded,
-
-    user,
-    hasFeed,
-    id,
-
-    isAuthenticated,
-    isAuthenticating
-    */
+    ...state.blockstack,
+    hasFeed: state.Status.length ? true : true
   }
 }
 
@@ -74,37 +66,29 @@ class SignIn extends Component {
 
   render() {
     const {
+      id,
+      hasFeed,
+
       isAuthenticated,
       isAuthenticating,
-
-      user,
-      hasFeed,
-      id,
-
-      feedPath,
-      
-      cacheIsLoaded
     } = this.props
 
-    // this line should be fixed, make it a prop
-    // const feedPath = `${this.props.user.username}/feed`;
-
-    if (!isAuthenticating && !cacheIsLoaded) {
+    if (isAuthenticating) {
       return <LoadingAuth/>
     }
 
     if (isAuthenticated && hasFeed) {
       return (
         <GoToYourFeed
-          username={user.username}
-          feedPath={feedPath}
+          username={id}
+          feedPath={`/${id}`}
         />
       )
     } else if (isAuthenticated && !hasFeed) {
       return (
         <InitialSignIn
-          username={user.username}
-          feedPath={feedPath}
+          username={id}
+          feedPath={`/${id}`}
           initialSignIn={this.initialSignIn}
         />
       )
