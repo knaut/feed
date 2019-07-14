@@ -16,12 +16,11 @@ import { Search as SearchIcon } from 'grommet-icons'
 
 import Layout from '../Layout'
 import Theme from '../../Theme'
-import GlobalLoader from '../../components/GlobalLoader'
 import GlobalToolbar from '../../components/GlobalToolbar'
 
 import ProfileResult from './ProfileResult'
 import SearchInput from './SearchInput'
-import Loader from './Loader'
+import Loader from '../../components/GlobalLoader/Loader'
 
 import ProfileCard from '../../components/Profile/Card'
 
@@ -48,20 +47,16 @@ const NoProfiles = () => (
 
 class Search extends Component {
   render() {
-    console.log(this)
-
     const {
       isFetching,
       matches
     } = this.props
 
     const authorId = Object.keys(matches)[0]
-
     const blockstackUserIsResult = this.props.id === authorId ? true : false
 
     return (
       <Theme>
-        <GlobalLoader/>
         <Layout
           left={
             null
@@ -73,7 +68,7 @@ class Search extends Component {
           </Box>
           {
             isFetching === true ? (
-              <Loader isLoading={true}/>
+              <Loader isLoading/>
             ) : (
               Object.keys(matches).length ? <ProfileResult
                 isLoading={false}

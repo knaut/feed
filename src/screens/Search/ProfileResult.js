@@ -11,7 +11,7 @@ import {
   TextInput
 } from 'grommet'
 
-import Loader from './Loader'
+import Loader from '../../components/GlobalLoader/Loader'
 
 // SEARCH
 import Card from '../../components/Profile/Card'
