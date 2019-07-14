@@ -79,7 +79,7 @@ class SignIn extends Component {
       cacheIsLoading
     } = this.props
 
-    if (isAuthenticating || !cacheIsLoaded ) {
+    if (isAuthenticating || (!cacheIsLoaded && !cacheIsLoading) ) {
       return <LoadingAuth/>
     }    
 
