@@ -91,6 +91,7 @@ export function fetchPermalink(payload) {
               }
             })
           )
+          dispatch( LoaderActions.loaderOff() )
 
         } catch (error) {
           console.error(error)

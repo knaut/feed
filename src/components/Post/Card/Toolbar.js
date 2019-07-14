@@ -38,7 +38,7 @@ class Toolbar extends Component {
           transition: 'all 0.2s ease-in-out'
         }}
       >
-        <Permalink link={`${author}/permalink/${post.id}`} />
+        <Permalink link={`/${author}/permalink/${post.id}`} />
         <Box gridArea='flex' />
         {
           author === username ? (

@@ -32,6 +32,7 @@ class PermalinkCard extends Component {
     
     return permalink.post ? <Card
       {...this.props.permalink}
+      isPermalinked={true}
     /> : <Box
       align='center'
       justify='center'
