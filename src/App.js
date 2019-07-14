@@ -40,6 +40,8 @@ import * as CacheActions from './actions/cache'
 const history = createBrowserHistory()
 const store = generateStore(history)
 
+const DEBUG = process.env.DEBUG
+
 class App extends Component {
   async componentDidMount() {
     // BLOCKSTACK AUTH
@@ -70,7 +72,7 @@ class App extends Component {
         )
 
         const files = await CacheActions.listFiles(session)
-        
+
         console.log(files)
 
       } catch (error) {
