@@ -85,9 +85,6 @@ class App extends Component {
           const startThunk = CacheActions.startCacheThunk()
           await startThunk(store.dispatch, store)
 
-          // now fetch it
-          const fetchThunk = CacheActions.fetchCacheThunk()
-          await fetchThunk(store.dispatch, store)
         }
 
       } catch (error) {
@@ -115,9 +112,6 @@ class App extends Component {
           const startThunk = CacheActions.startCacheThunk()
           await startThunk(store.dispatch, store)
 
-          // now fetch it
-          const fetchThunk = CacheActions.fetchCacheThunk()
-          await fetchThunk(store.dispatch, store)
         }
 
         const fetchThunk = CacheActions.fetchCacheThunk()

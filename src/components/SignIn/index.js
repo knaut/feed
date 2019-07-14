@@ -42,11 +42,13 @@ const mapStateToProps = (state) => {
 
   const hasFeed = state.blockstack.isAuthenticated && state.Status.ids.length ? true : false
   const cacheIsLoaded = state.Cache.isLoaded
+  const cacheIsLoading = state.Cache.isLoading
 
   return {
     ...state.blockstack,
     hasFeed,
-    cacheIsLoaded
+    cacheIsLoaded,
+    cacheIsLoading
   }
 }
 
@@ -73,10 +75,11 @@ class SignIn extends Component {
       isAuthenticating,
 
       hasFeed,
-      cacheIsLoaded
+      cacheIsLoaded,
+      cacheIsLoading
     } = this.props
 
-    if (isAuthenticating || !cacheIsLoaded) {
+    if (isAuthenticating || !cacheIsLoaded ) {
       return <LoadingAuth/>
     }    
 

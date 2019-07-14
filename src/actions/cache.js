@@ -132,17 +132,32 @@ export function startCacheThunk( payload ) {
     dispatch(
       startCachePending()
     )
-    const cache = await startCache()
 
-    if (cache) {
-      dispatch(
-        startCacheSuccess( cache )
-      )
+    const response = await Cache.startCache()
+    
+    if (DEBUG) console.log(`startCache:`, response)
+
+    if (response) {
+
+      const cache = await Cache.getCache()
+
+      if (cache) {
+        dispatch(
+          startCacheSuccess( cache )
+        )
+      } else {
+        dispatch(
+          startCacheFail()
+        )
+      }
+
     } else {
       dispatch(
         startCacheFail()
       )
     }
+
+    
 
   }
 }

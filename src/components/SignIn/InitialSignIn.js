@@ -29,7 +29,7 @@ const InitialSignIn = ({ username, feedPath, initialSignIn }) => (
         Welcome, <Anchor label={username} href="https://browser.blockstack.org/profiles" />. New to feed?
       </Text>
       <Text color='cyanPastel' textAlign='center'>
-        Sign in for the first time to get started!
+        Sign in to get started!
       </Text>
     </Box>
     <Box pad='small' align='center'>
