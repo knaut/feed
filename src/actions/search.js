@@ -1,20 +1,11 @@
 import * as blockstack from 'blockstack'
-// BLOCKSTACK AUTH UTILS
-import {
-  loginToBlockstack,
-  getProfileData,
-  signInPending
-} from '../authentication/loginToBlockstack'
 
-// MODELS
-import Profile from '../models/Profile'
-
-// ACTIONS
+// TYPES
 export const SEARCH_SUBMIT_PENDING = 'SEARCH_SUBMIT_PENDING'
 export const SEARCH_SUBMIT_SUCCESS = 'SEARCH_SUBMIT_SUCCESS'
 export const SEARCH_SUBMIT_FAIL = 'SEARCH_SUBMIT_FAIL'
 
-// ACTION CREATORS
+// CREATORS
 export function searchSubmitSuccess (payload) {
   return {
     type: SEARCH_SUBMIT_SUCCESS,
@@ -25,7 +16,7 @@ export function searchSubmitSuccess (payload) {
 export function searchSubmitPending (payload) {
   return {
     type: SEARCH_SUBMIT_PENDING,
-    payload: true
+    payload
   }
 }
 
@@ -39,33 +30,36 @@ export function searchSubmitFail (payload) {
 // THUNKS
 export function searchSubmit (payload) {
   return async function (dispatch) {
+    const { username } = payload
+
     dispatch(
-      searchSubmitPending()
+      searchSubmitPending( username )
     )
 
-    const { username } = payload
-    const profile = new Profile({
-      username
-    })
-
     try {
-      const entity = await profile.load()
+      const profile = await blockstack.lookupProfile(`${username}.id.blockstack`)
+      
+      const name = profile.name ? profile.name : false
+      const description = profile.description ? profile.description : false
+      const image = profile.image ? profile.image[0].contentUrl : false
 
-      if (entity) {
-        const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
-
-        const name = blockstackUser.name
-        const description = blockstackUser.description
-        const image = blockstackUser.image[0].contentUrl
+      let isOnFeed = false
+      try {
+        const response = await blockstack.getUserAppFileUrl('cache.json', `${username}.id.blockstack`, process.env.DOMAIN)
+        if (response) {
+          isOnFeed = true
+        }
 
         const result = {
           [username]: {
-            profile: entity,
+            profile,
             blockstack: {
               name,
               username,
               description,
-              image
+              image,
+              isOnFeed,
+              isOnBlockstack: true
             }
           }
         }
@@ -73,37 +67,20 @@ export function searchSubmit (payload) {
         dispatch(
           searchSubmitSuccess(result)
         )
-      } else {
-        // if there is no entity, then we have no user with this name in the cache
-        // try to lookup their profile and provide blockstack profile information
-
-        const blockstackUser = await blockstack.lookupProfile(`${username}.id.blockstack`)
-
-        const name = blockstackUser.name
-        const description = blockstackUser.description
-        const image = blockstackUser.image[0].contentUrl
-
-        const result = {
-          [username]: {
-            blockstack: {
-              name,
-              username,
-              description,
-              image
-            }
-          }
-        }
-
+        
+      } catch (error) {
+        console.error(error)
         dispatch(
-          searchSubmitSuccess(result)
+          searchSubmitFail(error)
         )
       }
+
     } catch (error) {
       console.error(error)
-
       dispatch(
         searchSubmitFail(username)
       )
     }
+
   }
 }

@@ -1,13 +1,13 @@
 import Moment from 'moment'
 import * as blockstack from 'blockstack'
 
-import Model from './Model'
+import Cache from './Cache'
 
 // UTILS
 import generateId from '../utils/generateId'
 import toType from '../utils/toType'
 
-class Status extends Model {
+class Status extends Cache {
   /*
     a status is a textual post limited to 500 characters.
   */
@@ -60,7 +60,7 @@ class Status extends Model {
 
     if (isValid === true) {
       try {
-        const cache = await Model.getCache()
+        const cache = await Cache.getCache()
         const options = { encrypt: false }
 
         this.isSaved = true
@@ -73,7 +73,7 @@ class Status extends Model {
         // add this status id to our profile
         cache.Profile.entities[ model.Profile ].Status.splice(0, 0, model.id)
 
-        const res = await Model.putCache(cache)
+        const res = await Cache.putCache(cache)
         return this
       } catch (error) {
         this.isSaved = false
@@ -89,7 +89,7 @@ class Status extends Model {
     const { id } = this
 
     try {
-      const cache = await Model.getCache()
+      const cache = await Cache.getCache()
       const options = { encrypt: false }
 
       const model = this.getProps()
@@ -104,7 +104,7 @@ class Status extends Model {
       const statusIndex = profile.Status.indexOf(model.id)
       profile.Status.splice(statusIndex, 1)
 
-      const res = await Model.putCache(cache)
+      const res = await Cache.putCache(cache)
       return this
     } catch (error) {
       console.error(error, this)

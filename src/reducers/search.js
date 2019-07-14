@@ -39,5 +39,12 @@ export default function search (
 
       return newState
     }
+    case '@@router/LOCATION_CHANGE': {
+      let newState = { ...state }
+
+      newState.matches = {}
+
+      return newState
+    }
   }
 }

@@ -2,13 +2,13 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Grommet, Box, Button, Grid } from 'grommet'
 import { grommet, dark } from 'grommet/themes'
-import Avatar from '../src/components/Avatar'
 
 import spoof from '../.storybook/user.json'
 
 // COMPONENTS
+import Avatar from '../src/components/Avatar'
 import Theme from '../src/Theme'
-import Layout from '../src/Layout'
+import Layout from '../src/screens/Layout'
 
 storiesOf('Avatar - Large', module)
   .addDecorator(getStory => (

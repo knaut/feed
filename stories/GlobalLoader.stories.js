@@ -8,16 +8,22 @@ import { linkTo } from '@storybook/addon-links'
 import StoryRouter from 'storybook-react-router'
 
 // COMPONENTS
+import {
+  Box
+} from 'grommet'
 import Theme from '../src/Theme'
-import GlobalLoader from '../src/components/GlobalLoader'
-import Layout from '../src/Layout'
+import GlobalLoader from '../src/components/GlobalLoader/Loader'
+import Layout from '../src/screens/Layout'
 
 storiesOf('GlobalLoader', module)
   .addDecorator(StoryRouter())
   .addDecorator(getStory => (
     <Theme>
-      <Layout columns={false}>
-        { getStory() }
+      { getStory() }
+      <Layout columns={true}>
+        
+          
+          <Box fill justify='center' align='center' background='accent-2'>Some Stuff behind you!</Box>
       </Layout>
     </Theme>
   ))

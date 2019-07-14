@@ -1,59 +1,60 @@
-// ACTION TYPES
-import * as EditorActions from '../actions/editor'
+// ACTION BUNDLES
+import * as SlateActions from '../actions/slate'
+import * as FeedActions from '../actions/feed'
 import * as PostActions from '../actions/post'
 
-// for dev
-import Status from '../models/Status'
-
-// const test = new Status({ text: 'test'})
-// test.getCache().then(res => {
-//   console.log(res);
-// })
-
+// MAIN REDUCER
 export default function feed (
   state = {
     /*
-      our feed state is a list of posts arranged by ids. e.g.:
-      {
-        <id>: {
-          ...<model props>
-        },
-        ids: [
-          // array of ids used for easy referencing
-        ]
-      }
+      ui state for user feed.
+      displays a list of posts for a single user.
+      the user could be us, it could be someone else.
     */
-    posts: {},
+    author: null,
+    entities: {},
     ids: []
   },
   action
 ) {
-  let newState = {
-    ...state
-  }
-
-  switch (action.type) {
+  switch(action.type) {
     default: {
-      return newState
+      return state
     }
-    case EditorActions.EDITOR_SUBMIT_SUCCESS: {
-      // add this post to the top of our feed
-      newState.posts[ action.payload.id ] = action.payload
-      newState.ids.splice(0, 0, action.payload.id)
+    case FeedActions.FETCH_FEED_SUCCESS: {
+      // pass through our Status cache as-is
+      const newState = { ...state }
+
+      const { author, Status } = action.payload
+      newState.author = author
+      newState.entities = Status.entities
+      newState.ids = Status.ids.reverse() // first to last
 
       return newState
     }
-    case PostActions.POST_DELETE_SUCCESS: {
-      const delId = newState.ids.indexOf(action.payload.id)
-      delete newState.posts[ action.payload.id ]
-      newState.ids.splice(delId, 1)
+    case SlateActions.SLATE_SUBMIT_SUCCESS: {
+      const newState = { ...state }
+
+      const status = action.payload
+      const props = status.getProps()
+
+      console.log(status, props)
+      newState.entities[ props.id ] = props
+      newState.ids.splice(0, 0, props.id)
+
       return newState
     }
-    case 'GET_CACHE_SUCCESS': {
-      return {
-        posts: action.payload.posts,
-        ids: action.payload.ids
-      }
+
+    case PostActions.POST_DELETE_SUCCESS: {
+      const newState = { ...state }
+      
+      const { id } = action.payload
+
+      delete newState.entities[ id ]
+      const index = newState.ids.indexOf(id)
+      newState.ids.splice(index, 1)
+
+      return newState
     }
   }
 }

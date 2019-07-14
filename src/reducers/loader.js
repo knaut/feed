@@ -1,19 +1,31 @@
+import * as LoaderActions from '../actions/loader'
+
 // MAIN REDUCER
 export default function loader (
   state = {
-    isLoading: false
+    isLoading: true,
+    isFading: false,
+    isDone: false
   },
   action
 ) {
-  const string = action.type
-
-  if (string.indexOf('PENDING') > -1) {
-    return {
-      isLoading: true
+  switch(action.type) {
+    default: {
+      return state
     }
-  } else {
-    return {
-      isLoading: false
+    case LoaderActions.LOADER_ON: {
+      return {
+        isLoading: true,
+        isFading: false,
+        isDone: false
+      }
+    }
+    case LoaderActions.LOADER_OFF: {
+      return {
+        isLoading: false,
+        isFading: false,
+        isDone: true
+      }
     }
   }
 }
