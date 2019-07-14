@@ -15,6 +15,7 @@ import 'babel-polyfill'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import * as blockstack from 'blockstack'
 
 // ROUTER
 import { Route, Switch } from 'react-router'
@@ -39,35 +40,57 @@ import * as CacheActions from './actions/cache'
 const history = createBrowserHistory()
 const store = generateStore(history)
 
-// BLOCKSTACK AUTH
-const localUser = getLocalBlockstackUser()
-const {
-  isSignedIntoBlockstack,
-  isSignInPending,
-  userData
-} = localUser
-
-if (isSignInPending) {
-  // branch based on whether the user was just signing in
-  store.dispatch(
-    BlockstackActions.isSignInPending()
-  )
-} else {
-  // we're not signing in, check if we're authed
-  if (isSignedIntoBlockstack) {
-    store.dispatch(
-      BlockstackActions.isSignedIn(userData)
-    )
-  } else {
-    // we're not signed in
-    store.dispatch(
-      BlockstackActions.isNotSignedIn()
-    )
-  }
-}
-
 class App extends Component {
   async componentDidMount() {
+    // BLOCKSTACK AUTH
+    const session = new blockstack.UserSession()
+    const localUser = getLocalBlockstackUser(session)
+    const {
+      isSignedIntoBlockstack,
+      isSignInPending,
+      userData
+    } = localUser
+
+    if (isSignInPending) {
+      // branch based on whether the user was just signing in
+      store.dispatch(
+        BlockstackActions.isSignInPending()
+      )
+
+      try {
+        const userData = await session.handlePendingSignIn()
+
+        if (DEBUG) console.log(`userData`, userData)
+
+        store.dispatch(
+          BlockstackActions.isSignedIn({
+            ...userData,
+            isAuthenticated: true
+          })
+        )
+
+        const files = await CacheActions.listFiles(session)
+        
+        console.log(files)
+
+      } catch (error) {
+        console.error(error)
+      }
+
+    } else {
+      // we're not signing in, check if we're authed
+      if (isSignedIntoBlockstack) {
+        store.dispatch(
+          BlockstackActions.isSignedIn(userData)
+        )
+      } else {
+        // we're not signed in
+        store.dispatch(
+          BlockstackActions.isNotSignedIn()
+        )
+      }
+    }
+
     /*
       on App load, we optimistically get our user cache
     */

@@ -2,16 +2,15 @@ import * as blockstack from 'blockstack'
 
 const DEBUG = process.env.DEBUG
 
-const getLocalBlockstackUser = () => {
+const getLocalBlockstackUser = (session) => {
   /*
     optimistically check it the local user is logged into blockstack.
     if not, return falsey.
     if yes, return their local user data.
   */
   
-    const session = new blockstack.UserSession()
-    const isSignedIntoBlockstack = session.isUserSignedIn()
-    const isSignInPending = session.isSignInPending()
+  const isSignedIntoBlockstack = session.isUserSignedIn()
+  const isSignInPending = session.isSignInPending()
 
   try {
     const userData = session.loadUserData()

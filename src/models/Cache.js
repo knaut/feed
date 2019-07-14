@@ -94,10 +94,6 @@ class Cache {
       console.log('Attempting to fetch cache.')
     }
 
-    const userSession = new blockstack.UserSession()
-
-    listFiles(userSession).then(files => console.log(files))
-
     return new Promise((resolve, reject) => {
       switch (process.env.STORAGE) {
         case 'LOCAL': {
@@ -120,7 +116,7 @@ class Cache {
         }
         break
         case 'GAIA': {
-          
+          const userSession = new blockstack.UserSession()
 
           userSession.getFile(
             `cache.json`,
