@@ -25,7 +25,6 @@ function mapStateToProps (state) {
 
 class SearchResultProfile extends Component {
   render () {
-    console.log(this)
     const {
       isFetching,
       matches,

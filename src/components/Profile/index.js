@@ -38,7 +38,6 @@ class ProfileCard extends Component {
   }
 
   render() {
-    console.log(this)
     return (
       <React.Fragment>
         <Card { ...this.props.profile }/>
