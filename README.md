@@ -15,9 +15,11 @@ Uses Grommet v2 for pre-fabbed UI components.
 
 All posted data is public to the world (thus unencrypted).
 
+This featureset will expand with future releases.
+
 ## Versions 📜
 
-1.0.0 - Cupcake – July 14, 2019
+1.0.0 - "Cupcake" – July 14, 2019
 
 0.0.1 - WIP - January, 2019
 
