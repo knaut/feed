@@ -87,7 +87,7 @@ class Home extends Component {
             <Text size='large'>Sign into <Text size='large' weight='bold' color='brand'>feed</Text> for the first time.</Text>
           </StartStep>
           <StartStep color='status-ok' number={3}>
-            <Text size='large'>Create your first post. Posts can be <Text size='large' weight='bold'>500 characters</Text> long.</Text>
+            <Text size='large'>Create your first post. Posts can be <Text size='large' weight='bold'>500 characters</Text> long. Posts are public to the world by default, and can be shared anywhere with a <Text size='large' weight='bold'>permalink</Text>. </Text>
           </StartStep>
           <CreateID />
           <LearnMore large/>
