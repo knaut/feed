@@ -47,5 +47,22 @@ export default function Cache (
 
       return newState
     }
+    case CacheActions.START_CACHE_SUCCESS: {
+      const newState = { ...state }
+      const { Cache } = action.payload
+
+      if (Cache) {
+        const { v } = Cache
+        newState.v = v
+      } else {
+        // old cache, no version
+        newState.v = VERSION
+      }
+
+      newState.isLoaded = true
+      newState.isLoading = false
+
+      return newState
+    }
   }
 }

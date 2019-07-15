@@ -27,6 +27,16 @@ export default function Status (
       return newState
     }
 
+    case CacheActions.START_CACHE_SUCCESS: {
+      const newState = { ...state }
+      const { entities, ids } = action.payload.Status
+
+      newState.entities = entities
+      newState.ids = ids
+
+      return newState
+    }
+
     case SlateActions.SLATE_SUBMIT_SUCCESS: {
       const newState = { ...state }
 
