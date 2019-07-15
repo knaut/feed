@@ -11,4 +11,5 @@ Uses Grommet v2 for pre-fabbed UI components.
 ## Versions 📜
 
 0.0.1 - WIP
+
 1.0.0 - Cupcake – July, 2019
