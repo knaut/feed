@@ -42,23 +42,23 @@ const store = generateStore(history)
 
 const DEBUG = process.env.DEBUG
 
+const session = new blockstack.UserSession()
+const localUser = getLocalBlockstackUser(session)
+const {
+  isSignedIntoBlockstack,
+  isSignInPending,
+  userData
+} = localUser
+
+store.dispatch(
+  BlockstackActions.isSignInPending()
+)
+
 class App extends Component {
   async componentDidMount() {
     // BLOCKSTACK AUTH
-    const session = new blockstack.UserSession()
-    const localUser = getLocalBlockstackUser(session)
-    const {
-      isSignedIntoBlockstack,
-      isSignInPending,
-      userData
-    } = localUser
-
     if (isSignInPending) {
       // branch based on whether the user was just signing in
-      store.dispatch(
-        BlockstackActions.isSignInPending()
-      )
-
       try {
         const userData = await session.handlePendingSignIn()
 
