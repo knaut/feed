@@ -21,6 +21,13 @@ export default function blockstack (
     default: {
       return state
     }
+    case BlockstackActions.IS_SIGNED_IN_PENDING: {
+      let newState = { ...state }
+
+      newState.isAuthenticating = true
+
+      return newState
+    }
     case CacheActions.GET_CACHE_SUCCESS: {
       let newState = { ...state }
 
