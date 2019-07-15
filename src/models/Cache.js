@@ -55,8 +55,8 @@ class Cache {
             `cache.json`,
             blankCache,
             { encrypt: false }
-          ).then(content => {
-            resolve(JSON.parse(content))
+          ).then(() => {
+            resolve(true)
           }).catch(error => {
             if (DEBUG) {
               console.error(`${this.constructor.name} called startCache to GAIA, but it failed.`)
@@ -79,9 +79,7 @@ class Cache {
           })
             .then(res => res.json())
             .then(json => {
-              if (DEBUG) {
-                if (DEBUG) console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
-              }
+              if (DEBUG) console.log(`${this.constructor.name} successfully got cache from LOCAL.`)
               resolve(json)
             })
             .catch(error => {

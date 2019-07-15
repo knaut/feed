@@ -23,7 +23,7 @@ import LoadingAuth from './LoadingAuth'
 
 class StateSwitcher extends Component {
   render() {
-    console.log(this)
+    if (process.env.DEBUG) console.log(this)
 
     const {
       id,
