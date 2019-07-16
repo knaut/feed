@@ -25,7 +25,8 @@ export default function blockstack (
       let newState = { ...state }
 
       newState.isAuthenticating = false
-      
+
+      return newState
     }
     case BlockstackActions.IS_SIGNED_IN_PENDING: {
       let newState = { ...state }
