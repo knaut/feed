@@ -81,9 +81,6 @@ class SignIn extends Component {
 
     return <StateSwitcher {...this.props} onClick={this.onClick} />
     
-    
-
-    
   }
 };
 
