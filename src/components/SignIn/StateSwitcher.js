@@ -40,7 +40,7 @@ class StateSwitcher extends Component {
         return <LoadingAuth/>
         
       } else if (isAuthenticated && !cacheIsLoaded) {
-        if (process.env.DEBUG) console.log('debug')
+
         return <LoadingAuth/>
         
       } else {
