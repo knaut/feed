@@ -27,6 +27,7 @@ import CreateID from './CreateID'
 import LearnMore from './LearnMore'
 
 import SignIn from '../../components/SignIn'
+import SignOut from '../../components/SignOut/Pill'
 
 // UTILS
 import css from '@emotion/css'
@@ -59,6 +60,7 @@ class Home extends Component {
           >
             <Welcome />
             <SignIn />
+            <SignOut />
           </Box>
         </Layout>
         <Box
