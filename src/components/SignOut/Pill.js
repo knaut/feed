@@ -16,25 +16,38 @@ import {
   Logout
 } from 'grommet-icons'
 
-class SignOutPill extends Component {
+class SignOut extends Component {
   onClick = () => {
     const session = new blockstack.UserSession()
     session.signUserOut('/')
   }
 
   render() {
+    const { label } = this.props
+
     return (
-      <Box pad='small'>
-        <Button
-          onClick={this.onClick}
-          plain
-          icon={<Logout color='purplePastel'/>}
-          label='Sign Out'
-          color='purplePastel'
-        />
+      <Box align='center' pad={{ top: 'small', left: 'medium', right: 'medium', bottom: 'none' }}>
+      {
+        label ? (
+          <Button
+            onClick={this.onClick}
+            plain
+            icon={<Logout color='purplePastel'/>}
+            label='Sign Out'
+            color='purplePastel'
+          />
+        ) : (
+          <Button
+            onClick={this.onClick}
+            plain
+            icon={<Logout color='purplePastel'/>}
+            color='purplePastel'
+          />
+        )
+      }
       </Box>
     )
   }
 }
 
-export default SignOutPill
+export default SignOut

@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import MyProfile from './MyProfile'
 import Search from './Search'
 import MyFeed from './MyFeed'
+import SignOut from '../SignOut/Pill'
 
 function mapStateToProps (state, ownProps) {
   const {
@@ -33,13 +34,18 @@ class UserToolbar extends Component {
     return (
       <React.Fragment>
         { isAuthenticated === true ? (
-          <React.Fragment>
-            <MyFeed />
-            <MyProfile />
-          </React.Fragment>
-        ) : null
+            <React.Fragment>
+              <MyFeed />
+              <MyProfile />
+            </React.Fragment>
+          ) : null
         }
         <Search />
+        {/*
+          isAuthenticated === true ? (
+            <SignOut />
+          ) : null
+        */}
       </React.Fragment>
     )
   }

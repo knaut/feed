@@ -19,6 +19,7 @@ import {
 import GoToYourFeed from './GoToYourFeed'
 import InitialSignIn from './InitialSignIn'
 import LoadingAuth from './LoadingAuth'
+import SignOut from '../SignOut/Pill'
 
 
 class StateSwitcher extends Component {
@@ -47,17 +48,23 @@ class StateSwitcher extends Component {
 
         if (isAuthenticated && hasFeed) {
           return (
-            <GoToYourFeed
-              username={id}
-              feedPath={`/${id}`}
-            />
+            <React.Fragment>
+              <GoToYourFeed
+                username={id}
+                feedPath={`/${id}`}
+              />
+              <SignOut label/>
+            </React.Fragment>
           )
         } else if (isAuthenticated && !hasFeed) {
           return (
-            <InitialSignIn
-              username={id}
-              feedPath={`/${id}`}
-            />
+            <React.Fragment>
+              <InitialSignIn
+                username={id}
+                feedPath={`/${id}`}
+              />
+              <SignOut label/>
+            </React.Fragment>
           )
         } else {
           return (
