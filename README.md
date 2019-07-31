@@ -2,7 +2,7 @@
 *Feed* (https://www.feed-app.net) is a decentralized social networking utility powered by blockchain technology via Blockstack (https://blockstack.org).
 
 ## Nutshell 🌰
-*Feed* is a "serverless" React & Redux application running a lightweight custom backend to store data on Blockstack's decentralized file storage system, Gaia.
+*Feed* is a React & Redux application running a lightweight custom backend to store data on Blockstack's decentralized file storage system, Gaia.
 
 User authentication on the blockchain is done via Blockstack ID.
 
