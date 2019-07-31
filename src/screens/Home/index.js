@@ -95,6 +95,21 @@ class Home extends Component {
         <Box
           fill='horizontal'
           align='center'
+          background='accent-2'
+          pad='large'
+        >
+          <Box
+            align='center'
+            direction='row'
+          >
+            <Text size='large'>
+              Current Release: <Text weight='bold'>v1.0.0 — "Cupcake"</Text>
+            </Text>
+          </Box>
+        </Box>
+        <Box
+          fill='horizontal'
+          align='center'
           background='neutral-2'
           pad='xlarge'
         >
