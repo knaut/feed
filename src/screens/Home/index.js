@@ -12,7 +12,8 @@ import {
   UserNew,
   Info,
   Grow,
-  Favorite
+  Favorite,
+  Github
 } from 'grommet-icons'
 
 // COMPONENTS
@@ -95,13 +96,19 @@ class Home extends Component {
         <Box
           fill='horizontal'
           align='center'
-          background='accent-2'
+          background='accent-1'
           pad='large'
         >
           <Box
             align='center'
+            justify='center'
             direction='row'
           >
+            <Anchor href={`https://github.com/knaut/feed`}>
+              <Box pad='small'>
+                <Button pad='small' plain icon={ <Github size='medium' color='neutral-1' />}/>
+              </Box>
+            </Anchor>
             <Text size='large'>
               Current Release: <Text weight='bold'>v1.0.0 — "Cupcake"</Text>
             </Text>
