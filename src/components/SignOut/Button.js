@@ -16,7 +16,14 @@ import {
   Logout
 } from 'grommet-icons'
 
-class SignOut extends Component {
+// STYLES
+import css from '@emotion/css'
+
+class SignOutButton extends Component {
+  state = {
+    hover: false
+  }
+
   onClick = () => {
     const session = new blockstack.UserSession()
     session.signUserOut('/')
@@ -26,7 +33,7 @@ class SignOut extends Component {
     const { label } = this.props
 
     return (
-      <Box align='center' pad={{ top: 'small', left: 'medium', right: 'medium', bottom: 'medium' }}>
+      <Box align='center'>
       {
         label ? (
           <Button
@@ -37,13 +44,22 @@ class SignOut extends Component {
             color='purplePastel'
           />
         ) : (
-          <Button
+        <Anchor title='Sign Out'>
+          <Box round='medium' css={css`overflow:hidden;`}><Button
             onClick={this.onClick}
+            onMouseEnter={e => this.setState({hover: true})}
+            onMouseLeave={e => this.setState({hover: false})}
             plain
-            icon={<Logout color='purplePastel'/>}
-            color='purplePastel'
             pad='medium'
-          />
+            // hoverIndicator='brand'
+          >
+            <Box pad='small'>
+              <Logout color={this.state.hover ? 'yellow': 'purplePastel'} css={css`
+                transition: all 0.1s ease-in-out;
+              `}/>
+            </Box>
+          </Button></Box>
+        </Anchor>
         )
       }
       </Box>
@@ -51,4 +67,4 @@ class SignOut extends Component {
   }
 }
 
-export default SignOut
+export default SignOutButton

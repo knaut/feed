@@ -35,7 +35,7 @@ const ColumnedGrid = ({ left, children, right }) => (
       { name: 'right', start: [2, 0], end: [2, 0] }
     ]}
     columns={['xsmall', 'flex', 'xsmall']}
-    rows={['full']}
+    rows={['flex']}
     gap='small'
   >
     <Box gridArea='left'>
@@ -51,6 +51,7 @@ const ColumnedGrid = ({ left, children, right }) => (
         position: fixed;
         right: 0;
         top: 0;
+        bottom: 0;
       `
     }>
       { right }
