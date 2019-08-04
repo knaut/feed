@@ -21,7 +21,7 @@ export const feed = deepMerge(grommet, {
       // pastel
       yellowPastel: '#FBFFBC',
       orangePastel: '#E8D0AB',
-      redPastel: '#FFCAC8',
+      redPastel: '#ff807c',
       purplePastel: '#D3BBE8',
       cyanPastel: '#C8E7FF',
       // dark

@@ -54,7 +54,7 @@ class SignOutButton extends Component {
             // hoverIndicator='brand'
           >
             <Box pad='small'>
-              <Logout color={this.state.hover ? 'yellow': 'purplePastel'} css={css`
+              <Logout color={this.state.hover ? 'redPastel': 'purplePastel'} css={css`
                 transition: all 0.1s ease-in-out;
               `}/>
             </Box>
