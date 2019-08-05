@@ -18,8 +18,19 @@ All posted data is public to the world (thus unencrypted).
 This featureset will expand with future releases.
 
 ## Versions 📜
+Current version: 1.0.1 - "Cupcake"
 
-1.0.0 - "Cupcake" – July 14, 2019
+### History
+**1.0.x** - "Cupcake"
+1.0.1 - Aug 4, 2019
+  - URLs automatically link in Status posts
+  - Status post avatars link to Profile cards
+  - Whitespace is preserved in Status posts
+1.0.0 - July 14, 2019
 
-0.0.1 - WIP - January, 2019
+**0.0.x** - WIP
 
+## Contact & Support
+Find the maker of Feed as ***daanderson*** here: feed-app.net/daanderson
+Email: daniel@smallinvisiblemachines.com
+Or file an issue here on Github.

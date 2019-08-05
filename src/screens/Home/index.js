@@ -39,6 +39,10 @@ const mapStateToProps = (state) => {
 }
 
 class Home extends Component {
+  state = {
+    githubHover: false
+  }
+
   render () {
     const {
       id,
@@ -106,11 +110,14 @@ class Home extends Component {
           >
             <Anchor href={`https://github.com/knaut/feed`}>
               <Box pad='small'>
-                <Button pad='small' plain icon={ <Github size='medium' color='neutral-1' />}/>
+                <Button pad='small' plain icon={ <Github size='large' color={this.state.githubHover ? 'neutral-2' : 'neutral-1'}
+                  onMouseEnter={e => this.setState({ githubHover: true })}
+                  onMouseLeave={e => this.setState({ githubHover: false })}
+                />}/>
               </Box>
             </Anchor>
             <Text size='large'>
-              Current Release: <Text weight='bold'>v1.0.0 — "Cupcake"</Text>
+              Current Release: <Text weight='bold'>v1.0.1 — "Cupcake"</Text>
             </Text>
           </Box>
         </Box>
