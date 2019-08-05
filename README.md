@@ -22,11 +22,15 @@ Current version: 1.0.1 - "Cupcake"
 
 ### History
 **1.0.x** - "Cupcake"
+
 1.0.1 - Aug 4, 2019
-  - URLs automatically link in Status posts
-  - Status post avatars link to Profile cards
-  - Whitespace is preserved in Status posts
+  - *Fixes*:
+    - URLs automatically link in Status posts
+    - Whitespace is preserved in Status posts
+    - Status post avatars link to Profile cards
+
 1.0.0 - July 14, 2019
+  - Alpha release, current features
 
 **0.0.x** - WIP
 
