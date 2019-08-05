@@ -197,30 +197,31 @@ class AvatarLoaded extends Component {
       }
       case 'small': {
         return (
-          <Router.Link to={`/${username}/profile`} css={css`
-            text-decoration: none;
-            &:hover {
-              text-decoration: none;
-            }
-          `}>
-            <Box 
-              onMouseEnter={e => { console.log(this); this.setState({hover: true}) }}
-              onMouseLeave={e => this.setState({hover: false})}
-            >
-              <Box direction='row'>
-                <Box
-                  background='purple'
-                  round='full'
-                  justify='center'
-                  align='center'
-                  width='xsmall'
-                  height='xsmall'
+          <React.Fragment>
+            <Box direction='row'>
+              <Box
+                background='purple'
+                round='full'
+                justify='center'
+                align='center'
+                width='xsmall'
+                height='xsmall'
+                css={css`
+                  border: 5px solid ${hover ? feed.global.colors.cyan : 'var(--gray1)'};
+                  overflow: hidden;
+                  transition: all 0.15s ease-in-out;
+                `}
+              >
+                <Router.Link to={`/${username}/profile`} 
+                  onMouseEnter={e => { console.log(this); this.setState({hover: true}) }}
+                  onMouseLeave={e => this.setState({hover: false})}
                   css={css`
-                    border: 5px solid ${hover ? feed.global.colors.cyan : 'var(--gray1)'};
-                    overflow: hidden;
-                    transition: all 0.15s ease-in-out;
-                  `}
-                >
+                    display: flex;
+                    text-decoration: none;
+                    &:hover {
+                      text-decoration: none;
+                    }
+                `}>
                   <Box
                     justify='center'
                     align='center'
@@ -234,13 +235,22 @@ class AvatarLoaded extends Component {
                       )
                     }
                   </Box>
-                </Box>
-                <Box
-                  justify='center'
-                  align='center'
-                  margin={{ left: 'medium' }}
-                >
+                </Router.Link>
+              </Box>
+              <Box
+                justify='center'
+                align='center'
+                margin={{ left: 'medium' }}
+              >
+                <Router.Link to={`/${username}/profile`} css={css`
+                  text-decoration: none;
+                  &:hover {
+                    text-decoration: none;
+                  }
+                `}>
                   <Text
+                    onMouseEnter={e => { console.log(this); this.setState({hover: true}) }}
+                    onMouseLeave={e => this.setState({hover: false})}
                     level={1}
                     size={'medium'}
                     color={ hover ? feed.global.colors.cyan : 'gray1' }
@@ -251,10 +261,10 @@ class AvatarLoaded extends Component {
                   >
                     { name }
                   </Text>
-                </Box>
+                </Router.Link>
               </Box>
             </Box>
-          </Router.Link>
+          </React.Fragment>
         )
       }
     }
