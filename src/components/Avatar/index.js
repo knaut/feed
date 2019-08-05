@@ -213,7 +213,7 @@ class AvatarLoaded extends Component {
                 `}
               >
                 <Router.Link to={`/${username}/profile`} 
-                  onMouseEnter={e => { console.log(this); this.setState({hover: true}) }}
+                  onMouseEnter={e => this.setState({hover: true})}
                   onMouseLeave={e => this.setState({hover: false})}
                   css={css`
                     display: flex;
