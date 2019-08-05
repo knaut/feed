@@ -5,10 +5,21 @@ import React, { Component } from 'react'
 import css from '@emotion/css'
 
 // COMPONENTS
-import { Grommet, Box, Button, Grid, TextArea, Heading, Text, Image } from 'grommet'
+import {
+  Grommet,
+  Box,
+  Button,
+  Grid,
+  TextArea,
+  Heading,
+  Text,
+  Image,
+  Anchor
+} from 'grommet'
 import { grommet, dark } from 'grommet/themes'
 import { Add, Star, Note, SubtractCircle, Gremlin, Help, User } from 'grommet-icons'
 import { FadeLoader, BarLoader, HashLoader } from 'react-spinners'
+import * as Router from 'react-router-dom';
 
 // THEME
 import { feed } from '../../Theme'
@@ -118,91 +129,58 @@ const AvatarLoading = ({ size, username }) => {
   }
 }
 
-const AvatarLoaded = ({ size, image, username, name, isMe }) => {
-  switch (size) {
-    default: {
-      return (
-        <React.Fragment>
-          <Box justify='center' align='center'>
-            <Box
-              background='purple'
-              round='full'
-              justify='center'
-              align='center'
-              width='small'
-              height='small'
-              css={css`
-                border: 5px solid var(--gray1);
-                overflow: hidden;
-              `}
-            >
+
+class AvatarLoaded extends Component {
+  state = {
+    hover: false
+  }
+
+  render() {
+
+    const {
+      size, image, username, name, isMe
+    } = this.props
+
+    const {
+      hover
+    } = this.state
+
+    switch (size) {
+      default: {
+        return (
+          <React.Fragment>
+            <Box justify='center' align='center'>
               <Box
+                background='purple'
+                round='full'
                 justify='center'
                 align='center'
-                css={image ? css`width: 100%; height: 100%;` : null}
+                width='small'
+                height='small'
+                css={css`
+                  border: 5px solid var(--gray1);
+                  overflow: hidden;
+                `}
               >
-                {
-                  image ? (
-                    <Image src={image} fit='cover' css={css`width: inherit;`} />
-                  ) : (
-                    <User color='purplePastel' size='xlarge' />
-                  )
-                }
-              </Box>
-            </Box>
-          </Box>
-          <Box
-            justify='center'
-            align='center'
-            pad={{ top: 'small' }}
-          >
-            <Text
-              level={1}
-              size={'medium'}
-              color='gray1'
-              css={css`letter-spacing: 2px;`}
-            >
-              { name }
-            </Text>
-          </Box>
-          { isMe ? <IsMeTag /> : null }
-        </React.Fragment>
-      )
-    }
-    case 'small': {
-      return (
-        <React.Fragment>
-          <Box direction='row'>
-            <Box
-              background='purple'
-              round='full'
-              justify='center'
-              align='center'
-              width='xsmall'
-              height='xsmall'
-              css={css`
-                border: 5px solid var(--gray1);
-                overflow: hidden;
-              `}
-            >
-              <Box
-                justify='center'
-                align='center'
-                css={image ? css`width: 100%; height: 100%;` : null}
-              >
-                {
-                  image ? (
-                    <Image src={image} fit='contain' />
-                  ) : (
-                    <User color='purplePastel' size='large' />
-                  )
-                }
+                <Box
+                  justify='center'
+                  align='center'
+                  css={image ? css`width: 100%; height: 100%;` : null}
+                >
+                  {
+                    image ? (
+                      <Image src={image} fit='cover' css={css`width: inherit;`} />
+                    ) : (
+                      <User color='purplePastel' size='xlarge' />
+                    )
+                  }
+                </Box>
               </Box>
             </Box>
             <Box
               justify='center'
               align='center'
-              margin={{ left: 'medium' }}
+              pad={{ top: 'small' }}
             >
               <Text
                 level={1}
@@ -213,11 +191,75 @@ const AvatarLoaded = ({ size, image, username, name, isMe }) => {
                 { name }
               </Text>
             </Box>
-          </Box>
-        </React.Fragment>
-      )
+            { isMe ? <IsMeTag /> : null }
+          </React.Fragment>
+        )
+      }
+      case 'small': {
+        return (
+          <Router.Link to={`/${username}/profile`} css={css`
+            text-decoration: none;
+            &:hover {
+              text-decoration: none;
+            }
+          `}>
+            <Box 
+              onMouseEnter={e => { console.log(this); this.setState({hover: true}) }}
+              onMouseLeave={e => this.setState({hover: false})}
+            >
+              <Box direction='row'>
+                <Box
+                  background='purple'
+                  round='full'
+                  justify='center'
+                  align='center'
+                  width='xsmall'
+                  height='xsmall'
+                  css={css`
+                    border: 5px solid ${hover ? feed.global.colors.cyan : 'var(--gray1)'};
+                    overflow: hidden;
+                    transition: all 0.15s ease-in-out;
+                  `}
+                >
+                  <Box
+                    justify='center'
+                    align='center'
+                    css={image ? css`width: 100%; height: 100%;` : null}
+                  >
+                    {
+                      image ? (
+                        <Image src={image} fit='contain' />
+                      ) : (
+                        <User color='purplePastel' size='large' />
+                      )
+                    }
+                  </Box>
+                </Box>
+                <Box
+                  justify='center'
+                  align='center'
+                  margin={{ left: 'medium' }}
+                >
+                  <Text
+                    level={1}
+                    size={'medium'}
+                    color={ hover ? feed.global.colors.cyan : 'gray1' }
+                    css={css`
+                      letter-spacing: 2px;
+                      transition: all 0.15s ease-in-out;
+                    `}
+                  >
+                    { name }
+                  </Text>
+                </Box>
+              </Box>
+            </Box>
+          </Router.Link>
+        )
+      }
     }
   }
+
 }
 
 const NotOnBlockstack = ({ username }) => (
