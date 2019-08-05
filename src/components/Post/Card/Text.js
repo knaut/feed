@@ -11,7 +11,7 @@ import css from '@emotion/css'
 
 const componentDecorator = (href, text, key) => {
   return (
-    <a href={href} key={key} target="_blank"
+    <a href={href} key={key}
       css={css`
         color: ${feed.global.colors.purple};
         transition: all 0.2s ease-in-out;

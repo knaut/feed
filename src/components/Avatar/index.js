@@ -249,8 +249,8 @@ class AvatarLoaded extends Component {
                   }
                 `}>
                   <Text
-                    onMouseEnter={e => { console.log(this); this.setState({hover: true}) }}
-                    onMouseLeave={e => this.setState({hover: false})}
+                    onMouseEnter={e => this.setState({hover: true})  }
+                    onMouseLeave={e => this.setState({hover: false}) }
                     level={1}
                     size={'medium'}
                     color={ hover ? feed.global.colors.cyan : 'gray1' }
