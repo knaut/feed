@@ -36,5 +36,7 @@ Current version: 1.0.1 - "Cupcake"
 
 ## Contact & Support
 Find the maker of Feed as ***daanderson*** here: feed-app.net/daanderson
+
 Email: daniel@smallinvisiblemachines.com
+
 Or file an issue here on Github.
