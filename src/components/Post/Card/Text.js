@@ -14,8 +14,8 @@ const componentDecorator = (href, text, key) => {
     <a href={href} key={key} target="_blank"
       css={css`
         color: ${feed.global.colors.purple};
-        font-weight: bold;
         transition: all 0.2s ease-in-out;
+        text-decoration: none;
         &:hover {
           color: ${feed.global.colors.cyan};
         }
