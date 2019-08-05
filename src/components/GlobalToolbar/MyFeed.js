@@ -33,7 +33,7 @@ class MyFeedButton extends Component {
 
     return (
       <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
-        <Link to={`/${id}`}>
+        <Link to={`/${id}`} title='My Feed'>
           <Button
             icon={
               <Home color={active ? `purpleDark` : `light`} />

@@ -57,7 +57,7 @@ class MyProfileButton extends Component {
     
     return (
       <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
-        <Anchor href={`/${id}/profile`} onClick={this.onLink}>
+        <Anchor href={`/${id}/profile`} onClick={this.onLink} title='My Profile'>
           <Button
             icon={
               <User color={active ? `purpleDark` : `light`} />

@@ -31,7 +31,7 @@ class SearchIcon extends Component {
 
     return (
       <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
-        <Link to={`/search`}>
+        <Link to={`/search`} title='Search'>
           <Button
             icon={
               <Search color={active ? `purpleDark` : `light`} />
