@@ -18,7 +18,7 @@ import {
 // UTILS
 import css from '@emotion/css'
 
-const StartStep = ({ color, number, children }) => (
+const StartStep = ({ color, number, children, icon }) => (
   <Box
     css={css`align-items: center;`}
     pad={{ left: 'large', right: 'large', bottom: 'medium' }}
@@ -35,8 +35,24 @@ const StartStep = ({ color, number, children }) => (
       }}
       justify='center'
       align='center'
+      css={css`
+        position: relative;
+      `}
     >
-      <Heading color={color} level={1} size='large'>{ number }</Heading>
+      <Heading color={color} level={1} size='large' css={css`
+        position: relative;
+        z-index: 2;
+      `}>{ number }</Heading>
+      <Box css={css`
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -48px;
+        margin-top: -48px;
+        z-index: 1;
+      `}>
+        { icon }
+      </Box>
     </Box>
     <Box width='large' justify='center' pad='medium'>
       { children }
