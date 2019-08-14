@@ -13,7 +13,10 @@ import {
   Info,
   Grow,
   Favorite,
-  Github
+  Github,
+  FingerPrint,
+  Login,
+  Send
 } from 'grommet-icons'
 
 // COMPONENTS
@@ -100,6 +103,27 @@ class Home extends Component {
         <Box
           fill='horizontal'
           align='center'
+          background='light-1'
+          pad='large'
+        >
+          <Box
+            align='center'
+            justify='center'
+            direction='row-responsive'
+          >
+            <Box fill width='medium' align='center' justify='end'>
+              <a href="https://www.producthunt.com/posts/feed-4?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-feed-4" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=163896&theme=light" alt="Feed - A social networking & microblogger powered by blockchain | Product Hunt Embed" style={{width: '250px', height: '54px'}} width="250px" height="54px" /></a>
+            </Box>
+            <Box fill width='medium' justify='end'>
+              <Text size='large' color='purpleDark' textAlign='start'>
+                like <span css={css`font-weight: bold;`}>feed?</span> give us an upvote on ProductHunt!
+              </Text>
+            </Box>
+          </Box>
+        </Box>
+        <Box
+          fill='horizontal'
+          align='center'
           background='accent-1'
           pad='large'
         >
@@ -136,11 +160,16 @@ class Home extends Component {
               <span css={css`font-weight: bold;`}>feed.</span> grow something good. <Grow color='accent-1' />
             </Text>
           </Box>
-          <Text color='purplePastel'>
-            built with <Favorite color='status-critical' css={css`margin-bottom: -6px;`} /> <span css={css`font-weight: bold;`}>&</span> <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
-              small invisible machines
-            </Anchor>
-          </Text>
+          <Box
+            align='center'
+          >
+            <Text color='purplePastel'>
+              built with <Favorite color='status-critical' css={css`margin-bottom: -6px;`} /> <span css={css`font-weight: bold;`}>&</span> <Anchor color='accent-2' href='http://www.smallinvisiblemachines.com'>
+                small invisible machines
+              </Anchor>
+            </Text>
+          </Box>
+          
         </Box>
       </Theme>
     )
