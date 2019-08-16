@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Grommet, Box, Button, Grid } from 'grommet'
 import { grommet, dark } from 'grommet/themes'
+import StoryRouter from 'storybook-react-router'
 
 import spoof from '../.storybook/user.json'
 
@@ -65,6 +66,7 @@ storiesOf('Avatar - Large', module)
   ))
 
 storiesOf('Avatar - Small', module)
+  .addDecorator(StoryRouter())
   .addDecorator(getStory => (
     <Theme>
       <Layout columns={false}>

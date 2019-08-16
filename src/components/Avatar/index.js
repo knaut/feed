@@ -216,7 +216,9 @@ class AvatarLoaded extends Component {
                   onMouseEnter={e => this.setState({hover: true})}
                   onMouseLeave={e => this.setState({hover: false})}
                   css={css`
-                    display: flex;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
                     text-decoration: none;
                     &:hover {
                       text-decoration: none;
