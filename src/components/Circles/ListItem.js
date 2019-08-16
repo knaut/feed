@@ -15,6 +15,7 @@ import {
 } from 'grommet'
 
 import Avatar from '../Avatar'
+import { CirclesButton } from '../GlobalToolbar/Circles'
 
 const ListItem = ({
   username,
@@ -36,6 +37,7 @@ const ListItem = ({
       image={image}
       name={name}
     />
+    <CirclesButton />
   </Box>
 )
 
