@@ -227,7 +227,7 @@ class AvatarLoaded extends Component {
                   <Box
                     justify='center'
                     align='center'
-                    css={image ? css`width: 100%; height: 100%;` : null}
+                    css={image ? css`width: 100%; height: 100%;` : css`height: 100%;`}
                   >
                     {
                       image ? (
