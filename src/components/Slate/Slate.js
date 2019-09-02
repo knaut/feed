@@ -9,6 +9,7 @@ import { Add } from 'grommet-icons';
 import Counter from './Counter';
 import StatusPost from './StatusPost';
 import ImagePost from './ImagePost';
+import NotePost from './NotePost';
 
 // STYLES
 import css from '@emotion/css'
@@ -121,6 +122,7 @@ class Slate extends Component {
             >
               <StatusPost selected />
               <ImagePost />
+              <NotePost />
             </Box>
             <Box
               css={css`position: relative; z-index: 30;`}
