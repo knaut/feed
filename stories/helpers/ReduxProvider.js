@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-dom'
+import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
 
 import generateStore from '../../src/utils/generateStore'
 
-const store = generateStore()
+const rootReducer = combineReducers({
+
+})
+
+const store = createStore( rootReducer, )
 
 class ReduxProvider extends Component {
   render () {

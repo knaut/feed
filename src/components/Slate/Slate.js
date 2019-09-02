@@ -7,6 +7,9 @@ import { Grommet, Box, Button, Grid, TextArea } from 'grommet';
 import { grommet, dark } from 'grommet/themes';
 import { Add } from 'grommet-icons';
 import Counter from './Counter';
+import StatusPost from './StatusPost';
+import ImagePost from './ImagePost';
+import NotePost from './NotePost';
 
 // STYLES
 import css from '@emotion/css'
@@ -97,7 +100,7 @@ class Slate extends Component {
         }
       >
         <Box
-          pad='medium'
+          pad={{ top: 'medium', left: 'medium', bottom: 'small', right: 'medium' }}
           gap='small'
           background='white'
           css={css`
@@ -112,11 +115,20 @@ class Slate extends Component {
               onChange={this.onChange}
             />
           </div>
-          <Box
-            align='end'
-            css={css`position: relative; z-index: 30;`}
-          >
-            <Counter handler={this.onPostSubmit} count={this.state.count} limit={500}/>
+          <Box direction='row' fill>
+            <Box 
+              direction='row'
+              fill
+            >
+              {/*<StatusPost selected />*/}
+              {/*<ImagePost />*/}
+              {/*<NotePost />*/}
+            </Box>
+            <Box
+              css={css`position: relative; z-index: 30;`}
+            >
+              <Counter handler={this.onPostSubmit} count={this.state.count} limit={500}/>
+            </Box>
           </Box>
         </Box>
       </Box>
