@@ -1,8 +1,14 @@
 import React from 'react'
 import Moment from 'moment'
 import { storiesOf } from '@storybook/react'
-import { Grommet, Box, Button, Grid } from 'grommet'
-import { grommet, dark } from 'grommet/themes'
+import {
+  Grommet,
+  Box,
+  Button,
+  Grid,
+  Text
+} from 'grommet'
+
 import StoryRouter from 'storybook-react-router'
 
 import spoof from '../.storybook/user.json'
@@ -13,6 +19,7 @@ import Theme from '../src/Theme'
 import Layout from '../src/screens/Layout'
 import { CirclesButton } from '../src/components/GlobalToolbar/Circles'
 import CirclesListItem from '../src/components/Circles/ListItem'
+import ManageUserButton from '../src/components/Circles/ManageUserButton'
 
 // import ReduxProvider from './helpers/ReduxProvider'
 
@@ -41,3 +48,22 @@ storiesOf('Circles', module)
       timestamp={ Moment() }
     />
   ))
+
+storiesOf('Circles - Button UIs', module)
+  .addDecorator(StoryRouter())
+  .addDecorator(getStory => (
+    <Theme>
+      <Box fill background='purpleDark' pad='xlarge'>
+        <Box round='xlarge' background='white' pad='medium' justify='center' align='center' fill>
+          { getStory() }
+        </Box>
+      </Box>
+    </Theme>
+  ))
+  .add('Manage User Button', () => (
+    <ManageUserButton
+      isInUserAuthCircle={true}
+      active={false}
+    />
+  ))
+  

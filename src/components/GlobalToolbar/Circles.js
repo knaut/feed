@@ -31,8 +31,12 @@ export class CirclesButton extends Component {
   render () {
     const { active, id } = this.props
 
+//      <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
+
+  //    </Box>
+
+
     return (
-      <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
         <Link to={`/${id}`} title='My Feed'>
           <Button
             icon={
@@ -48,7 +52,6 @@ export class CirclesButton extends Component {
             `}
           />
         </Link>
-      </Box>
     )
   }
 };

@@ -26,18 +26,22 @@ const ListItem = ({
   <Box
     background='white'
     pad='small'
-    direction='row-responsive'
+    direction='row'
   >
-    <Avatar
-      size='small'
-      isLoading={false}
-      isOnBlockstack
-      isMe={null}
-      username={username}
-      image={image}
-      name={name}
-    />
-    <CirclesButton />
+    <Box justify='evenly'>
+      <Avatar
+        size='small'
+        isLoading={false}
+        isOnBlockstack
+        isMe={null}
+        username={username}
+        image={image}
+        name={name}
+      />
+    </Box>
+    <Box justify='evenly' flex='grow' align='end'>
+      <CirclesButton />
+    </Box>
   </Box>
 )
 
