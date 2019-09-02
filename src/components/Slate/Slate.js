@@ -122,7 +122,7 @@ class Slate extends Component {
             >
               <StatusPost selected />
               <ImagePost />
-              <NotePost />
+              {/*<NotePost />*/}
             </Box>
             <Box
               css={css`position: relative; z-index: 30;`}
