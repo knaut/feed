@@ -99,7 +99,7 @@ class Slate extends Component {
         }
       >
         <Box
-          pad='medium'
+          pad={{ top: 'medium', left: 'medium', bottom: 'small', right: 'medium' }}
           gap='small'
           background='white'
           css={css`
@@ -115,13 +115,14 @@ class Slate extends Component {
             />
           </div>
           <Box direction='row' fill>
-            <Box direction='row'
-              alignSelf='start' fill>
+            <Box 
+              direction='row'
+              fill
+            >
               <StatusPost selected />
               <ImagePost />
             </Box>
             <Box
-              alignSelf='end'
               css={css`position: relative; z-index: 30;`}
             >
               <Counter handler={this.onPostSubmit} count={this.state.count} limit={500}/>
