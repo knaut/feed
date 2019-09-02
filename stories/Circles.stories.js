@@ -28,28 +28,34 @@ storiesOf('Circles', module)
   .addDecorator(getStory => (
     <Theme>
       <Box fill background='purpleDark' pad='medium'>
-        <Layout columns={true}>
-          { getStory() }
-        </Layout>
+        
+        { getStory() }
+        
       </Box>
     </Theme>
   ))
   .add('Button - inactive', () => (
-    <CirclesButton />
+    <Layout columns={true}>
+      <CirclesButton />
+    </Layout>
   ))
   .add('Button - active', () => (
-    <CirclesButton active={true} />
+    <Layout columns={true}>
+      <CirclesButton active={true} />
+    </Layout>
   ))
   .add('List Item', () => (
-    <CirclesListItem 
-      username={spoof.user.username}
-      image={spoof.user.image}
-      name={spoof.user.name}
-      timestamp={ Moment() }
-    />
+    <Layout columns={false}>
+      <CirclesListItem 
+        username={spoof.user.username}
+        image={spoof.user.image}
+        name={spoof.user.name}
+        timestamp={ Moment() }
+      />
+    </Layout>
   ))
 
-storiesOf('Circles - Button UIs', module)
+storiesOf('Circles - Manage User Button', module)
   .addDecorator(StoryRouter())
   .addDecorator(getStory => (
     <Theme>
@@ -60,10 +66,9 @@ storiesOf('Circles - Button UIs', module)
       </Box>
     </Theme>
   ))
-  .add('Manage User Button', () => (
+  .add('is in circle', () => (
     <ManageUserButton
       isInUserAuthCircle={true}
-      active={false}
     />
   ))
   

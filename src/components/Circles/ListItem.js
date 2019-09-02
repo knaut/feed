@@ -15,7 +15,7 @@ import {
 } from 'grommet'
 
 import Avatar from '../Avatar'
-import { CirclesButton } from '../GlobalToolbar/Circles'
+import ManageUser from '../Circles/ManageUserButton'
 
 const ListItem = ({
   username,
@@ -40,7 +40,7 @@ const ListItem = ({
       />
     </Box>
     <Box justify='evenly' flex='grow' align='end'>
-      <CirclesButton />
+      <ManageUser />
     </Box>
   </Box>
 )

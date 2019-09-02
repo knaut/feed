@@ -13,15 +13,44 @@ import { Link } from 'react-router-dom'
 // STYLES
 import css from '@emotion/css'
 
+const StateIcon = ({ active, isInUserAuthCircle }) => {
+  if (active) {
+    return (
+      <Fragment>
+        <FormSubtract color={`red`} css={css`transition: 0.2s all ease-in-out;`}/>
+        <Aggregate color={`purpleDark`} css={css`transition: 0.2s all ease-in-out;`}/>
+      </Fragment>
+    )
+  } else {
+    return (
+      <Fragment>
+        <FormSubtract color={`purpleDark`} css={css`transition: 0.2s all ease-in-out;`}/>
+        <Aggregate color={`purpleDark`} css={css`transition: 0.2s all ease-in-out;`}/>
+      </Fragment>
+    )
+  }
+}
+
 export default class ManageUser extends Component {
+  state = {
+    hover: false
+  }
+
   render() {
     const {
+      hover
+    } = this.state
+
+    const {
       active,
+      label,
       isInUserAuthCircle,
     } = this.props
 
     return (
       <Button
+        onMouseEnter={() => this.setState({hover: true})}
+        onMouseLeave={() => this.setState({hover: false})}
         border='medium'
         css={css`
           background: var(--light);
@@ -35,13 +64,7 @@ export default class ManageUser extends Component {
             color: var(--red);
           }
         `}
-        
-        icon={
-          <Fragment>
-            <FormSubtract color={`purpleDark`}/>
-            <Aggregate color={`purpleDark`}/>
-          </Fragment>
-        }
+        icon={ <StateIcon active={hover} /> }
       />
 
       
