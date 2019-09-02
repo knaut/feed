@@ -27,21 +27,23 @@ storiesOf('Circles', module)
   .addDecorator(StoryRouter())
   .addDecorator(getStory => (
     <Theme>
-      <Box fill background='purpleDark' pad='medium'>
-        
+      <Box fill background='purpleDark' pad='xlarge'>
         { getStory() }
-        
       </Box>
     </Theme>
   ))
   .add('Button - inactive', () => (
     <Layout columns={true}>
-      <CirclesButton />
+      <Box align='center' justify='center'>
+        <CirclesButton />
+      </Box>
     </Layout>
   ))
   .add('Button - active', () => (
     <Layout columns={true}>
-      <CirclesButton active={true} />
+      <Box align='center' justify='center'>
+        <CirclesButton active={true} />
+      </Box>
     </Layout>
   ))
   .add('List Item', () => (
