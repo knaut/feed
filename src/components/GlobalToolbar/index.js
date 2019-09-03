@@ -15,6 +15,8 @@ import {
 import MyProfile from './MyProfile'
 import Search from './Search'
 import MyFeed from './MyFeed'
+import Circles from './Circles'
+
 import SignOut from '../SignOut/Button'
 
 // STYLES
@@ -48,6 +50,7 @@ class UserToolbar extends Component {
             <React.Fragment>
               <MyFeed />
               <MyProfile />
+              <Circles/>
             </React.Fragment>
           ) : null
         }

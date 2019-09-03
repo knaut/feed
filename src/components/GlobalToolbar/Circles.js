@@ -17,7 +17,7 @@ function mapStateToProps (state) {
   const id = state.blockstack.id
   let active = false
 
-  if (state.router.location.pathname === `/${id}`) {
+  if (state.router.location.pathname === `/${id}/circle`) {
     active = true
   }
 
@@ -31,13 +31,9 @@ export class CirclesButton extends Component {
   render () {
     const { active, id } = this.props
 
-//      <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
-
-  //    </Box>
-
-
     return (
-        <Link to={`/${id}`} title='My Feed'>
+      <Box align='center' pad={{ top: 'medium', left: 'medium', right: 'medium', bottom: 'none' }}>
+        <Link to={`/${id}/circle`} title='My Circle'>
           <Button
             icon={
               <Aggregate color={active ? `purpleDark` : `light`} />
@@ -52,6 +48,7 @@ export class CirclesButton extends Component {
             `}
           />
         </Link>
+      </Box>
     )
   }
 };
