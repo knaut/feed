@@ -28,6 +28,7 @@ import Feed from './screens/Feed'
 import Profile from './screens/Profile'
 import Search from './screens/Search'
 import Permalink from './screens/Permalink'
+import CircleFeed from './screens/Circles'
 
 // UTILS
 import getLocalBlockstackUser from './utils/getLocalBlockstackUser'
@@ -127,6 +128,7 @@ class App extends Component {
             <Route path='/' exact component={ Home } />
             <Route path='/search' exact component={ Search } />
             <Route path='/:author' exact component={ Feed } />
+            <Route path='/:author/circles' exact component={ CircleFeed } />
             <Route path='/:author/profile' exact component={ Profile } />
             <Route path='/:author/permalink/:link' exact component={ Permalink } />
           </Switch>
