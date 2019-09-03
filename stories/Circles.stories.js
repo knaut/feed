@@ -74,3 +74,26 @@ storiesOf('Circles - Manage User Button', module)
     />
   ))
   
+storiesOf('Circles - Manage Users Layout', module)
+  .addDecorator(StoryRouter())
+  .addDecorator(getStory => (
+    <Theme>
+      <Box fill background='purpleDark' pad='xlarge'>
+        { getStory() }
+      </Box>
+    </Theme>
+  ))
+  .add('default layout', () => (
+    <Layout columns={true}>
+      <Box round='medium' background='white' pad={{vertical: 'medium'}} justify='center' align='center' fill>
+        <CirclesListItem 
+          username={spoof.user.username}
+          image={spoof.user.image}
+          name={spoof.user.name}
+          timestamp={ Moment() }
+        />
+      </Box>
+    </Layout>
+  ))
+
+

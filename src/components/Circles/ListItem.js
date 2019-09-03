@@ -27,6 +27,8 @@ const ListItem = ({
     background='white'
     pad='small'
     direction='row'
+    fill
+    border={{side: 'horizontal', size: 'small', color: 'light-2'}}
   >
     <Box justify='evenly'>
       <Avatar

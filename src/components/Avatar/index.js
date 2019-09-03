@@ -225,11 +225,12 @@ class AvatarLoaded extends Component {
                   <Box
                     justify='center'
                     align='center'
-                    css={image ? css`width: 100%; height: 100%;` : null}
+                    width='xsmall'
+                    height='xsmall'
                   >
                     {
                       image ? (
-                        <Image src={image} fit='contain' />
+                        <Image src={image} fit='contain'/>
                       ) : (
                         <User color='purplePastel' size='large' />
                       )
